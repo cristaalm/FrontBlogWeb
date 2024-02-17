@@ -1,0 +1,154 @@
+:root {
+  --color-blanco: #fff;
+  --color-1: #fffdee;
+  --color-2: #b8ddd6;
+  --color-3: #56a1a6;
+  --cloro-4: #035165;
+  --color-5: #84b6f4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--color-5); 
+  overflow: hidden;
+}
+section .wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-image: url(img/wave.png);
+  background-size: 1000px 100px;
+}
+section .wave.wave1 {
+  animation: animate 30s linear infinite;
+  z-index: 1000;
+  opacity: 1;
+  animation-delay: 0s;
+  bottom: 0;
+}
+section .wave.wave2 {
+  animation: animate2 15s linear infinite;
+  z-index: 999;
+  opacity: 0.5;
+  animation-delay: -5s;
+  bottom: 10px;
+}
+section .wave.wave3 {
+  animation: animate 15s linear infinite;
+  z-index: 998;
+  opacity: 0.2;
+  animation-delay: -2s;
+  bottom: 15px;
+}
+section .wave.wave4 {
+  animation: animate2 15s linear infinite;
+  z-index: 997;
+  opacity: 0.7;
+  animation-delay: -5s;
+  bottom: 20px;
+}
+@keyframes animate {
+  0%{
+    background-position-x: 0;
+  }
+  100%{
+    background-position-x: 1000px;
+  }
+}
+@keyframes animate2 {
+  0%{
+    background-position-x: 0;
+  }
+  100%{
+    background-position-x: 1000px;
+  }
+}
+section{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container{
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 20px 40px;
+  border-radius: 5px;
+}
+h1{
+  text-align: center;
+  margin-bottom: 30px;
+
+}
+a{
+  text-decoration: none;
+  color: lightblue;
+}
+.btn{
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  background: lightblue;
+  padding: 15px;
+  font-family: inherit;
+  font-size: 16px;
+  border: 0;
+  border-radius: 5px;
+}
+.btn:focus{
+  outline: 0;
+}
+.btn:active{
+  transform: scale(0.98);
+}
+.text{
+  margin-top: 30px;
+}
+.form-control{
+  position: relative;
+  margin: 20px 0 40px;
+  width: 300px;
+}
+input{
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px #fff solid;
+  display: block;
+  width: 100%;
+  padding: 15px 0;
+  font-size: 18px;
+  color: #fff;
+}
+input:focus,
+input:valid{
+  outline: 0;
+  border-bottom-color: lightblue;
+}
+label{
+  position: absolute;
+  top: 15px;
+  left: 0;
+  pointer-events: none;
+}
+span{
+  display: inline-block;
+  font-size: 18px;
+  min-width: 5px;
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+input:focus + label span,
+input:valid + label span{
+  color: lightblue;
+  transform: translateY(-30px);
+}
