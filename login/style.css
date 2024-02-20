@@ -11,6 +11,61 @@
   margin: 0;
   padding: 0;
 }
+body a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0000;
+}
+a {
+  position: relative;
+  display: block;
+  padding: 10px 30px;
+  border: 2px solid #00aeff;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 4px;
+  overflow: hidden;
+  border-radius: 5%;
+}
+a span {
+  position: relative;
+  z-index: 1;
+  transition: 1s;
+}
+a:hover span { /*Cambia el color del texto del enlace al pasar el ratón por encima. */
+   color: #fff; 
+}
+ a .muv {  /*Crea un efecto visual al pasar el ratón por encima de un enlace, moviendo un elemento con clase .muv hacia arriba. */
+  position:absolute;
+  top: calc(100% + 22px);
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #00aeff;
+  transition: 1s;
+}
+a:hover .muv {
+  top: 0;
+}
+a .muv:before {
+  content: '';
+  position: absolute;
+  top: -22px;
+  left: 0;
+  width: 100%;
+  height: 22px;
+  background-image: url(img/wave2.png);
+  animation: animate 3s linear infinite;
+}
+@keyframes animate{
+  0% {
+    background-position-x: 0;  
+  }
+  100% {
+    background-position-x: 118px;
+  }
+}
 section {
   position: relative; /* Hace que la sección sea el contenedor de referencia para el posicionamiento absoluto */
   /* Otros estilos de la sección */
