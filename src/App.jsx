@@ -30,7 +30,7 @@ function App() {
 
         <form>
           <div className="form-control">
-            <input type="text" required />
+            <input type="email" required />
             <AnimatedLabel text="Correo" />
           </div>
           <div className="form-control">
