@@ -1,0 +1,149 @@
+.dashboard {
+  display: flex;
+  font-family: Arial, sans-serif;
+  max-width: 100%;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+.sections-header {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.logo {
+  /* Estilos para el logo */
+  margin-bottom: 1rem;
+}
+
+.menu {
+  margin-top: 20px;
+}
+
+.menu-item {
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  left: 0;
+  background-color: #f0f0f0;
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.dropdown-item {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.sidebar-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sidebar-actions select,
+.sidebar-actions button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.content {
+  margin-left: 250px;
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.user-greeting {
+  margin-right: 20px;
+}
+
+.entry-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.tinymce-container {
+  clear: both; /* Asegura que TinyMCE no se superponga con flotantes a la izquierda */
+}
+
+/* Ajustes para TinyMCE para que no ocupe todo el espacio */
+.tox .tox-editor-container {
+  max-width: 100%; /* Limita el ancho del editor a su contenedor */
+  height: auto; /* O puedes establecer una altura fija si lo prefieres */
+}
+
+.tox.tox-tinymce {
+  margin-bottom: 1rem; /* Añade espacio debajo del editor */
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    position: relative;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+
+  .content-header,
+  .entry-form {
+    flex-direction: column;
+  }
+
+  .user-greeting {
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-actions {
+    order: -1; /* Coloca las acciones de la barra lateral sobre el contenido en móviles */
+  }
+
+  .form-group button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
