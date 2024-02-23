@@ -9,7 +9,7 @@ function Dashboard() {
   };
 
   useEffect(() => {
-  iFi
+  
     const script = document.createElement('script');
     script.src = 'https://cdn.tiny.cloud/1/kovdcfjaqbeap5tn2t47qcgag4xk6qwtg473e9iu0rmn2kd2/tinymce/6/tinymce.min.js';
     script.referrerpolicy = 'origin';
@@ -36,7 +36,7 @@ function Dashboard() {
         <div className="logo">Logotipo</div>
         <div className="menu">
           <div className="menu-item" onClick={toggleEntriesDropdown}>
-            Entradas {isEntriesDropdownOpen ? '−' : '+'}
+            Entradas {isEntriesDropdownOpen ? '-' : '+'}
           </div>
           {isEntriesDropdownOpen && (
             <div className="dropdown">
