@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import './App.css'; // Asegúrate de que el path sea correcto
-
+import './App.css';
+import indexadmin from './indexadmin.jsx';
+import IndexAdmin from './indexadmin.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <IndexAdmin />
   </React.StrictMode>,
 )
