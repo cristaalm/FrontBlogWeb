@@ -31,9 +31,10 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
+     
       <aside className="sidebar">
+       <img src="src/img/logo without bg.png"  width="100px" height="100px"   alt="pene" />
         <div className="sections-header">SECCIONES</div>
-        <div className="logo">Logotipo</div>
         <div className="menu">
           <div className="menu-item" onClick={toggleEntriesDropdown}>
             Entradas {isEntriesDropdownOpen ? '-' : '+'}
@@ -58,6 +59,9 @@ function Dashboard() {
           <button type="submit" id="saveButton">Guardar Entrada</button>
         </div>
       </aside>
+
+
+
       <main className="content">
         <div className="content-header">
           <h1>Añadir nueva entrada</h1>
@@ -65,14 +69,17 @@ function Dashboard() {
         </div>
         <div className="entry-form">
           <div className="form-group">
-            <label htmlFor="entryTitle">Título de Entrada</label>
-            <input type="text" id="entryTitle" placeholder="Ingrese título" />
+           {/* <input htmlFor="entryTitle" type="text" placeholder='Ingresa titulo'></input> */}
           </div>
+
+
           {/* El editor TinyMCE se coloca aquí */}
-          <div className="form-group tinymce-container">
+
+         {/*<div className="form-group tinymce-container">
             <label htmlFor="entryDescription">Descripción</label>
             <textarea id="entryDescription"></textarea>
-          </div>
+          </div> */}
+          
         </div>
       </main>
     </div>
