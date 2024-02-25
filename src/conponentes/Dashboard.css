@@ -21,41 +21,63 @@
 .sections-header {
   text-align: center;
   margin-bottom: 20px;
-  font-weight: bold;
+  font-weight: bold ;
 }
 
-.logo {
-  /* Estilos para el logo */
-  margin-bottom: 1rem;
+div img {
+  position: absolute; /* Posicionamiento absoluto para el logo */
+  top: 20px; /* 20px desde la parte superior del div contenedor */
+  left: 70px; /* 50px desde la parte izquierda del div contenedor */
 }
 
 .menu {
-  margin-top: 20px;
+  margin-top: 100px;
+  
 }
 
 .menu-item {
+  background-color: aqua;
   cursor: pointer;
   margin-bottom: 0.5rem;
   position: relative;
+  overflow: hidden;
+  padding: 5px 5px 1px 1px; /* Asegúrate de dejar espacio para la imagen */
+  background-repeat: no-repeat;
+  background-position: 150px; /* Ajusta según sea necesario */
+  border-radius: 5px;
+  text-align: center;
 }
 
+.menu-item.plus {
+  background-image: url('././public/abajo.svg');
+}
+
+.menu-item.minus {
+  background-image: url('././public/arriba.svg');
+}
 .dropdown {
   position: absolute;
+  z-index: 1000;
   left: 0;
   background-color: #f0f0f0;
   width: 100%;
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  text-align: center;
 }
 
 .dropdown-item {
   cursor: pointer;
   padding: 10px;
 }
+.dropdown-item:hover {
+  background: #f6f8fa;
+}
 
 .sidebar-actions {
-  display: flex;
+  background-color: antiquewhite;
+  position: fixed;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .sidebar-actions select,

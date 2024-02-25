@@ -20,6 +20,7 @@ function App() {
       <div className="wave wave3"></div>
       <div className="wave wave4"></div>
       <div className="container">
+        
         <img src="src/img/logo without bg.png" alt="" />
 
 

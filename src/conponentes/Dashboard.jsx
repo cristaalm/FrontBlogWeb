@@ -34,10 +34,12 @@ function Dashboard() {
      
       <aside className="sidebar">
        <img src="src/img/logo without bg.png"  width="100px" height="100px"   alt="pene" />
-        <div className="sections-header">SECCIONES</div>
         <div className="menu">
+          <div className="sections-header">SECCIONES</div>
           <div className="menu-item" onClick={toggleEntriesDropdown}>
-            Entradas {isEntriesDropdownOpen ? '-' : '+'}
+            <div className={`menu-item ${isEntriesDropdownOpen ? 'minus' : 'plus'}`} onClick={toggleEntriesDropdown}>
+              Entradas
+            </div>
           </div>
           {isEntriesDropdownOpen && (
             <div className="dropdown">
@@ -48,8 +50,10 @@ function Dashboard() {
           )}
           <div className="menu-item">Usuarios</div>
         </div>
-        {/* Botones y Selector de Categorías ahora se mueven aquí */}
-        <div className="sidebar-actions">
+        
+      </aside>1
+      {/* Botones y Selector de Categorías ahora se mueven aquí */}
+      <div className="sidebar-actions">
           <select id="categorySelect">
             <option>Seleccione categoría...</option>
             {/* Las opciones de categoría irían aquí */}
@@ -58,8 +62,6 @@ function Dashboard() {
           <button type="button" id="addImageButton">Imagen Destacada</button>
           <button type="submit" id="saveButton">Guardar Entrada</button>
         </div>
-      </aside>
-
 
 
       <main className="content">
