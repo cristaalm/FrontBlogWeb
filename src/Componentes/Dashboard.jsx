@@ -77,10 +77,10 @@ function Dashboard() {
 
           {/* El editor TinyMCE se coloca aquí */}
 
-         {/*<div className="form-group tinymce-container">
+         <div className="form-group tinymce-container">
             <label htmlFor="entryDescription">Descripción</label>
             <textarea id="entryDescription"></textarea>
-          </div> */}
+          </div> 
           
         </div>
       </main>
