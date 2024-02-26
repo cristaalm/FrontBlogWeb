@@ -21,7 +21,7 @@ function App() {
       <div className="wave wave4"></div>
       <div className="container">
         
-        <img src="src/img/logo without bg.png" alt="" />
+        <img className="logo"src="src/img/logo without bg.png" alt="" />
 
 
         <div class="inicio">

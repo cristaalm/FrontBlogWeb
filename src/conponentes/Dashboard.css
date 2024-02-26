@@ -10,7 +10,7 @@
   background-color: #f0f0f0;
   padding: 20px;
   box-sizing: border-box;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
@@ -74,10 +74,10 @@ div img {
 }
 
 .sidebar-actions {
-  background-color: antiquewhite;
   position: fixed;
-  flex-direction: column;
-  align-items: center;
+  margin-top: 10px; /* Igual a la altura del header para evitar solapamientos */
+  background-color: #f4f4f4; /* Color de fondo ejemplo */
+  padding: 20px; /* Espaciado interior para el contenido */
 }
 
 .sidebar-actions select,
@@ -87,21 +87,20 @@ div img {
 }
 
 .content {
-  margin-left: 250px;
+  margin-left: 251px;
   flex-grow: 1;
-  padding: 20px;
+  padding: 0px;
   overflow-y: auto;
 }
 
-.content-header {
+header {
+  position: relative;
+  width: 1260px; /* Asume un ancho completo */
+  height: 100px; /* Altura fija para el ejemplo */
+  background-color: #333; /* Color de fondo ejemplo */
   display: flex;
+  background-color: antiquewhite;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.user-greeting {
-  margin-right: 20px;
 }
 
 .entry-form {
@@ -128,7 +127,9 @@ div img {
 }
 
 .tinymce-container {
-  clear: both; /* Asegura que TinyMCE no se superponga con flotantes a la izquierda */
+  margin-top: 100px;
+  position: relative;
+  left: 500px;
 }
 
 /* Ajustes para TinyMCE para que no ocupe todo el espacio */
@@ -154,10 +155,6 @@ div img {
   .content-header,
   .entry-form {
     flex-direction: column;
-  }
-
-  .user-greeting {
-    margin-bottom: 1rem;
   }
 
   .sidebar-actions {

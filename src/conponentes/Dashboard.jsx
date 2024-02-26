@@ -29,31 +29,38 @@ function Dashboard() {
     };
   }, []);
 
-  return (
-    <div className="dashboard">
+  return (   
      
-      <aside className="sidebar">
-       <img src="src/img/logo without bg.png"  width="100px" height="100px"   alt="pene" />
-        <div className="menu">
-          <div className="sections-header">SECCIONES</div>
-          <div className="menu-item" onClick={toggleEntriesDropdown}>
-            <div className={`menu-item ${isEntriesDropdownOpen ? 'minus' : 'plus'}`} onClick={toggleEntriesDropdown}>
-              Entradas
+    <div className="dashboard">
+        <aside className="sidebar">
+          <img src="src/img/logo without bg.png"  width="100px" height="100px"   alt="pene" />
+          <div className="menu">
+            <div className="sections-header">SECCIONES</div>
+            <div className="menu-item" onClick={toggleEntriesDropdown}>
+              <div className={`menu-item ${isEntriesDropdownOpen ? 'minus' : 'plus'}`} onClick={toggleEntriesDropdown}>
+                Entradas
+              </div>
             </div>
+            {isEntriesDropdownOpen && (
+              <div className="dropdown">
+                <div className="dropdown-item">Todas</div>
+                <div className="dropdown-item">Añadir nueva</div>
+                <div className="dropdown-item">Categorías</div>
+              </div>
+            )}
+            <div className="menu-item">Usuarios</div>
           </div>
-          {isEntriesDropdownOpen && (
-            <div className="dropdown">
-              <div className="dropdown-item">Todas</div>
-              <div className="dropdown-item">Añadir nueva</div>
-              <div className="dropdown-item">Categorías</div>
-            </div>
-          )}
-          <div className="menu-item">Usuarios</div>
-        </div>
-        
-      </aside>1
+
+        </aside>
       {/* Botones y Selector de Categorías ahora se mueven aquí */}
-      <div className="sidebar-actions">
+      <main className="content">
+        <header>
+          <div className="content-header">
+            <h1>Añadir nueva entrada</h1>
+            <div className="user-greeting">¡Hola, administrador!</div>
+          </div>
+        </header>
+        <div className="sidebar-actions">
           <select id="categorySelect">
             <option>Seleccione categoría...</option>
             {/* Las opciones de categoría irían aquí */}
@@ -63,12 +70,6 @@ function Dashboard() {
           <button type="submit" id="saveButton">Guardar Entrada</button>
         </div>
 
-
-      <main className="content">
-        <div className="content-header">
-          <h1>Añadir nueva entrada</h1>
-          <div className="user-greeting">¡Hola, administrador!</div>
-        </div>
         <div className="entry-form">
           <div className="form-group">
            {/* <input htmlFor="entryTitle" type="text" placeholder='Ingresa titulo'></input> */}
@@ -77,10 +78,10 @@ function Dashboard() {
 
           {/* El editor TinyMCE se coloca aquí */}
 
-         {/*<div className="form-group tinymce-container">
+         <div className="form-group tinymce-container">
             <label htmlFor="entryDescription">Descripción</label>
             <textarea id="entryDescription"></textarea>
-          </div> */}
+          </div> 
           
         </div>
       </main>

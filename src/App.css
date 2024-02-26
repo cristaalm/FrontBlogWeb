@@ -105,8 +105,8 @@ section {
   /* Otros estilos de la sección */
 }
 
-section img {
-  position: relative;
+.logo {
+  position:relative;
   top: -10px; /* Ajusta según la coordenada Y deseada */
   left: 75px; /* Ajusta según la coordenada X deseada */
   /* Altura opcional, si necesitas ajustar el tamaño de la imagen */
