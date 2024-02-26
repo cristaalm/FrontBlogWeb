@@ -127,8 +127,11 @@ div img {
   box-sizing: border-box;
 }
 
+
 .tinymce-container {
-  clear: both; /* Asegura que TinyMCE no se superponga con flotantes a la izquierda */
+  margin-top: 100px; /* Espacio adicional en la parte superior */
+  position: relative;
+  left: 200px; /* Mover a la derecha */
 }
 
 /* Ajustes para TinyMCE para que no ocupe todo el espacio */
