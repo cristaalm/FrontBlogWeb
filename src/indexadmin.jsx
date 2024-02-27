@@ -6,8 +6,11 @@ function IndexAdmin() {
   const Sidebar = () => {
     return (
       <aside className="sidebar">
+        <div className='logotipo'>
+        <img src="src/img/logo without bg.png" height="70px" width="70px" top />
+        </div>
         <div className="sidebar-header">
-          <h3>Logo</h3>
+          <h3>Herramientas</h3>
         </div>
         <nav className="sidebar-nav">
           <p>SECCIONES</p>
@@ -32,9 +35,6 @@ function IndexAdmin() {
           <h1>Panel de Administración</h1>
           <span>¡Hola, Admin!</span>
         </header>
-        <section className="panel-content">
-          {/* Aquí va el contenido principal del panel de administración */}
-        </section>
       </main>
     </div>
   );

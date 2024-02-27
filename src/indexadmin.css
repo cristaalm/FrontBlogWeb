@@ -1,20 +1,29 @@
 .admin-container {
     display: flex;
     height: 100vh;
+    background-color: #fff;
   }
   
   .sidebar {
     width: 250px;
-    background: #eee;
+    background: #56a1a6;
   }
   
+  .logotipo{
+
+    position: absolute;
+    top: -2px;
+    left: 20px;
+  }
   .sidebar-header {
     padding: 20px;
-    border-bottom: 1px solid #ddd;
+    background-color: #b8ddd6;
   }
   
   .sidebar-header h3 {
-    margin: 0; /* Asegúrate de que no haya margen extra en el logo */
+    margin: 0; 
+    color: #fff;
+    margin-left: 70px;
   }
   
   .sidebar-nav {
