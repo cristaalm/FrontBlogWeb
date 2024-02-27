@@ -24,11 +24,11 @@ const AnimatedLabel = ({ text }) => (
           <div className="wave wave4"></div>
           <div className="container">
             
-            <img className="logo"src="src/img/logo without bg.png" alt="Logo de AquaVision  " />
+            <img className="logoa"src="src/img/logo without bg.png" alt="Logo de AquaVision  " />
 
 
             <div className="inicio">
-                <h2 class="border">AquaVision</h2>
+                <h2 class="borderp">AquaVision</h2>
                 <h2 class="wa">AquaVision</h2>
                 </div>
 

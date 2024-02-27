@@ -81,13 +81,13 @@
 }
 .container {
   position: absolute; /* Posicionamiento absoluto respecto a su contenedor más cercano posicionado, que es 'section' */
-  top: 100px; /* Ajusta esta valor para mover el contenedor hacia abajo desde la parte superior de la sección */
+  top: 50px; /* Ajusta esta valor para mover el contenedor hacia abajo desde la parte superior de la sección */
   left: 1000px; /* Ajusta este valor para mover el contenedor hacia la derecha desde el lado izquierdo de la sección */
   background-color: rgba(0, 0, 0, 0.4);
   padding: 20px 40px;
   border-radius: 5px;
 }
-.logo {
+.logoa {
   position:relative;
   top: -10px; /* Ajusta según la coordenada Y deseada */
   left: 75px; /* Ajusta según la coordenada X deseada */
@@ -106,7 +106,7 @@ body h2 {
   font-size: 50PX;
   position: absolute;
 }
-.border {
+.borderp {
   color: white;  
   text-shadow:
   -1px -1px 0 white, 
