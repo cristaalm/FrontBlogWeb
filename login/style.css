@@ -1,230 +1,110 @@
-:root {
-  --color-blanco: #fff;
-  --color-1: #fffdee;
-  --color-2: #b8ddd6;
-  --color-3: #56a1a6;
-  --cloro-4: #035165;
-  --color-5: #84b6f4;
-}
-
-* {
+body {
   margin: 0;
-  padding: 0;
 }
-body a {
+.inicio {
+  min-height: 100px;
+}
+.contedero {
   display: flex;
-  justify-content: center;
+  height: 100%;
+}
+.contenedor_logo {
+  width: 240px; 
+  height: 640px;
+  background-color: #84d8fc;
+  padding: 20px; 
+}
+.logo {
+  display: flex;
   align-items: center;
-  background-color: #0000;
+  margin-right: 8px;
+  margin-bottom: 24px;
 }
-a {
-  position: relative;
+.negritas {
+  font-weight: bold; /* Esto es equivalente a usar '700' */
+  font-size: 24px; /* Cambia '24px' por el tamaño que prefieras */
+}
+.margen_inferior {
+  /* Aplica margen inferior a todos los elementos hijos excepto al último */
+  margin-bottom: 8px;  /* Ajusta este valor según la escala de tu diseño */
   display: block;
-  padding: 10px 30px;
-  border: 2px solid #00aeff;
-  text-transform: uppercase;
-  font-size: 18px;
-  letter-spacing: 4px;
-  overflow: hidden;
-  border-radius: 5%;
 }
-a span {
-  position: relative;
-  z-index: 1;
-  transition: 1s;
-}
-a:hover span { /*Cambia el color del texto del enlace al pasar el ratón por encima. */
-   color: #fff; 
-}
- a .muv {  /*Crea un efecto visual al pasar el ratón por encima de un enlace, moviendo un elemento con clase .muv hacia arriba. */
-  position:absolute;
-  top: calc(100% + 22px);
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #00aeff;
-  transition: 1s;
-}
-a:hover .muv {
-  top: 0;
-}
-a .muv:before {
-  content: '';
-  position: absolute;
-  top: -22px;
-  left: 0;
-  width: 100%;
-  height: 22px;
-  background-image: url(img/wave2.png);
-  animation: animate 3s linear infinite;
-}
-@keyframes animate{
-  0% {
-    background-position-x: 0;  
-  }
-  100% {
-    background-position-x: 118px;
-  }
-}
-section {
-  position: relative; /* Hace que la sección sea el contenedor de referencia para el posicionamiento absoluto */
-  /* Otros estilos de la sección */
-}
-
-section img {
-  position: relative;
-  top: -10px; /* Ajusta según la coordenada Y deseada */
-  left: 75px; /* Ajusta según la coordenada X deseada */
-  /* Altura opcional, si necesitas ajustar el tamaño de la imagen */
-  height: 150px; /* Ajusta según sea necesario */
-}
-
-section {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: var(--color-5); 
-  overflow: hidden;
-}
-section .wave {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background-image: url(img/wave.png);
-  background-size: 1000px 100px;
-}
-section .wave.wave1 {
-  animation: animate 30s linear infinite;
-  z-index: 1000;
-  opacity: 1;
-  animation-delay: 0s;
-  bottom: 0;
-}
-section .wave.wave2 {
-  animation: animate2 15s linear infinite;
-  z-index: 999;
-  opacity: 0.5;
-  animation-delay: -5s;
-  bottom: 10px;
-}
-section .wave.wave3 {
-  animation: animate 15s linear infinite;
-  z-index: 998;
-  opacity: 0.2;
-  animation-delay: -2s;
-  bottom: 15px;
-}
-section .wave.wave4 {
-  animation: animate2 15s linear infinite;
-  z-index: 997;
-  opacity: 0.7;
-  animation-delay: -5s;
-  bottom: 20px;
-}
-@keyframes animate {
-  0%{
-    background-position-x: 0;
-  }
-  100%{
-    background-position-x: 1000px;
-  }
-}
-@keyframes animate2 {
-  0%{
-    background-position-x: 0;
-  }
-  100%{
-    background-position-x: 1000px;
-  }
-}
-section {
-  position: relative; /* Hace que la sección sea el contenedor de referencia para el posicionamiento absoluto */
-  width: 100%;
-  height: 100vh; /* Ajustado para cubrir toda la altura de la ventana */
-  background: var(--color-5); 
-  overflow: hidden;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #fff;
+.entradas {
   display: flex;
-  flex-direction: column;
-  align-items: center; /* Puedes mantenerlo o quitarlo según tu necesidad */
-  justify-content: center; /* Puedes mantenerlo o quitarlo según tu necesidad */
+  align-items: center;
+  margin-right: 8px; /* Ajusta este valor según la escala de tu diseño */
 }
-
-.container {
-  position: absolute; /* Posicionamiento absoluto respecto a su contenedor más cercano posicionado, que es 'section' */
-  top: 100px; /* Ajusta esta valor para mover el contenedor hacia abajo desde la parte superior de la sección */
-  left: 1000px; /* Ajusta este valor para mover el contenedor hacia la derecha desde el lado izquierdo de la sección */
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 20px 40px;
-  border-radius: 5px;
+.todo_espacio {
+  flex: 1 1 0%; /* Esto hace que el elemento se expanda y contraiga según el espacio disponible */
+  padding: 32px; /* Ajusta este valor según la escala de tu diseño */
 }
-
-h1{
-  text-align: center;
-  margin-bottom: 30px;
-
+.entrada {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px; /* Ajusta este valor según la escala de tu diseño */
 }
-a{
-  text-decoration: none;
-  color: lightblue;
+.tamaño_fuente {
+  font-size: 40px; /* tamaño fuente */
+  font-weight: 600;
 }
-.btn{
-  cursor: pointer;
-  display: inline-block;
-  width: 100%;
-  background: lightblue;
-  padding: 15px;
-  font-family: inherit;
-  font-size: 16px;
-  border: 0;
-  border-radius: 5px;
+.contenedor_cuadricular {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Crea dos columnas de igual ancho */
+  gap: 40px; /* Establece un espacio de 40px entre filas y columnas */
 }
-.btn:focus{
-  outline: 0;
+.margen_boton {
+  margin-bottom: 16px; /* Ajusta este valor según la escala de tu diseño */
 }
-.btn:active{
-  transform: scale(0.98);
-}
-.text{
-  margin-top: 30px;
-}
-.form-control{
-  position: relative;
-  margin: 20px 0 40px;
-  width: 300px;
-}
-input{
-  background-color: transparent;
-  border: 0;
-  border-bottom: 2px #fff solid;
+.ancho {
   display: block;
-  width: 100%;
-  padding: 15px 0;
-  font-size: 18px;
-  color: #fff;
+  margin-bottom: 8px; /* Ajusta este valor según la escala de tu diseño */
+  font-weight: 500;
 }
-input:focus,
-input:valid{
-  outline: 0;
-  border-bottom-color: lightblue;
+.diseño {
+  background-color: #f9f9f9; /* Color de fondo */
+  border: 1px solid #ccc; /* Borde del campo de selección */
+  border-radius: 4px; /* Bordes redondeados para un aspecto moderno */
+  padding: 10px 15px; /* Relleno dentro del campo de selección */
+  width: 100%; /* Ancho completo para ocupar el contenedor padre */
+  font-family: Arial, sans-serif; /* Tipo de letra */
+  font-size: 16px; /* Tamaño del texto */
+  color: #000; /* Color del texto */
+  appearance: none; /* Desactiva el aspecto predeterminado para permitir personalización */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-image: url(''); /* Ícono de desplegable personalizado */
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Posiciona el ícono a la derecha, centrado verticalmente */
+  cursor: pointer; /* Cambia el cursor a un puntero para indicar que es un elemento interactivo */
+  border-color: #007bff; /* Cambia el color del borde al enfocar */
+  outline: none; /* Elimina el contorno predeterminado al enfocar */
 }
-label{
-  position: absolute;
-  top: 15px;
-  left: 0;
-  pointer-events: none;
+.previsualizar {
+  border: 1px solid #e5e7eb; /* Color de borde ligero. Ajusta el color según tu diseño */
+  padding: 12px; /* Relleno de 12px en todos los lados */
+  margin-bottom: 16px; /* Margen inferior de 16px */
 }
-span{
-  display: inline-block;
-  font-size: 18px;
-  min-width: 5px;
-  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+.bottonpre {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px; /* Ajusta este valor según la escala de tu diseño */
 }
-input:focus + label span,
-input:valid + label span{
-  color: lightblue;
-  transform: translateY(-30px);
+.negt {
+  font-size: 18px; /* Ajusta según la escala de tu diseño */
+  font-weight: 600; /* Semi-negrita */
+}
+.pre {
+  display: flex;
+  margin-bottom: 8px; /* Margen inferior de 8px */
+  margin-right: 8px; /* Espacio horizontal de 8px entre elementos */
+}
+.border{
+  border-top: 1px solid #8db2fc; /* Añade un borde superior con el color especificado */
+  padding-top: 8px; /* Añade un relleno superior de 8px */
+}
+.hh {
+  height: 192px; /* Establece la altura */
+  background-color: #b2ebf2; /* Aplica el color de fondo */
 }

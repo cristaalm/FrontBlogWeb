@@ -1,7 +1,10 @@
 import React from 'react';
 import './App.css'; // Asegúrate de que el path sea correcto
 
-// Componente para animar las etiquetas
+
+
+function App() {
+  // Componente para animar las etiquetas
 const AnimatedLabel = ({ text }) => (
   <label>
     {text.split('').map((letter, idx) => (
@@ -11,42 +14,46 @@ const AnimatedLabel = ({ text }) => (
     ))}
   </label>
 );
-
-function App() {
   return (
-    <section>
-      <div className="wave wave1"></div>
-      <div className="wave wave2"></div>
-      <div className="wave wave3"></div>
-      <div className="wave wave4"></div>
-      <div className="container">
-        
-        <img className="logo"src="src/img/logo without bg.png" alt="" />
+    <div className='mine'>
+      <div className='contenedor'>
+        <section className='logi'>
+          <div className="wave wave1"></div>
+          <div className="wave wave2"></div>
+          <div className="wave wave3"></div>
+          <div className="wave wave4"></div>
+          <div className="container">
+            
+            <img className="logo"src="src/img/logo without bg.png" alt="Logo de AquaVision  " />
 
 
-        <div class="inicio">
-            <h2 class="border">AquaVision</h2>
-            <h2 class="wa">AquaVision</h2>
-            </div>
+            <div className="inicio">
+                <h2 class="border">AquaVision</h2>
+                <h2 class="wa">AquaVision</h2>
+                </div>
 
-        <form>
-          <div className="form-control">
-            <input type="email" required />
-            <AnimatedLabel text="Correo" />
+            <form>
+              <div className="form-control">
+                <input className='trans' type="email" required />
+                <AnimatedLabel text="Correo" />
+              </div>
+              <div className="form-control">
+                <input className='trans' type="password" required />
+                <AnimatedLabel text="Contraseña" />
+              </div>
+              <a href="#" className="login-link">
+                <span>inicio</span>
+                <div className="muv"></div>
+              </a>
+            </form>
           </div>
-          <div className="form-control">
-            <input type="password" required />
-            <AnimatedLabel text="Contraseña" />
-          </div>
-          <a href="#" className="login-link">
-            <span>inicio</span>
-            <div className="muv"></div>
-          </a>
-        </form>
+        </section>
       </div>
-    </section>
+      
+    </div>
+   
   );
-}
+};
 
 export default App;
 

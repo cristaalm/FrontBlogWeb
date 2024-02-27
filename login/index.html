@@ -1,40 +1,80 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Inicio Sesión</title>
-  </head>
-  <body>
-    <section>
-      <div class="wave wave1"></div>
-      <div class="wave wave2"></div>
-      <div class="wave wave3"></div>
-      <div class="wave wave4"></div>
-      <div class="container">
-        <img src="/login/img/logo without bg.png" alt="">
-        <h1>inicio sesion</h1>
-        <form>
-          <div class="form-control">
-            <input type="text" required />
-            <label>Correo</label>
+<html lang="en">
+<head>
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="inicio">
+    <div class="contenedor">
+      <aside class="contenedor_logo">  
+        <div class="logo">
+          <span class="negritas">Logo</span>
+        </div>
+        <nav class="margen_inferior">
+          <div class="entradas">
+            <span>Entradas</span>
+            <select>
+              <option value="entrada1">todos</option>
+              <option value="entrada2">añadir nueva</option>
+              <option value="entrada3">categoria</option>
+            </select>
           </div>
-          <div class="form-control">
-            <input type="password" required />
-            <label>Contraseña</label>
+          <div class="entradas">
+            <span>Usuarios</span>
           </div>
-          <a href="#">
-            <span>inicio</span>
-            <div class="muv"></div>
-          </a>
-        </form>
-      </div>
-      
-    </section>
-
-
-  
-    <script src="script.js"></script>
-  </body>
+        </nav>
+      </aside>
+      <main class="todo_espacio">
+        <header class="entrada">
+          <h1 class="tamaño_fuente">Añadir nueva entrada</h1>
+          <span>¡Hola, Admin!</span>
+        </header>
+        <div class="contenedor_cuadicular">
+          <div>
+            <div class="margen_boton">
+              <label class="ancho" for="title">Título de Entrada</label>
+              <input type="text" id="title" class="input-field">
+            </div>
+            <div class="margen_boton">
+              <label class="ancho" for="category">Categorías</label>
+              <select  class="diseño">
+                <option value="categoria1">Categoría 1</option>
+                <option value="categoria2">Categoría 2</option>
+              </select>
+            </div>
+            <div class="margen_boton">
+              <label class="block mb-2 font-medium" for="description">Descripción</label>
+              <textarea id="description" class="textarea-field"></textarea>
+            </div>
+            <div class="margen_boton">
+              <button type="button" class="btn">Previsualizar</button>
+            </div>
+            <div class="margen_boton">
+              <button type="button" class="btn">Imagen Destacada</button>
+            </div>
+            <div>
+              <button type="submit" class="btn">Guardar Entrada</button>
+            </div>
+          </div>
+          <div>
+            <div class="previsualizar">
+              <div class="bottonpre">
+                <h2 class="negt">Previsualización</h2>
+              </div>
+              <div class="pre">
+                <div>Elemento 1</div>
+                <div>Elemento 2</div>
+                <div>Elemento 3</div>
+              </div>
+              <div class="border">
+                <div class="hh"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
 </html>

@@ -1,42 +1,59 @@
-.dashboard {
-  display: flex;
-  font-family: Arial, sans-serif;
-  max-width: 100%;
-  height: 100vh;
+* {
+  margin: 0;
 }
-
-.sidebar {
-  width: 250px;
-  background-color: #f0f0f0;
-  padding: 20px;
-  box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  overflow-y: auto;
-  z-index: 2;
+.inicio {
+  min-height: 100px;
 }
+.contedero {
 
+  height: 100%;
+  
+}
+.left {
+  width: 400px;
+  height: 576px;
+  border: 2px solid black;
+ 
+}
+.right {
+  width: 650px;
+  height: 576px;
+  border: 2px solid black;
+  position: relative;
+  top: -580px; /* Mueve el div 20px hacia abajo desde su posición original */
+  left: 500px; /* Mueve el div 50px hacia la derecha desde su posición original */
+}
+.contenedor_logo {
+  width: 200px; 
+  height: 640px;
+  background-color: #84d8fc;
+  padding: 20px; 
+}
+.logo {
+
+  align-items: center;
+  margin-right: 8px;
+  margin-bottom: 24px;
+}
+.negritas {
+  font-weight: bold; /* Esto es equivalente a usar '700' */
+  font-size: 24px; /* Cambia '24px' por el tamaño que prefieras */
+}
 .sections-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 20px;
   font-weight: bold ;
 }
-
-div img {
-  position: absolute; /* Posicionamiento absoluto para el logo */
-  top: 20px; /* 20px desde la parte superior del div contenedor */
-  left: 70px; /* 50px desde la parte izquierda del div contenedor */
+.margen_inferior {
+  /* Aplica margen inferior a todos los elementos hijos excepto al último */
+  margin-bottom: 8px;  /* Ajusta este valor según la escala de tu diseño */
+  display: block;
 }
-
-.menu {
-  margin-top: 100px;
-  
+.entradas {
+  margin-right: 8px; /* Ajusta este valor según la escala de tu diseño */
 }
-
 .menu-item {
-  background-color: aqua;
+  background-color: #6789cd;
   cursor: pointer;
   margin-bottom: 0.5rem;
   position: relative;
@@ -47,16 +64,14 @@ div img {
   border-radius: 5px;
   text-align: center;
 }
-
 .menu-item.plus {
   background-image: url('././public/abajo.svg');
 }
 
 .menu-item.minus {
   background-image: url('././public/arriba.svg');
-}
+} 
 .dropdown {
-  position: absolute;
   z-index: 1000;
   left: 0;
   background-color: #f0f0f0;
@@ -64,7 +79,6 @@ div img {
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
   text-align: center;
 }
-
 .dropdown-item {
   cursor: pointer;
   padding: 10px;
@@ -73,97 +87,104 @@ div img {
   background: #f6f8fa;
 }
 
-.sidebar-actions {
-  position: fixed;
-  margin-top: 10px; /* Igual a la altura del header para evitar solapamientos */
-  background-color: #f4f4f4; /* Color de fondo ejemplo */
-  padding: 20px; /* Espaciado interior para el contenido */
-}
-
-.sidebar-actions select,
-.sidebar-actions button {
+.todo_espacio {
+  display: flex;
+  height: 100px;
   width: 100%;
-  margin-top: 10px;
 }
-
-.content {
-  margin-left: 251px;
-  flex-grow: 1;
-  padding: 0px;
-  overflow-y: auto;
-}
-
-header {
+.entrada {
+  justify-content: space-between;
+  align-items: center;
   position: relative;
   width: 1260px; /* Asume un ancho completo */
   height: 100px; /* Altura fija para el ejemplo */
-  background-color: #333; /* Color de fondo ejemplo */
   display: flex;
-  background-color: antiquewhite;
-  justify-content: space-between;
+  background-color: rgb(181, 245, 255); 
 }
 
-.entry-form {
-  display: flex;
-  flex-direction: column;
+.tamaño_fuente {
+  font-size: 40px; /* tamaño fuente */
+  font-weight: 600;
 }
+.contenedor_cuadricular {
 
-.form-group {
-  margin-bottom: 1rem;
+  height: 100px;
+  
 }
-
-.form-group label {
+.margen_boton {
+  margin-bottom: 16px; /* Ajusta este valor según la escala de tu diseño */
+}
+.descripcion {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem; /* Esto puede variar según tu sistema de diseño */
+  font-weight: 500; /* Asegúrate de que tu fuente soporte este peso */
 }
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+.cuadro_txt {
+  width: 100%; /* Ajusta el ancho al 100% del contenedor padre */
+  padding: 10px; /* Espaciado interno para el texto */
+  border: 1px solid #ccc; /* Borde sutil */
+  border-radius: 4px; /* Bordes redondeados para un aspecto suave */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interior sutil para profundidad */
+  resize: vertical; /* Permite al usuario ajustar el tamaño verticalmente */
+  font-family: inherit; /* Usa la fuente del elemento padre */
+  font-size: 16px; /* Tamaño de fuente legible */
+  line-height: 1.5; /* Espaciado entre líneas para mejorar la legibilidad */
+  color: #333; /* Color del texto oscuro para contraste */
+  background-color: #fff; /* Fondo blanco */
+  transition: border-color 0.2s; /* Transición suave al cambiar el borde */
 }
-
-
-.tinymce-container {
-  margin-top: 100px;
-  position: relative;
-  left: 500px;
+.ancho {
+  margin-bottom: 8px; /* Ajusta este valor según la escala de tu diseño */
+  font-weight: 500;
 }
+.diseño {
+  background-color: #f9f9f9; /* Color de fondo */
+  border: 1px solid #ccc; /* Borde del campo de selección */
+  border-radius: 4px; /* Bordes redondeados para un aspecto moderno */
+  padding: 10px 15px; /* Relleno dentro del campo de selección */
+  width: 100%; /* Ancho completo para ocupar el contenedor padre */
+  font-family: Arial, sans-serif; /* Tipo de letra */
+  font-size: 16px; /* Tamaño del texto */
+  color: #000; /* Color del texto */
+  appearance: none; /* Desactiva el aspecto predeterminado para permitir personalización */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-image: url(''); /* Ícono de desplegable personalizado */
+  background-repeat: no-repeat;
+  background-position: right 10px center; /* Posiciona el ícono a la derecha, centrado verticalmente */
+  cursor: pointer; /* Cambia el cursor a un puntero para indicar que es un elemento interactivo */
+  border-color: #007bff; /* Cambia el color del borde al enfocar */
+  outline: none; /* Elimina el contorno predeterminado al enfocar */
+}
+.previsualizar {
+  border: 1px solid #e5e7eb; /* Color de borde ligero. Ajusta el color según tu diseño */
+  padding: 12px; /* Relleno de 12px en todos los lados */
+  margin-bottom: 16px; /* Margen inferior de 16px */
+}
+.bottonpre {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px; /* Ajusta este valor según la escala de tu diseño */
+}
+.negt {
+  font-size: 18px; /* Ajusta según la escala de tu diseño */
+  font-weight: 600; /* Semi-negrita */
+}
+.pre {
 
+  margin-bottom: 8px; /* Margen inferior de 8px */
+  margin-right: 8px; /* Espacio horizontal de 8px entre elementos */
+}
+.border{
+  border-top: 1px solid #8db2fc; /* Añade un borde superior con el color especificado */
+  padding-top: 8px; /* Añade un relleno superior de 8px */
+}
+.hh {
+  height: 192px; /* Establece la altura */
+  background-color: #b2ebf2; /* Aplica el color de fondo */
+}
 /* Ajustes para TinyMCE para que no ocupe todo el espacio */
 .tox .tox-editor-container {
   max-width: 100%; /* Limita el ancho del editor a su contenedor */
   height: auto; /* O puedes establecer una altura fija si lo prefieres */
-}
-
-.tox.tox-tinymce {
-  margin-bottom: 1rem; /* Añade espacio debajo del editor */
-}
-
-@media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    position: relative;
-  }
-
-  .content {
-    margin-left: 0;
-  }
-
-  .content-header,
-  .entry-form {
-    flex-direction: column;
-  }
-
-  .sidebar-actions {
-    order: -1; /* Coloca las acciones de la barra lateral sobre el contenido en móviles */
-  }
-
-  .form-group button {
-    width: 100%;
-    margin-top: 10px;
-  }
 }
