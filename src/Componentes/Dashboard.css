@@ -11,29 +11,30 @@
 }
 .left {
   width: 400px;
-  height: 576px;
+  height: 597px;
   border: 2px solid black;
- 
+  padding: 2dvh;
 }
 .right {
-  width: 650px;
-  height: 576px;
+  width: 862px;
+  height: 626px;
   border: 2px solid black;
   position: relative;
-  top: -580px; /* Mueve el div 20px hacia abajo desde su posición original */
-  left: 500px; /* Mueve el div 50px hacia la derecha desde su posición original */
+  top: -629px; /* Mueve el div 20px hacia abajo desde su posición original */
+  left: 430px; /* Mueve el div 50px hacia la derecha desde su posición original */
 }
 .contenedor_logo {
   width: 200px; 
-  height: 640px;
+  height: 689px;
   background-color: #84d8fc;
   padding: 20px; 
 }
-.logo {
-
-  align-items: center;
+.enter{
+  margin-bottom: 30px;
+}
+.logo_i {
   margin-right: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 200px;
 }
 .negritas {
   font-weight: bold; /* Esto es equivalente a usar '700' */
@@ -96,7 +97,7 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  width: 1260px; /* Asume un ancho completo */
+  width: 1295px; /* Asume un ancho completo */
   height: 100px; /* Altura fija para el ejemplo */
   display: flex;
   background-color: rgb(181, 245, 255); 
@@ -120,7 +121,7 @@
   font-weight: 500; /* Asegúrate de que tu fuente soporte este peso */
 }
 .cuadro_txt {
-  width: 100%; /* Ajusta el ancho al 100% del contenedor padre */
+  width: 90%; /* Ajusta el ancho al 100% del contenedor padre */
   padding: 10px; /* Espaciado interno para el texto */
   border: 1px solid #ccc; /* Borde sutil */
   border-radius: 4px; /* Bordes redondeados para un aspecto suave */

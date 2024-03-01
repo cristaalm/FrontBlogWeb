@@ -38,7 +38,7 @@ function Dashboard() {
       <main className="todo_espacio">
 
         <aside className="contenedor_logo">
-          <div className="logo">
+          <div className="logo_i">
             <span className="negritas">Logo</span>
           </div>
           <nav className="margen_inferior">
@@ -76,7 +76,6 @@ function Dashboard() {
           <div className="margen_boton">
               <div className="ancho" htmlFor="title">Título de Entrada</div>
               <textarea  className="cuadro_txt"></textarea>
-              <input type="text" id="title" className="input-field" />
             </div>
             <div className="margen_boton">
               <div className="ancho" htmlFor="category">categorías</div>
@@ -106,7 +105,7 @@ function Dashboard() {
               </div>
               <div className="border">
               <div className="form-group tinymce-container">
-                <div htmlFor="entryDescription">Descripción</div>
+                <div className='enter'></div>
                 <textarea id="entryDescription"></textarea>
               </div> 
               </div>
