@@ -30,11 +30,11 @@ function App() {
 
         <form>
           <div className="form-control">
-            <input type="password" required />
+            <input type="email" required />
             <AnimatedLabel text="Correo" />
           </div>
           <div className="form-control">
-            <input type="email" required />
+            <input type="password" required />
             <AnimatedLabel text="Contraseña" />
           </div>
           <a href="#" className="login-link">
