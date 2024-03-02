@@ -1,247 +1,192 @@
-:root {
-  --color-blanco: #fff;
-  --color-1: #fffdee;
-  --color-2: #b8ddd6;
-  --color-3: #56a1a6;
-  --color-4: #035165;
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+*{
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+.primero{
+  min-height: 100%;
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center; 
+  background-color: #0073e6;
+}
+.reten{
+  height: 50%;
 }
 
-.mine {
-  min-height: 100px;
-}
-.contenedor{
-  height: 100%;
-  
-}
-.logi{
-  position: relative; /* Hace que la sección sea el contenedor de referencia para el posicionamiento absoluto */
-  width: 100%;
-  height: 100vh; /* Ajustado para cubrir toda la altura de la ventana */
-  background: var(--color-3); 
-  overflow: hidden;
-  font-family: Arial, Helvetica, sans-serif;
+::selection{
+  background: #1a75ff;
   color: #fff;
+}
+.wrapper{
+  box-sizing: border-box;
+  overflow: hidden;
+  max-width: 390px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+}
+.wrapper .title-text{
   display: flex;
-  flex-direction: column;
-  align-items: center; /* Puedes mantenerlo o quitarlo según tu necesidad */
-  justify-content: center; /* Puedes mantenerlo o quitarlo según tu necesidad */
+  width: 200%;
 }
-.wave {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background-image: url(src/img/wave.png);
-  background-size: 1000px 100px;
+.wrapper .title{
+  width: 50%;
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.wave.wave1 {
-  animation: animate 30s linear infinite;
-  z-index: 1000;
-  opacity: 1;
-  animation-delay: 0s;
-  bottom: 0;
-}
-.wave.wave2 {
-  animation: animate2 15s linear infinite;
-  z-index: 999;
-  opacity: 0.5;
-  animation-delay: -5s;
-  bottom: 10px;
-}
-.wave.wave3 {
-  animation: animate 15s linear infinite;
-  z-index: 998;
-  opacity: 0.2;
-  animation-delay: -2s;
-  bottom: 15px;
-}
-.wave.wave4 {
-  animation: animate2 15s linear infinite;
-  z-index: 997;
-  opacity: 0.7;
-  animation-delay: -5s;
-  bottom: 20px;
-}
-@keyframes animate {
-  0%{
-    background-position-x: 0;
-  }
-  100%{
-    background-position-x: 1000px;
-  }
-}
-@keyframes animate2 {
-  0%{
-    background-position-x: 0;
-  }
-  100%{
-    background-position-x: 1000px;
-  }
-}
-.container {
-  position: absolute; /* Posicionamiento absoluto respecto a su contenedor más cercano posicionado, que es 'section' */
-  top: 50px; /* Ajusta esta valor para mover el contenedor hacia abajo desde la parte superior de la sección */
-  left: 1000px; /* Ajusta este valor para mover el contenedor hacia la derecha desde el lado izquierdo de la sección */
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 20px 40px;
-  border-radius: 5px;
-}
-.logoa {
-  position:relative;
-  top: -10px; /* Ajusta según la coordenada Y deseada */
-  left: 75px; /* Ajusta según la coordenada X deseada */
-  /* Altura opcional, si necesitas ajustar el tamaño de la imagen */
-  height: 150px; /* Ajusta según sea necesario */
-}
-.inicio{
+.wrapper .slide-controls{
+  position: relative;
+  display: flex;
   height: 50px;
-  width: 0PX;
-  display: flex;    
-  align-items: center;
-  justify-content: baseline;
-  font-family: "Work Sans", sans-serif; 
-}
-body h2 {
-  font-size: 50PX;
-  position: absolute;
-}
-.borderp {
-  color: white;  
-  text-shadow:
-  -1px -1px 0 white, 
-  1px -1px 0 white,
-  -1px 1px 0 white,
-  1px 1px 0 white;  
-}
-.wa {
-  color: #79cff7;
-  animation: shift 3s ease-in-out infinite;
-}
-.form-control{
-  position: relative;
-  margin: 20px 0 40px;
-  width: 300px;
-}
-input:focus,
-input:valid{
-  outline: 0;
-  border-bottom-color: lightblue;
-}
-label{
-  position: absolute;
-  top: 15px;
-  left: 0;
-  pointer-events: none;
-}
-span{
-  display: inline-block;
-  font-size: 18px;
-  min-width: 5px;
-  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-input:focus + label span,
-input:valid + label span{
-  color: lightblue;
-  transform: translateY(-30px);
-}
-.trans{
-  background-color: transparent;
-  border: 0;
-  border-bottom: 2px #fff solid;
-  display: block;
   width: 100%;
-  padding: 15px 0;
-  font-size: 18px;
-  color: #fff;
-}
-.login-link {
-  position: relative;
-  display: block;
-  padding: 10px 30px;
-  border: 2px solid #00aeff;
-  text-transform: uppercase;
-  font-size: 18px;
-  letter-spacing: 4px;
   overflow: hidden;
-  border-radius: 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #0000;
-  text-decoration: none;
-  color: lightblue;
+  margin: 30px 0 10px 0;
+  justify-content: space-between;
+  border: 1px solid lightgrey;
+  border-radius: 15px;
 }
-a span {
-  position: relative;
-  z-index: 1;
-  transition: 1s;
-}
-a:hover span { /*Cambia el color del texto del enlace al pasar el ratón por encima. */
-  color: #fff; 
-}
-.muv {  /*Crea un efecto visual al pasar el ratón por encima de un enlace, moviendo un elemento con clase .muv hacia arriba. */
-  position:absolute;
-  top: calc(100% + 22px);
-  left: 0;
-  width: 100%;
+.slide-controls .slide{
   height: 100%;
-  background: #00aeff;
-  transition: 1s;
-}
-a:hover .muv {
-  top: 0;
-}
-.muv:before {
-  content: '';
-  position: absolute;
-  top: -22px;
-  left: 0;
   width: 100%;
-  height: 22px;
-  background-image: url(src/img/wave2.png);
-  animation: animate 3s linear infinite;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.6s ease;
 }
-@keyframes animate{
-  0% {
-    background-position-x: 0;  
-  }
-  100% {
-    background-position-x: 118px;
-  }
+.slide-controls label.signup{
+  color: #000;
 }
-
-
-@keyframes shift {
-  0%, 100% {
-   clip-path: polygon(0% 47%, 10% 48%, 33% 54%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
-  }
-  50% {
-    clip-path: polygon(0% 60%, 15% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
-  }
+.slide-controls .slider-tab{
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  left: 0;
+  z-index: 0;
+  border-radius: 15px;
+  background: -webkit-linear-gradient(left, #003366, #004080, #0059b3, #0073e6);
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+input[type="radio"]{
+  display: none;
+}
+#signup:checked ~ .slider-tab{
+  left: 50%;
+}
+#signup:checked ~ label.signup{
+  color: #fff;
+  cursor: default;
+  user-select: none;
+}
+#signup:checked ~ label.login{
+  color: #000;
+}
+#login:checked ~ label.signup{
+  color: #000;
+}
+#login:checked ~ label.login{
+  cursor: default;
+  user-select: none;
+}
+.wrapper .form-container{
+  width: 100%;
+  overflow: hidden;
+}
+.form-container .form-inner{
+  display: flex;
+  width: 200%;
+}
+.form-container .form-inner form{
+  width: 50%;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.form-inner form .field{
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+}
+.form-inner form .field input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 15px;
+  border-radius: 15px;
+  border: 1px solid lightgrey;
+  border-bottom-width: 2px;
+  font-size: 17px;
+  transition: all 0.3s ease;
+}
+.form-inner form .field input:focus{
+  border-color: #1a75ff;
+}
+.form-inner form .field input::placeholder{
+  color: #999;
+  transition: all 0.3s ease;
+}
+form .field input:focus::placeholder{
+  color: #1a75ff;
+}
+.form-inner form .pass-link{
+  margin-top: 5px;
+}
+.form-inner form .signup-link{
+  text-align: center;
+  margin-top: 30px;
+}
+.form-inner form .pass-link a,
+.form-inner form .signup-link a{
+  color: #1a75ff;
+  text-decoration: none;
+}
+.form-inner form .pass-link a:hover,
+.form-inner form .signup-link a:hover{
+  text-decoration: underline;
+}
+form .btn{
+  height: 50px;
+  width: 100%;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+}
+form .btn .btn-layer{
+  height: 100%;
+  width: 300%;
+  position: absolute;
+  left: -100%;
+  background: -webkit-linear-gradient(
+    right,
+    #003366,
+    #004080,
+    #0059b3,
+    #0073e6
+  );
+  border-radius: 15px;
+  transition: all 0.4s ease;
+}
+form .btn:hover .btn-layer{
+  left: 0;
+}
+form .btn input[type="submit"]{
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  background: none;
+  border: none;
+  color: #fff;
+  padding-left: 0;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}

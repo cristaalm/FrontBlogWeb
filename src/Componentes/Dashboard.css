@@ -2,6 +2,7 @@
   margin: 0;
 }
 .inicio {
+  display: grid;
   min-height: 100px;
 }
 .contedero {
