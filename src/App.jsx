@@ -9,6 +9,8 @@ const AuthForm = () => {
   return (
     <div className='primero'>
       <div className='reten'>
+
+      
         <div className="wrapper"> 
           <div className="title-text">
             <div className={isLogin ? "title login" : "title login hide"}>Login Form</div>
@@ -59,6 +61,7 @@ const AuthForm = () => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 };
