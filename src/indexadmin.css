@@ -37,7 +37,7 @@
   .sidebar-list {
     list-style: none;
     padding: 0;
-    margin: 0; /* Elimina cualquier margen por defecto */
+    margin: 0; 
   }
   
   .sidebar-item {
