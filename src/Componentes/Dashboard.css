@@ -3,59 +3,35 @@
 }
 .inicio {
   display: grid;
-  min-height: 100px;
-}
-.contedero {
-
-  height: 100%;
-  
-}
-.left {
-  width: 400px;
-  height: 597px;
-  border: 2px solid black;
-  padding: 2dvh;
-}
-.right {
-  width: 862px;
-  height: 626px;
-  border: 2px solid black;
-  position: relative;
-  top: -629px; /* Mueve el div 20px hacia abajo desde su posición original */
-  left: 430px; /* Mueve el div 50px hacia la derecha desde su posición original */
+  grid-template-columns: 14rem auto ;
 }
 .contenedor_logo {
-  width: 200px; 
-  height: 689px;
-  background-color: #84d8fc;
+  width: auto; 
+  background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
   padding: 20px; 
-}
-.enter{
-  margin-bottom: 30px;
+  border-radius: 0 10px 10px 0;
+  
 }
 .logo_i {
-  margin-right: 8px;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 }
 .negritas {
   font-weight: bold; /* Esto es equivalente a usar '700' */
   font-size: 24px; /* Cambia '24px' por el tamaño que prefieras */
+}
+.margen_inferior {
+  display: block;
+}
+.entradas {
+
 }
 .sections-header {
   text-align: left;
   margin-bottom: 20px;
   font-weight: bold ;
 }
-.margen_inferior {
-  /* Aplica margen inferior a todos los elementos hijos excepto al último */
-  margin-bottom: 8px;  /* Ajusta este valor según la escala de tu diseño */
-  display: block;
-}
-.entradas {
-  margin-right: 8px; /* Ajusta este valor según la escala de tu diseño */
-}
 .menu-item {
-  background-color: #6789cd;
+  background-color: #26d4e7;
   cursor: pointer;
   margin-bottom: 0.5rem;
   position: relative;
@@ -74,52 +50,59 @@
   background-image: url('././public/arriba.svg');
 } 
 .dropdown {
-  z-index: 1000;
-  left: 0;
   background-color: #f0f0f0;
   width: 100%;
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
   text-align: center;
 }
+.dropdown-item:hover {
+  background: #f6f8fa;
+}
 .dropdown-item {
   cursor: pointer;
   padding: 10px;
 }
-.dropdown-item:hover {
-  background: #f6f8fa;
-}
-
-.todo_espacio {
-  display: flex;
-  height: 100px;
-  width: 100%;
+.margin{
+  padding: 1rem;
 }
 .entrada {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  width: 1295px; /* Asume un ancho completo */
+  flex-wrap: wrap;
+  background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+  border-radius: 10px;
+  padding: 10px 2rem;
   height: 100px; /* Altura fija para el ejemplo */
-  display: flex;
-  background-color: rgb(181, 245, 255); 
+  box-shadow: 0 8px 16px rgba(0,0,0,0.20);
 }
-
 .tamaño_fuente {
-  font-size: 40px; /* tamaño fuente */
+  font-size: 30px; /* tamaño fuente */
   font-weight: 600;
 }
-.contenedor_cuadricular {
+.todo_espacio{
+  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 
-  height: 100px;
-  
+.todo_espacio2 {
+  display: flex;
+  padding: 1rem;
+}
+.left{
+  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+  width: 30%;
+  height: 510px;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.20);
 }
 .margen_boton {
   margin-bottom: 16px; /* Ajusta este valor según la escala de tu diseño */
 }
-.descripcion {
-  display: block;
-  margin-bottom: 0.5rem; /* Esto puede variar según tu sistema de diseño */
-  font-weight: 500; /* Asegúrate de que tu fuente soporte este peso */
+
+.ancho {
+  margin-bottom: 8px; /* Ajusta este valor según la escala de tu diseño */
+  font-weight: 500;
 }
 .cuadro_txt {
   width: 90%; /* Ajusta el ancho al 100% del contenedor padre */
@@ -135,33 +118,29 @@
   background-color: #fff; /* Fondo blanco */
   transition: border-color 0.2s; /* Transición suave al cambiar el borde */
 }
-.ancho {
-  margin-bottom: 8px; /* Ajusta este valor según la escala de tu diseño */
-  font-weight: 500;
-}
 .diseño {
-  background-color: #f9f9f9; /* Color de fondo */
-  border: 1px solid #ccc; /* Borde del campo de selección */
-  border-radius: 4px; /* Bordes redondeados para un aspecto moderno */
-  padding: 10px 15px; /* Relleno dentro del campo de selección */
-  width: 100%; /* Ancho completo para ocupar el contenedor padre */
-  font-family: Arial, sans-serif; /* Tipo de letra */
-  font-size: 16px; /* Tamaño del texto */
-  color: #000; /* Color del texto */
-  appearance: none; /* Desactiva el aspecto predeterminado para permitir personalización */
+  background-color: #f9f9f9; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  padding: 10px 15px; 
+  font-family: Arial, sans-serif; 
+  font-size: 16px; 
+  color: #000; 
+  appearance: none; 
   -moz-appearance: none;
   -webkit-appearance: none;
-  background-image: url(''); /* Ícono de desplegable personalizado */
-  background-repeat: no-repeat;
-  background-position: right 10px center; /* Posiciona el ícono a la derecha, centrado verticalmente */
-  cursor: pointer; /* Cambia el cursor a un puntero para indicar que es un elemento interactivo */
-  border-color: #007bff; /* Cambia el color del borde al enfocar */
-  outline: none; /* Elimina el contorno predeterminado al enfocar */
+  background-image: url(''); 
+  background-position: right 10px center; 
+  cursor: pointer; 
+  border-color: #007bff; 
+  outline: none; 
 }
 .previsualizar {
-  border: 1px solid #e5e7eb; /* Color de borde ligero. Ajusta el color según tu diseño */
-  padding: 12px; /* Relleno de 12px en todos los lados */
-  margin-bottom: 16px; /* Margen inferior de 16px */
+  padding: 15px; 
+  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 510px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.20);
 }
 .bottonpre {
   justify-content: space-between;
@@ -172,20 +151,12 @@
   font-size: 18px; /* Ajusta según la escala de tu diseño */
   font-weight: 600; /* Semi-negrita */
 }
-.pre {
-
-  margin-bottom: 8px; /* Margen inferior de 8px */
-  margin-right: 8px; /* Espacio horizontal de 8px entre elementos */
-}
 .border{
-  border-top: 1px solid #8db2fc; /* Añade un borde superior con el color especificado */
-  padding-top: 8px; /* Añade un relleno superior de 8px */
+  
 }
-.hh {
-  height: 192px; /* Establece la altura */
-  background-color: #b2ebf2; /* Aplica el color de fondo */
+.enter{
+  margin-bottom: 30px;
 }
-/* Ajustes para TinyMCE para que no ocupe todo el espacio */
 .tox .tox-editor-container {
   max-width: 100%; /* Limita el ancho del editor a su contenedor */
   height: auto; /* O puedes establecer una altura fija si lo prefieres */

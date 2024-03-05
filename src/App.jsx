@@ -8,8 +8,6 @@ const AuthForm = () => {
 
   return (
     <div className='primero'>
-      <div className='reten'>
-
       
         <div className="wrapper"> 
           <div className="title-text">
@@ -60,7 +58,6 @@ const AuthForm = () => {
             </div>
           </div>
         </div>
-      </div>
       
     </div>
   );
