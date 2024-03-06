@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Dashboard.css';
+import '../../css/Dashboard.css';
 
 function Dashboard() {
   const [isEntriesDropdownOpen, setIsEntriesDropdownOpen] = useState(false);
@@ -75,10 +75,10 @@ function Dashboard() {
               <textarea  className="cuadro_txt"></textarea>
             </div>
             <div className="margen_boton">
-              <div className="ancho" htmlFor="category">Categorías</div>
+              <div className="ancho" htmlFor="category">categorías</div>
               <select className="diseño">
-                <option value="categoria1">Selecciona una categoria</option>
-                <option value="categoria2">Categoría 1</option>
+                <option value="categoria1">seleccione categoria</option>
+                <option value="categoria2">Categoría 2</option>
               </select>
             </div>
             <div className="margen_boton">
@@ -86,13 +86,14 @@ function Dashboard() {
               <textarea  className="cuadro_txt"></textarea>
             </div>
             <div className="margen_boton">
-              <button type="button" className="pre">Previsualizar</button>
+              <button type="button" className="btn">Previsualizar</button>
+              <div class="liquid"></div>
             </div>
             <div className="margen_boton">
               <button type="button" className="btn">Imagen Destacada</button>
             </div>
             <div>
-              <button type="submit" className="entr">Guardar Entrada</button>
+              <button type="submit" className="btn">Guardar Entrada</button>
             </div>
           </div>
           <div className='right'>

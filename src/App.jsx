@@ -1,64 +1,68 @@
-import React from 'react';
-import './App.css'; // Asegúrate de que el path sea correcto
+import React, { useState } from 'react';
+import { loginUser } from './js/readUsers';
+import './css/App.css'; 
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = React.useState(true);
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState(null);
 
-  const toggleForm = () => setIsLogin(!isLogin);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await loginUser(username, password);
+      console.log('Login successful:', data);
+      // Aquí puedes manejar la respuesta exitosa, por ejemplo, redirigiendo a otra página
+    } catch (error) {
+      let errorMessage = 'An error occurred';
+      if (error.response && error.response.data && error.response.data.error) {
+        errorMessage = error.response.data.error;
+      }
+      setError(errorMessage); // Manejo del error
+    }
+  };
 
   return (
-    <div className='primero'>
-      
-        <div className="wrapper"> 
-          <div className="title-text">
-            <div className={isLogin ? "title login" : "title login hide"}>Login Form</div>
-            <div className={!isLogin ? "title signup" : "title signup hide"}>Signup Form</div>
+    <div className="primero">
+      <div className="wrapper">
+        <div className="title-text">
+          <div className={isLogin ? "title login" : "title login hide"}>
+            Login Form
           </div>
-          <div className="form-container">
-            <div className="slide-controls">
-              <input type="radio" name="slide" id="login" checked={isLogin} onChange={toggleForm} />
-              <input type="radio" name="slide" id="signup" checked={!isLogin} onChange={toggleForm} />
-              <label htmlFor="login" className="slide login">Login</label>
-              <label htmlFor="signup" className="slide signup">Signup</label>
-              <div className="slider-tab"></div>
-            </div>
-            <div className="form-inner">
-              {isLogin ? (
-                <form action="#" className="login">
-                  <div className="field">
-                    <input type="email" placeholder="Email Address" required/>
-                  </div>
-                  <div className="field">
-                    <input type="password" placeholder="Password" required/>
-                  </div>
-                  <div className="pass-link"><a href="#">Forgot password?</a></div>
-                  <div className="field btn">
-                    <div className="btn-layer"></div>
-                    <input type="submit" value="Login"/>
-                  </div>
-                  <div className="signup-link">Not a member? <a href="#" onClick={(e) => {e.preventDefault(); toggleForm();}}>Signup now</a></div>
-                </form>
-              ) : (
-                <form action="#" className="signup">
-                  <div className="field">
-                    <input type="text" placeholder="Email Address" required/>
-                  </div>
-                  <div className="field">
-                    <input type="password" placeholder="Password" required/>
-                  </div>
-                  <div className="field">
-                    <input type="password" placeholder="Confirm password" required/>
-                  </div>
-                  <div className="field btn">
-                    <div className="btn-layer"></div>
-                    <input type="submit" value="Signup"/>
-                  </div>
-                </form>
-              )}
-            </div>
+          <div className={!isLogin ? "title signup" : "title signup hide"}>
+            Signup Form
           </div>
         </div>
-      
+        <div className="form-container">
+          <div className="form-inner">
+            <form onSubmit={handleSubmit} className="login">
+              <div className="field">
+                <input
+                  type="text"
+                  placeholder="Username"
+                  required
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <div className="field">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              {error && <div className="error">{error}</div>} {/* Renderizado del error */}              <div className="field btn">
+                <div className="btn-layer"></div>
+                <input type="submit" value="Login" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -69,10 +73,8 @@ function App() {
 
 export default App;
 
-
-
-
-{/* <div className='mine'>
+{
+  /* <div className='mine'>
       <div className='contenedor'>
         
         <div className="wave wave1"></div>
@@ -96,4 +98,5 @@ export default App;
       </div>
     </div>
       
-    </div> */}
+    </div> */
+}

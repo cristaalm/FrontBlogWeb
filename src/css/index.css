@@ -1,0 +1,493 @@
+ {
+    --color-blanco: #fff;
+    --color-1: #fffdee;
+    --color-2: #b8ddd6;
+    --color-3: #56a1a6;
+    --cloro-4: #035165;:root {
+        --color-blanco: #fff;
+        --color-1: #fffdee;
+        --color-2: #b8ddd6;
+        --color-3: #56a1a6;
+        --color-4: #035165;
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0000;
+      }
+      body .inicio{
+        
+        height: 10px;
+        width: 10PX;
+        display: flex;    
+        align-items: center;
+        justify-content: baseline;
+        font-family: "Work Sans", sans-serif;
+        
+      }
+      body h2 {
+        font-size: 50PX;
+        position: absolute;
+      }
+      body .border {
+        color: white;  
+        text-shadow:
+           -1px -1px 0 white, 
+           1px -1px 0 white,
+           -1px 1px 0 white,
+           1px 1px 0 white;  
+      }
+      body .wa {
+        color: var(--color-2);
+        animation: shift 3s ease-in-out infinite;
+      }
+      @keyframes shift {
+        0%, 100% {
+         clip-path: polygon(0% 47%, 10% 48%, 33% 54%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+        }
+        50% {
+          clip-path: polygon(0% 60%, 15% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+        }
+      }
+      
+      a {
+        position: relative;
+        display: block;
+        padding: 10px 30px;
+        border: 2px solid #00aeff;
+        text-transform: uppercase;
+        font-size: 18px;
+        letter-spacing: 4px;
+        overflow: hidden;
+        border-radius: 5%;
+      }
+      a span {
+        position: relative;
+        z-index: 1;
+        transition: 1s;
+      }
+      a:hover span { /*Cambia el color del texto del enlace al pasar el ratón por encima. */
+         color: #fff; 
+      }
+       a .muv {  /*Crea un efecto visual al pasar el ratón por encima de un enlace, moviendo un elemento con clase .muv hacia arriba. */
+        position:absolute;
+        top: calc(100% + 22px);
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #00aeff;
+        transition: 1s;
+      }
+      a:hover .muv {
+        top: 0;
+      }
+      a .muv:before {
+        content: '';
+        position: absolute;
+        top: -22px;
+        left: 0;
+        width: 100%;
+        height: 22px;
+        background-image: url(src/img/wave2.png);
+        animation: animate 3s linear infinite;
+      }
+      @keyframes animate{
+        0% {
+          background-position-x: 0;  
+        }
+        100% {
+          background-position-x: 118px;
+        }
+      }
+      section {
+        position: relative; /* Hace que la sección sea el contenedor de referencia para el posicionamiento absoluto */
+        /* Otros estilos de la sección */
+      }
+      
+      section img {
+        top: -10px; /* Ajusta según la coordenada Y deseada */
+        left: 75px; /* Ajusta según la coordenada X deseada */
+        /* Altura opcional, si necesitas ajustar el tamaño de la imagen */
+        height: 150px; /* Ajusta según sea necesario */
+      }
+      
+      section {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: var(--color-4); 
+        overflow: hidden;
+      }
+      section .wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        background-image: url(src/img/wave.png);
+        background-size: 1000px 100px;
+      }
+      section .wave.wave1 {
+        animation: animate 30s linear infinite;
+        z-index: 1000;
+        opacity: 1;
+        animation-delay: 0s;
+        bottom: 0;
+      }
+      section .wave.wave2 {
+        animation: animate2 15s linear infinite;
+        z-index: 999;
+        opacity: 0.5;
+        animation-delay: -5s;
+        bottom: 10px;
+      }
+      section .wave.wave3 {
+        animation: animate 15s linear infinite;
+        z-index: 998;
+        opacity: 0.2;
+        animation-delay: -2s;
+        bottom: 15px;
+      }
+      section .wave.wave4 {
+        animation: animate2 15s linear infinite;
+        z-index: 997;
+        opacity: 0.7;
+        animation-delay: -5s;
+        bottom: 20px;
+      }
+      @keyframes animate {
+        0%{
+          background-position-x: 0;
+        }
+        100%{
+          background-position-x: 1000px;
+        }
+      }
+      @keyframes animate2 {
+        0%{
+          background-position-x: 0;
+        }
+        100%{
+          background-position-x: 1000px;
+        }
+      }
+      section {
+        position: relative; /* Hace que la sección sea el contenedor de referencia para el posicionamiento absoluto */
+        width: 100%;
+        height: 100vh; /* Ajustado para cubrir toda la altura de la ventana */
+        background: var(--color-3); 
+        overflow: hidden;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Puedes mantenerlo o quitarlo según tu necesidad */
+        justify-content: center; /* Puedes mantenerlo o quitarlo según tu necesidad */
+      }
+      
+      .container {
+        position: absolute; /* Posicionamiento absoluto respecto a su contenedor más cercano posicionado, que es 'section' */
+        top: 100px; /* Ajusta esta valor para mover el contenedor hacia abajo desde la parte superior de la sección */
+        left: 1000px; /* Ajusta este valor para mover el contenedor hacia la derecha desde el lado izquierdo de la sección */
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 20px 40px;
+        border-radius: 5px;
+      }
+      
+      h1{
+        text-align: center;
+        margin-bottom: 30px;
+      
+      }
+      a{
+        text-decoration: none;
+        color: lightblue;
+      }
+      .btn{
+        cursor: pointer;
+        display: inline-block;
+        width: 100%;
+        background: lightblue;
+        padding: 15px;
+        font-family: inherit;
+        font-size: 16px;
+        border: 0;
+        border-radius: 5px;
+      }
+      .btn:focus{
+        outline: 0;
+      }
+      .btn:active{
+        transform: scale(0.98);
+      }
+      .text{
+        margin-top: 30px;
+      }
+      .form-control{
+        position: relative;
+        margin: 20px 0 40px;
+        width: 300px;
+      }
+      input{
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px #fff solid;
+        display: block;
+        width: 100%;
+        padding: 15px 0;
+        font-size: 18px;
+        color: #fff;
+      }
+      input:focus,
+      input:valid{
+        outline: 0;
+        border-bottom-color: lightblue;
+      }
+      label{
+        position: absolute;
+        top: 15px;
+        left: 0;
+        pointer-events: none;
+      }
+      span{
+        display: inline-block;
+        font-size: 18px;
+        min-width: 5px;
+        transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+      input:focus + label span,
+      input:valid + label span{
+        color: lightblue;
+        transform: translateY(-30px);
+      }
+    --color-5: #84b6f4;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0000;
+  }
+  a {
+    position: relative;
+    display: block;
+    padding: 10px 30px;
+    border: 2px solid #00aeff;
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    border-radius: 5%;
+  }
+  a span {
+    position: relative;
+    z-index: 1;
+    transition: 1s;
+  }
+  a:hover span { /*Cambia el color del texto del enlace al pasar el ratón por encima. */
+     color: #fff; 
+  }
+   a .muv {  /*Crea un efecto visual al pasar el ratón por encima de un enlace, moviendo un elemento con clase .muv hacia arriba. */
+    position:absolute;
+    top: calc(100% + 22px);
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #00aeff;
+    transition: 1s;
+  }
+  a:hover .muv {
+    top: 0;
+  }
+  a .muv:before {
+    content: '';
+    position: absolute;
+    top: -22px;
+    left: 0;
+    width: 100%;
+    height: 22px;
+    background-image: url(img/wave2.png);
+    animation: animate 3s linear infinite;
+  }
+  @keyframes animate{
+    0% {
+      background-position-x: 0;  
+    }
+    100% {
+      background-position-x: 118px;
+    }
+  }
+  section {
+    position: relative; /* Hace que la sección sea el contenedor de referencia para el posicionamiento absoluto */
+    /* Otros estilos de la sección */
+  }
+  
+  section img {
+    
+    top: -10px; /* Ajusta según la coordenada Y deseada */
+    left: 75px; /* Ajusta según la coordenada X deseada */
+    /* Altura opcional, si necesitas ajustar el tamaño de la imagen */
+    height: 150px; /* Ajusta según sea necesario */
+  }
+  
+  section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--color-5); 
+    overflow: hidden;
+  }
+  section .wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: url(img/wave.png);
+    background-size: 1000px 100px;
+  }
+  section .wave.wave1 {
+    animation: animate 30s linear infinite;
+    z-index: 1000;
+    opacity: 1;
+    animation-delay: 0s;
+    bottom: 0;
+  }
+  section .wave.wave2 {
+    animation: animate2 15s linear infinite;
+    z-index: 999;
+    opacity: 0.5;
+    animation-delay: -5s;
+    bottom: 10px;
+  }
+  section .wave.wave3 {
+    animation: animate 15s linear infinite;
+    z-index: 998;
+    opacity: 0.2;
+    animation-delay: -2s;
+    bottom: 15px;
+  }
+  section .wave.wave4 {
+    animation: animate2 15s linear infinite;
+    z-index: 997;
+    opacity: 0.7;
+    animation-delay: -5s;
+    bottom: 20px;
+  }
+  @keyframes animate {
+    0%{
+      background-position-x: 0;
+    }
+    100%{
+      background-position-x: 1000px;
+    }
+  }
+  @keyframes animate2 {
+    0%{
+      background-position-x: 0;
+    }
+    100%{
+      background-position-x: 1000px;
+    }
+  }
+  section {
+    position: relative; /* Hace que la sección sea el contenedor de referencia para el posicionamiento absoluto */
+    width: 100%;
+    height: 100vh; /* Ajustado para cubrir toda la altura de la ventana */
+    background: var(--color-5); 
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Puedes mantenerlo o quitarlo según tu necesidad */
+    justify-content: center; /* Puedes mantenerlo o quitarlo según tu necesidad */
+  }
+  
+  .container {
+    position: absolute; /* Posicionamiento absoluto respecto a su contenedor más cercano posicionado, que es 'section' */
+    top: 100px; /* Ajusta esta valor para mover el contenedor hacia abajo desde la parte superior de la sección */
+    left: 1000px; /* Ajusta este valor para mover el contenedor hacia la derecha desde el lado izquierdo de la sección */
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px 40px;
+    border-radius: 5px;
+  }
+  
+  h1{
+    text-align: center;
+    margin-bottom: 30px;
+  
+  }
+  a{
+    text-decoration: none;
+    color: lightblue;
+  }
+  .btn{
+    cursor: pointer;
+    display: inline-block;
+    width: 100%;
+    background: lightblue;
+    padding: 15px;
+    font-family: inherit;
+    font-size: 16px;
+    border: 0;
+    border-radius: 5px;
+  }
+  .btn:focus{
+    outline: 0;
+  }
+  .btn:active{
+    transform: scale(0.98);
+  }
+  .text{
+    margin-top: 30px;
+  }
+  .form-control{
+    position: relative;
+    margin: 20px 0 40px;
+    width: 300px;
+  }
+  input{
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px #fff solid;
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 18px;
+    color: #fff;
+  }
+  input:focus,
+  input:valid{
+    outline: 0;
+    border-bottom-color: lightblue;
+  }
+  label{
+    position: absolute;
+    top: 15px;
+    left: 0;
+    pointer-events: none;
+  }
+  span{
+    display: inline-block;
+    font-size: 18px;
+    min-width: 5px;
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  input:focus + label span,
+  input:valid + label span{
+    color: lightblue;
+    transform: translateY(-30px);
+  }
+  

@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+}
+.inicio {
+  display: grid;
+  grid-template-columns: 14rem auto ;
+}
+.contenedor_logo {
+  width: auto; 
+  background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+  padding: 20px; 
+  border-radius: 0 10px 10px 0;
+  
+}
+.logo_i {
+  margin-bottom: 100px;
+}
+.negritas {
+  font-weight: bold; /* Esto es equivalente a usar '700' */
+  font-size: 24px; /* Cambia '24px' por el tamaño que prefieras */
+}
+.margen_inferior {
+  display: block;
+}
+.entradas {
+
+}
+.sections-header {
+  text-align: left;
+  margin-bottom: 20px;
+  font-weight: bold ;
+}
+.menu-item {
+  background-color: #26d4e7;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  padding: 5px 5px 1px 1px; /* Asegúrate de dejar espacio para la imagen */
+  background-repeat: no-repeat;
+  background-position: 150px; /* Ajusta según sea necesario */
+  border-radius: 5px;
+  text-align: center;
+}
+.menu-item.plus {
+  background-image: url('././public/abajo.svg');
+}
+
+.menu-item.minus {
+  background-image: url('././public/arriba.svg');
+} 
+.dropdown {
+  background-color: #f0f0f0;
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  text-align: center;
+}
+.dropdown-item:hover {
+  background: #f6f8fa;
+}
+.dropdown-item {
+  cursor: pointer;
+  padding: 10px;
+}
+.margin{
+  padding: 1rem;
+}
+.entrada {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+  border-radius: 10px;
+  padding: 10px 2rem;
+  height: 100px; /* Altura fija para el ejemplo */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.20);
+}
+.tamaño_fuente {
+  font-size: 30px; /* tamaño fuente */
+  font-weight: 600;
+}
+.todo_espacio{
+  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.todo_espacio2 {
+  display: flex;
+  padding: 1rem;
+}
+.left{
+  background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+  width: 30%;
+  height: 510px;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.20);
+}
+.margen_boton {
+  margin-bottom: 16px; /* Ajusta este valor según la escala de tu diseño */
+}
+
+.ancho {
+  margin-bottom: 8px; /* Ajusta este valor según la escala de tu diseño */
+  font-weight: 500;
+}
+.cuadro_txt {
+  width: 90%; /* Ajusta el ancho al 100% del contenedor padre */
+  padding: 10px; /* Espaciado interno para el texto */
+  border: 1px solid #ccc; /* Borde sutil */
+  border-radius: 4px; /* Bordes redondeados para un aspecto suave */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interior sutil para profundidad */
+  resize: vertical; /* Permite al usuario ajustar el tamaño verticalmente */
+  font-family: inherit; /* Usa la fuente del elemento padre */
+  font-size: 16px; /* Tamaño de fuente legible */
+  line-height: 1.5; /* Espaciado entre líneas para mejorar la legibilidad */
+  color: #333; /* Color del texto oscuro para contraste */
+  background-color: #fff; /* Fondo blanco */
+  transition: border-color 0.2s; /* Transición suave al cambiar el borde */
+}
+.diseño {
+  background-color: #f9f9f9; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  padding: 10px 15px; 
+  font-family: Arial, sans-serif; 
+  font-size: 16px; 
+  color: #000; 
+  appearance: none; 
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-image: url(''); 
+  background-position: right 10px center; 
+  cursor: pointer; 
+  border-color: #007bff; 
+  outline: none; 
+}
+.previsualizar {
+  padding: 15px; 
+  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 510px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.20);
+}
+.bottonpre {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px; /* Ajusta este valor según la escala de tu diseño */
+}
+.negt {
+  font-size: 18px; /* Ajusta según la escala de tu diseño */
+  font-weight: 600; /* Semi-negrita */
+}
+.border{
+  
+}
+.enter{
+  margin-bottom: 30px;
+}
+.tox .tox-editor-container {
+  max-width: 100%; /* Limita el ancho del editor a su contenedor */
+  height: auto; /* O puedes establecer una altura fija si lo prefieres */
+}
+
