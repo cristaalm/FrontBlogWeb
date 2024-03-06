@@ -23,7 +23,9 @@ function Home() {
 
       {/* Body */}
       <div className="bodyhome">
-        <MyCarousel />
+        <div className='Carrusel'>
+          <MyCarousel />
+        </div>
         <p>Aqui va ir el contenido para la web UwU.</p>
       </div>
 
