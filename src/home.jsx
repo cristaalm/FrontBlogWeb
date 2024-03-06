@@ -12,10 +12,13 @@ function Home() {
     <div>
       {/* Header */}
       <header className="headerhome">
-        <h1>Aquavison GOD</h1>
       </header>
       <div className='logotipo'>
       <img src="src/img/logo without bg.png" height="70px" width="70px" top />
+      <button className='Bienvenida'>Bienvenida</button>
+      <button className='Recursos'>Recursos Multimedia</button>
+      <button className='Entradas'>Entradas</button>
+      <button className='Quizz'>Quizz</button>
       </div>
 
       {/* Body */}
@@ -68,7 +71,7 @@ function MyCarousel() {
   );
 }
 function ExampleCarouselImage({ src, alt }) {
-  return <img src={src} alt={alt} className="d-block w-100" />;
+  return <img src={src} alt={alt} />;
 }
 
 export default Home;

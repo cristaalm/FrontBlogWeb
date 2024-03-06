@@ -1,9 +1,58 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+*{
+  padding: 0px;
+  font-family: "Poppins" , sans-serif;
+}
 .headerhome {
-    background-color: #56a1a6;
+  background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
     color: white;
-    padding: 10px 0;
+    padding: 40px 0;
     text-align: center;
 }
+  .Bienvenida{
+    position:absolute;
+    top: 25px;
+    border: none;
+    background: none;
+    color: #f2f2f2;
+    left: 400px;
+  }
+  .Bienvenida:hover{
+    text-decoration: underline;
+  }
+  .Entradas{
+    background:none;
+    border: none;
+    position:absolute;
+    top: 25px;
+    color: #ffffff;
+    left: 600px;
+  }
+  .Entradas:hover{
+    text-decoration: underline;
+  }
+  .Recursos{
+    position:relative;
+    top: 5px;
+    background:none;
+    border: none;
+    color: #f2f2f2;
+    left: 700px;
+  }
+  .Recursos:hover{
+    text-decoration: underline;
+  }
+  .Quizz{
+    position:absolute;
+    top: 25px;
+    border: none;
+    background: none;
+    color: #f2f2f2;
+    left: 1050px;
+  }
+  .Quizz:hover{
+    text-decoration: underline;
+  }
   .logotipo {
     position: absolute;
     top: 1px;
@@ -19,21 +68,16 @@
   .bodyhome img {
     max-width: 100%;
     height: auto;
+    border-radius: 20px;
+    margin: 0px;
   }
   .footerhome {
     background-color: #333;
     color: white;
     padding: 10px 0;
     text-align: center;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
   }
-  .ExampleCarouselImage {
-    position: absolute;
-    max-width: 75%;
-    top:75%;
-
-  }
-  
   
