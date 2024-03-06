@@ -1,0 +1,131 @@
+/* EntriesComponent.css */
+.bg-white {
+    background-color: white;
+  }
+  
+  .p-6 {
+    padding: 1.5rem;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+  
+  .font-bold {
+    font-weight: bold;
+  }
+  
+  .overflow-x-auto {
+    overflow-x: auto;
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .header th {
+    height: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: left;
+    font-weight: medium;
+    background-color: #f7fafc; /* Sustituye este color con el color de fondo correcto para el encabezado de la tabla */
+  }
+  
+  .tr-header {
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .tr-body {
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  /* Estilos para los botones */
+  .btn-blue, .btn-green, .btn-yellow, .btn-red, .btn-purple {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    border-radius: 0.375rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-blue {
+    background-color: #3490dc;
+  }
+  
+  .btn-blue:hover {
+    background-color: #2779bd;
+  }
+  
+  .btn-green {
+    background-color: #48bb78;
+  }
+  
+  .btn-green:hover {
+    background-color: #38a169;
+  }
+  
+  .btn-yellow {
+    background-color: #ecc94b;
+  }
+  
+  .btn-yellow:hover {
+    background-color: #d69e2e;
+  }
+  
+  .btn-red {
+    background-color: #f56565;
+  }
+  
+  .btn-red:hover {
+    background-color: #e53e3e;
+  }
+  
+  .btn-purple {
+    background-color: #9f7aea;
+  }
+  
+  .btn-purple:hover {
+    background-color: #805ad5;
+  }
+  
+  .mr-2 {
+    margin-right: 0.5rem;
+  }
+  
