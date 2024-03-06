@@ -1,6 +1,6 @@
 import React from 'react';
 import './CRUD.css'; 
-function EntriesComponent() {
+function CRUD() {
   return (
     <div className="bg-white p-6">
       <div className="flex flex-col space-y-4">
@@ -48,4 +48,4 @@ function EntriesComponent() {
   );
 }
 
-export default EntriesComponent;
+export default CRUD;

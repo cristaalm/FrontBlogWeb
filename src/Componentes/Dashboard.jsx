@@ -86,14 +86,13 @@ function Dashboard() {
               <textarea  className="cuadro_txt"></textarea>
             </div>
             <div className="margen_boton">
-              <button type="button" className="btn">Previsualizar</button>
-              <div class="liquid"></div>
+              <button type="button" className="pre">Previsualizar</button>
             </div>
             <div className="margen_boton">
               <button type="button" className="btn">Imagen Destacada</button>
             </div>
             <div>
-              <button type="submit" className="btn">Guardar Entrada</button>
+              <button type="submit" className="entr">Guardar Entrada</button>
             </div>
           </div>
           <div className='right'>
