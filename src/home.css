@@ -3,6 +3,11 @@
     color: white;
     padding: 10px 0;
     text-align: center;
+}
+  .logotipo {
+    position: absolute;
+    top: 1px;
+    left: 20px;
   }
   .bodyhome {
     background-color: #f2f2f2;

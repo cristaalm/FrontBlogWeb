@@ -14,6 +14,9 @@ function Home() {
       <header className="headerhome">
         <h1>Aquavison GOD</h1>
       </header>
+      <div className='logotipo'>
+      <img src="src/img/logo without bg.png" height="70px" width="70px" top />
+      </div>
 
       {/* Body */}
       <div className="bodyhome">
