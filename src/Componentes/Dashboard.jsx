@@ -75,10 +75,10 @@ function Dashboard() {
               <textarea  className="cuadro_txt"></textarea>
             </div>
             <div className="margen_boton">
-              <div className="ancho" htmlFor="category">categorías</div>
+              <div className="ancho" htmlFor="category">Categorías</div>
               <select className="diseño">
-                <option value="categoria1">seleccione categoria</option>
-                <option value="categoria2">Categoría 2</option>
+                <option value="categoria1">Selecciona una categoria</option>
+                <option value="categoria2">Categoría 1</option>
               </select>
             </div>
             <div className="margen_boton">
