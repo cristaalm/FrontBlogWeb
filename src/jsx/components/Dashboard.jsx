@@ -40,20 +40,14 @@ function Dashboard() {
         <nav className="margen_inferior">
           <div className="entradas">
             <div className="sections-header">SECCIONES</div>
-            <div className="menu-item" onClick={toggleEntriesDropdown}>
-              <div className={`menu-item ${isEntriesDropdownOpen ? 'minus' : 'plus'}`} onClick={toggleEntriesDropdown}>
-                Entradas
-              </div>
-            </div>
-            {isEntriesDropdownOpen && (
-              <div className="dropdown">
-                <div className="dropdown-item">Todas</div>
-                <div className="dropdown-item">Añadir nueva</div>
-                <div className="dropdown-item">Categorías</div>
-              </div>
-             )}
+            <select className="diseñosec">
+              <option value="categoria0">entradas</option>
+              <option value="categoria1">todas</option>
+              <option value="categoria2">añadir nueva</option>
+              <option value="categoria3">categorias</option>
+            </select>
             <div className="entradas">
-                <span>Usuarios</span>
+             <div className="sectionsUS">USUARIO</div> 
             </div>
           </div>
         </nav>
@@ -86,14 +80,14 @@ function Dashboard() {
               <textarea  className="cuadro_txt"></textarea>
             </div>
             <div className="margen_boton">
-              <button type="button" className="btn">Previsualizar</button>
+              <button type="button" className="pre">Previsualizar</button>
               <div class="liquid"></div>
             </div>
             <div className="margen_boton">
               <button type="button" className="btn">Imagen Destacada</button>
             </div>
             <div>
-              <button type="submit" className="btn">Guardar Entrada</button>
+              <button type="submit" className="entr">Guardar Entrada</button>
             </div>
           </div>
           <div className='right'>
