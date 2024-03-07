@@ -1,6 +1,6 @@
 import React from 'react';
 import './CRUD.css'; 
-function CRUDD() {
+function CRUD() {
   return (
     <div className="bg-white p-6">
       <div className="flex flex-col space-y-4">
@@ -48,4 +48,4 @@ function CRUDD() {
   );
 }
 
-export default CRUDD;
+export default CRUD;

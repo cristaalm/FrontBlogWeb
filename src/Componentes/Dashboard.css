@@ -9,8 +9,6 @@
   width: auto; 
   background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
   padding: 20px; 
-  border-radius: 0 10px 10px 0;
-  
 }
 .logo_i {
   margin-bottom: 100px;
@@ -112,7 +110,7 @@
   font-size: 16px; /* Tamaño de fuente legible */
   line-height: 1.5; /* Espaciado entre líneas para mejorar la legibilidad */
   color: #333; /* Color del texto oscuro para contraste */
-  background-color: #fff; /* Fondo blanco */
+  background: linear-gradient(to right, #E2E2E2 70%, #C9D6FF);
   transition: border-color 0.2s; /* Transición suave al cambiar el borde */
 }
 .diseño {
@@ -129,7 +127,6 @@
   background-image: url(''); 
   background-position: right 10px center; 
   cursor: pointer; 
-  border-color: #007bff; 
   outline: none; 
 }
 .previsualizar {
@@ -148,14 +145,52 @@
   font-size: 18px; /* Ajusta según la escala de tu diseño */
   font-weight: 600; /* Semi-negrita */
 }
-.border{
-  
-}
 .enter{
   margin-bottom: 30px;
 }
 .tox .tox-editor-container {
   max-width: 100%; /* Limita el ancho del editor a su contenedor */
   height: auto; /* O puedes establecer una altura fija si lo prefieres */
+}
+
+/* diseño de botones */
+         
+.pre {
+  background-image: linear-gradient(to right, #003973 0%, #E5E5BE  51%, #003973  100%);
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  border-radius: 10px;
+  display: block;
+  border: none;
+}
+
+.pre:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+         
+         
+.entr {
+  background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  border-radius: 10px;
+  display: block;
+  border: none;
+}
+
+.entr:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 
