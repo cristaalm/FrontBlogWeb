@@ -1,17 +1,15 @@
 import React from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
- function tiny() {
-
-  
+function Tiny() {
   return (
     <Editor
-      apiKey="kovdcfjaqbeap5tn2t47qcgag4xk6qwtg473e9iu0rmn2kd2"
+      apiKey="ketv97kf3yx1rztahcoae0mjwi0e5agtpdrvhimfjpqti54z"
       initialValue="<p>Welcome to TinyMCE!</p>"
       init={{
         selector: 'textarea',
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+        toolbar: 'undo redo | bold italic underline strikethrough | link image media table | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
         tinycomments_mode: 'embedded',
         tinycomments_author: 'Author name',
         mergetags_list: [
@@ -23,4 +21,5 @@ import { Editor } from '@tinymce/tinymce-react';
     />
   );
 }
-export default tiny;
+
+export default Tiny;
