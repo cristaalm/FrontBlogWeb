@@ -22,9 +22,6 @@
 .margen_inferior {
   display: block;
 }
-.entradas {
-
-}
 .sections-header {
   text-align: left;
   margin-bottom: 20px;
@@ -96,6 +93,9 @@
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.20);
 }
+.right{
+  width: 90%;
+}
 .margen_boton {
   margin-bottom: 16px; /* Ajusta este valor según la escala de tu diseño */
 }
@@ -150,9 +150,6 @@
 .negt {
   font-size: 18px; /* Ajusta según la escala de tu diseño */
   font-weight: 600; /* Semi-negrita */
-}
-.border{
-  
 }
 .enter{
   margin-bottom: 30px;
