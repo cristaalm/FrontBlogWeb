@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 export const loginUser = async (username, password) => {
     try {
       const response = await axios.post('http://localhost:8080/api/users/login', {
@@ -18,4 +19,4 @@ export const loginUser = async (username, password) => {
       }
       throw errorMessage;
     }
-  };
+};

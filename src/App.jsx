@@ -1,25 +1,41 @@
-import React, { useState } from 'react';
-import { loginUser } from './js/readUsers';
-import './css/App.css'; 
+import React, { useState, useEffect } from "react";
+import { loginUser } from "./js/readUsers";
+import "./css/App.css";
+import Dashboard from "./jsx/components/Dashboard";
+import ReactDOM from "react-dom";
 
-const AuthForm = () => {
-  const [isLogin, setIsLogin] = React.useState(true);
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [error, setError] = React.useState(null);
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    const storedAuth = localStorage.getItem("isAuthenticated");
+    if (storedAuth === "true") {
+      setIsAuthenticated(true);
+    }
+  }, []);
+  return (
+    <div className="App">
+      {isAuthenticated ? <Dashboard /> : <AuthForm setIsAuthenticated={setIsAuthenticated}/>}
+    </div>
+  );
+};
+
+const AuthForm = ({ setIsAuthenticated }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const data = await loginUser(username, password);
-      console.log('Login successful:', data);
-      // Aquí puedes manejar la respuesta exitosa, por ejemplo, redirigiendo a otra página
+      setIsAuthenticated(data.logged);
+      localStorage.setItem("isAuthenticated", data.logged); 
+      // onLogin(username, password); // Call the onLogin function from the parent component
     } catch (error) {
-      let errorMessage = 'An error occurred';
-      if (error.response && error.response.data && error.response.data.error) {
-        errorMessage = error.response.data.error;
-      }
-      setError(errorMessage); // Manejo del error
+      console.error("Login failed:", error);
+      setError("An error occurred"); // Set the error message
+      setIsAuthenticated(false); // Set the authentication state to false in case of failure
+      localStorage.setItem("isAuthenticated", false);
     }
   };
 
@@ -27,12 +43,7 @@ const AuthForm = () => {
     <div className="primero">
       <div className="wrapper">
         <div className="title-text">
-          <div className={isLogin ? "title login" : "title login hide"}>
-            Login Form
-          </div>
-          <div className={!isLogin ? "title signup" : "title signup hide"}>
-            Signup Form
-          </div>
+          <div className="title login">Login Form</div>
         </div>
         <div className="form-container">
           <div className="form-inner">
@@ -55,9 +66,10 @@ const AuthForm = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              {error && <div className="error">{error}</div>} {/* Renderizado del error */}              <div className="field btn">
+              {error && <div className="error">{error}</div>}
+              <div className="field btn">
                 <div className="btn-layer"></div>
-                <input type="submit" value="Login" />
+                <input type="submit"  value="Login" />
               </div>
             </form>
           </div>
@@ -67,12 +79,7 @@ const AuthForm = () => {
   );
 };
 
-function App() {
-  return <AuthForm />;
-}
-
 export default App;
-
 {
   /* <div className='mine'>
       <div className='contenedor'>
