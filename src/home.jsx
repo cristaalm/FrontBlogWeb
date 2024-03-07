@@ -9,23 +9,29 @@ import Carousel from 'react-bootstrap/Carousel';
 
 function Home() {
   return (
-    <div>
-      {/* Header */}
+    <div className='coli'>
+      <div className='medi'>
+              {/* Header */}
       <header className="headerhome">
+        <div className='iml'>
+        <img src="src/img/logo without bg.png" />
+        </div>
+        <div className='menum'>
+          <button className='Bienvenida'>Bienvenida</button>
+          <button className='Recursos'>Recursos Multimedia</button>
+          <button className='Entradas'>Entradas</button>
+          <button className='Quizz'>Quizz</button>
+        </div>
+        <div className='log'>
+            <button> usuario</button>
+        </div>
       </header>
-      <div className='logotipo'>
-      <img src="src/img/logo without bg.png" height="70px" width="70px" top />
-      <button className='Bienvenida'>Bienvenida</button>
-      <button className='Recursos'>Recursos Multimedia</button>
-      <button className='Entradas'>Entradas</button>
-      <button className='Quizz'>Quizz</button>
-      </div>
 
       {/* Body */}
       <div className="bodyhome">
         <div className='Carrusel'>
           <MyCarousel />
-        </div>
+        </div> 
         <p>Aqui va ir el contenido para la web UwU.</p>
       </div>
 
@@ -33,6 +39,9 @@ function Home() {
       <footer className="footerhome">
         <p>Umizoomies © 2024</p>
       </footer>
+
+      </div>
+
     </div>
   );
 }
