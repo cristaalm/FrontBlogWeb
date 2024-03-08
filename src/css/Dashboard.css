@@ -93,8 +93,17 @@
   background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
   border-radius: 10px;
   padding: 10px 2rem;
-  height: 100px; /* Altura fija para el ejemplo */
+  height: 60px; /* Altura fija para el ejemplo */
   box-shadow: 0 8px 16px rgba(0,0,0,0.20);
+}
+.entradaChil {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  height: 60px; /* Altura fija para el ejemplo */
+  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .tamaño_fuente {
   font-size: 30px; /* tamaño fuente */
@@ -115,6 +124,9 @@
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.20);
+}
+.hello{
+  padding-right: 10px;
 }
 .right{
   width: 90%;

@@ -58,7 +58,10 @@ function Dashboard() {
           <div className='margin' >
             <div className='entrada'>
               <h1 className="tamaño_fuente">Añadir nueva entrada</h1>
-              <span>¡Hola, Admin!</span>
+              <div className='entradaChil'>
+                <img src="/public/img/logo without bg.png" width="50px;" alt="Imagen del Usuario" />
+                <span className='hello'>¡Hola, Admin!</span>
+              </div>
             </div>
           </div>  
         </div>
