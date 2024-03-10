@@ -3,13 +3,12 @@
 }
 .inicio {
   display: grid;
-  grid-template-columns: 14rem auto ;
+  grid-template-columns: 14rem auto;
 }
 .contenedor_logo {
-  width: auto; 
+  width: auto;
   background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
-  padding: 20px; 
-  
+  padding: 20px;
 }
 .logo_i {
   margin-bottom: 100px;
@@ -21,11 +20,19 @@
 .margen_inferior {
   display: block;
 }
-         
+h1 {
+  text-align: unset;
+  margin-bottom: 0 !important;
+}
 .diseñosec {
   padding: 15px 25px;
   border: none;
-  background-image: linear-gradient(to right, #83a4d4 0%, #b6fbff  51%, #83a4d4  100%);
+  background-image: linear-gradient(
+    to right,
+    #83a4d4 0%,
+    #b6fbff 51%,
+    #83a4d4 100%
+  );
   text-align: left;
   text-transform: uppercase;
   transition: 0.5s;
@@ -42,12 +49,12 @@
 .sections-header {
   text-align: left;
   margin-bottom: 2rem;
-  font-weight: bold ;
+  font-weight: bold;
 }
-.sectionsUS{
+.sectionsUS {
   text-align: left;
   margin-bottom: 20px;
-  font-weight: bold ;
+  font-weight: bold;
   padding: 2rem 0 0 0;
 }
 .menu-item {
@@ -63,16 +70,16 @@
   text-align: center;
 }
 .menu-item.plus {
-  background-image: url('././public/abajo.svg');
+  background-image: url("././public/abajo.svg");
 }
 
 .menu-item.minus {
-  background-image: url('././public/arriba.svg');
-} 
+  background-image: url("././public/arriba.svg");
+}
 .dropdown {
   background-color: #f0f0f0;
   width: 100%;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 .dropdown-item:hover {
@@ -82,7 +89,7 @@
   cursor: pointer;
   padding: 10px;
 }
-.margin{
+.margin {
   padding: 1rem;
 }
 .entrada {
@@ -94,7 +101,7 @@
   border-radius: 10px;
   padding: 10px 2rem;
   height: 60px; /* Altura fija para el ejemplo */
-  box-shadow: 0 8px 16px rgba(0,0,0,0.20);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 .entradaChil {
   display: flex;
@@ -103,32 +110,40 @@
   flex-wrap: wrap;
   border-radius: 10px;
   height: 60px; /* Altura fija para el ejemplo */
-  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right,
+    #e2e2e2,
+    #c9d6ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .tamaño_fuente {
   font-size: 30px; /* tamaño fuente */
   font-weight: 600;
 }
-.todo_espacio{
-  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.todo_espacio {
+  background: linear-gradient(
+    to right,
+    #e2e2e2,
+    #c9d6ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .todo_espacio2 {
   display: flex;
   padding: 1rem;
 }
-.left{
+.left {
   background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
   width: 30%;
   height: 510px;
   padding: 1rem;
   border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.20);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-.hello{
+.hello {
   padding-right: 10px;
 }
-.right{
+.right {
   width: 90%;
 }
 .margen_boton {
@@ -150,21 +165,26 @@
   font-size: 16px; /* Tamaño de fuente legible */
   line-height: 1.5; /* Espaciado entre líneas para mejorar la legibilidad */
   color: #333; /* Color del texto oscuro para contraste */
-  background: linear-gradient(to right, #E2E2E2 70%, #C9D6FF);
+  background: linear-gradient(to right, #e2e2e2 70%, #c9d6ff);
   transition: border-color 0.2s; /* Transición suave al cambiar el borde */
 }
 .diseño {
   border: none;
-  padding: 10px 15px; 
-  font-family: Arial, sans-serif; 
-  font-size: 16px; 
-  color: #000; 
-  cursor: pointer; 
-  outline: none; 
+  padding: 10px 15px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  outline: none;
 }
-         
+
 .diseño {
-  background-image: linear-gradient(to right, #83a4d4 0%, #b6fbff  51%, #83a4d4  100%);
+  background-image: linear-gradient(
+    to right,
+    #83a4d4 0%,
+    #b6fbff 51%,
+    #83a4d4 100%
+  );
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -174,16 +194,19 @@
 }
 
 .diseño:hover {
-  
   background-position: right center; /* change the direction of the change here */
   text-decoration: none;
 }
 .previsualizar {
-  padding: 15px; 
-  background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding: 15px;
+  background: linear-gradient(
+    to right,
+    #e2e2e2,
+    #c9d6ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   height: 510px;
   border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.20);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 .bottonpre {
   justify-content: space-between;
@@ -194,7 +217,7 @@
   font-size: 18px; /* Ajusta según la escala de tu diseño */
   font-weight: 600; /* Semi-negrita */
 }
-.enter{
+.enter {
   margin-bottom: 30px;
 }
 .tox .tox-editor-container {
@@ -202,15 +225,20 @@
   height: auto; /* O puedes establecer una altura fija si lo prefieres */
 }
 /* diseño de botones */
-         
+
 .pre {
-  background-image: linear-gradient(to right, #003973 0%, #E5E5BE  51%, #003973  100%);
+  background-image: linear-gradient(
+    to right,
+    #003973 0%,
+    #e5e5be 51%,
+    #003973 100%
+  );
   padding: 15px 45px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;            
+  color: white;
   border-radius: 10px;
   display: block;
   border: none;
@@ -221,16 +249,43 @@
   color: #fff;
   text-decoration: none;
 }
-         
-         
+.sesion {
+  background-image: linear-gradient(
+    to right,
+    #003973 0%,
+    #e5e5be 51%,
+    #003973 100%
+  );
+  padding: 15px 15px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: none;
+  width: 100%;
+}
+.sesion:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
 .entr {
-  background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
+  background-image: linear-gradient(
+    to right,
+    #4776e6 0%,
+    #8e54e9 51%,
+    #4776e6 100%
+  );
   padding: 15px 45px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;            
+  color: white;
   border-radius: 10px;
   display: block;
   border: none;

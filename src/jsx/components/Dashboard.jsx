@@ -1,38 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import '../../css/Dashboard.css';
+import { useState, useEffect } from "react";
+import "../../css/Dashboard.css";
+import "../../css/App.css";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const [isEntriesDropdownOpen, setIsEntriesDropdownOpen] = useState(false);
+  let navigate = useNavigate();
 
   const toggleEntriesDropdown = () => {
     setIsEntriesDropdownOpen(!isEntriesDropdownOpen);
   };
+  const cerrarSesion = () => {
+    localStorage.removeItem("isAuthenticated");
+    navigate("/");
+  };
 
   useEffect(() => {
-  
-    const script = document.createElement('script');
-    script.src = 'https://cdn.tiny.cloud/1/kovdcfjaqbeap5tn2t47qcgag4xk6qwtg473e9iu0rmn2kd2/tinymce/6/tinymce.min.js';
-    script.referrerpolicy = 'origin';
+    let storedAuth = localStorage.getItem("isAuthenticated");
+    if (storedAuth == null) {
+      localStorage.setItem("isAuthenticated", "false");
+      storedAuth = "false";
+    }
+    console.log("stored", storedAuth);
+    if (storedAuth == "false") {
+      navigate("/login");
+    }
+  }, []);
+  const logOff = async () => {
+    try {
+      localStorage.removeItem("isAuthenticated");
+    } catch (error) {
+      localStorage.removeItem("isAuthenticated");
+    }
+  };
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "https://cdn.tiny.cloud/1/kovdcfjaqbeap5tn2t47qcgag4xk6qwtg473e9iu0rmn2kd2/tinymce/6/tinymce.min.js";
+    script.referrerpolicy = "origin";
     document.head.appendChild(script);
 
     script.onload = () => {
       window.tinymce.init({
-        selector: '#entryDescription',
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-        toolbar: 'undo redo | bold italic underline strikethrough | link image media table | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-    tinycomments_mode: 'embedded',
+        selector: "#entryDescription",
+        plugins:
+          "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
+        toolbar:
+          "undo redo | bold italic underline strikethrough | link image media table | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+        tinycomments_mode: "embedded",
       });
     };
 
     return () => {
       // Destruye el editor para evitar fugas de memoria
-      window.tinymce?.remove('#entryDescription');
+      window.tinymce?.remove("#entryDescription");
     };
   }, []);
 
-  return (   
-     
-  <div className="inicio">
+  return (
+    <div className="inicio">
       <aside className="contenedor_logo">
         <div className="logo_i">
           <span className="negritas">Logo</span>
@@ -47,78 +73,93 @@ function Dashboard() {
               <option value="categoria3">categorias</option>
             </select>
             <div className="entradas">
-             <div className="sectionsUS">USUARIO</div> 
+              <div className="sectionsUS">USUARIO</div>
+            </div>
+            <div className="entradas">
+              <button onClick={cerrarSesion} className="sesion">
+                Cerrar sesión
+              </button>
             </div>
           </div>
         </nav>
       </aside>
-     
+
       <main className="todo_espacio">
         <div className="contenedor_cuadicular">
-          <div className='margin' >
-            <div className='entrada'>
+          <div className="margin">
+            <div className="entrada">
               <h1 className="tamaño_fuente">Añadir nueva entrada</h1>
-              <div className='entradaChil'>
-                <img src="/public/img/logo without bg.png" width="50px;" alt="Imagen del Usuario" />
-                <span className='hello'>¡Hola, Admin!</span>
+              <div className="entradaChil">
+                <img
+                  src="/public/img/logo without bg.png"
+                  width="50px;"
+                  alt="Imagen del Usuario"
+                />
+                <span className="hello">¡Hola, Admin!</span>
               </div>
             </div>
-          </div>  
+          </div>
         </div>
-        <div className='todo_espacio2'>
-          <div className='left'>
+        <div className="todo_espacio2">
+          <div className="left">
             <div className="margen_boton">
-              <div className="ancho" htmlFor="title">Título de Entrada</div>
-              <textarea  className="cuadro_txt"></textarea>
+              <div className="ancho" htmlFor="title">
+                Título de Entrada
+              </div>
+              <textarea className="cuadro_txt"></textarea>
             </div>
             <div className="margen_boton">
-              <div className="ancho" htmlFor="category">categorías</div>
+              <div className="ancho" htmlFor="category">
+                categorías
+              </div>
               <select className="diseño">
                 <option value="categoria1">seleccione categoria</option>
                 <option value="categoria2">Categoría 2</option>
               </select>
             </div>
             <div className="margen_boton">
-              <div className="ancho" htmlFor="description">Descripción</div>
-              <textarea  className="cuadro_txt"></textarea>
+              <div className="ancho" htmlFor="description">
+                Descripción
+              </div>
+              <textarea className="cuadro_txt"></textarea>
             </div>
             <div className="margen_boton">
-              <button type="button" className="pre">Previsualizar</button>
-              <div class="liquid"></div>
+              <button type="button" className="pre">
+                Previsualizar
+              </button>
+              <div className="liquid"></div>
             </div>
             <div className="margen_boton">
-              <button type="button" className="btn">Imagen Destacada</button>
+              <button type="button" className="btn">
+                Imagen Destacada
+              </button>
             </div>
             <div>
-              <button type="submit" className="entr">Guardar Entrada</button>
+              <button type="submit" className="entr">
+                Guardar Entrada
+              </button>
             </div>
           </div>
-          <div className='right'>
+          <div className="right">
             <div className="previsualizar">
               <div className="bottonpre">
-              <h2 className="negt">Previsualización</h2>
+                <h2 className="negt">Previsualización</h2>
               </div>
               <div className="border">
                 <div className="form-group tinymce-container">
-                  <div className='enter'></div>
+                  <div className="enter"></div>
                   <textarea id="entryDescription"></textarea>
-                </div> 
+                </div>
               </div>
             </div>
           </div>
         </div>
-        
       </main>
-      
-      
-    
-  </div>
-);
-};
+    </div>
+  );
+}
 
 export default Dashboard;
-
-
 
 /*    <div className="dashboard">
         <aside className="sidebar">
