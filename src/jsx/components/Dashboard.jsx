@@ -61,7 +61,7 @@ function Dashboard() {
     <div className="inicio">
       <aside className="contenedor_logo">
         <div className="logo_i">
-          <span className="negritas">Logo</span>
+          <span className="negritas">AquaVision</span>
         </div>
         <nav className="margen_inferior">
           <div className="entradas">
@@ -89,14 +89,14 @@ function Dashboard() {
           <div className="margin">
             <div className="entrada">
               <h1 className="tamaño_fuente">Añadir nueva entrada</h1>
-              <div className="entradaChil">
+              {/* <div className="entradaChil">
                 <img
                   src="/public/img/logo without bg.png"
                   width="50px;"
                   alt="Imagen del Usuario"
                 />
                 <span className="hello">¡Hola, Admin!</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -110,10 +110,10 @@ function Dashboard() {
             </div>
             <div className="margen_boton">
               <div className="ancho" htmlFor="category">
-                categorías
+                Categorías
               </div>
               <select className="diseño">
-                <option value="categoria1">seleccione categoria</option>
+                <option value="categoria1">Seleccione su categoría...</option>
                 <option value="categoria2">Categoría 2</option>
               </select>
             </div>
