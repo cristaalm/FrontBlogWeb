@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { loginUser } from "../../js/readUsers";
 import "../../css/AuthForm.css";
 import { useNavigate } from "react-router-dom";
+import "../../js/AuthForm.js";
 
 const AuthForm = () => {
   const [username, setUsername] = useState("");
