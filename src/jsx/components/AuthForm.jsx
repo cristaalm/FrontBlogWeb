@@ -1,39 +1,40 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { loginUser } from "../../js/readUsers";
 import "../../css/AuthForm.css";
-import "../../js/AuthForm.js";
 import { useNavigate } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
+
 const AuthForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   let navigate = useNavigate();
+
   useEffect(() => {
-    window.onload();
     let storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth == null) {
+    if (storedAuth === null || storedAuth === "false") {
       localStorage.setItem("isAuthenticated", "false");
-      storedAuth = "false";
-    }
-    if (storedAuth == "true") {
+    } else {
       navigate("/dashboard");
     }
-  }, []);
+  }, [navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const data = await loginUser(username, password);
-      console.log(data);
-      localStorage.setItem("isAuthenticated", data.logged);
+      localStorage.setItem("isAuthenticated", data.logged.toString());
       if (data.logged) {
-        setTimeout(function () {
+        setTimeout(() => {
           navigate("/dashboard");
         }, 1000);
+        setMessage("Usuario logueado correctamente.");
+      } else {
+        setMessage("Revise contraseña o usuario.");
       }
-      // onLogin(username, password); // Call the onLogin function from the parent component
     } catch (error) {
       console.error("Login failed:", error);
-      localStorage.setItem("isAuthenticated", false);
+      setMessage("Revise contraseña o usuario.");
+      localStorage.setItem("isAuthenticated", "false");
     }
   };
 
@@ -44,12 +45,14 @@ const AuthForm = () => {
       <div className="wave wave3"></div>
       <div className="wave wave4"></div>
       <div className="container">
-        <img src="../../../public/img/logo.png" alt="" />
+        <img src="/img/logo.png" alt="Logo" />
         <h1>Iniciar sesión</h1>
+        {message && <div className="message">{message}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-control">
             <input
               type="text"
+              value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
             />
@@ -58,6 +61,7 @@ const AuthForm = () => {
           <div className="form-control">
             <input
               type="password"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
@@ -69,46 +73,6 @@ const AuthForm = () => {
         </form>
       </div>
     </section>
-    // <div className="primero">
-    //   <div className="wrapper">
-    //     <div className="title-text">
-    //       <div className="title login">Login Form</div>
-    //     </div>
-    //     <div className="form-container">
-    //       <div className="form-inner">
-    //         <form onSubmit={handleSubmit} className="login">
-    //           <div className="field">
-    //             <input
-    //               type="text"
-    //               placeholder="Username"
-    //               required
-    //               value={username}
-    //               onChange={(e) => setUsername(e.target.value)}
-    //             />
-    //           </div>
-    //           <div className="field">
-    //             <input
-    //               type="password"
-    //               placeholder="Password"
-    //               required
-    //               value={password}
-    //               onChange={(e) => setPassword(e.target.value)}
-    //             />
-    //           </div>
-    //           {error && <div className="error">{error}</div>}
-    //           <Button type="submit" variant="primary">
-    //             Primary
-    //           </Button>
-
-    //           <div className="field btn">
-    //             <div className="btn-layer"></div>
-    //             <input type="submit" value="Login" />
-    //           </div>
-    //         </form>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 
