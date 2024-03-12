@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const loginUser = async (username, password) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/users/login', {
+      const response = await axios.post('https://backblogweb.onrender.com/api/users/login', {
         nombreusuario: username,
         contraseña: password
       });

@@ -5,9 +5,12 @@ import { useNavigate } from "react-router-dom";
 import "../../js/AuthForm.js";
 
 const AuthForm = () => {
+  window.onload()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [messageClass, setMessageClass] = useState("");
+
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -29,8 +32,10 @@ const AuthForm = () => {
           navigate("/dashboard");
         }, 1000);
         setMessage("Usuario logueado correctamente.");
+        setMessageClass("success");
       } else {
         setMessage("Revise contraseña o usuario.");
+        setMessageClass("error");
       }
     } catch (error) {
       console.error("Login failed:", error);
@@ -48,7 +53,7 @@ const AuthForm = () => {
       <div className="container">
         <img src="/img/logo.png" alt="Logo" />
         <h1>Iniciar sesión</h1>
-        {message && <div className="message">{message}</div>}
+        {message && <div className={`message ${messageClass}`}>{message}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-control">
             <input
