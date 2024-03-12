@@ -4,8 +4,22 @@ import "../../css/App.css";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const [isEntriesDropdownOpen, setIsEntriesDropdownOpen] = useState(false);
-  let navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [imageLink, setImageLink] = useState("");
+  const [imageWidth, setImageWidth] = useState("");
+  const [imageHeight, setImageHeight] = useState("");
+  const handleAddImage = () => {
+    // Lógica para insertar la imagen en el editor de texto
+    console.log("Link de la imagen:", imageLink);
+    console.log("Ancho de la imagen:", imageWidth);
+    console.log("Alto de la imagen:", imageHeight);
+    // Aquí puedes realizar la lógica para insertar la imagen en el editor de texto si es necesario
+    setShowModal(false); // Cierra el modal después de procesar la imagen
+  };
+  const handleToggleModal = () => {
+    setShowModal(!showModal);
+  };
+  
 
   const toggleEntriesDropdown = () => {
     setIsEntriesDropdownOpen(!isEntriesDropdownOpen);
@@ -130,9 +144,40 @@ function Dashboard() {
               <div className="liquid"></div>
             </div>
             <div className="margen_boton">
-              <button type="button" className="btn">
+              <button type="button" className="dest" onClick={handleToggleModal}>
                 Imagen Destacada
               </button>
+              {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setShowModal(false)}>
+              &times;
+            </span>
+            <p className="apartadop">Inserta el enlace de la imagen:</p>
+            <input className="insertor"
+              type="text"
+              value={imageLink}
+              onChange={(e) => setImageLink(e.target.value)}
+            />
+            <p className="apartadop">Inserta el ancho de la imagen (en píxeles):</p>
+            <input className="insertor"
+              type="number"
+              value={imageWidth}
+              onChange={(e) => setImageWidth(e.target.value)}
+            />
+            <p className="apartadop">Inserta el alto de la imagen (en píxeles):</p>
+            <input className="insertor"
+              type="number"
+              value={imageHeight}
+              onChange={(e) => setImageHeight(e.target.value)}
+            />
+            <button className="insert-button" onClick={handleAddImage}>
+              Insertar
+            </button>
+          </div>
+        </div>
+      )}
+
             </div>
             <div>
               <button type="submit" className="entr">
