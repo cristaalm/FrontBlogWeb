@@ -4,6 +4,7 @@ import "../../css/App.css";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
+  const navigate = useNavigate(); // Obtiene la función de navegación
   const [showModal, setShowModal] = useState(false);
   const [imageLink, setImageLink] = useState("");
   const [imageWidth, setImageWidth] = useState("");
@@ -26,7 +27,7 @@ function Dashboard() {
   };
   const cerrarSesion = () => {
     localStorage.removeItem("isAuthenticated");
-    navigate("/");
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -115,6 +116,7 @@ function Dashboard() {
           </div>
         </div>
         <div className="todo_espacio2">
+
           <div className="left">
             <div className="margen_boton">
               <div className="ancho" htmlFor="title">
@@ -148,7 +150,7 @@ function Dashboard() {
                 Imagen Destacada
               </button>
               {showModal && (
-        <div className="modal">
+          <div className="modal">
           <div className="modal-content">
             <span className="close" onClick={() => setShowModal(false)}>
               &times;
@@ -176,7 +178,7 @@ function Dashboard() {
             </button>
           </div>
         </div>
-      )}
+          )}
 
             </div>
             <div>
