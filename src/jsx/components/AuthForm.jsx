@@ -31,15 +31,15 @@ const AuthForm = () => {
         setTimeout(() => {
           navigate("/dashboard");
         }, 1000);
-        setMessage("Usuario logueado correctamente.");
+        setMessage("User logged in correctly.");
         setMessageClass("success");
       } else {
-        setMessage("Revise contraseña o usuario.");
+        setMessage("Check password or username.");
         setMessageClass("error");
       }
     } catch (error) {
       console.error("Login failed:", error);
-      setMessage("Revise contraseña o usuario.");
+      setMessage("Check password or username.");
       localStorage.setItem("isAuthenticated", "false");
     }
   };
@@ -52,7 +52,7 @@ const AuthForm = () => {
       <div className="wave wave4"></div>
       <div className="container">
         <img src="/img/logo.png" alt="Logo" />
-        <h1>Iniciar sesión</h1>
+        <h1>Login</h1>
         {message && <div className={`message ${messageClass}`}>{message}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-control">
@@ -62,7 +62,7 @@ const AuthForm = () => {
               onChange={(e) => setUsername(e.target.value)}
               required
             />
-            <label>Usuario</label>
+            <label>Username</label>
           </div>
           <div className="form-control">
             <input
@@ -71,10 +71,10 @@ const AuthForm = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <label>Contraseña</label>
+            <label>Password</label>
           </div>
           <button type="submit" className="btn">
-            Ingresar
+            Sign In
           </button>
         </form>
       </div>
