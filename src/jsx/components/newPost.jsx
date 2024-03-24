@@ -3,7 +3,7 @@ import "../../css/Dashboard.css";
 import "../../css/App.css";
 import { useNavigate } from "react-router-dom";
 
-function Dashboard() {
+function newPost() {
   const navigate = useNavigate(); // Obtiene la función de navegación
   const [showModal, setShowModal] = useState(false);
   const [imageLink, setImageLink] = useState("");
@@ -20,7 +20,19 @@ function Dashboard() {
   const handleToggleModal = () => {
     setShowModal(!showModal);
   };
-  
+
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    // Aquí puedes hacer una solicitud a tu API para obtener las categorías
+    // Supongamos que la respuesta de la API es un array de objetos con propiedades 'id' y 'name'
+    const fetchData = async () => {
+      const response = await fetch("http://localhost:8080/api/categories");
+      const data = await response.json();
+      setCategories(data);
+      console.log(data);
+    };
+    fetchData();
+  }, []);
 
   const toggleEntriesDropdown = () => {
     setIsEntriesDropdownOpen(!isEntriesDropdownOpen);
@@ -116,7 +128,6 @@ function Dashboard() {
           </div>
         </div>
         <div className="todo_espacio2">
-
           <div className="left">
             <div className="margen_boton">
               <div className="ancho" htmlFor="title">
@@ -129,8 +140,13 @@ function Dashboard() {
                 Categorías
               </div>
               <select className="diseño">
-                <option value="categoria1">Seleccione su categoría...</option>
-                <option value="categoria2">Categoría 2</option>
+                <option value="">Seleccione su categoría...</option>
+                {categories.data &&
+                  categories.data.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.nombre}
+                    </option>
+                  ))}
               </select>
             </div>
             <div className="margen_boton">
@@ -146,40 +162,50 @@ function Dashboard() {
               <div className="liquid"></div>
             </div>
             <div className="margen_boton">
-              <button type="button" className="dest" onClick={handleToggleModal}>
+              <button
+                type="button"
+                className="dest"
+                onClick={handleToggleModal}
+              >
                 Imagen Destacada
               </button>
               {showModal && (
-          <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={() => setShowModal(false)}>
-              &times;
-            </span>
-            <p className="apartadop">Inserta el enlace de la imagen:</p>
-            <input className="insertor"
-              type="text"
-              value={imageLink}
-              onChange={(e) => setImageLink(e.target.value)}
-            />
-            <p className="apartadop">Inserta el ancho de la imagen (en píxeles):</p>
-            <input className="insertor"
-              type="number"
-              value={imageWidth}
-              onChange={(e) => setImageWidth(e.target.value)}
-            />
-            <p className="apartadop">Inserta el alto de la imagen (en píxeles):</p>
-            <input className="insertor"
-              type="number"
-              value={imageHeight}
-              onChange={(e) => setImageHeight(e.target.value)}
-            />
-            <button className="insert-button" onClick={handleAddImage}>
-              Insertar
-            </button>
-          </div>
-        </div>
-          )}
-
+                <div className="modal">
+                  <div className="modal-content">
+                    <span className="close" onClick={() => setShowModal(false)}>
+                      &times;
+                    </span>
+                    <p className="apartadop">Inserta el enlace de la imagen:</p>
+                    <input
+                      className="insertor"
+                      type="text"
+                      value={imageLink}
+                      onChange={(e) => setImageLink(e.target.value)}
+                    />
+                    <p className="apartadop">
+                      Inserta el ancho de la imagen (en píxeles):
+                    </p>
+                    <input
+                      className="insertor"
+                      type="number"
+                      value={imageWidth}
+                      onChange={(e) => setImageWidth(e.target.value)}
+                    />
+                    <p className="apartadop">
+                      Inserta el alto de la imagen (en píxeles):
+                    </p>
+                    <input
+                      className="insertor"
+                      type="number"
+                      value={imageHeight}
+                      onChange={(e) => setImageHeight(e.target.value)}
+                    />
+                    <button className="insert-button" onClick={handleAddImage}>
+                      Insertar
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
             <div>
               <button type="submit" className="entr">
@@ -206,7 +232,7 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default newPost;
 
 /*    <div className="dashboard">
         <aside className="sidebar">
