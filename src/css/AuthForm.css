@@ -21,10 +21,10 @@ section {
 
 section img {
   position: relative;
-  top: -10px; /* Ajusta según la coordenada Y deseada */
-  left: 75px; /* Ajusta según la coordenada X deseada */
+  /* top: -10px; Ajusta según la coordenada Y deseada */
+  left: 25%; /* Ajusta según la coordenada X deseada */
   /* Altura opcional, si necesitas ajustar el tamaño de la imagen */
-  height: 150px; /* Ajusta según sea necesario */
+   height: 150px; /*  Ajusta según sea necesario */
 }
 
 section {
@@ -108,6 +108,8 @@ section {
   padding: 20px 40px;
   border-radius: 5px;
   z-index: 9999;
+  width: 300px;
+
 }
 
 h1{
@@ -127,7 +129,7 @@ a{
   font-family: inherit;
   font-size: 16px;
   border: 0;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 .btn:focus{
   outline: 0;
@@ -140,8 +142,33 @@ a{
 }
 .form-control{
   position: relative;
-  margin: 20px 0 40px;
+  margin: 20px 0 25px;
   width: 300px;
+}
+
+.form-control button {
+  color: whitesmoke;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  text-decoration-thickness: 10%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.form-control2{
+  position: relative;
+  margin: 10px 0 10px;
+  width: 300px;
+}
+.msg {
+  text-decoration: none;
+  color: black;
+}
+a{
+  text-decoration:underline;
+  color: whitesmoke;
 }
 input{
   background-color: transparent;
@@ -163,6 +190,9 @@ label{
   top: 15px;
   left: 0;
   pointer-events: none;
+}
+p{
+  text-align: justify;
 }
 span{
   display: inline-block;
@@ -186,10 +216,10 @@ input:valid + label span{
 
 .success {
   background-color: var(--color-green2);
-  color: white;
+  color: whitesmoke;
 }
 
 .error {
   background-color: var(--color-red); /* Rojo */
-  color: white;
+  color: whitesmoke;
 }

@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { loginUser } from "../../js/readUsers";
 import "../../css/AuthForm.css";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 import "../../js/AuthForm.js";
+// Icons
+import { Eye, EyeSlash } from 'react-bootstrap-icons';
 
 const AuthForm = () => {
-  window.onload()
+  window.onload();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [messageClass, setMessageClass] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   let navigate = useNavigate();
 
@@ -44,6 +47,10 @@ const AuthForm = () => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <section>
       <div className="wave wave1"></div>
@@ -52,7 +59,7 @@ const AuthForm = () => {
       <div className="wave wave4"></div>
       <div className="container">
         <img src="/img/logo.png" alt="Logo" />
-        <h1>Login</h1>
+        {/* <h1>Login</h1> */}
         {message && <div className={`message ${messageClass}`}>{message}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-control">
@@ -66,12 +73,18 @@ const AuthForm = () => {
           </div>
           <div className="form-control">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
             <label>Password</label>
+            <button type="button" onClick={togglePasswordVisibility}>
+              {showPassword ? <Eye color="whitesmoke"/> : <EyeSlash color="whitesmoke"/>}
+            </button>
+          </div>
+          <div className="form-control2">
+          <Link to="/forgot-psswd">Forgot your password?</Link>
           </div>
           <button type="submit" className="btn">
             Sign In
