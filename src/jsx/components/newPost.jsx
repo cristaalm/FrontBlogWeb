@@ -26,7 +26,7 @@ function newPost() {
     // Aquí puedes hacer una solicitud a tu API para obtener las categorías
     // Supongamos que la respuesta de la API es un array de objetos con propiedades 'id' y 'name'
     const fetchData = async () => {
-      const response = await fetch("http://localhost:8080/api/categories");
+      const response = await fetch("https://backblogweb.onrender.com/api/categories");
       const data = await response.json();
       setCategories(data);
       console.log(data);

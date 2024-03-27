@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const sentMail = async (mail) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/users/mail-sent', {
+      const response = await axios.post('https://backblogweb.onrender.com/api/users/mail-sent', {
         correoelectronico: mail      
       });
   
