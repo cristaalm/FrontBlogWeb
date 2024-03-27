@@ -3,36 +3,16 @@ import { createPost } from "../../js/createPost";
 import "../../css/Dashboard.css";
 import "../../css/App.css";
 import { useNavigate } from "react-router-dom";
-import { Tooltip } from "react-tooltip";
-
-import Footer from "./elements/Footer";
 
 function newPost() {
   const navigate = useNavigate(); // Obtiene la función de navegación
-  // const [showModal, setShowModal] = useState(false);
-  // const [imageLink, setImageLink] = useState("");
-  // const [imageWidth, setImageWidth] = useState("");
-  // const [imageHeight, setImageHeight] = useState("");
-  // const handleAddImage = () => {
-  //   // Lógica para insertar la imagen en el editor de texto
-  //   console.log("Link de la imagen:", imageLink);
-  //   console.log("Ancho de la imagen:", imageWidth);
-  //   console.log("Alto de la imagen:", imageHeight);
-  //   // Aquí puedes realizar la lógica para insertar la imagen en el editor de texto si es necesario
-  //   setShowModal(false); // Cierra el modal después de procesar la imagen
-  // };
-  // const handleToggleModal = () => {
-  //   setShowModal(!showModal);
-  // };
 
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     // Aquí puedes hacer una solicitud a tu API para obtener las categorías
     // Supongamos que la respuesta de la API es un array de objetos con propiedades 'id' y 'name'
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/categories"
-      );
+      const response = await fetch("http://localhost:8080/api/categories");
       const data = await response.json();
       setCategories(data);
       console.log(data);
@@ -113,119 +93,10 @@ function newPost() {
   };
 
   return (
-    <div>
-      <a data-tooltip-id="my-tooltip" data-tooltip-content="Hello world!">
-        chin
-      </a>
-      <div className="inicio">
-        <aside className="contenedor_logo">
-          <div className="logo_i">
-            <span className="negritas">AquaVision</span>
-          </div>
-          <nav className="margen_inferior">
-            <div className="entradas">
-              <div className="sections-header">SECCIONES</div>
-              <select className="diseñosec">
-                <option value="categoria0">entradas</option>
-                <option value="categoria1">todas</option>
-                <option value="categoria2">añadir nueva</option>
-                <option value="categoria3">categorias</option>
-              </select>
-              <div className="entradas">
-                <div className="sectionsUS">USUARIO</div>
-              </div>
-              <div className="entradas">
-                <button onClick={cerrarSesion} className="sesion">
-                  Cerrar sesión
-                </button>
-              </div>
-            </div>
-          </nav>
-        </aside>
-
-        <main className="todo_espacio">
-          <div className="contenedor_cuadicular">
-            <div className="margin">
-              <div className="entrada">
-                <h1 className="tamaño_fuente">Añadir nueva entrada</h1>
-                {/* <div className="entradaChil">
-                <img
-                  src="/public/img/logo without bg.png"
-                  width="50px;"
-                  alt="Imagen del Usuario"
-                />
-                <span className="hello">¡Hola, Admin!</span>
-              </div> */}
-              </div>
-            </div>
-          </div>
-          <div className="todo_espacio2">
-            <div className="left">
-              <div className="margen_boton">
-                <div className="ancho" htmlFor="title">
-                  Título de Entrada
-                </div>
-                <textarea className="cuadro_txt"></textarea>
-              </div>
-              <div className="margen_boton">
-                <div className="ancho" htmlFor="category">
-                  Categorías
-                </div>
-                <select className="diseño">
-                  <option value="">Seleccione su categoría...</option>
-                  {categories.data &&
-                    categories.data.map((category) => (
-                      <option key={category.id} value={category.id}>
-                        {category.nombre}
-                      </option>
-                    ))}
-                </select>
-              </div>
-              <div className="margen_boton">
-                <div className="ancho" htmlFor="description">
-                  Descripción
-                </div>
-                <textarea className="cuadro_txt"></textarea>
-              </div>
-              <div className="margen_boton">
-                <button
-                  type="button"
-                  className="pre"
-                  onClick={() => window.open("/preview-post", "_blank")}
-                >
-                  Previsualizar
-                </button>
-                <div className="liquid"></div>
-              </div>
-              <div className="margen_boton">
-                <button type="button" className="pre">
-                  Imagen Destacada
-                </button>
-                <div className="liquid"></div>
-              </div>
-              <div>
-                <button type="submit" className="entr">
-                  Guardar Entrada
-                </button>
-              </div>
-            </div>
-            <div className="right">
-              <div className="previsualizar">
-                <div className="bottonpre">
-                  <h2 className="negt">Previsualización</h2>
-                </div>
-                <div className="border">
-                  <div className="form-group tinymce-container">
-                    <div className="enter"></div>
-                    <textarea id="entryDescription"></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
+    <div className="margin">
+      <div className="entrada">
+        <h1 className="tamaño_fuente">Previsualizar nueva entrada</h1>
       </div>
-      <Footer />
     </div>
   );
 }

@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useContext} from "react";
 import { loginUser } from "../../js/readUsers";
 import "../../css/AuthForm.css";
-import {Link, useNavigate } from "react-router-dom";
-import "../../js/AuthForm.js";
+import { Link, useNavigate } from "react-router-dom";
+import { Context } from "./elements/Wrapper.jsx";
+import {
+  FormattedMessage,
+} from "react-intl";
+
 // Icons
-import { Eye, EyeSlash } from 'react-bootstrap-icons';
+import { Eye, EyeSlash } from "react-bootstrap-icons";
+import Footer from "./elements/Footer";
 
 const AuthForm = () => {
-  window.onload();
+  const context = useContext(Context);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -52,46 +57,59 @@ const AuthForm = () => {
   };
 
   return (
-    <section>
-      <div className="wave wave1"></div>
-      <div className="wave wave2"></div>
-      <div className="wave wave3"></div>
-      <div className="wave wave4"></div>
-      <div className="container">
-        <img src="/img/logo.png" alt="Logo" />
-        {/* <h1>Login</h1> */}
-        {message && <div className={`message ${messageClass}`}>{message}</div>}
-        <form onSubmit={handleSubmit}>
-          <div className="form-control">
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <label>Username</label>
-          </div>
-          <div className="form-control">
-            <input
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <label>Password</label>
-            <button type="button" onClick={togglePasswordVisibility}>
-              {showPassword ? <Eye color="whitesmoke"/> : <EyeSlash color="whitesmoke"/>}
+    <div>
+      {/* <FormattedMessage id="app.test" defaultMessage="Learn React" /> */}
+      <section>
+        <div className="wave wave1"></div>
+        <div className="wave wave2"></div>
+        <div className="wave wave3"></div>
+        <div className="wave wave4"></div>
+        <div className="container">
+          <img src="/img/logo.png" alt="Logo" />
+          {message && (
+            <div className={`message ${messageClass}`}>{message}</div>
+          )}
+          <form onSubmit={handleSubmit}>
+            <div className="form-control">
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+              <label>Username</label>
+            </div>
+            <div className="form-control">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <label>Password</label>
+              <button type="button" onClick={togglePasswordVisibility}>
+                {showPassword ? (
+                  <Eye color="whitesmoke" />
+                ) : (
+                  <EyeSlash color="whitesmoke" />
+                )}
+              </button>
+            </div>
+            <div className="form-control2">
+              <Link to="/forgot-psswd">Forgot your password?</Link>
+            </div>
+            <button type="submit" className="btn">
+              Sign In
             </button>
-          </div>
-          <div className="form-control2">
-          <Link to="/forgot-psswd">Forgot your password?</Link>
-          </div>
-          <button type="submit" className="btn">
-            Sign In
-          </button>
-        </form>
-      </div>
-    </section>
+          </form>
+        </div>
+      </section>
+      {/* <select value = {context.locale} onChange={context.selectLanguage}>
+          <option value= 'en'>English</option>
+          <option value= 'es'>Spanish</option>
+        </select> */}
+      <Footer />
+    </div>
   );
 };
 

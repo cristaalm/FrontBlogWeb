@@ -13,7 +13,7 @@ const App = () => {
       localStorage.setItem("isAuthenticated", "false");
     }
     if (storedAuth == "true") {
-      navigate("/dashboard");
+      navigate("/new-post");
     } else {
       navigate("/login");
     }
