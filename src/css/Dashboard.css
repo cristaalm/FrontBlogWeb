@@ -11,6 +11,9 @@
   /* background-image: linear-gradient(to top, var(--color-3) 0%, var(--color-4) 100%); */
   padding: 20px;
 }
+.contenedor_cuadricular {
+  width: auto;
+}
 .logo_i {
   margin-bottom: 100px;
 }
