@@ -390,3 +390,64 @@ h1 {
 .insertor{
   color: #000;
 }
+/* Estilos para tablets */
+@media (max-width: 768px) {
+  .inicio {
+    grid-template-columns: 1fr; /* Cambia a una columna para todo */
+  }
+
+  .left, .right {
+    width: 100%; /* Asegura que ocupen el ancho total en dispositivos más pequeños */
+    margin-right: 0;
+    padding: 0.5rem;
+  }
+
+  .cuadro_txt, .diseño, .pre, .sesion, .entr {
+    width: auto; /* Permite que los elementos ocupen el ancho disponible */
+    margin-bottom: 1rem; /* Espaciado entre elementos */
+  }
+
+  .margin, .margen_boton, .ancho {
+    padding: 0.5rem; /* Ajusta el padding para ahorrar espacio */
+  }
+
+  .logo_i {
+    margin-bottom: 50px; /* Reduce el margen para ahorrar espacio */
+  }
+}
+
+/* Estilos para móviles */
+@media (max-width: 480px) {
+  .negritas, h1 {
+    font-size: 18px; /* Reduce el tamaño de la fuente para una mejor legibilidad */
+  }
+
+  .diseñosec, .pre, .sesion, .entr {
+    padding: 10px; /* Ajusta el padding de los botones y selectores para mejor manejo */
+  }
+
+  .cuadro_txt {
+    padding: 8px; /* Reduce el padding interno para los campos de texto */
+  }
+
+  .sections-header, .sectionsUS {
+    font-size: 16px; /* Reduce el tamaño para las secciones */
+    padding-top: 1rem;
+  }
+
+  .menu-item, .dropdown-item {
+    padding: 8px; /* Ajusta el padding para elementos de menú para hacerlos más accesibles */
+  }
+}
+.contenedor-de-botones {
+  display: flex;
+  flex-direction: column; /* Organiza los botones en una columna */
+  align-items: center; /* Centra los botones horizontalmente */
+  justify-content: center; /* Centra los botones verticalmente */
+  padding: 10px; /* Añade un poco de espacio dentro del contenedor */
+}
+
+.button {
+  margin-bottom: 10px; /* Añade espacio entre los botones */
+  /* Otras propiedades de tus botones */
+}

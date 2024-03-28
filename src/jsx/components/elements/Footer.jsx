@@ -2,75 +2,83 @@ import React, { useContext } from "react";
 import "../../../css/Elements.css";
 import { Context } from "./Wrapper";
 
+
+
 const Footer = () => {
   const context = useContext(Context);
 
+  // Estilo para el contenedor principal del footer
   const footerStyle = {
-    zIndex: "9999",
-    position: "relative",
-    width: "100%",
-    background: "#b8ddd6",
-    padding: "10px 50px",
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    alignItems: "center",
+    position: 'relative', // El footer se posiciona de acuerdo al flujo natural del documento
+    width: '100%',
+    background: '#b8ddd6',
+    padding: '10px 50px',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginTop: '30px', // Añade espacio entre el contenido anterior y el footer
   };
 
+  // Estilo para las columnas individuales dentro del footer
   const footerColumnStyle = {
     flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    color: "#035165",
-    marginTop: "10px"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    color: '#035165',
+    marginTop: '10px'
   };
 
+  // Estilo para elementos select dentro del footer
   const selectStyle = {
-    alignItems: "right",
-    width: "50%",
-    padding: "8px 12px",
-    border: "2px solid #035165",
-    backgroundColor: "#fff",
-    color: "#035165",
-    fontSize: "1rem",
+    width: '50%',
+    padding: '8px 12px',
+    border: '2px solid #035165',
+    backgroundColor: '#fff',
+    color: '#035165',
+    fontSize: '1rem',
     fontWeight: 300,
-    borderRadius: "5px",
-    transition: "border-color 0.3s, background-color 0.3s, color 0.3s",
+    borderRadius: '5px',
+    transition: 'border-color 0.3s, background-color 0.3s, color 0.3s',
   };
 
   return (
     <footer style={footerStyle}>
       <div style={footerColumnStyle}>
-        <ul className="social-icon">
-          <li className="social-icon__item">
-            <a className="social-icon__link" href="#">
-              <ion-icon name="logo-buffer"></ion-icon>
+        {/* Iconos sociales - asegúrate de reemplazar # con tus enlaces */}
+        <ul className='social-icon'>
+          <li className='social-icon__item'>
+            <a className='social-icon__link' href='#'>
+              {/* Icono (reemplaza esto con tu componente de icono o imagen) */}
+              <ion-icon name='logo-buffer'></ion-icon>
             </a>
           </li>
-          <li className="social-icon__item">
-            <a className="social-icon__link" href="#">
-              <ion-icon name="mail"></ion-icon>
+          <li className='social-icon__item'>
+            <a className='social-icon__link' href='#'>
+              <ion-icon name='mail'></ion-icon>
             </a>
           </li>
-          <li className="social-icon__item">
-            <a className="social-icon__link" href="#">
-              <ion-icon name="people"></ion-icon>
+          <li className='social-icon__item'>
+            <a className='social-icon__link' href='#'>
+              <ion-icon name='people'></ion-icon>
             </a>
           </li>
         </ul>
       </div>
       <div style={footerColumnStyle}>
+        {/* Texto del footer */}
         <p>Umizoomies © 2024</p>
       </div>
       <div style={footerColumnStyle}>
+        {/* Selector de idioma */}
         <select
           style={selectStyle}
           value={context.locale}
           onChange={context.selectLanguage}
         >
-          <option value="en">English</option>
-          <option value="es">Español</option>
+          <option value='en'>English</option>
+          <option value='es'>Español</option>
         </select>
       </div>
     </footer>

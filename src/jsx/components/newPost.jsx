@@ -225,7 +225,7 @@ function newPost() {
           </div>
         </main>
       </div>
-      <Footer />
+     {/*<Footer />*/} 
     </div>
   );
 }
