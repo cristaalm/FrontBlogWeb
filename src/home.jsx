@@ -9,7 +9,7 @@ function Home() {
               {/* Header */}
       <header className="headerhome">
         <div className='iml'>
-        <img src="src/img/logo without bg.png" />
+        <img src="src/img/logo.png" />
         </div>
         <div className='menum'>
           <button className='Bienvenida'>Bienvenida</button>
@@ -18,7 +18,7 @@ function Home() {
           <button className='Quizz'>Quizz</button>
         </div>
         <div className='log'>
-          <Button variant="outline-success">Log in</Button>{' '}
+          <Button variant="success">Login</Button>{' '}
         </div>
       </header>
 
@@ -121,12 +121,12 @@ function Home() {
       <div className='separador3'>
       </div>
       <div className='quizzform'>
-        <div className='quizzimg'>
-          <img src='/src/img/logo.png'>
-        </img>
         <div className='quizztext'>
           <h2>Quizz</h2>
         </div>
+        <div className='quizzimg'>
+          <img src='/src/img/logo.png'>
+        </img>
         </div>
       </div>
 

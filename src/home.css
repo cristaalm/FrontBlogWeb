@@ -159,10 +159,14 @@ padding: 20px;
 .quizzform{
   background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
   display: flex;
-  text-align: right;
+  color: #ffffff;
 }
 .quizzform img{
-  width: 512px;
+  position: relative;
+  width: 256px;
   height: auto;
-  
+  left: 1100px;
+}
+.quizz h2{
+text-align: center;
 }
