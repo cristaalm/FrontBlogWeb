@@ -4,11 +4,30 @@ import "../../css/Dashboard.css";
 import "../../css/App.css";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-
+import { BrowserRouter, Routes, Route, } from 'react-router-dom';
+import { GiHamburgerMenu } from "react-icons/gi";
 import Footer from "./elements/Footer";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { CiUser } from "react-icons/ci";
+import { Container, Row, Col } from 'react-bootstrap';
+import { CiCloudOn } from "react-icons/ci";
+import { Outlet } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import Sidebar from "./elements/sidenav";
+import { BiChevronRight,BiListUl } from 'react-icons/bi'; // Importa solo los íconos que vas a utilizar
+import { FaUser } from "react-icons/fa";
 function newPost() {
+  
+ 
+  
   const navigate = useNavigate(); // Obtiene la función de navegación
+
+  const [isEntriesDropdownOpen, setIsEntriesDropdownOpen] = useState(false);
+
+  
+  const handleSelectionChange = (e) => {
+    navigate(e.target.value);
+  };
   // const [showModal, setShowModal] = useState(false);
   // const [imageLink, setImageLink] = useState("");
   // const [imageWidth, setImageWidth] = useState("");
@@ -47,6 +66,7 @@ function newPost() {
     localStorage.removeItem("isAuthenticated");
     navigate("/login");
   };
+  
 
   useEffect(() => {
     let storedAuth = localStorage.getItem("isAuthenticated");
@@ -111,28 +131,204 @@ function newPost() {
       setMessageClass("error");
     }
   };
+  const [isHomeExpanded, setIsHomeExpanded] = useState(false);
 
+  const toggleHome = () => {
+    setIsHomeExpanded(!isHomeExpanded);
+  };
+  const [sidebarIsActive, setSidebarIsActive] = useState(false);
+
+
+  const [isIconOnly, setIsIconOnly] = useState(false);
+
+  const toggleIconOnly = () => {
+    setIsIconOnly(!isIconOnly);
+  };
+
+  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
+    const toggleMenu = () => {
+    setIsMenuExpanded(!isMenuExpanded);
+  };
+
+  const [isClosed, setIsClosed] = useState(false);
+  const [isSectionsExpanded, setIsSectionsExpanded] = useState(false); // Define este estado para controlar la expansión de las secciones
+  const [isUserMenuExpanded, setIsUserMenuExpanded] = useState(false); // Define este estado para controlar la expansión del menú de usuario
+
+  const toggleSidebar = () => {
+    setIsClosed(!isClosed);
+    setSidebarIsActive(!sidebarIsActive);
+  };
+  const toggleSections = () => setIsSectionsExpanded(!isSectionsExpanded); // Define esta función
+  const toggleUserMenu = () => setIsUserMenuExpanded(!isUserMenuExpanded); // Define esta función
+  
+  
   return (
     <div>
-      <a data-tooltip-id="my-tooltip" data-tooltip-content="Hello world!">
+      {/* <a data-tooltip-id="my-tooltip" data-tooltip-content="Hello world!">
         chin
-      </a>
+      </a> */}
+
       <div className="inicio">
-        <aside className="contenedor_logo">
+      <nav className={`sidebar ${isClosed ? 'close' : ''}`}>
+            <header>
+                <div className="image-text">
+                    <span className="image">
+                        <img  /> 
+                    </span>
+                    <div className="text logo-text">
+                        <span className="name">AquaVision</span>
+                    </div>
+                </div>
+                <BiChevronRight className='toggle' onClick={toggleSidebar} />
+            </header>
+
+            <div className="menu-bar">
+                <div className="menu">
+                <ul>
+            
+                <li className="sections-header">
+                    <a href="#">
+                        <i class='bx bx-home-alt icon' > <BiListUl /></i>
+                         <span onClick={toggleSections} className="menu-link">
+                            SECCIONES
+                         </span>
+                     </a>
+
+                {isSectionsExpanded && (
+                    <ul className="subenu">
+                        <li><Link to="/new-post/inicio">inicio</Link></li>
+                        <li><Link to="/new-post/entradas">Entradas</Link></li>
+                        <li><Link to="/new-post/todas">Todas</Link></li>
+                        <li><Link to="/new-post/anadir-nueva">Añadir Nueva</Link></li>
+                        <li><Link to="/new-post/categorias">Categorías</Link></li>
+                    </ul>
+                )}
+                </li>
+                <li className="sections-header">
+     <nav className={`sidebar ${isClosed ? 'close' : ''}`}>
+            <header>
+                <div className="image-text">
+                    <span className="image">
+                        <img  /> 
+                    </span>
+                    <div className="text logo-text">
+                        <span className="name">AquaVision</span>
+                    </div>
+                </div>
+                <BiChevronRight className='toggle' onClick={toggleSidebar} />
+            </header>
+
+            <div className="menu-bar">
+                <div className="menu">
+                <ul>
+            
+                <li className="sections-header">
+                    <a href="#">
+                        <i class='bx bx-home-alt icon' > <BiListUl /></i>
+                         <span onClick={toggleSections} className="menu-link">
+                            SECCIONES
+                         </span>
+                     </a>
+
+                {isSectionsExpanded && (
+                    <ul className="subenu">
+                        <li><Link to="/new-post/inicio">inicio</Link></li>
+                        <li><Link to="/new-post/entradas">Entradas</Link></li>
+                        <li><Link to="/new-post/todas">Todas</Link></li>
+                        <li><Link to="/new-post/anadir-nueva">Añadir Nueva</Link></li>
+                        <li><Link to="/new-post/categorias">Categorías</Link></li>
+                    </ul>
+                )}
+                </li>
+                <li className="sections-header">
+                    <a href="#">
+                        <i class='bx bx-home-alt icon' ><FaUser /></i>
+                        <span onClick={toggleUserMenu} className="menu-link">
+                            USUARIO
+                        </span>
+                    </a>
+                    
+                    {isUserMenuExpanded && (
+                        <ul className="submenu">
+                        <li>
+                            <Link to="/new-post/usuarios">usuarios</Link>
+                        </li>
+                        </ul>
+                    )}
+                </li>
+                </ul>  
+                </div>
+                              <div className="entradas">
+                <button onClick={cerrarSesion} className="sesion">
+                  Cerrar sesión
+                </button>
+              </div>
+            </div>
+        </nav>
+                    
+                    {isUserMenuExpanded && (
+                        <ul className="submenu">
+                        <li>
+                            <Link to="/new-post/usuarios">usuarios</Link>
+                        </li>
+                        </ul>
+                    )}
+                </li>
+                </ul>  
+                </div>
+                              <div className="entradas">
+                <button onClick={cerrarSesion} className="sesion">
+                  Cerrar sesión
+                </button>
+              </div>
+            </div>
+        </nav>
+        {/* <Sidebar /> */}
+        {/* <aside id="sidebar" className={`${sidebarIsActive ? "active" : ""} `}>
           <div className="logo_i">
-            <span className="negritas">AquaVision</span>
+            <div className="icon">
+            
+            </div> 
+          
+            <span className="negritas">
+            <GiHamburgerMenu className="burger" onClick={toggleSidebar} />
+              AquaVision
+              </span>
+            
           </div>
           <nav className="margen_inferior">
             <div className="entradas">
-              <div className="sections-header">SECCIONES</div>
-              <select className="diseñosec">
-                <option value="categoria0">entradas</option>
-                <option value="categoria1">todas</option>
-                <option value="categoria2">añadir nueva</option>
-                <option value="categoria3">categorias</option>
-              </select>
-              <div className="entradas">
-                <div className="sectionsUS">USUARIO</div>
+            <div className="entradas">
+
+            <ul>
+            
+            <li className="sections-header">
+              <span onClick={toggleSections} className="menu-link">
+                SECCIONES
+              </span>
+              {isSectionsExpanded && (
+                <ul className="submenu">
+                      <li><Link to="/new-post/inicio">inicio</Link></li>
+                      <li><Link to="/new-post/entradas">Entradas</Link></li>
+                      <li><Link to="/new-post/todas">Todas</Link></li>
+                      <li><Link to="/new-post/anadir-nueva">Añadir Nueva</Link></li>
+                      <li><Link to="/new-post/categorias">Categorías</Link></li>
+                </ul>
+              )}
+            </li>
+            <li className="sections-header">
+              <span onClick={toggleUserMenu} className="menu-link">
+                USUARIO
+              </span>
+              {isUserMenuExpanded && (
+                <ul className="submenu">
+                  <li>
+                    <Link to="/new-post/usuarios">usuarios</Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+          </ul>        
               </div>
               <div className="entradas">
                 <button onClick={cerrarSesion} className="sesion">
@@ -141,89 +337,14 @@ function newPost() {
               </div>
             </div>
           </nav>
-        </aside>
-
-        <main className="todo_espacio">
-          <div className="contenedor_cuadicular">
-            <div className="margin">
-              <div className="entrada">
-                <h1 className="tamaño_fuente">Añadir nueva entrada</h1>
-                {/* <div className="entradaChil">
-                <img
-                  src="/public/img/logo without bg.png"
-                  width="50px;"
-                  alt="Imagen del Usuario"
-                />
-                <span className="hello">¡Hola, Admin!</span>
-              </div> */}
-              </div>
-            </div>
-          </div>
-          <div className="todo_espacio2">
-            <div className="left">
-              <div className="margen_boton">
-                <div className="ancho" htmlFor="title">
-                  Título de Entrada
-                </div>
-                <textarea className="cuadro_txt"></textarea>
-              </div>
-              <div className="margen_boton">
-                <div className="ancho" htmlFor="category">
-                  Categorías
-                </div>
-                <select className="diseño">
-                  <option value="">Seleccione su categoría...</option>
-                  {categories.data &&
-                    categories.data.map((category) => (
-                      <option key={category.id} value={category.id}>
-                        {category.nombre}
-                      </option>
-                    ))}
-                </select>
-              </div>
-              <div className="margen_boton">
-                <div className="ancho" htmlFor="description">
-                  Descripción
-                </div>
-                <textarea className="cuadro_txt"></textarea>
-              </div>
-              <div className="margen_boton">
-                <button
-                  type="button"
-                  className="pre"
-                  onClick={() => window.open("/preview-post", "_blank")}
-                >
-                  Previsualizar
-                </button>
-                <div className="liquid"></div>
-              </div>
-              <div className="margen_boton">
-                <button type="button" className="pre">
-                  Imagen Destacada
-                </button>
-                <div className="liquid"></div>
-              </div>
-              <div>
-                <button type="submit" className="entr">
-                  Guardar Entrada
-                </button>
-              </div>
-            </div>
-            <div className="right">
-              <div className="previsualizar">
-                <div className="bottonpre">
-                  <h2 className="negt">Previsualización</h2>
-                </div>
-                <div className="border">
-                  <div className="form-group tinymce-container">
-                    <div className="enter"></div>
-                    <textarea id="entryDescription"></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        </aside> */}
+        <main id="main-content" className={isClosed ? "" : "expanded"}>
+  
+         <Outlet /> 
         </main>
+
+
+        
       </div>
      {/*<Footer />*/} 
     </div>
@@ -231,63 +352,3 @@ function newPost() {
 }
 
 export default newPost;
-
-/*    <div className="dashboard">
-        <aside className="sidebar">
-          <img src="src/img/logo without bg.png"  width="100px" height="100px"   alt="pene" />
-          <div className="menu">
-            <div className="sections-header">SECCIONES</div>
-            <div className="menu-item" onClick={toggleEntriesDropdown}>
-              <div className={`menu-item ${isEntriesDropdownOpen ? 'minus' : 'plus'}`} onClick={toggleEntriesDropdown}>
-                Entradas
-              </div>
-            </div>
-            {isEntriesDropdownOpen && (
-              <div className="dropdown">
-                <div className="dropdown-item">Todas</div>
-                <div className="dropdown-item">Añadir nueva</div>
-                <div className="dropdown-item">Categorías</div>
-              </div>
-            )}
-            <div className="menu-item">Usuarios</div>
-          </div>
-
-        </aside>
-       Botones y Selector de Categorías ahora se mueven aquí 
-        <main className="content">
-          <header>
-            <div className="content-header">
-              <h1>Añadir nueva entrada</h1>
-              <div className="user-greeting">¡Hola, administrador!</div>
-            </div>
-          </header>
-          <div className="sidebar-actions">
-            <select id="categorySelect">
-              <option>Seleccione categoría...</option>
-              Las opciones de categoría irían aquí 
-            </select>
-            <button type="button" id="previewButton">Previsualizar</button>
-            <button type="button" id="addImageButton">Imagen Destacada</button>
-            <button type="submit" id="saveButton">Guardar Entrada</button>
-          </div>
-
-          <div className="entry-form">
-            <div className="form-group">
-              <input htmlFor="entryTitle" type="text" placeholder='Ingresa titulo'></input> 
-            </div>
-
-
-            El editor TinyMCE se coloca aquí 
-
-          <div className="form-group tinymce-container">
-              <label htmlFor="entryDescription">Descripción</label>
-              <textarea id="entryDescription"></textarea>
-            </div> 
-            
-          </div>
-        </main>
-      </div>
-  );
-}
-
-export default Dashboard;*/

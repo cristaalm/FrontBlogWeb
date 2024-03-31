@@ -14,7 +14,14 @@ import { Context } from "./jsx/components/elements/Wrapper.jsx";
 // Define los mensajes para los idiomas en tu aplicación
 import messagesEn from "./lang/en.json";
 import messagesEs from "./lang/es.json";
-
+import Entradas from "./jsx/components/dahs/entrada.jsx";
+import NuevaEntrada from "./jsx/components/dahs/new.jsx";
+import Categorias from "./jsx/components/dahs/categoria.jsx";
+import Todas from "./jsx/components/dahs/todas.jsx";
+import Home from "./jsx/components/dahs/home.jsx";
+import Inicio from "./jsx/components/dahs/inicio.jsx";
+import Usuario from "./jsx/components/dahs/usuarios.jsx";
+  
 const messages = {
   en: messagesEn,
   es: messagesEs,
@@ -23,7 +30,20 @@ const messages = {
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
   { path: "/login", element: <AuthForm /> },
-  { path: "/new-post", element: <NewPost /> },
+  {
+    path: "/new-post", 
+    element: <NewPost />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "inicio", element: <Inicio /> },
+      { path: "anadir-nueva", element: <NuevaEntrada /> },
+      { path: "entradas", element: <Entradas /> },
+      { path: "categorias", element: <Categorias /> },
+      { path: "todas", element: <Todas /> },
+      { path: "usuarios", element: <Usuario /> },
+    ]
+  },
+  
   { path: "/forgot-psswd", element: <ForgotPsswd /> },
   { path: "/restart-psswd/:id", element: <RestartPsswd /> },
   { path: "/successfull-mail", element: <SentMsg /> },
@@ -46,4 +66,4 @@ createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AppWithIntl />
   </React.StrictMode>
-);
+); 

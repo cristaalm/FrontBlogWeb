@@ -3,12 +3,13 @@
 }
 .inicio {
   display: grid;
-  grid-template-columns: 14rem auto;
+  
 }
 .contenedor_logo {
+  
   width: auto;
   background-color: var(--color-4);
-  /* background-image: linear-gradient(to top, var(--color-3) 0%, var(--color-4) 100%); */
+  
   padding: 20px;
 }
 .contenedor_cuadricular {
@@ -16,6 +17,13 @@
 }
 .logo_i {
   margin-bottom: 100px;
+}
+.icon{
+  display: flex;
+}
+.burguer {
+  font-size: 30px;
+  min-width: 0px;
 }
 .negritas {
   font-weight: bold; /* Esto es equivalente a usar '700' */
@@ -63,6 +71,9 @@ h1 {
   margin-bottom: 20px;
   font-weight: bold;
   padding: 2rem 0 0 0;
+}
+.sectionsUSS{
+  padding-bottom: 10rem;
 }
 .menu-item {
   background-color: #26d4e7;
@@ -129,9 +140,13 @@ h1 {
   padding: 1rem;
   
 }
+.todo_espacio3 {
+  padding: 1rem;
+  
+}
 .left {
   background-image: linear-gradient(to top, var(--color-2) 0%, var(--color-3) 100%);
-  width: 35%;
+  width: auto;
   height: 510px;
   padding: 1rem;
   margin-right: 1rem;
@@ -451,3 +466,483 @@ h1 {
   margin-bottom: 10px; /* Añade espacio entre los botones */
   /* Otras propiedades de tus botones */
 }
+ 
+.pre {
+  background-image: linear-gradient(
+    to right,
+    var(--color-4) 0%,
+    var(--color-3) 51%,
+    var(--color-4) 100%
+  );
+  padding: 15px 45px;
+  text-align: center; 
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.pre:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+.sesion {
+  background-image: linear-gradient(
+    to right,
+    var(--color-4) 0%,
+    var(--color-3) 51%,
+    var(--color-4) 100%
+  );
+  padding: 15px 15px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: none;
+  width: 100%;
+}
+.sesion:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.dest {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.dest:hover {
+  background-color: #45a049;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 10px;
+  animation: modal-show 0.3s ease;
+}
+
+@keyframes modal-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+.insert-button {
+  background-color: #008cba; /* Blue */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.insert-button:hover {
+  background-color: #005f75;
+}
+
+.entr {
+  background-image: linear-gradient(
+    to right,
+    var(--color-green1) 0%,
+    var(--color-green2) 51%,
+    var(--color-green1) 100%
+  );
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: none;
+  width: 100%;
+}
+
+.entr:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+.insertor{
+  color: #000;
+}
+
+/* CRUD.css */
+.bg-white {
+  background-color: white;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.relative {
+  position: relative;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.header th {
+  height: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: left;
+  background-color: #f7fafc; /* Sustituye este color con el color de fondo correcto para el encabezado de la tabla */
+}
+
+.tr-header {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tr-body {
+  border-bottom: 1px solid #e2e8f0;
+
+}
+
+
+/* editor de entradas */
+.btn-blue, .btn-green, .btn-yellow, .btn-red, .btn-purple {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border-radius: 0.375rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.btn-blue {
+  background-color: #3490dc;
+}
+
+.btn-blue:hover {
+  background-color: #2779bd;
+}
+
+.btn-green {
+  background-color: #48bb78;
+}
+
+.btn-green:hover {
+  background-color: #38a169;
+}
+
+.btn-yellow {
+  background-color: #ecc94b;
+}
+
+.btn-yellow:hover {
+  background-color: #d69e2e;
+}
+
+.btn-red {
+  background-color: #f56565;
+}
+
+.btn-red:hover {
+  background-color: #e53e3e;
+}
+
+.btn-purple {
+  background-color: #9f7aea;
+}
+
+.btn-purple:hover {
+  background-color: #805ad5;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+
+/* ########## animacion ############## */
+
+
+
+
+/* ===== Sidebar ===== */
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  padding: 10px 14px;
+  background: #30475e; /* --sidebar-color */
+  transition: 0.5s; /* --tran-05 */
+  z-index: 100;  
+}
+.sidebar.close{
+  width: 88px;
+}
+
+/* ===== Reusable code - Here ===== */
+.sidebar li{
+  height: 50px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  justify-content: flex-start;
+}
+
+.sidebar header .image,
+.sidebar .icon{
+  min-width: 60px;
+  border-radius: 6px;
+}
+
+.sidebar .icon{
+  min-width: 60px;
+  border-radius: 6px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.sidebar .text,
+.sidebar .icon{
+  color: #f5f5f5; /* --text-color */
+  transition: 0.3s; /* --tran-03 */
+}
+
+.sidebar .text{
+  font-size: 17px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 1;
+}
+.sidebar.close .text{
+  opacity: 0;
+}
+/* =========================== */
+
+.sidebar header{
+  position: relative;
+}
+
+.sidebar header .image-text{
+  display: flex;
+  align-items: center;
+}
+.sidebar header .logo-text{
+  display: flex;
+  flex-direction: column;
+}
+header .image-text .name {
+  margin-top: 2px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+header .image-text .profession{
+  font-size: 16px;
+  margin-top: -2px;
+  display: block;
+}
+
+.sidebar header .image{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar header .image img{
+  width: 40px;
+  border-radius: 6px;
+}
+
+.sidebar header .toggle{
+  position: absolute;
+  top: 50%;
+  right: -25px;
+  transform: translateY(-50%) rotate(180deg);
+  height: 25px;
+  width: 25px;
+  background-color: #e1e1e1; /* --primary-color */
+  color: #30475e; /* --sidebar-color */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.5s; /* --tran-05 */
+}
+
+body.dark .sidebar header .toggle{
+  color: #f5f5f5; /* --text-color */
+}
+
+.sidebar.close .toggle{
+  transform: translateY(-50%) rotate(0deg);
+}
+
+.sidebar .menu{
+  margin-top: 40px;
+}
+
+.sidebar li.search-box{
+  border-radius: 6px;
+  background-color: #ddd; /* --primary-color-light */
+  cursor: pointer;
+  transition: 0.5s; /* --tran-05 */
+}
+
+.sidebar li.search-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: #ddd; /* --primary-color-light */
+  color: #f5f5f5; /* --text-color */
+  border-radius: 6px;
+  font-size: 17px;
+  font-weight: 500;
+  transition: 0.5s; /* --tran-05 */
+}
+.sidebar li a{
+  list-style: none;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s; /* --tran-03 */
+}
+
+.sidebar li a:hover{
+  background-color: #6D9886; /* --primary-color */
+}
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+  color: #30475e; /* --sidebar-color */
+}
+
+/* Asegúrate de que el main tenga un margin-left que coincida con el ancho del sidebar */
+#main-content {
+  transition: margin-left 0.5s;
+  margin-left: 250px; /* Ajusta este valor al ancho de tu sidebar expandido */
+}
+
+.sidebar.close + #main-content {
+  margin-left: 88px; /* Ajusta este valor al ancho de tu sidebar contraído */
+}
+
+/* Ajustar la posición del botón de alternancia para que no se salga de la barra lateral */
+.sidebar .toggle {
+  right: 10px; /* Ajusta este valor para que se mantenga dentro de la barra lateral */
+}
+
+
+/* ####################################### */
