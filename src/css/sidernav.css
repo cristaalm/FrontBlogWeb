@@ -1,0 +1,95 @@
+.sidernav{
+    background-color: var(--color-4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 2rem 3rem;
+    width: 15rem;
+    height: 100vh;
+    transition: width 0.3s; /* Added for smooth transition */
+}
+
+
+.logocontainer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.title{
+    font-size: 25.42px;
+    color: white;
+    padding: 0 0 0 1rem;
+}
+
+.iconmenugood{
+    background-color: white;
+    position: absolute;
+    right: calc(35px / 20); 
+    top: calc(3rem / 1.5);
+    width: 30px;
+    height: 25px;
+    border-radius: 2rem;
+    z-index: 1;
+}
+
+.contentscontainer{
+    margin: 2rem 0 0 0;
+}
+
+.listado{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin: 0.75rem 0;
+    padding: 0.75rem 0;
+    width: 100%;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.lista:hover{
+    background-color: #b8ddd6;
+    transition: background-color 0.25s;
+}
+
+
+.toggle{
+    color: white;
+}
+
+.desple{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 0 1rem;
+}
+
+.sidernav.active{
+    width: 3rem;
+}
+
+.sidernav.active .logocontainer,
+.sidernav.active .title,
+.sidernav.active .contentscontainer .desple{
+    opacity: 0;
+    transition: opacity 0.3s; /* Added for smooth transition */
+}
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+

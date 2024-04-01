@@ -16,9 +16,9 @@ import { Link } from "react-router-dom";
 import Sidebar from "./elements/sidenav";
 import { BiChevronRight,BiListUl } from 'react-icons/bi'; // Importa solo los íconos que vas a utilizar
 import { FaUser } from "react-icons/fa";
+
 function newPost() {
   
- 
   
   const navigate = useNavigate(); // Obtiene la función de navegación
 
@@ -150,203 +150,36 @@ function newPost() {
     setIsMenuExpanded(!isMenuExpanded);
   };
 
-  const [isClosed, setIsClosed] = useState(false);
-  const [isSectionsExpanded, setIsSectionsExpanded] = useState(false); // Define este estado para controlar la expansión de las secciones
-  const [isUserMenuExpanded, setIsUserMenuExpanded] = useState(false); // Define este estado para controlar la expansión del menú de usuario
+
+
+  const toggleSections = () => setIsSectionsExpanded(!isSectionsExpanded); // Define esta función
+  const toggleUserMenu = () => setIsUserMenuExpanded(!isUserMenuExpanded); // Define esta función   
+
+const [isClosed, setIsClosed] = useState(false);
+
+
+
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
+  
+
 
   const toggleSidebar = () => {
-    setIsClosed(!isClosed);
-    setSidebarIsActive(!sidebarIsActive);
-  };
-  const toggleSections = () => setIsSectionsExpanded(!isSectionsExpanded); // Define esta función
-  const toggleUserMenu = () => setIsUserMenuExpanded(!isUserMenuExpanded); // Define esta función
-  
-  
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+};
+
   return (
     <div>
       {/* <a data-tooltip-id="my-tooltip" data-tooltip-content="Hello world!">
         chin
       </a> */}
-
       <div className="inicio">
-      <nav className={`sidebar ${isClosed ? 'close' : ''}`}>
-            <header>
-                <div className="image-text">
-                    <span className="image">
-                        <img  /> 
-                    </span>
-                    <div className="text logo-text">
-                        <span className="name">AquaVision</span>
-                    </div>
-                </div>
-                <BiChevronRight className='toggle' onClick={toggleSidebar} />
-            </header>
-
-            <div className="menu-bar">
-                <div className="menu">
-                <ul>
-            
-                <li className="sections-header">
-                    <a href="#">
-                        <i class='bx bx-home-alt icon' > <BiListUl /></i>
-                         <span onClick={toggleSections} className="menu-link">
-                            SECCIONES
-                         </span>
-                     </a>
-
-                {isSectionsExpanded && (
-                    <ul className="subenu">
-                        <li><Link to="/new-post/inicio">inicio</Link></li>
-                        <li><Link to="/new-post/entradas">Entradas</Link></li>
-                        <li><Link to="/new-post/todas">Todas</Link></li>
-                        <li><Link to="/new-post/anadir-nueva">Añadir Nueva</Link></li>
-                        <li><Link to="/new-post/categorias">Categorías</Link></li>
-                    </ul>
-                )}
-                </li>
-                <li className="sections-header">
-     <nav className={`sidebar ${isClosed ? 'close' : ''}`}>
-            <header>
-                <div className="image-text">
-                    <span className="image">
-                        <img  /> 
-                    </span>
-                    <div className="text logo-text">
-                        <span className="name">AquaVision</span>
-                    </div>
-                </div>
-                <BiChevronRight className='toggle' onClick={toggleSidebar} />
-            </header>
-
-            <div className="menu-bar">
-                <div className="menu">
-                <ul>
-            
-                <li className="sections-header">
-                    <a href="#">
-                        <i class='bx bx-home-alt icon' > <BiListUl /></i>
-                         <span onClick={toggleSections} className="menu-link">
-                            SECCIONES
-                         </span>
-                     </a>
-
-                {isSectionsExpanded && (
-                    <ul className="subenu">
-                        <li><Link to="/new-post/inicio">inicio</Link></li>
-                        <li><Link to="/new-post/entradas">Entradas</Link></li>
-                        <li><Link to="/new-post/todas">Todas</Link></li>
-                        <li><Link to="/new-post/anadir-nueva">Añadir Nueva</Link></li>
-                        <li><Link to="/new-post/categorias">Categorías</Link></li>
-                    </ul>
-                )}
-                </li>
-                <li className="sections-header">
-                    <a href="#">
-                        <i class='bx bx-home-alt icon' ><FaUser /></i>
-                        <span onClick={toggleUserMenu} className="menu-link">
-                            USUARIO
-                        </span>
-                    </a>
-                    
-                    {isUserMenuExpanded && (
-                        <ul className="submenu">
-                        <li>
-                            <Link to="/new-post/usuarios">usuarios</Link>
-                        </li>
-                        </ul>
-                    )}
-                </li>
-                </ul>  
-                </div>
-                              <div className="entradas">
-                <button onClick={cerrarSesion} className="sesion">
-                  Cerrar sesión
-                </button>
-              </div>
-            </div>
-        </nav>
-                    
-                    {isUserMenuExpanded && (
-                        <ul className="submenu">
-                        <li>
-                            <Link to="/new-post/usuarios">usuarios</Link>
-                        </li>
-                        </ul>
-                    )}
-                </li>
-                </ul>  
-                </div>
-                              <div className="entradas">
-                <button onClick={cerrarSesion} className="sesion">
-                  Cerrar sesión
-                </button>
-              </div>
-            </div>
-        </nav>
-        {/* <Sidebar /> */}
-        {/* <aside id="sidebar" className={`${sidebarIsActive ? "active" : ""} `}>
-          <div className="logo_i">
-            <div className="icon">
-            
-            </div> 
-          
-            <span className="negritas">
-            <GiHamburgerMenu className="burger" onClick={toggleSidebar} />
-              AquaVision
-              </span>
-            
-          </div>
-          <nav className="margen_inferior">
-            <div className="entradas">
-            <div className="entradas">
-
-            <ul>
-            
-            <li className="sections-header">
-              <span onClick={toggleSections} className="menu-link">
-                SECCIONES
-              </span>
-              {isSectionsExpanded && (
-                <ul className="submenu">
-                      <li><Link to="/new-post/inicio">inicio</Link></li>
-                      <li><Link to="/new-post/entradas">Entradas</Link></li>
-                      <li><Link to="/new-post/todas">Todas</Link></li>
-                      <li><Link to="/new-post/anadir-nueva">Añadir Nueva</Link></li>
-                      <li><Link to="/new-post/categorias">Categorías</Link></li>
-                </ul>
-              )}
-            </li>
-            <li className="sections-header">
-              <span onClick={toggleUserMenu} className="menu-link">
-                USUARIO
-              </span>
-              {isUserMenuExpanded && (
-                <ul className="submenu">
-                  <li>
-                    <Link to="/new-post/usuarios">usuarios</Link>
-                  </li>
-                </ul>
-              )}
-            </li>
-          </ul>        
-              </div>
-              <div className="entradas">
-                <button onClick={cerrarSesion} className="sesion">
-                  Cerrar sesión
-                </button>
-              </div>
-            </div>
-          </nav>
-        </aside> */}
-        <main id="main-content" className={isClosed ? "" : "expanded"}>
-  
-         <Outlet /> 
-        </main>
-
-
-        
-      </div>
-     {/*<Footer />*/} 
+      <Sidebar isCollapsed={isSidebarCollapsed} onToggleSidebar={setIsSidebarCollapsed} />
+      <main className={`main-content ${isSidebarCollapsed ? 'collapsed' : ''}`}>
+        <Outlet />
+      </main>
+      </div> 
+      {/*<Footer />*/} 
     </div>
   );
 }
