@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import "../../css/Dashboard.css";
-import "../../css/App.css";
-import "../../css/entradas.css"
+import "../../../css/Dashboard.css";
+import "../../../css/App.css";
+import "../../../css/entradas.css"
 import { useNavigate } from "react-router-dom";
 
 function entradas() {

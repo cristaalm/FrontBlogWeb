@@ -1,13 +1,16 @@
 import axios from 'axios';
 
 export const createPost = async (titulo, contenido, idcategoria, img, usuario) => {
+    console.log(titulo,contenido,idcategoria,img,usuario);
     try {
       const response = await axios.post('http://localhost:8080/api/entradas/', {
         titulo: titulo,
         contenido: contenido,
         idcategoria: idcategoria,
-        imgdestacada: null,
+        imgdestacada: img,
+        fechapublicacion: "2024-03-12",
         usuario: usuario,
+        estatus: "estatus"
       });
   
       if (!response) {

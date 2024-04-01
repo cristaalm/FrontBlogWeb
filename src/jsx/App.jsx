@@ -1,50 +1,28 @@
-import React from "react";
-import "./App.css"; // Asegúrate de que el path sea correcto
+import { useState, useEffect } from "react";
+// import { loginUser } from "./js/readUsers";
+import { useNavigate } from "react-router-dom";
 
-const AuthForm = () => {
-  const [isLogin, setIsLogin] = React.useState(true);
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  let navigate = useNavigate();
 
-  const toggleForm = () => setIsLogin(!isLogin);
+  useEffect(() => {
+    const storedAuth = localStorage.getItem("isAuthenticated");
+    console.log(storedAuth);
+    if (storedAuth == null) {
+      localStorage.setItem("isAuthenticated", "false");
+    }
+    if (storedAuth == "true") {
+      navigate("/new-post");
+    } else {
+      navigate("/login");
+    }
+  }, []);
 
-  return (
-    <div className="primero">
-      <div className="wrapper">
-        <div className="title-text">
-          <div className={isLogin ? "title login hide" : "title login hide"}>
-            Login Form
-          </div>
-          <div className={!isLogin ? "title signup hide" : "title signup hide"}>
-            Signup Form
-          </div>
-        </div>
-        <div className="form-container">
-          <div className="form-inner">
-            <form action="#" className="login">
-              <div className="field">
-                <input type="text" placeholder="Username" required />
-              </div>
-              <div className="field">
-                <input type="password" placeholder="Password" required />
-              </div>
-              {/* <div className="pass-link"><a href="#">Forgot password?</a></div> */}
-              <div className="field btn">
-                <div className="btn-layer"></div>
-                <input type="submit" value="Login" />
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  return <div className="App"></div>;
 };
 
-function App() {
-  return <AuthForm />;
-}
-
 export default App;
-
 {
   /* <div className='mine'>
       <div className='contenedor'>

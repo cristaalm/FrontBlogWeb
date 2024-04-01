@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { sentMail } from "../../js/readMail";
+import { sentMail } from "../../js/readMail.js";
 // import { restartPassword } from "../../js/restartPsswd";
 import "../../css/AuthForm.css";
 import { useNavigate } from "react-router-dom";

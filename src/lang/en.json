@@ -1,7 +1,7 @@
 {
-  "app.header" : "Edit" ,
-  "app.test" : "test" ,
-  "app.content" : "Learn" ,
+  "app.header": "Edit",
+  "app.test": "Test",
+  "app.content": "Learn",
   "app.channel.plug": "Edit",
   "app.plural": "Edit"
 }

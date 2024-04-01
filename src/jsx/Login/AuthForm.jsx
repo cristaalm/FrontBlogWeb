@@ -1,15 +1,13 @@
-import React, { useState, useEffect ,useContext} from "react";
-import { loginUser } from "../../js/readUsers";
+import React, { useState, useEffect, useContext } from "react";
+import { loginUser } from "../../js/readUsers.js";
 import "../../css/AuthForm.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Context } from "./elements/Wrapper.jsx";
-import {
-  FormattedMessage,
-} from "react-intl";
+import { Context } from "../Elements/Wrapper.jsx";
+import { FormattedMessage } from "react-intl";
 
 // Icons
 import { Eye, EyeSlash } from "react-bootstrap-icons";
-import Footer from "./elements/Footer";
+import Footer from "../Elements/Footer.jsx";
 
 const AuthForm = () => {
   const context = useContext(Context);
@@ -29,10 +27,11 @@ const AuthForm = () => {
       navigate("/new-post");
     }
   }, [navigate]);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      let userName = localStorage.getItem("userName");
       const data = await loginUser(username, password);
       localStorage.setItem("isAuthenticated", data.logged.toString());
       if (data.logged) {
@@ -40,6 +39,7 @@ const AuthForm = () => {
           navigate("/new-post");
         }, 1000);
         setMessage("User logged in correctly.");
+        localStorage.setItem("userName", (username));
         setMessageClass("success");
       } else {
         setMessage("Check password or username.");
@@ -58,7 +58,7 @@ const AuthForm = () => {
 
   return (
     <div>
-      {/* <FormattedMessage id="app.test" defaultMessage="Learn React" /> */}
+      <FormattedMessage id="app.test" defaultMessage="Learn React" />
       <section>
         <div className="wave wave1"></div>
         <div className="wave wave2"></div>

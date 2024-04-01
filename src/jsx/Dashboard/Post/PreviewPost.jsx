@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { createPost } from "../../js/createPost";
-import "../../css/Dashboard.css";
-import "../../css/App.css";
+import { createPost } from "../../../js/createPost";
+import "../../../css/Dashboard.css";
+import "../../../css/App.css";
 import { useNavigate } from "react-router-dom";
 
 function newPost() {
