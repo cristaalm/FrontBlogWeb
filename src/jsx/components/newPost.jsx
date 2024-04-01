@@ -86,29 +86,7 @@ function newPost() {
       localStorage.removeItem("isAuthenticated");
     }
   };
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://cdn.tiny.cloud/1/kovdcfjaqbeap5tn2t47qcgag4xk6qwtg473e9iu0rmn2kd2/tinymce/6/tinymce.min.js";
-    script.referrerpolicy = "origin";
-    document.head.appendChild(script);
 
-    script.onload = () => {
-      window.tinymce.init({
-        selector: "#entryDescription",
-        plugins:
-          "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
-        toolbar:
-          "undo redo | bold italic underline strikethrough | link image media table | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-        tinycomments_mode: "embedded",
-      });
-    };
-
-    return () => {
-      // Destruye el editor para evitar fugas de memoria
-      window.tinymce?.remove("#entryDescription");
-    };
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -1,0 +1,20 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modalContent {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 500px; /* O el ancho que prefieras */
+    z-index: 1000000000; /* Asegurarse de que está sobre los otros elementos */
+}
+
+

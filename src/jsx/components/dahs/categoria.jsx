@@ -1,5 +1,50 @@
+import React, { useState, useEffect } from 'react';
 
 const Categorias =() => {
+  const [categories, setCategories] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [imageLink, setImageLink] = useState("");
+  const [imageWidth, setImageWidth] = useState("");
+  const [imageHeight, setImageHeight] = useState("");
+  const [categoryName, setCategoryName] = useState(""); // Nuevo estado para el nombre de la categoría
+  const [categoryDescription, setCategoryDescription] = useState(""); // Nuevo estado para la descripción de la categoría
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("https://backblogweb.onrender.com/api/categories");
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  const handleToggleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const handleAddImage = () => {
+    console.log("Link de la imagen:", imageLink);
+    console.log("Ancho de la imagen:", imageWidth);
+    console.log("Alto de la imagen:", imageHeight);
+    setShowModal(false);
+  };
+
+  const handleSubmitCategory = (e) => {
+    e.preventDefault();
+    console.log("Añadir categoría", categoryName, categoryDescription);
+    // Implementa aquí la lógica para enviar los datos al backend
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setImageLink('');
+    setImageWidth('');
+    setImageHeight('');
+  };
+
     return (
         <main className="todo_espacio">
         <div className="contenedor_cuadicular">
@@ -32,42 +77,39 @@ const Categorias =() => {
               </div>
               <textarea className="cuadro_txt" placeholder="Ingresa Descripcion"></textarea>
             </div>
-            {/* <div className="margen_boton">
+            <div className="margen_boton">
               <button type="button" className="dest" onClick={handleToggleModal}>
                 Imagen Destacada
               </button>
               {showModal && (
-          <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={() => setShowModal(false)}>
-              &times;
-            </span>
-            <p className="apartadop">Inserta el enlace de la imagen:</p>
-            <input className="insertor"
-              type="text"
-              value={imageLink}
-              onChange={(e) => setImageLink(e.target.value)}
-            />
-            <p className="apartadop">Inserta el ancho de la imagen (en píxeles):</p>
-            <input className="insertor"
-              type="number"
-              value={imageWidth}
-              onChange={(e) => setImageWidth(e.target.value)}
-            />
-            <p className="apartadop">Inserta el alto de la imagen (en píxeles):</p>
-            <input className="insertor"
-              type="number"
-              value={imageHeight}
-              onChange={(e) => setImageHeight(e.target.value)}
-            />
-            <button className="insert-button" onClick={handleAddImage}>
-              Insertar
-            </button>
-          </div>
-        </div>
-          )}
+                <div className="modalOverlay">
+                  <div className="modalContent">
+                    <h2>Añadir Imagen Destacada</h2>
+                    <input
+                      type="text"
+                      placeholder="Enlace de la imagen"
+                      value={imageLink}
+                      onChange={(e) => setImageLink(e.target.value)}
+                    />
+                    <input
+                      type="number"
+                      placeholder="Ancho"
+                      value={imageWidth}
+                      onChange={(e) => setImageWidth(e.target.value)}
+                    />
+                    <input
+                      type="number"
+                      placeholder="Alto"
+                      value={imageHeight}
+                      onChange={(e) => setImageHeight(e.target.value)}
+                    />
+                    <button onClick={handleAddImage}>Añadir</button>
+                    <button onClick={handleCloseModal}>Cancelar</button>
+                  </div>
+                </div>
+              )}
 
-            </div> */}
+            </div>
             <div>
               <button type="submit" className="entr">
                 Añadir Categoria
@@ -116,4 +158,4 @@ const Categorias =() => {
     );
 }
 
-export default Categorias
+export default Categorias;
