@@ -25,7 +25,7 @@ function Home() {
       {/* Body */}
       <div className="bodyhome">
         <div className='Carrusel'>
-          <video src="src/video/aquavision10.mp4"autoPlay loop muted></video >
+          <video src="src/video/aquavision2.mp4"autoPlay loop muted></video >
         </div> 
         <div className= 'separador1'>
           <div className='texto10'>
@@ -42,7 +42,9 @@ function Home() {
             </div>
             <div className='contenido1'>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
+            </div>
+            <div className='boton'>
+              <Button variant="success">Read More</Button>{' '}
             </div>
         </div>
 
@@ -56,6 +58,9 @@ function Home() {
           <div className='contenido2'>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
+          <div className='boton'>
+              <Button variant="success">Read More</Button>{' '}
+            </div>
         </div>
 
         <div className='contenedor3'>
@@ -68,6 +73,9 @@ function Home() {
           <div className='contenido3' >
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
+          <div className='boton1'>
+              <Button variant="success">Read More</Button>{' '}
+            </div>
         </div>
         <div className='body'>
         </div>
@@ -92,7 +100,9 @@ function Home() {
           <div className='contenido3' >
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
-
+          <div className='boton1'>
+              <Button variant="success">Read More</Button>{' '}
+            </div>
         </div>
         <div className='contenedor12'>
         <div className='imagen3'>
@@ -104,6 +114,9 @@ function Home() {
           <div className='contenido3' >
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
+          <div className='boton1'>
+              <Button variant="success">Read More</Button>{' '}
+            </div>
         </div>
         <div className='contenedor13'>
         <div className='imagen3'>
@@ -115,7 +128,9 @@ function Home() {
           <div className='contenido3' >
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
-
+          <div className='boton1'>
+              <Button variant="success">Read More</Button>{' '}
+            </div>
         </div>
       </div>
       <div className='separador3'>
