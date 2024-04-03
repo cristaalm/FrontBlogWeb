@@ -4,6 +4,7 @@ import { sentMail } from "../../js/readMail.js";
 import "../../css/AuthForm.css";
 import { useNavigate } from "react-router-dom";
 import "../../js/AuthForm.js";
+import { FormattedMessage } from "react-intl";
 
 const ForgotPsswd = () => {
   window.onload();
@@ -41,8 +42,19 @@ const ForgotPsswd = () => {
       <div className="wave wave4"></div>
       <div className="container">
         {/* <img src="/img/logo.png" alt="Logo" /> */}
-        <h1>Reset your password</h1>
-        <p>Enter your email address and we'll send you a link to get back into your account.</p>
+        <h1>
+          {" "}
+          <FormattedMessage
+            id="login.reset"
+            defaultMessage="Reset your password"
+          />
+        </h1>
+        <p>
+          <FormattedMessage
+            id="login.resetText"
+            defaultMessage="Enter your email address and we'll send you a link to get back into your account."
+          />
+        </p>
         {message && <div className={`message ${messageClass}`}>{message}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-control">
@@ -52,10 +64,13 @@ const ForgotPsswd = () => {
               onChange={(e) => setUsername(e.target.value)}
               required
             />
-            <label>Email address</label>
+            <label>
+              {" "}
+              <FormattedMessage id="login.email" defaultMessage="Mail Address" />
+            </label>
           </div>
           <button type="submit" className="btn">
-            Send link
+          <FormattedMessage id="login.sendLink" defaultMessage="Send Link" />
           </button>
         </form>
       </div>

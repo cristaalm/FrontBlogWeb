@@ -16,6 +16,7 @@ const AuthForm = () => {
   const [message, setMessage] = useState("");
   const [messageClass, setMessageClass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [labelsAnimated, setLabelsAnimated] = useState(false);
 
   let navigate = useNavigate();
 
@@ -27,7 +28,19 @@ const AuthForm = () => {
       navigate("/new-post");
     }
   }, [navigate]);
-  
+
+  useEffect(() => {
+    if (!labelsAnimated) {
+      animateLabels();
+      setLabelsAnimated(true);
+    }
+  }, [labelsAnimated]);
+
+  useEffect(() => {
+    animateLabels(); // Volver a animar las letras al cambiar el idioma
+  }, [context.locale]); // Ejecutar cuando cambie el idioma
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -39,7 +52,7 @@ const AuthForm = () => {
           navigate("/new-post");
         }, 1000);
         setMessage("User logged in correctly.");
-        localStorage.setItem("userName", (username));
+        localStorage.setItem("userName", username);
         setMessageClass("success");
       } else {
         setMessage("Check password or username.");
@@ -56,9 +69,24 @@ const AuthForm = () => {
     setShowPassword(!showPassword);
   };
 
+  const animateLabels = () => {
+    const labels = document.querySelectorAll(".form-control label");
+    labels.forEach((label) => {
+      console.log(label);
+      label.innerHTML = label.innerText
+        .split("")
+        .map(
+          (letter, idx) =>
+            `<span style="transition-delay:${idx * 50}ms">${letter}</span>`
+        )
+        .join("");
+    });
+  };
+
+
+
   return (
     <div>
-      <FormattedMessage id="app.test" defaultMessage="Learn React" />
       <section>
         <div className="wave wave1"></div>
         <div className="wave wave2"></div>
@@ -77,7 +105,15 @@ const AuthForm = () => {
                 onChange={(e) => setUsername(e.target.value)}
                 required
               />
-              <label>Username</label>
+              <label>
+                <FormattedMessage id="login.username" defaultMessage="Username">
+                  {(message) => <div>{message}</div>}
+                </FormattedMessage>
+                {/* <FormattedMessage
+                  id="login.username"
+                  defaultMessage="Username"
+                /> */}
+              </label>
             </div>
             <div className="form-control">
               <input
@@ -86,7 +122,12 @@ const AuthForm = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <label>Password</label>
+              <label>
+                <FormattedMessage
+                  id="login.password"
+                  defaultMessage="Password"
+                />
+              </label>
               <button type="button" onClick={togglePasswordVisibility}>
                 {showPassword ? (
                   <Eye color="whitesmoke" />
@@ -96,18 +137,19 @@ const AuthForm = () => {
               </button>
             </div>
             <div className="form-control2">
-              <Link to="/forgot-psswd">Forgot your password?</Link>
+              <Link to="/forgot-psswd">
+                <FormattedMessage
+                  id="login.forgotPssd"
+                  defaultMessage="Forgot your password?"
+                />
+              </Link>
             </div>
             <button type="submit" className="btn">
-              Sign In
+              <FormattedMessage id="login.signIn" defaultMessage="Sign In" />
             </button>
           </form>
         </div>
       </section>
-      {/* <select value = {context.locale} onChange={context.selectLanguage}>
-          <option value= 'en'>English</option>
-          <option value= 'es'>Spanish</option>
-        </select> */}
       <Footer />
     </div>
   );

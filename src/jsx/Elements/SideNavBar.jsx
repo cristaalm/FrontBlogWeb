@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom'; // Asegúrate de importar useNavigate
 import { BiChevronRight, BiListUl } from 'react-icons/bi';
 import { FaUser } from "react-icons/fa";
-import "../../../css/sidernav.css"
+import "../../css/sidernav.css"
 
 const Sidebar = ({ onToggleSidebar }) => {
     const navigate = useNavigate(); // Inicializa useNavigate aquí

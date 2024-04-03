@@ -1,7 +1,16 @@
 {
-  "app.header": "Editar",
-  "app.test" : "Prueba" ,
-  "app.content": "Editar",
-  "app.channel.plug": "Editar",
-  "app.plural": "Editar"
+  "login.signIn": "Inciar Sesión",
+  "login.forgotPssd": "¿Olvidaste tu contraseña?",
+  "login.password" : "Contraseña" ,
+  "login.username": "Nombre de usuario",
+  "modal.developers": "Desarrolladores",
+  "modal.contactUs": "Contáctanos",
+  "login.reset" : "Reestablecer su contraseña",
+  "login.resetText" : "Ingrese su dirección de correo electrónico y le enviaremos un enlace para regresar a su cuenta.",
+  "login.email":"Correo Electrónico",
+  "login.sendLink" : "Mandar Enlace",
+  "login.sentMail" : "Correo enviado",
+  "login.sentMailText" : "Te enviamos un correo electrónico. Siga las instrucciones para volver a ingresar a su cuenta.",
+  "login.back":"Volver a Iniciar Sesión"
+
 }

@@ -4,6 +4,7 @@ import { restartPassword } from "../../js/restartPsswd";
 import "../../css/AuthForm.css";
 // Icons
 import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { FormattedMessage } from "react-intl";
 
 const RestartPsswd = () => {
   const { id } = useParams(); // Obtener el ID de la URL

@@ -29,7 +29,6 @@ const Footer = () => {
 
   const [selectedLanguage, setSelectedLanguage] = useState(context.locale); // Estado para almacenar el valor seleccionado en el campo select
 
-
   const handleChange = (event) => {
     const selectedValue = event.target.value;
     setSelectedLanguage(selectedValue); // Actualiza el estado con el valor seleccionado
@@ -102,10 +101,6 @@ const Footer = () => {
 
   return (
     <footer style={footerStyle}>
-      {/* Usamos formatMessage para traducir "app.test" según el idioma seleccionado */}
-      <FormattedMessage id="app.test" defaultMessage="Tu puedes">
-        {(message) => <div>{message}</div>}
-      </FormattedMessage>
       <Tooltip
         id="my-tooltip"
         style={{ backgroundColor: "#035165", color: "whitesmoke" }}
@@ -120,17 +115,23 @@ const Footer = () => {
               href="https://backblogweb.onrender.com/api-docs/"
               target="_blank"
             >
-              <ion-icon name="logo-buffer"></ion-icon>
+              <ion-icon
+                name="logo-buffer"
+                style={{ color: "#035165" }}
+              ></ion-icon>
             </a>
           </li>
           <li className="social-icon__item">
             <a
               className="social-icon__link"
               data-tooltip-id="my-tooltip"
-              data-tooltip-content="Contact us"
+              data-tooltip-content={intl.formatMessage({
+                id: "modal.contactUs",
+                defaultMessage: "Comtact Us",
+              })}
               onClick={openContactModal}
             >
-              <ion-icon name="mail"></ion-icon>
+              <ion-icon name="mail" style={{ color: "#035165" }} ></ion-icon>
             </a>
             <Modal
               id="root"
@@ -156,7 +157,13 @@ const Footer = () => {
                 width="100%"
                 alt="Contact Us"
               />
-              <h2>Contact Us</h2>
+              <h2>
+                {" "}
+                <FormattedMessage
+                  id="modal.contactUs"
+                  defaultMessage="Forgot your password?"
+                />
+              </h2>
               <div>
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png" // Ruta a la imagen del logo de Gmail
@@ -171,10 +178,13 @@ const Footer = () => {
             <a
               className="social-icon__link"
               data-tooltip-id="my-tooltip"
-              data-tooltip-content="Developers"
+              data-tooltip-content={intl.formatMessage({
+                id: "modal.developers",
+                defaultMessage: "Developers",
+              })}
               onClick={openDevelopersModal}
             >
-              <ion-icon name="people"></ion-icon>
+              <ion-icon name="people" style={{ color: "#035165" }}></ion-icon>
             </a>
             <Modal
               id="root1"
@@ -196,7 +206,13 @@ const Footer = () => {
                 ></ion-icon>
               </div>
               <img src="public/img/teamOne.jpg" width="100%" alt="Developers" />
-              <h2>Developers</h2>
+              <h2>
+                {" "}
+                <FormattedMessage
+                  id="modal.developers"
+                  defaultMessage="Developers"
+                />
+              </h2>
               <div>
                 {/* <div className="dynamic-names"> */}
                 <p>Medina López Brisa Cristal</p>

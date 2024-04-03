@@ -1,7 +1,15 @@
 {
-  "app.header": "Edit",
-  "app.test": "Test",
-  "app.content": "Learn",
-  "app.channel.plug": "Edit",
-  "app.plural": "Edit"
+  "login.signIn": "Sign In",
+  "login.forgotPssd": "Forgot your password?",
+  "login.password" : "Password",
+  "login.username": "Username",
+  "modal.developers": "Developers",
+  "modal.contactUs": "Contact Us",
+  "login.reset" : "Reset your password",
+  "login.resetText" : "Enter your email address and we'll send you a link to get back into your account.",
+  "login.email":"Mail Address",
+  "login.sendLink" : "Send Link",
+  "login.sentMail" : "Email sent",
+  "login.sentMailText" : "We sent you an email. Follow the instructions to get back into your account.",
+  "login.back":"Back to Login"
 }

@@ -6,14 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";
-import Footer from "./elements/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CiUser } from "react-icons/ci";
 import { Container, Row, Col } from 'react-bootstrap';
 import { CiCloudOn } from "react-icons/ci";
 import { Outlet } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import Sidebar from "./elements/sidenav";
+import Sidebar from "../Elements/SideNavBar";
 import { BiChevronRight,BiListUl } from 'react-icons/bi'; // Importa solo los íconos que vas a utilizar
 import { FaUser } from "react-icons/fa";
 
