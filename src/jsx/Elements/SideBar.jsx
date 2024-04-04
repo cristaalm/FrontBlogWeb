@@ -14,6 +14,7 @@ export default function Sidebar({ children }) {
     localStorage.removeItem("isAuthenticated");
     navigate("/login");
   };
+
   useEffect(() => {
     let nombreusuario = localStorage.getItem("userName");
     // Mandar el nombre de usuario del fetch en el request body
@@ -61,7 +62,7 @@ export default function Sidebar({ children }) {
         </div>
 
         <SidebarContext.Provider value={{ expanded }}>
-          <ul className="mt-4 flex-1 px-3">{children}</ul>
+          <ul className="mt-4 flex-1">{children}</ul>
         </SidebarContext.Provider>
         {/* <div className="border-t"> */}
         {/* <h4 className="font-semibold ml-4 mt-2">Cerrar Sesión</h4> */}
@@ -74,7 +75,7 @@ export default function Sidebar({ children }) {
             id="tooltip-expa"
             style={{ backgroundColor: "#083344", color: "whitesmoke" }}
           />
-                    <Tooltip
+          <Tooltip
             id="entradas"
             style={{ backgroundColor: "#CCFBF1", color: "#083344" }}
           />
@@ -150,6 +151,50 @@ export function SidebarItem({ icon, text, active, alert }) {
   );
 }
 
+export function SidebarItem1({ icon, text, active, alert }) {
+  const { expanded } = useContext(SidebarContext);
+
+  return (
+    <li
+      className={`
+        relative flex items-center px-3 my-1 
+        font-medium rounded-md cursor-pointer
+        transition-colors group
+        ${
+          active
+            ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 "
+            : "hover:bg-teal-100 text-amber-50 hover:text-cyan-950"
+        }
+    `}
+    >
+      {!expanded && (
+        <div
+          data-tooltip-id="tooltip-expa"
+          data-tooltip-place="right"
+          data-tooltip-content={text}
+        >
+          {icon}
+        </div>
+      )}
+      {expanded && icon}
+      <span
+        className={`overflow-hidden transition-all ${
+          expanded ? "w-52 ml-3" : "w-0 invisible"
+        }`}
+      >
+        {text}
+      </span>
+      {alert && (
+        <div
+          className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${
+            expanded ? "" : "top-2"
+          }`}
+        />
+      )}
+    </li>
+  );
+}
+
 export function SidebarItemWithSubItems({
   icon,
   text,
@@ -169,18 +214,18 @@ export function SidebarItemWithSubItems({
   };
 
   return (
-<li
-  className={`
+    <li
+      className={`
     relative flex flex-col py-2 px-3 my-1 
     font-medium rounded-md cursor-pointer
     transition-colors group
   `}
->
+    >
       <div className="flex items-center" onClick={toggleExpanded}>
         {!expanded && (
           <div
-          data-tooltip-id={text === "Entradas" ? "entradas" : "tooltip-expa"}
-          data-tooltip-place="right"
+            data-tooltip-id={text === "Entradas" ? "entradas" : "tooltip-expa"}
+            data-tooltip-place="right"
             data-tooltip-content={text}
           >
             {icon}
@@ -205,6 +250,14 @@ export function SidebarItemWithSubItems({
 
       {!expanded1 && expanded && (
         <ul className="ml-8">
+          {subItems.map((item, index) => (
+            <SidebarItem key={index} icon={item.icon} text={item.text} />
+          ))}
+        </ul>
+      )}
+
+      {expanded1 && !expanded && (
+        <ul className="mt-2">
           {subItems.map((item, index) => (
             <SidebarItem key={index} icon={item.icon} text={item.text} />
           ))}

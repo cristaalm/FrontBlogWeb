@@ -127,6 +127,7 @@ h1 {
   color: var(--color-1);
 }
 .todo_espacio {
+  left:88px;
   background: linear-gradient(
     to right,
     #e2e2e2,

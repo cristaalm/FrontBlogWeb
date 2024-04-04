@@ -1,37 +1,41 @@
-// import "../../css/Dashboard.css";
+import "../../css/Dashboard.css";
 import Footer from "../Elements/FooterU";
 import Sidebar, { SidebarItem, SidebarItemWithSubItems} from "../Elements/SideBar";
 import NewPost from "./Post/newPost";
 import { LayoutDashboard, Users, Book, PlusSquare, Layers } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 function LayoutPost() {
-  const cerrarSesion = () => {
-    localStorage.removeItem("isAuthenticated");
+  let navigate = useNavigate();
+
+
+  const dashboard = () => {
     navigate("/login");
   };
   return (
     <div>
       <div
         style={{
+          // width:"13%",
           position: "fixed",
           top: 0,
           left: 0,
-          // width: "250px",
           height: "100%",
           backgroundColor: "#f0f0f0",
         }}
       >
         <Sidebar>
-          <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
+        <SidebarItem icon={<LayoutDashboard />} text="Dashboard" onClick={dashboard} />
           <SidebarItemWithSubItems
             icon={<Book className="text-white"/>}
             text="Entradas"
             subItems={[
               { icon: <Layers />, text: "Todas" },
-              { icon: <PlusSquare />, text: "Añadir Nueva" },
-              { icon: <Layers />, text: "Categorías" }
+              { icon: <PlusSquare />, text: "Añadir Nueva"},
+              // { icon: <Layers />, text: "Categorías" }
             ]}
           />
+          <SidebarItem icon={<Layers />} text="Categorías" />
           <SidebarItem icon={<Users />} text="Usuario" />
         </Sidebar>
       </div>
