@@ -74,6 +74,10 @@ export default function Sidebar({ children }) {
             id="tooltip-expa"
             style={{ backgroundColor: "#083344", color: "whitesmoke" }}
           />
+                    <Tooltip
+            id="entradas"
+            style={{ backgroundColor: "#CCFBF1", color: "#083344" }}
+          />
           <img
             src="../../../public/img/logoRedW.png"
             alt=""
@@ -175,8 +179,8 @@ export function SidebarItemWithSubItems({
       <div className="flex items-center" onClick={toggleExpanded}>
         {!expanded && (
           <div
-            data-tooltip-id="tooltip-expa"
-            data-tooltip-place="right"
+          data-tooltip-id={text === "Entradas" ? "entradas" : "tooltip-expa"}
+          data-tooltip-place="right"
             data-tooltip-content={text}
           >
             {icon}
