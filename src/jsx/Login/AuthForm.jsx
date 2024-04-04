@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
+import { hydrateRoot } from "react-dom/client";
+
 import { loginUser } from "../../js/readUsers.js";
 import "../../css/AuthForm.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,7 +21,18 @@ const AuthForm = () => {
   const [labelsAnimated, setLabelsAnimated] = useState(false);
 
   let navigate = useNavigate();
-
+  const animateLabels = () => {
+    const labels = document.querySelectorAll(".form-control label");
+    labels.forEach((label) => {
+      const labelText = label.getAttribute("data-message-id");
+      if (labelText) {
+        const messageComponent = (
+          <FormattedMessage id={labelText} defaultMessage={labelText} />
+        );
+        hydrateRoot(document.getElementById(label.id), messageComponent);
+      }
+    });
+  };
   useEffect(() => {
     let storedAuth = localStorage.getItem("isAuthenticated");
     if (storedAuth === null || storedAuth === "false") {
@@ -29,17 +42,7 @@ const AuthForm = () => {
     }
   }, [navigate]);
 
-  useEffect(() => {
-    if (!labelsAnimated) {
-      animateLabels();
-      setLabelsAnimated(true);
-    }
-  }, [labelsAnimated]);
-
-  useEffect(() => {
-    animateLabels(); // Volver a animar las letras al cambiar el idioma
-  }, [context.locale]); // Ejecutar cuando cambie el idioma
-
+  useEffect(() => {}, [labelsAnimated]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +52,7 @@ const AuthForm = () => {
       localStorage.setItem("isAuthenticated", data.logged.toString());
       if (data.logged) {
         setTimeout(() => {
-          navigate("/new-post");
+          navigate("/dashboard");
         }, 1000);
         setMessage("User logged in correctly.");
         localStorage.setItem("userName", username);
@@ -69,22 +72,6 @@ const AuthForm = () => {
     setShowPassword(!showPassword);
   };
 
-  const animateLabels = () => {
-    const labels = document.querySelectorAll(".form-control label");
-    labels.forEach((label) => {
-      console.log(label);
-      label.innerHTML = label.innerText
-        .split("")
-        .map(
-          (letter, idx) =>
-            `<span style="transition-delay:${idx * 50}ms">${letter}</span>`
-        )
-        .join("");
-    });
-  };
-
-
-
   return (
     <div>
       <section>
@@ -98,14 +85,17 @@ const AuthForm = () => {
             <div className={`message ${messageClass}`}>{message}</div>
           )}
           <form onSubmit={handleSubmit}>
-            <div className="form-control">
+            <div className="input-group" style={{ marginBottom: "20px" }}>
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
               />
+              <span className="highlight"></span>
+              <span className="bar"></span>
               <label>
+                {" "}
                 <FormattedMessage id="login.username" defaultMessage="Username">
                   {(message) => <div>{message}</div>}
                 </FormattedMessage>
@@ -115,20 +105,26 @@ const AuthForm = () => {
                 /> */}
               </label>
             </div>
-            <div className="form-control">
+            <div className="input-group">
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+                            <span className="highlight"></span>
+              <span className="bar"></span>
               <label>
                 <FormattedMessage
                   id="login.password"
                   defaultMessage="Password"
                 />
               </label>
-              <button type="button" onClick={togglePasswordVisibility}>
+              <button
+                type="button"
+                className="eye"
+                onClick={togglePasswordVisibility}
+              >
                 {showPassword ? (
                   <Eye color="whitesmoke" />
                 ) : (

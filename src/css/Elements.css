@@ -14,8 +14,13 @@
 .menu__item {
   list-style: none;
 }
-
-.social-icon__link {
+p {
+  margin-bottom: 5px !important;
+}
+h2 {
+  margin-top: 10px !important;
+}
+a.social-icon__link {
   font-size: 2rem;
   color: #035165;
   margin: 0 15px;
@@ -124,9 +129,8 @@
     flex-direction: column;
   }
 
-  select{
+  select {
     width: 160px !important;
     margin-top: -2rem;
-
   }
 }

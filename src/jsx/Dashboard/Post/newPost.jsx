@@ -31,6 +31,7 @@ function newPost() {
     };
     fetchData();
   }, []);
+  
   useEffect(() => {
     let storedAuth = localStorage.getItem("isAuthenticated");
     if (storedAuth == null) {

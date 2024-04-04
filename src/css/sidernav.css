@@ -1,31 +1,33 @@
-.sidernav{
+.sidernav {
     background-color: var(--color-4);
     position: absolute;
     top: 0;
     left: 0;
-    padding: 2rem 3rem;
+    padding: 1rem;
     width: 15rem;
     height: 100vh;
     transition: width 0.3s; /* Added for smooth transition */
 }
+.sidernav.active{
+    width: 3rem;
+}
 
-
-.logocontainer{
+.logocontainer {
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
-.title{
+.title {
     font-size: 25.42px;
     color: white;
     padding: 0 0 0 1rem;
 }
 
-.iconmenugood{
+.iconmenugood {
     background-color: white;
     position: absolute;
-    right: calc(35px / 20); 
+    margin-left:11rem; 
     top: calc(3rem / 1.5);
     width: 30px;
     height: 25px;
@@ -33,63 +35,79 @@
     z-index: 1;
 }
 
-.contentscontainer{
+.contentscontainer {
     margin: 2rem 0 0 0;
 }
 
-.listado{
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-direction: column;
+.listado {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.lista{
+.lista {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
-    flex-direction: row;
     margin: 0.75rem 0;
-    padding: 0.75rem 0;
-    width: 100%;
+    padding: 0.75rem 1rem;
     border-radius: 1rem;
     cursor: pointer;
-}
-
-.lista:hover{
-    background-color: #b8ddd6;
     transition: background-color 0.25s;
 }
 
+.lista:hover {
+    background-color: #b8ddd6;
+}
 
-.toggle{
+.toggle {
     color: white;
 }
 
-.desple{
+.desple {
     text-decoration: none;
     color: white;
     font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 0 0 1rem;
+    margin-left: 1rem;
 }
 
-.sidernav.active{
-    width: 3rem;
+.chevron {
+    color: white;
+    margin-left: auto;
+}
+
+.submenu {
+    margin-left: 1rem;
+    display: none;
+    padding-left: 1rem;
+}
+
+.lista:hover .submenu {
+    display: block;
+}
+
+.entradas {
+    margin-top: 2rem;
+}
+
+.sesion {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.sidernav.active {
+    width: 5rem;
 }
 
 .sidernav.active .logocontainer,
 .sidernav.active .title,
-.sidernav.active .contentscontainer .desple{
+.sidernav.active .contentscontainer .desple {
     opacity: 0;
     transition: opacity 0.3s; /* Added for smooth transition */
 }
-
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-
-

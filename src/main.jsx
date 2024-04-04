@@ -5,7 +5,7 @@ import Wrapper from "./jsx/components/elements/Wrapper"; // Importa el component
 import { IntlProvider } from "react-intl"; // Importa IntlProvider
 import App from "./App.jsx";
 import AuthForm from "./jsx/components/AuthForm.jsx";
-import NewPost from "./jsx/components/newPost.jsx";
+import NewPost from "./jsx/components/newPost1.jsx";
 import ForgotPsswd from "./jsx/components/ForgotPsswd.jsx";
 import RestartPsswd from "./jsx/components/RestartPsswd.jsx";
 import SentMsg from "./jsx/components/SentMsg.jsx";

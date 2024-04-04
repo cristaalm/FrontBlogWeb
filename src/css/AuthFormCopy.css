@@ -225,6 +225,7 @@ input:valid + label span {
   background-color: var(--color-red) !important;
   color: whitesmoke;
 }
+
 input {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
@@ -255,7 +256,7 @@ input:focus ~ label,
 input:valid ~ label {
   top: -20px;
   font-size: 14px;
-  color: var(--color-2);
+  color: #4285f4;
 }
 
 .bar {
@@ -271,7 +272,7 @@ input:valid ~ label {
   width: 0;
   bottom: 1px;
   position: absolute;
-  background: var(--color-2);
+  background: #4285f4;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
@@ -309,7 +310,7 @@ input:focus ~ .highlight {
 /* animations */
 @-webkit-keyframes inputHighlighter {
   from {
-    background: var(--color-2);
+    background: #4285f4;
   }
   to {
     width: 0;
@@ -318,7 +319,7 @@ input:focus ~ .highlight {
 }
 @-moz-keyframes inputHighlighter {
   from {
-    background: var(--color-2);
+    background: #4285f4;
   }
   to {
     width: 0;
@@ -327,11 +328,10 @@ input:focus ~ .highlight {
 }
 @keyframes inputHighlighter {
   from {
-    background: var(--color-2);
+    background: #4285f4;
   }
   to {
     width: 0;
     background: transparent;
   }
 }
-
