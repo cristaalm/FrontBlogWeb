@@ -76,13 +76,13 @@ function usuarios() {
   }, []);
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", backgroundColor: "whitesmoke" }}>
       <div
         style={{
           // width:"13%",
           position: "static",
           height: "100%",
-          backgroundColor: "#f0f0f0",
+          backgroundColor: "#fffdee",
         }}
       >
         <Sidebar>
@@ -113,60 +113,64 @@ function usuarios() {
               <div className="entrada">
                 <h1 className="tamaño_fuente">Usuarios</h1>
               </div>
-              <div className="todo_espacio2">
-                <div className="left">
-                  <div className="margen_boton">
-                    <div className="ancho" htmlFor="title">
+              <div className="flex flex-wrap justify-between">
+                <div className="mt-4 w-full sm:w-1/2">
+                  <div className="">
+                    <div className="font-medium" htmlFor="title">
                       Nombre del usuario
                     </div>
-                    <textarea
-                      className="cuadro_txt"
+                    <input
+                      className="m-0 w-full sm:w-1/2 p-2 in2 "
                       placeholder="Ingrese usuario"
-                    ></textarea>
+                    ></input>
                   </div>
-                  <div className="margen_boton">
-                    <div className="ancho" htmlFor="title">
+                  <div className="mt-2">
+                    <div className="font-medium" htmlFor="title">
                       Nombre completo
                     </div>
-                    <textarea
-                      className="cuadro_txt"
-                      placeholder="Ingrese completo"
-                    ></textarea>
+                    <input
+                      className="w-full sm:w-1/2 p-2 in2"
+                      placeholder="Ingrese nombre completo"
+                    ></input>
                   </div>
-                  <div className="margen_boton">
-                    <div className="ancho" htmlFor="title">
+                  <div className="mt-2">
+                    <div className="font-medium" htmlFor="title">
                       Correo Electrónico
                     </div>
-                    <textarea
-                      className="cuadro_txt"
+                    <input
+                      className="w-full sm:w-1/2 p-2 in2"
                       placeholder="Ingrese correo electrónico"
-                    ></textarea>
+                    ></input>
                   </div>
-                  <div className="margen_boton">
-                    <div className="ancho" htmlFor="description">
+                  <div className="mt-2">
+                    <div className="font-medium" htmlFor="description">
                       Contraseña
                     </div>
                     <input
-                      className="cuadro_txt"
+                      // className="w-full sm:w-1/2 p-2 in3 mt-2 rounded focus:outline-none text-cyan-950 border-black ring-cyan-950 ring-1"
+                      className="w-full sm:w-1/2 p-2 in2"
                       type="password"
+                      style={{ WebkitTextSecurity: "disc" }}
                       id="contraseña"
                       placeholder="Ingresa tu contraseña"
                     />
                   </div>
-                  <div className="margen_boton">
-                    <select className="diseño">
-                      <option value="categoria1">Perfil</option>
-                      <option value="categoria2">Categoría 2</option>
+                  <div className="mt-4">
+                    {/* bg-amber-50 */}
+                    <select className="ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-full focus:border-cyan-900">
+                      <option value="Editor">Editor</option>
+                      <option value="Administrador">Administrador</option>
                     </select>
                   </div>
                   <div>
-                    <button type="submit" className="entr">
+                    <button type="submit" className="entr tracking-widest mt-4">
                       Añadir usuario
                     </button>
                   </div>
                 </div>
-                <div className="right">
-                  <div className="bg-white p-6">
+                <div className="mt-4 w-full sm:w-1/2">
+                  {/* <div className="bg-white p-6"> */}
+                  <div className="">
                     <div className="flex flex-col space-y-4">
                       <div className="flex justify-between items-center">
                         <h1 className="text-2xl font-bold">Entradas</h1>
@@ -227,57 +231,5 @@ function usuarios() {
     </div>
   );
 }
-//   return (
-//     <div
-//       style={{
-//         zIndex: "999",
-//         position: "fixed",
-//         top: 0,
-//         left: 0,
-//         height: "100%",
-//         backgroundColor: "#f0f0f0",
-//       }}
-//     >
-//       <Sidebar>
-//         <Link to="/crud" className="without_line">
-//           <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
-//         </Link>
-//         <SidebarItemWithSubItems
-//           icon={<Book className="text-white" />}
-//           text="Entradas"
-//           subItems={[
-//             { icon: <Layers />, text: "Todas" },
-//             { icon: <PlusSquare />, text: "Añadir Nueva" },
-//             // { icon: <Layers />, text: "Categorías" }
-//           ]}
-//         />
-//         <SidebarItem icon={<Layers />} text="Categorías" />
-//         <Link to="/users" className="without_line">
-//           <SidebarItem icon={<Users />} text="Usuario" />
-//         </Link>
-//       </Sidebar>
-//     </div>
-//     <div className="inicio">
-//       <main className="todo_espacio">
-//         <div className="contenedor_cuadicular">
-//           <div className="margin">
-//             <div className="entrada">
-//               <h1 className="tamaño_fuente">Usuarios</h1>
-//               {/* <div className="entradaChil">
-//                 <img
-//                   src="/public/img/logo without bg.png"
-//                   width="50px;"
-//                   alt="Imagen del Usuario"
-//                 />
-//                 <span className="hello">¡Hola, Admin!</span>
-//               </div> */}
-//             </div>
-//           </div>
-//         </div>
-
-//       </main>
-//     </div>
-//   );
-// }
 
 export default usuarios;

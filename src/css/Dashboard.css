@@ -10,10 +10,8 @@
   width: calc(100% - 88px); */
 }
 .contenedor_logo {
-  
   width: auto;
   background-color: var(--color-4);
-  
   padding: 20px;
 }
 .contenedor_cuadricular {
@@ -130,14 +128,6 @@ h1 {
   font-size: 30px; /* tamaño fuente */
   font-weight: 600;
   color: var(--color-1);
-}
-.todo_espacio {
-  left:88px;
-  background: linear-gradient(
-    to right,
-    #eadddd,
-    var(--color-1)
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .todo_espacio2 {
@@ -789,4 +779,5 @@ h1 {
 
 .without_line{
   text-decoration: none !important;
+  
 }

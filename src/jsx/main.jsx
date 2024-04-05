@@ -5,11 +5,11 @@ import Wrapper from "./Elements/Wrapper.jsx";
 import { IntlProvider } from "react-intl";
 import App from "./App.jsx";
 import AuthForm from "./Login/AuthForm.jsx";
-import NewPost from "./components/newPost1.jsx";
+import NewPost from "./Dashboard/Post/newPost.jsx";
 import ForgotPsswd from "./Login/ForgotPsswd.jsx";
 import RestartPsswd from "./Login/RestartPsswd.jsx";
 import SentMsg from "./Login/SentMsg.jsx";
-import PreviewPost from "./Dashboard/Post/PreviewPost.jsx";
+import PreviewPost from "./Dashboard/Post/Preview.jsx";
 import CRUD from "./Dashboard/Post/CRUD.jsx";
 import Usuarios from "./Dashboard/Users/usuarios.jsx";
 import Categorias from "./Dashboard/Categories/categorias.jsx";
@@ -44,11 +44,13 @@ const router = createBrowserRouter([
   { path: "/forgot-psswd", element: <ForgotPsswd /> },
   { path: "/restart-psswd/:id", element: <RestartPsswd /> },
   { path: "/successfull-mail", element: <SentMsg /> },
+  // { path: "/preview", element: <PreviewPost /> },
   // NewPost - Entradas
   {
     path: "/post",
-    element: <CRUD />,
+    // element: <CRUD />,
     children: [
+      { index: true, element: <CRUD /> },
       { path: "add", element: <NewPost /> },
       { path: "all", element: <CRUD /> },
       { path: "preview", element: <PreviewPost /> },
