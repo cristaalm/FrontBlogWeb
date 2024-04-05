@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Wrapper from "./Elements/Wrapper";
+import Wrapper from "./Elements/Wrapper.jsx";
 import { IntlProvider } from "react-intl";
 import App from "./App.jsx";
 import AuthForm from "./Login/AuthForm.jsx";
@@ -13,8 +13,12 @@ import PreviewPost from "./Dashboard/Post/PreviewPost.jsx";
 import CRUD from "./Dashboard/Post/CRUD.jsx";
 import Usuarios from "./Dashboard/Users/usuarios.jsx";
 import Categorias from "./Dashboard/Categories/categorias.jsx";
-import Test from "./testG.jsx";
+// import Test from "./testG.jsx";
 import Side from "./Elements/SideNavBar.jsx";
+
+// Home
+import Home from "./Index/home.jsx";
+
 import { Context } from "./Elements/Wrapper.jsx";
 
 import messagesEn from "../lang/en.json";
@@ -30,8 +34,9 @@ const messages = {
 
 const router = createBrowserRouter([
   // General
+  { path: "/welcome", element: <Home /> },
   { path: "/", element: <App /> },
-  { path: "/test", element: <Test /> },
+  // { path: "/test", element: <Test /> },
   { path: "/side", element: <Side /> },
   { path: "/login", element: <AuthForm /> },
   { path: "/dashboard", element: <Dashboard /> },

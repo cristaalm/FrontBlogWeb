@@ -46,7 +46,7 @@ function LayoutPost() {
           <div className="contenedor_cuadicular">
             <div className="margin">
               <div className="entrada">
-                <h1 className="tamaño_fuente">Dashboard</h1>
+                <h1 className="tamaño_fuente">Panel de Administración</h1>
               </div>
             </div>
           </div>
