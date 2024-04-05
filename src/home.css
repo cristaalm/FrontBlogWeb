@@ -70,12 +70,133 @@
   width: 100%;
 }
 .Carrusel video {
-  position: relative;
   object-fit: cover;
   width: 100%;
   height: 100%; 
   left: 0px;
 }
+.separador1{
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  height: 500px;
+  background-color: #f2f2f2;
+}
+.separador2{
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  height: 200px;
+  text-align: center;
+  background-color: #f2f2f2;
+}
+.separador3{
+  height: 200px;
+  text-align: center;
+  background-color: #f2f2f2;
+}
 .log{
   box-sizing: content-box;
 }
+.contenedores {
+  display: flex;
+  padding-left: 120px;
+}
+
+.contenedor1{
+    width: 30%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+}
+body h2{
+position: relative; 
+}
+.contenido3{
+position: relative;
+  
+}
+.contenedor2{
+    width: 30%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+}
+.contenedor3 {
+  width: 30%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.imagen1 img{
+    width: 100%;
+  height: auto;
+  border-radius: 5px;
+
+}
+.imagen1:hover img{
+  transform: translateY(-20px);
+  transition: 300ms;
+}
+.imagen2 img{
+    width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+.imagen2:hover img{
+  transform: translateY(-20px);
+  transition: 300ms;
+}
+.imagen3 img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+.imagen3:hover img{
+  transform: translateY(-20px);
+  transition: 300ms;
+}
+.contenedores2 {
+  display: flex;
+  padding-left: 120px;
+  background-color: #f2f2f2;
+}
+.contenedor11{
+  width: 30%;
+border: 1px solid #ccc;
+border-radius: 10px;
+padding: 20px;
+}
+.contenedor12{
+  width: 30%;
+border: 1px solid #ccc;
+border-radius: 10px;
+padding: 20px;
+}
+.contenedor13{
+  width: 30%;
+border: 1px solid #ccc;
+border-radius: 10px;
+padding: 20px;
+}
+.quizzform{
+  background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+  display: flex;
+  color: #ffffff;
+}
+.quizzform img{
+  position: relative;
+  width: 256px;
+  height: auto;
+  left: 1100px;
+}
+.quizz h2{
+text-align: center;
+}
+.texto10:hover {
+color: #009dff;
+}
+.texto11:hover {
+  color: #009dff;
+  }
