@@ -1,185 +1,177 @@
 * {
-    margin: 0;
-  }
-  .inicio {
-    display: grid;
-    grid-template-columns: 14rem auto;
-  }
-  .contenedor_logo {
-    width: auto;
-    background-color: var(--color-4);
-    /* background-image: linear-gradient(to top, var(--color-3) 0%, var(--color-4) 100%); */
-    padding: 20px;
-  }
-  .logo_i {
-    margin-bottom: 100px;
-  }
-  .negritas {
-    font-weight: bold; /* Esto es equivalente a usar '700' */
-    font-size: 24px; /* Cambia '24px' por el tamaño que prefieras */
-    color: var(--color-1);
-  }
-  .margen_inferior {
-    display: block;
-  }
-  h1 {
-    text-align: unset;
-    margin-bottom: 0 !important;
-  }
-  .diseñosec {
-    padding: 15px 25px;
-    border: none;
-    background-image: linear-gradient(
-      to right,
-      #83a4d4 0%,
-      #b6fbff 51%,
-      #83a4d4 100%
-    );
-    text-align: left;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    border-radius: 10px;
-    display: block;
-  }
-  
-  .diseñosec:hover {
-    background-position: right center; /* change the direction of the change here */
-    text-decoration: none;
-  }
-  
-  .sections-header {
-    color: var(--color-1);
-    text-align: left;
-    margin-bottom: 2rem;
-    font-weight: bold;
-  }
-  .sectionsUS {
-    color: var(--color-1);
-    text-align: left;
-    margin-bottom: 20px;
-    font-weight: bold;
-    padding: 2rem 0 0 0;
-  }
-  .menu-item {
-    background-color: #26d4e7;
-    cursor: pointer;
-    margin-bottom: 0.5rem;
-    position: relative;
-    overflow: hidden;
-    padding: 5px 5px 1px 1px; /* Asegúrate de dejar espacio para la imagen */
-    background-repeat: no-repeat;
-    background-position: 150px; /* Ajusta según sea necesario */
-    border-radius: 5px;
-    text-align: center;
-  }
-  .menu-item.plus {
-    background-image: url("././public/abajo.svg");
-  }
-  
-  .menu-item.minus {
-    background-image: url("././public/arriba.svg");
-  }
-  .dropdown {
-    background-color: #f0f0f0;
-    width: 100%;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    text-align: center;
-  }
-  .dropdown-item:hover {
-    background: #f6f8fa;
-  }
-  .dropdown-item {
-    cursor: pointer;
-    padding: 10px;
-  }
-  .margin {
-    padding: 1rem;
-  }
-  .entrada {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    background-color: var(--color-4);
-    /* background-image: linear-gradient(to top, var(--color-3) 0%, var(--color-4) 100%); */
-    border-radius: 10px;
-    padding: 10px 2rem;
-    height: 60px; /* Altura fija para el ejemplo */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  .tamaño_fuente {
-    font-size: 30px; /* tamaño fuente */
-    font-weight: 600;
-    color: var(--color-1);
-  }
-  .todo_espacio {
-    background: linear-gradient(
-      to right,
-      #e2e2e2,
-      var(--color-1)
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  }
-  
-  .todo_espacio2 {
-    display: flex;
-    padding: 1rem;
-    
-  }
-  .left {
-    background-image: linear-gradient(to top, var(--color-2) 0%, var(--color-3) 100%);
-    width: 35%;
-    height: 510px;
-    padding: 1rem;
-    margin-right: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  .right {
-    width: 100%;
-  }
-  .margen_boton {
-    margin-bottom: 16px; /* Ajusta este valor según la escala de tu diseño */
-  }
-  
-  .ancho {
-    margin-bottom: 8px; /* Ajusta este valor según la escala de tu diseño */
-    font-weight: 500;
-  }
-  .cuadro_txt {
-    width: 100%;
-    border: 1px solid #ccc; /* Borde sutil */
-    border-radius: 4px; /* Bordes redondeados para un aspecto suave */
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interior sutil para profundidad */
-    resize: vertical; /* Permite al usuario ajustar el tamaño verticalmente */
-    font-family: inherit; /* Usa la fuente del elemento padre */
-    font-size: 16px; /* Tamaño de fuente legible */
-    line-height: 1.5; /* Espaciado entre líneas para mejorar la legibilidad */
-    color: #333; /* Color del texto oscuro para contraste */
-    background: linear-gradient(to right, #e2e2e2 70%, var(--color-1));
-    transition: border-color 0.2s; /* Transición suave al cambiar el borde */
-  }
-  
-  .diseño {
-    border: none;
-    padding: 10px 15px;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    color: #000;
-    cursor: pointer;
-    outline: none;
-    width: 100%;
-    transition: 0.5s;
-    display: block;
-    border-radius: 5px;
-    background: linear-gradient(
-      to right,
-      #e2e2e2,
-      var(--color-1)
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
-  }
-  
-    /* .diseño {
+  margin: 0;
+}
+.contenedor_logo {
+  width: auto;
+  background-color: var(--color-4);
+  /* background-image: linear-gradient(to top, var(--color-3) 0%, var(--color-4) 100%); */
+  padding: 20px;
+}
+.logo_i {
+  margin-bottom: 100px;
+}
+.negritas {
+  font-weight: bold; /* Esto es equivalente a usar '700' */
+  font-size: 24px; /* Cambia '24px' por el tamaño que prefieras */
+  color: var(--color-1);
+}
+.margen_inferior {
+  display: block;
+}
+h1 {
+  text-align: unset;
+  margin-bottom: 0 !important;
+}
+.diseñosec {
+  padding: 15px 25px;
+  border: none;
+  background-image: linear-gradient(
+    to right,
+    #83a4d4 0%,
+    #b6fbff 51%,
+    #83a4d4 100%
+  );
+  text-align: left;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  border-radius: 10px;
+  display: block;
+}
+
+.diseñosec:hover {
+  background-position: right center; /* change the direction of the change here */
+  text-decoration: none;
+}
+
+.sections-header {
+  color: var(--color-1);
+  text-align: left;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+.sectionsUS {
+  color: var(--color-1);
+  text-align: left;
+  margin-bottom: 20px;
+  font-weight: bold;
+  padding: 2rem 0 0 0;
+}
+.menu-item {
+  background-color: #26d4e7;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  padding: 5px 5px 1px 1px; /* Asegúrate de dejar espacio para la imagen */
+  background-repeat: no-repeat;
+  background-position: 150px; /* Ajusta según sea necesario */
+  border-radius: 5px;
+  text-align: center;
+}
+.menu-item.plus {
+  background-image: url("././public/abajo.svg");
+}
+
+.menu-item.minus {
+  background-image: url("././public/arriba.svg");
+}
+.dropdown {
+  background-color: #f0f0f0;
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+.dropdown-item:hover {
+  background: #f6f8fa;
+}
+.dropdown-item {
+  cursor: pointer;
+  padding: 10px;
+}
+.margin {
+  padding: 1rem;
+}
+.entrada {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: var(--color-4);
+  /* background-image: linear-gradient(to top, var(--color-3) 0%, var(--color-4) 100%); */
+  border-radius: 10px;
+  padding: 10px 2rem;
+  height: 60px; /* Altura fija para el ejemplo */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.tamaño_fuente {
+  font-size: 30px; /* tamaño fuente */
+  font-weight: 600;
+  color: var(--color-1);
+}
+.todo_espacio2 {
+  display: flex;
+  padding: 1rem;
+  width: 100%;
+}
+.left {
+  background-image: linear-gradient(
+    to top,
+    var(--color-2) 0%,
+    var(--color-3) 100%
+  );
+  width: 35%;
+  height: 510px;
+  padding: 1rem;
+  margin-right: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.right {
+  width: 100%;
+}
+.margen_boton {
+  margin-bottom: 16px; /* Ajusta este valor según la escala de tu diseño */
+}
+
+.ancho {
+  margin-bottom: 8px; /* Ajusta este valor según la escala de tu diseño */
+  font-weight: 500;
+}
+.cuadro_txt {
+  width: 100%;
+  border: 1px solid #ccc; /* Borde sutil */
+  border-radius: 4px; /* Bordes redondeados para un aspecto suave */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra interior sutil para profundidad */
+  resize: vertical; /* Permite al usuario ajustar el tamaño verticalmente */
+  font-family: inherit; /* Usa la fuente del elemento padre */
+  font-size: 16px; /* Tamaño de fuente legible */
+  line-height: 1.5; /* Espaciado entre líneas para mejorar la legibilidad */
+  color: #333; /* Color del texto oscuro para contraste */
+  background: linear-gradient(to right, #e2e2e2 70%, var(--color-1));
+  transition: border-color 0.2s; /* Transición suave al cambiar el borde */
+}
+
+.diseño {
+  border: none;
+  padding: 10px 15px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  transition: 0.5s;
+  display: block;
+  border-radius: 5px;
+  background: linear-gradient(
+    to right,
+    #e2e2e2,
+    var(--color-1)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* .diseño {
       background-image: linear-gradient(
         to right,
         #83a4d4 0%,
@@ -194,472 +186,471 @@
       display: block;
       width: 100%;
     } */
-  
-  .diseño:hover {
-    background-position: right center; /* change the direction of the change here */
-    text-decoration: none;
-  }
-  .previsualizar {
-    padding: 15px;
-    background: linear-gradient(
-      to right,
-      #e2e2e2,
-      var(--color-1)
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    height: 510px;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  .bottonpre {
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px; /* Ajusta este valor según la escala de tu diseño */
-  }
-  .negt {
-    font-size: 18px; /* Ajusta según la escala de tu diseño */
-    font-weight: 600; /* Semi-negrita */
-  }
-  .enter {
-    margin-bottom: 30px;
-  }
-  .tox .tox-editor-container {
-    max-width: 100%; /* Limita el ancho del editor a su contenedor */
-    height: auto; /* O puedes establecer una altura fija si lo prefieres */
-  }
-  /* diseño de botones */
-  
-  .pre {
-    background-image: linear-gradient(
-      to right,
-      var(--color-4) 0%,
-      var(--color-3) 51%,
-      var(--color-4) 100%
-    );
-    padding: 15px 45px;
-    text-align: center; 
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    border-radius: 10px;
-    display: block;
-    border: none;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  .pre:hover {
-    background-position: right center; /* change the direction of the change here */
-    color: #fff;
-    text-decoration: none;
-  }
-  .sesion {
-    background-image: linear-gradient(
-      to right,
-      var(--color-4) 0%,
-      var(--color-3) 51%,
-      var(--color-4) 100%
-    );
-    padding: 15px 15px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    border-radius: 10px;
-    display: block;
-    border: none;
-    width: 100%;
-  }
-  .sesion:hover {
-    background-position: right center; /* change the direction of the change here */
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  
-  .dest {
-    background-color: #4caf50; /* Green */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .dest:hover {
-    background-color: #45a049;
-  }
-  
-  .modal {
-    display: block;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  
-  .modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    border-radius: 10px;
-    animation: modal-show 0.3s ease;
-  }
-  
-  @keyframes modal-show {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-  }
-  
-  .insert-button {
-    background-color: #008cba; /* Blue */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-top: 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .insert-button:hover {
-    background-color: #005f75;
-  }
-  
-  .entr {
-    background-image: linear-gradient(
-      to right,
-      var(--color-green1) 0%,
-      var(--color-green2) 51%,
-      var(--color-green1) 100%
-    );
-    padding: 5px 45px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    border-radius: 10px;
-    display: block;
-    border: none;
-    width: 100%;
-  }
-  
-  .entr:hover {
-    background-position: right center; /* change the direction of the change here */
-    color: #fff;
-    text-decoration: none;
-  }
-  .insertor{
-    color: #000;
-  }
-  
-   /* entradas */
-    
-   .pre {
-    background-image: linear-gradient(
-      to right,
-      var(--color-4) 0%,
-      var(--color-3) 51%,
-      var(--color-4) 100%
-    );
-    padding: 15px 45px;
-    text-align: center; 
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    border-radius: 10px;
-    display: block;
-    border: none;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  .pre:hover {
-    background-position: right center; /* change the direction of the change here */
-    color: #fff;
-    text-decoration: none;
-  }
-  .sesion {
-    background-image: linear-gradient(
-      to right,
-      var(--color-4) 0%,
-      var(--color-3) 51%,
-      var(--color-4) 100%
-    );
-    padding: 15px 15px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    border-radius: 10px;
-    display: block;
-    border: none;
-    width: 100%;
-  }
-  .sesion:hover {
-    background-position: right center; /* change the direction of the change here */
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  
-  .dest {
-    background-color: #4caf50; /* Green */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .dest:hover {
-    background-color: #45a049;
-  }
-  
-  .modal {
-    display: block;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  
-  .modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    border-radius: 10px;
-    animation: modal-show 0.3s ease;
-  }
-  
-  @keyframes modal-show {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-  }
-  
-  .insert-button {
-    background-color: #008cba; /* Blue */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin-top: 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .insert-button:hover {
-    background-color: #005f75;
-  }
-  
-  .entr:hover {
-    background-position: right center; /* change the direction of the change here */
-    color: #fff;
-    text-decoration: none;
-  }
-  .insertor{
-    color: #000;
-  }
-  
-  /* CRUD.css */
-  .bg-white {
-    background-color: white;
-  }
-  
-  .p-6 {
-    padding: 1.5rem;
-  }
-  
-  .flex {
-    display: flex;
-  }
-  
-  .flex-col {
-    flex-direction: column;
-  }
-  
-  .space-y-4 > * + * {
-    margin-top: 1rem;
-  }
-  
-  .justify-between {
-    justify-content: space-between;
-  }
-  
-  .items-center {
-    align-items: center;
-  }
-  
-  .text-2xl {
-    font-size: 1.5rem;
-  }
-  
-  .font-bold {
-    font-weight: bold;
-  }
-  
-  .overflow-x-auto {
-    overflow-x: auto;
-  }
-  
-  .relative {
-    position: relative;
-  }
-  
-  .w-full {
-    width: 100%;
-  }
-  
-  .text-sm {
-    font-size: 0.875rem;
-  }
-  
-  .header th {
-    height: 3rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: left;
-    background-color: #f7fafc; /* Sustituye este color con el color de fondo correcto para el encabezado de la tabla */
-  }
-  
-  .tr-header {
-    border-bottom: 1px solid #e2e8f0;
-  }
-  
-  .tr-body {
-    border-bottom: 1px solid #e2e8f0;
-  
-  }
-  
-  
-  /* editor de entradas */
-  .btn-blue, .btn-green, .btn-yellow, .btn-red, .btn-purple {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    border-radius: 0.375rem;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    margin-right: 0.5rem;
-    transition: background-color 0.3s;
-  }
-  
-  .btn-blue {
-    background-color: #3490dc;
-  }
-  
-  .btn-blue:hover {
-    background-color: #2779bd;
-  }
-  
-  .btn-green {
-    background-color: #48bb78;
-  }
-  
-  .btn-green:hover {
-    background-color: #38a169;
-  }
-  
-  .btn-yellow {
-    background-color: #ecc94b;
-  }
-  
-  .btn-yellow:hover {
-    background-color: #d69e2e;
-  }
-  
-  .btn-red {
-    background-color: #f56565;
-  }
-  
-  .btn-red:hover {
-    background-color: #e53e3e;
-  }
-  
-  .btn-purple {
-    background-color: #9f7aea;
-  }
-  
-  .btn-purple:hover {
-    background-color: #805ad5;
-  }
-  
-  .mr-2 {
-    margin-right: 0.5rem;
-  }
-  
+
+.diseño:hover {
+  background-position: right center; /* change the direction of the change here */
+  text-decoration: none;
+}
+.previsualizar {
+  padding: 15px;
+  background: linear-gradient(
+    to right,
+    #e2e2e2,
+    var(--color-1)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 510px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.bottonpre {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px; /* Ajusta este valor según la escala de tu diseño */
+}
+.negt {
+  font-size: 18px; /* Ajusta según la escala de tu diseño */
+  font-weight: 600; /* Semi-negrita */
+}
+.enter {
+  margin-bottom: 30px;
+}
+.tox .tox-editor-container {
+  max-width: 100%; /* Limita el ancho del editor a su contenedor */
+  height: auto; /* O puedes establecer una altura fija si lo prefieres */
+}
+/* diseño de botones */
+
+.pre {
+  background-image: linear-gradient(
+    to right,
+    var(--color-4) 0%,
+    var(--color-3) 51%,
+    var(--color-4) 100%
+  );
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.pre:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+.sesion {
+  background-image: linear-gradient(
+    to right,
+    var(--color-4) 0%,
+    var(--color-3) 51%,
+    var(--color-4) 100%
+  );
+  padding: 15px 15px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: none;
+  width: 100%;
+}
+.sesion:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dest {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.dest:hover {
+  background-color: #45a049;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 10px;
+  animation: modal-show 0.3s ease;
+}
+
+@keyframes modal-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+.insert-button {
+  background-color: #008cba; /* Blue */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.insert-button:hover {
+  background-color: #005f75;
+}
+
+.entr {
+  background-image: linear-gradient(
+    to right,
+    var(--color-green1) 0%,
+    var(--color-green2) 51%,
+    var(--color-green1) 100%
+  );
+  padding: 5px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: none;
+  width: 100%;
+}
+
+.entr:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+.insertor {
+  color: #000;
+}
+
+/* entradas */
+
+.pre {
+  background-image: linear-gradient(
+    to right,
+    var(--color-4) 0%,
+    var(--color-3) 51%,
+    var(--color-4) 100%
+  );
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.pre:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+.sesion {
+  background-image: linear-gradient(
+    to right,
+    var(--color-4) 0%,
+    var(--color-3) 51%,
+    var(--color-4) 100%
+  );
+  padding: 15px 15px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: none;
+  width: 100%;
+}
+.sesion:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dest {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.dest:hover {
+  background-color: #45a049;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 10px;
+  animation: modal-show 0.3s ease;
+}
+
+@keyframes modal-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+.insert-button {
+  background-color: #008cba; /* Blue */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.insert-button:hover {
+  background-color: #005f75;
+}
+
+.entr:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+.insertor {
+  color: #000;
+}
+
+/* CRUD.css */
+.bg-white {
+  background-color: white;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.relative {
+  position: relative;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.header th {
+  height: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: left;
+  background-color: #f7fafc; /* Sustituye este color con el color de fondo correcto para el encabezado de la tabla */
+}
+
+.tr-header {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tr-body {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* editor de entradas */
+.btn-blue,
+.btn-green,
+.btn-yellow,
+.btn-red,
+.btn-purple {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  border-radius: 0.375rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.btn-blue {
+  background-color: #3490dc;
+}
+
+.btn-blue:hover {
+  background-color: #2779bd;
+}
+
+.btn-green {
+  background-color: #48bb78;
+}
+
+.btn-green:hover {
+  background-color: #38a169;
+}
+
+.btn-yellow {
+  background-color: #ecc94b;
+}
+
+.btn-yellow:hover {
+  background-color: #d69e2e;
+}
+
+.btn-red {
+  background-color: #f56565;
+}
+
+.btn-red:hover {
+  background-color: #e53e3e;
+}
+
+.btn-purple {
+  background-color: #9f7aea;
+}
+
+.btn-purple:hover {
+  background-color: #805ad5;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}

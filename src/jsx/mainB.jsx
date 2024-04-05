@@ -11,6 +11,8 @@ import RestartPsswd from "./Login/RestartPsswd.jsx";
 import SentMsg from "./Login/SentMsg.jsx";
 import PreviewPost from "./Dashboard/Post/PreviewPost.jsx";
 import CRUD from "./Dashboard/Post/CRUD.jsx";
+import Usuarios from "./Dashboard/Users/usuarios.jsx";
+import Categorias from "./Dashboard/Categories/categorias.jsx";
 import Test from "./testG.jsx";
 import Side from "./Elements/SideNavBar.jsx";
 import { Context } from "./Elements/Wrapper.jsx";
@@ -42,15 +44,16 @@ const router = createBrowserRouter([
     path: "/post",
     element: <CRUD />,
     children: [
-      { index: true, element: <CRUD /> },
       { path: "add", element: <NewPost /> },
       { path: "all", element: <CRUD /> },
       { path: "preview", element: <PreviewPost /> },
-      { path: "categories", element: <PreviewPost /> },
+      // { path: "categories", element: <PreviewPost /> },
     ],
   },
+  // Categories - Categorías
+  { path: "/categories", element: <Categorias /> },
   // Users - Usuarios
-  { path: "/users", element: <ForgotPsswd /> },
+  { path: "/users", element: <Usuarios /> },
 
 ]);
 
