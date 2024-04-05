@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+*{
+  padding: 0px;
+  font-family: "Poppins" , sans-serif;
+}
+.headerhome {
+  background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+  display: flex;
+  align-items: center; 
+  height:  80px;
+  padding: 5px 10px;
+  justify-content: space-between; 
+}
+.headerhome:hover{
+  box-shadow: 0 0 20px 2px #45f3ff;
+  display: flex;
+}
+
+.iml img{ 
+  height: 70px; 
+  width: auto;
+}
+.Bienvenida{
+  border: none;
+  background: none;
+  color: #f2f2f2;
+ padding-right: 1rem; 
+}
+.Bienvenida:hover{
+  text-decoration: underline;
+}
+.Entradas{
+  background:none;
+  border: none;
+  color: #ffffff;
+  padding-right: 1rem;
+}
+.Entradas:hover{
+  text-decoration: underline;
+}
+.Recursos{
+  background:none;
+  border: none;
+  color: #f2f2f2;
+  padding-right: 1rem;
+}
+.Recursos:hover{
+  text-decoration: underline;
+}
+.Quizz{
+  border: none;
+  background: none;
+  color: #f2f2f2;
+}
+.Quizz:hover{
+  text-decoration: underline;
+}
+.bodyhome {
+  background-color: #f2f2f2;
+  color: black;
+  text-align: center;
+}
+.footerhome {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+.Carrusel video {
+  position: relative;
+  object-fit: cover;
+  width: 100%;
+  height: 100%; 
+  left: 0px;
+}
+.log{
+  box-sizing: content-box;
+}

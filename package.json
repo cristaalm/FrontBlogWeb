@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@tinymce/tinymce-react": "^4.3.2",
+    "@tinymce/tinymce-react": "^4.3.2",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react-swc": "^3.5.0",
