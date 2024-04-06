@@ -25,7 +25,7 @@ import messagesEn from "../lang/en.json";
 import messagesEs from "../lang/es.json";
 import Dashboard from "./Dashboard/DashboardFinal.jsx";
 
-import "../css/index.css";
+// import "../css/index.css";
 
 const messages = {
   en: messagesEn,

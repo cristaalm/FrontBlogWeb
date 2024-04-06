@@ -29,7 +29,7 @@ function Home() {
         {/* Body */}
         <div className="bodyhome">
           <div className="Carrusel">
-            <video src="src/video/aquavision2.mp4" autoPlay loop muted></video>
+            <video src="src/video/aquavision.mp4" autoPlay loop muted></video>
           </div>
           <div className="separador1">
             <div className="texto10">

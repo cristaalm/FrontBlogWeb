@@ -58,7 +58,9 @@ const AuthForm = () => {
         localStorage.setItem("userName", username);
         setMessageClass("success");
       } else {
-        setMessage("Check password or username.");
+        setMessage(
+          <FormattedMessage id="login.error" defaultMessage="Check password or username" />
+        );
         setMessageClass("error");
       }
     } catch (error) {
@@ -112,7 +114,7 @@ const AuthForm = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-                            <span className="highlight"></span>
+              <span className="highlight"></span>
               <span className="bar"></span>
               <label>
                 <FormattedMessage
