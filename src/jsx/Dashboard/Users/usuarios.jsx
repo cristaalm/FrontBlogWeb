@@ -4,6 +4,7 @@ import { Tooltip } from "react-tooltip";
 import Modal from "react-modal";
 import { FormattedMessage, useIntl } from "react-intl"; // Importa FormattedMessage y useIntl
 import { createUser } from "../../../js/createUser";
+import { editUser } from "../../../js/editUser";
 
 // import "../../../css/App.css";
 import Sidebar, {
@@ -60,6 +61,11 @@ function usuarios() {
   const [deleteModal, setDeleteContact] = React.useState(false);
   const [reloadTable, setReloadTable] = useState(false);
 
+  // Agrega un nuevo estado para almacenar el ID del usuario a editar
+  const [editUserId, setEditUserId] = useState(null);
+  // Agrega un nuevo estado para almacenar los datos del usuario a editar
+  const [editUserData, setEditUserData] = useState(null);
+  
   const [message, setMessage] = useState("");
   const [messageClass, setMessageClass] = useState("");
 
@@ -163,53 +169,77 @@ function usuarios() {
       console.error("Error al eliminar usuario:", error);
     }
   };
-
-  //Crea usuario (POST)
+  const cleanForm = () => {
+    setUsuario("");
+    setNombre("");
+    setCorreo("");
+    setContraseña("");
+    setPerfil([]);
+  };
+  // Modifica la función handleSubmit para que pueda enviar una solicitud de actualización en lugar de crear un usuario nuevo
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await createUser(
-        nombreusuario,
-        nombre,
-        correoelectronico,
-        contraseña,
-        perfil
-      );
-      setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
-      setMessage("Usuario creado exitosamente");
-      setMessageClass("success");
-    } catch (error) {
-      setMessage("Error al crear, intenta de nuevo");
+    if (
+      nombreusuario &&
+      nombre &&
+      correoelectronico &&
+      contraseña &&
+      perfil.length > 0
+    ) {
+      try {
+        if (editUserId !== null) {
+          // Si editUserId no es null, significa que se está editando un usuario existente
+          await editUser(
+            nombreusuario,
+            nombre,
+            correoelectronico,
+            contraseña,
+            perfil,
+            editUserId // Agregar el ID del usuario a editar
+          );
+          setMessage("Usuario modificado exitosamente");
+        } else {
+          // Si editUserId es null, significa que se está creando un nuevo usuario
+          await createUser(
+            nombreusuario,
+            nombre,
+            correoelectronico,
+            contraseña,
+            perfil
+          );
+          setMessage("Usuario creado exitosamente");
+        }
+        setEditUserId(null); // Resetear el estado de editUserId a null
+        setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
+        setMessageClass("success");
+        cleanForm(); // Limpia el formulario después de enviar los datos
+      } catch (error) {
+        setMessage("Error al crear, intenta de nuevo");
+        setMessageClass("error");
+      }
+    } else {
+      setMessage("Por favor completa todos los campos");
       setMessageClass("error");
     }
   };
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://cdn.tiny.cloud/1/kovdcfjaqbeap5tn2t47qcgag4xk6qwtg473e9iu0rmn2kd2/tinymce/6/tinymce.min.js";
-    script.referrerpolicy = "origin";
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      window.tinymce.init({
-        selector: "#entryDescription",
-        plugins:
-          "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
-        toolbar:
-          "undo redo | bold italic underline strikethrough | link image media table | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-        tinycomments_mode: "embedded",
-      });
-    };
-
-    return () => {
-      // Destruye el editor para evitar fugas de memoria
-      window.tinymce?.remove("#entryDescription");
-    };
-  }, []);
+  // Función para cargar los datos del usuario a editar
+  const loadEditUserData = (userId) => {
+    const userData = users.data.find((user) => user.id === userId);
+    setEditUserId(userId);
+    setEditUserData(userData);
+    setUsuario(userData.nombreusuario);
+    setNombre(userData.nombre);
+    setCorreo(userData.correoelectronico);
+    setContraseña(userData.contraseña);
+    setPerfil(userData.perfil);
+  };
 
   return (
-    <div style={{ display: "flex", backgroundColor: "whitesmoke" }}>
+    <div
+      style={{ display: "flex", backgroundColor: "whitesmoke" }}
+      className="flex h-screen"
+    >
       <Modal
         id="root"
         isOpen={deleteModal}
@@ -228,21 +258,21 @@ function usuarios() {
             }}
           ></ion-icon>
         </div>
-        <h2>Eliminar usuario</h2>
-        <p>
-          ¿Estás seguro de que quieres eliminar al usuario con ID {deleteUserId}
-          ?
-        </p>
-        <button className="btn-red p-2 m-1" onClick={closeModal}>
-          Cancelar
-        </button>
-        <button
-          className="btn-red p-2 m-1"
-          onClick={() => handleDeleteUser(deleteUserId)}
-        >
-          Eliminar
-        </button>
+        <h3 className="text-center text-lg font-semibold">Eliminar usuario</h3>
+        <p>¿Estás seguro de que quieres eliminar al usuario?</p>
+        <div className="flex flex-row justify-between">
+          <button className="btn-red flex-1 p-2 m-1" onClick={closeModal}>
+            Cancelar
+          </button>
+          <button
+            className="btn-green flex-1 p-2 m-1"
+            onClick={() => handleDeleteUser(deleteUserId)}
+          >
+            Eliminar
+          </button>
+        </div>
       </Modal>
+
       <div
         style={{
           // width:"13%",
@@ -293,7 +323,7 @@ function usuarios() {
             zIndex: "999",
           }}
         />
-        <main className="todo_espacio">
+        <main className="todo_espacio flex-1">
           <div className="contenedor_cuadricular">
             <div className="margin">
               <div className="entrada">
@@ -380,13 +410,15 @@ function usuarios() {
                   </div>
                   <div>
                     <button type="submit" className="entr tracking-widest mt-4">
-                      Añadir usuario
+                      {editUserId !== null
+                        ? "Actualizar usuario"
+                        : "Añadir usuario"}
                     </button>
                   </div>
                 </form>
                 <div className="sm:w-full w-60%">
-                  <div className="">
-                    <div className="flex flex-col space-y-4">
+                  <div className="mt-2">
+                    <div className="flex flex-col">
                       <div className="flex justify-between items-center">
                         {/* <h1 className="text-2xl font-bold">Entradas</h1> */}
                       </div>
@@ -420,7 +452,7 @@ function usuarios() {
                             <tbody>
                               {users.data &&
                                 users.data.map((userInfo) => (
-                                  <tr className="tr-body border-2 border-teal-600">
+                                  <tr key={userInfo.id} className="tr-body border-2 border-teal-600">
                                     <td className="p-1 w-5">{userInfo.id}</td>
                                     <td className="border-2 border-teal-600 p-1">
                                       {userInfo.nombre}
@@ -437,6 +469,9 @@ function usuarios() {
                                         data-tooltip-id="editar"
                                         data-tooltip-place="top"
                                         data-tooltip-content="Editar"
+                                        onClick={() =>
+                                          loadEditUserData(userInfo.id)
+                                        }
                                       >
                                         <Pencil size={20} />
                                       </button>
