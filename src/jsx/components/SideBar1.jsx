@@ -38,7 +38,7 @@ export default function Sidebar({ children }) {
 
   return (
     // max-w-80
-    <aside className="h-screen ">
+    <aside className="h-screen">
       {/* shadow-sm */}
       <nav className="h-full flex flex-col bg-cyan-950 shadow-sm">
         <div className={`p-4 pb-2 flex justify-between items-center border-b`}>
@@ -94,7 +94,6 @@ export default function Sidebar({ children }) {
               overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
           `}
           >
-            {/* leading-4 */}
             <div className="leading-4">
               <h4 className="font-semibold text-amber-50">{user.nombre}</h4>
               <span className="text-xs text-amber-50">{user.correo}</span>

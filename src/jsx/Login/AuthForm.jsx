@@ -38,7 +38,7 @@ const AuthForm = () => {
     if (storedAuth === null || storedAuth === "false") {
       localStorage.setItem("isAuthenticated", "false");
     } else {
-      navigate("/new-post");
+      navigate("/dashboard");
     }
   }, [navigate]);
 
@@ -54,8 +54,10 @@ const AuthForm = () => {
         setTimeout(() => {
           navigate("/dashboard");
         }, 1000);
-        setMessage("User logged in correctly.");
-        localStorage.setItem("userName", username);
+        setMessage(
+          <FormattedMessage id="login.success" defaultMessage="User logged in correctly." />
+        );
+                localStorage.setItem("userName", username);
         setMessageClass("success");
       } else {
         setMessage(

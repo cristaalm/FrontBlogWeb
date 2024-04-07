@@ -12,5 +12,7 @@
   "login.sentMail" : "Correo enviado",
   "login.sentMailText" : "Te enviamos un correo electrónico. Siga las instrucciones para volver a ingresar a su cuenta.",
   "login.back":"Volver a Iniciar Sesión",
-  "login.error":"Verifique la contraseña o el nombre de usuario."
+  "login.error":"Verifique la contraseña o el nombre de usuario.",
+  "login.success":"El usuario inició sesión correctamente."
+
 }

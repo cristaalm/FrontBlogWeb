@@ -38,8 +38,7 @@ const Footer = () => {
   const subtitle = useRef(null);
 
   const [contactModalIsOpen, setContactModalIsOpen] = React.useState(false);
-  const [developersModalIsOpen, setDevelopersModalIsOpen] =
-    React.useState(false);
+  const [developersModalIsOpen, setDevelopersModalIsOpen] = React.useState(false);
 
   function openContactModal() {
     setContactModalIsOpen(true);
@@ -131,7 +130,7 @@ const Footer = () => {
               })}
               onClick={openContactModal}
             >
-              <ion-icon name="mail" style={{ color: "#035165" }} ></ion-icon>
+              <ion-icon name="mail" style={{ color: "#035165" }}></ion-icon>
             </a>
             <Modal
               id="root"

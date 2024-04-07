@@ -654,6 +654,7 @@ h1 {
 ::placeholder {
   font-size: 16px;
   color: #d2d2d2 !important;
+  /* color: whitesmoke !important; */
 }
 
 .inputEspecial {
@@ -669,6 +670,7 @@ h1 {
 }
 .in2:valid{
     border-bottom-color: #0d9488 !important;
+    /* width: 80% !important; */
 }
 
 input:focus,
@@ -681,4 +683,17 @@ input:valid {
 input:valid{
   /* border-bottom-color: #56a1a6 !important; */
   border-bottom-color: transparent !important;
+}
+
+/* .btnUsarios {
+  display: inline-block !important;
+  padding: 15px !important;
+  font-family: inherit !important;
+  font-size: 16px !important;
+} */
+.selectUsuarios{
+  width: 100% !important;
+}
+.encabezadoTabla{
+  background-color: #0d9488 !important;
 }
