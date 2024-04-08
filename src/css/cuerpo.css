@@ -1,0 +1,433 @@
+/* Estilos generales */
+.cuerpoo {
+    margin: 0;
+    padding: 0;
+    background-color: #fdf2e1;
+}
+
+.titulosdecategoruas {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    
+}
+.vajovideo{
+    padding-bottom: 2.5rem;
+}
+/* Estilos para el vídeo destacado */
+
+.vid {
+    width: 100%;
+    height: auto;
+}
+
+/* Estilos para el Top de categorías */
+
+/* Contenedor principal */
+.seccionescuerpo {
+    display: flex; /* Esto coloca todos los elementos de la categoría en una fila */
+    justify-content: space-around; /* Esto los distribuye equitativamente */
+    align-items: center; /* Esto centra los elementos verticalmente en el contenedor */
+    flex-wrap: wrap; /* Esto permite que los elementos se envuelvan si no hay suficiente espacio */
+    gap: 10px; /* Esto añade un espacio entre los elementos de la categoría */
+}
+
+  /* Estilos para los títulos de las categorías */
+.titulosdecategoruas {
+    padding-left: 50px;
+    width: 100%; /* Esto asegura que el título ocupe el ancho completo */
+    text-align: center; /* Esto centra el título */
+    margin-bottom: 20px; /* Esto añade un espacio debajo del título */
+}
+
+  /* Contenedor de la imagen destacada y el número de ranking */
+.tutilocatego {
+    display: flex; /* Flex para los contenedores de las imágenes destacadas */
+    flex-direction: column; /* Alinear los elementos verticalmente */
+    align-items: center; /* Centrar los elementos horizontalmente */
+    position: relative; /* Posicionamiento relativo para el número de ranking */
+    border: 1px solid #000;
+    padding: 0 1rem;
+    background-color: #6ea9aa;
+}
+
+  /* Número de ranking */
+.tutilocatego::before {
+    content: '#1';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FFD700; /* Un ejemplo de color amarillo dorado */
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.tutilocatego2 {
+    display: flex; /* Flex para los contenedores de las imágenes destacadas */
+    flex-direction: column; /* Alinear los elementos verticalmente */
+    align-items: center; /* Centrar los elementos horizontalmente */
+    position: relative; /* Posicionamiento relativo para el número de ranking */
+    border: 1px solid #000;
+    padding: 0 1rem;
+    background-color: #6ea9aa;
+}
+
+  /* Número de ranking */
+.tutilocatego2::before {
+    content: '#1';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #e89e9e; /* Un ejemplo de color amarillo dorado */
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.tutilocatego3 {
+    display: flex; /* Flex para los contenedores de las imágenes destacadas */
+    flex-direction: column; /* Alinear los elementos verticalmente */
+    align-items: center; /* Centrar los elementos horizontalmente */
+    position: relative; /* Posicionamiento relativo para el número de ranking */
+    border: 1px solid #000;
+    padding: 0 1rem;
+    background-color: #6ea9aa;
+}
+
+  /* Número de ranking */
+.tutilocatego3::before {
+    content: '#1';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #e251e2; /* Un ejemplo de color amarillo dorado */
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+  /* Estilos para la imagen destacada */
+.imagendest {
+    display: flex; /* Flex para centrar la imagen dentro del contenedor */
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Tamaño completo dentro de su contenedor */
+    margin: 10px 0; /* Espacio arriba y abajo */
+}
+
+.imgdest {
+    max-width: 100%; /* Hace que la imagen no sea más grande que su contenedor */
+    max-height: 200px; /* Altura máxima de la imagen */
+}
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+/* Estilos.css */
+.seccionescuerpoultima {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.titulosdecategoruas {
+  display: flex; /* Usa flexbox para alinear los elementos */
+  justify-content: space-between; /* Esto empujará el título y el botón a los extremos opuestos */
+  align-items: center; /* Alinea el título y el botón verticalmente */
+  padding: 0 15px; /* Agrega algo de padding en los lados para no tocar los bordes */
+  /* Resto de tus estilos... */
+}
+.titulosdecategoruas .listacuador {
+    padding: 10px 20px; /* Añade padding para aumentar el área de clic y la visibilidad */
+    background-color: #3498db; /* Un color de fondo claro, puedes elegir el que prefieras */
+    color: white; /* Color de texto que contraste con el fondo */
+    border: none; /* Remueve el borde por defecto */
+    border-radius: 5px; /* Bordes redondeados para un look más moderno */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+    font-weight: bold; /* Texto en negrita para que resalte */
+    transition: background-color 0.3s ease; /* Anima el cambio de color de fondo */
+}
+.titulosdecategoruas .listacuador:hover {
+  background-color: #2980b9; /* Oscurece el botón al pasar el cursor */
+  /* Otras transiciones o efectos al pasar el cursor */
+}
+.ultimasentradas-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.ultimasentradas {
+    border: 1px solid #000;
+    width: calc(33.333% - 20px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    background-color: #88d2db;
+}
+
+.categoria-seleccionada {
+    border: 1px solid #a020f0; /* Un tono de púrpura */
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    
+}
+
+.categoria-seleccionada::before {
+    content: 'Categoría Seleccionada'; /* El texto de la insignia */
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FFD700; /* Color amarillo dorado para la insignia */
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.75em; /* Ajusta este tamaño según tu diseño */
+    color: black; /* Color del texto en la insignia */
+}
+.categoria-seleccionada2 {
+  border: 1px solid #a020f0; /* Un tono de púrpura */
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.categoria-seleccionada2::before {
+    content: 'Categoría Seleccionada'; /* El texto de la insignia */
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #e251e2; /* Color amarillo dorado para la insignia */
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.75em; /* Ajusta este tamaño según tu diseño */
+    color: black; /* Color del texto en la insignia */
+}
+.categoria-seleccionada3 {
+  border: 1px solid #a020f0; /* Un tono de púrpura */
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.categoria-seleccionada3::before {
+    content: 'Categoría Seleccionada'; /* El texto de la insignia */
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #e89e9e; /* Color amarillo dorado para la insignia */
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.75em; /* Ajusta este tamaño según tu diseño */
+    color: black; /* Color del texto en la insignia */
+}
+
+  /* Asegúrate de que la imagen no tenga espacios extra alrededor */
+.catimg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.contenido-entrada {
+    padding: 15px;
+}
+
+.metaentrada {
+    font-style: italic;
+    color: #666;
+}
+
+.tituloentrada {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.descripcionentrada {
+    font-size: 1em;
+    margin-top: 10px;
+}
+.mosrarmasyvav {
+    display: flex; /* Establece el contenedor como flex */
+    justify-content: space-between; /* Alinea el contenido a ambos extremos */
+    align-items: center; /* Alinea los elementos verticalmente */
+}
+.mostarmas {
+    margin-left: auto; /* Empuja el botón hacia la derecha */
+    padding: 10px 20px; /* Añade padding para aumentar el área de clic */
+    background-color: #3498db; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Quita el borde predeterminado del botón */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+    font-weight: bold; /* Texto en negrita para que resalte */
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+}
+
+.mostarmas:hover {
+    background-color: #2980b9; /* Cambia el color de fondo al pasar el cursor */
+}
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/* Estilos para paginación */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagina {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+.pagina:hover {
+    background-color: #d0d0d0;
+}
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/* Estilos para Recursos Multimedia */
+
+/* RecursosMultimedia.css */
+.seccionescuerporecursos {
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center; /* Alineación central para el título y los recursos */
+    background-color: #1c3729;
+}
+
+
+.recurso {
+    display: inline-block;
+    width: 30%;
+    margin: 1.66%; /* Espacio entre los elementos */
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+.imagen-recurso {
+    border: 1px solid #000;
+    position: relative;
+    padding-top: 56.25%; /* Relación de aspecto 16:9 */
+    margin-bottom: 10px; /* Espacio entre la imagen y el texto inferior */
+    background: #eee; /* Color de fondo */
+}
+
+.imagen-recurso::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px dashed #000;
+    z-index: 0;
+}
+
+.imagen-recurso span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background: white;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    cursor: pointer; /* Si es interactivo */
+}
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/* Quizz.css */
+.seccionescuerpoquizz {
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center; /* Alinea el título al centro */
+}
+
+.contenedor-quizz {
+    border: 1px solid #000;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    align-items: center; /* Centra verticalmente el logo y el botón */
+    justify-content: space-between; /* Separa el logo y el botón en extremos opuestos */
+}
+
+.logo-quizz {
+    border: 1px dashed #000;
+    padding: 20px;
+    width: 30%; /* O el tamaño que prefieras para el logo */
+    text-align: center;
+}
+
+.boton-quizz {
+    border: 1px solid #000;
+    padding: 10px 20px;
+    cursor: pointer; /* Estilo del cursor para indicar que es un botón clickeable */
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center; /* Centra el texto y el icono verticalmente */
+    gap: 10px; /* Espacio entre el texto y el icono */
+}
+
+.boton-quizz::after {
+    content: '➔'; /* Icono de flecha, puedes cambiarlo por una imagen si lo prefieres */
+    display: inline-block;
+    font-size: 1.5em; /* Tamaño del icono de la flecha */
+}
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+/* animaciones */
+/* Estilo para animar el botón al pasar el cursor */
+.boton-quizz:hover {
+    transform: scale(1.05); /* Hace el botón un poco más grande */
+    transition: transform 0.3s ease; /* Suaviza la transición de la transformación */
+    cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
+}
+
+  /* Estilo para animar las imágenes de las categorías al pasar el cursor */
+.imgdest:hover {
+    opacity: 0.8; /* Hace la imagen un poco transparente */
+    transition: opacity 0.3s ease; /* Suaviza la transición de la opacidad */
+}
+
+  /* Estilo para animar las entradas al pasar el cursor */
+.ultimasentradas:hover {
+    background-color: #f0f0f0; /* Cambia el color de fondo de las entradas */
+    transition: background-color 0.3s ease; /* Suaviza la transición del color de fondo */
+}
+
+  /* Estilo para animar los números de página en la paginación */
+.pagina:hover {
+    color: #000; /* Cambia el color del texto */
+    background-color: #e0e0e0; /* Cambia el color de fondo */
+    transition: all 0.3s ease; /* Suaviza todas las transiciones aplicadas */
+    cursor: pointer; /* Cambia el cursor a una mano */
+}
+
+
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4 */
+/* para mostrar en forma de lista */
+.lista-container .ultimasentradas-container {
+  display: flex; /* Asegura que el contenedor principal sea flex */
+  flex-direction: column; /* Coloca los elementos hijos en una columna */
+}
+
+.lista-container .ultimasentradas {
+  display: flex; /* Flex para alinear imagen y texto horizontalmente */
+  align-items: center; /* Centrar los elementos verticalmente */
+  width: 100%; /* Cada elemento ocupa el ancho completo del contenedor */
+  margin-bottom: 20px; /* Añadir un poco de margen entre los elementos */
+}
+
+.lista-container .ultimasentradas .catimg {
+  width: auto; /* Para mantener la relación de aspecto */
+  max-height: 200px; /* Ajusta esto para cambiar el tamaño de la imagen */
+  margin-right: 20px; /* Espacio entre la imagen y el texto */
+}

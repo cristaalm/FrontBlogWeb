@@ -1,4 +1,33 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+/* Encabezado */
+.headerhome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(45deg, #5d9697, #81c0c6, #82c2c8, #82c2c8);
+}
+
+.headerhome .iml img {
+  max-width: 70px;
+}
+
+.headerhome .menum .navegacion {
+  background-color: transparent;
+  border: none;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+.headerhome .log{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
 *{
   padding: 0px;
   font-family: "Poppins" , sans-serif;
@@ -24,7 +53,7 @@
   border: none;
   background: none;
   color: #f2f2f2;
- padding-right: 1rem; 
+  padding-right: 1rem; 
 }
 .Bienvenida:hover{
   text-decoration: underline;
@@ -199,4 +228,4 @@ color: #009dff;
 }
 .texto11:hover {
   color: #009dff;
-  }
+  } */
