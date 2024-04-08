@@ -38,8 +38,8 @@ export default function Sidebar({ children }) {
 
   return (
     // max-w-80
-    <aside className="h-screen flex flex-col">
-        {/* shadow-sm */}
+    <aside className="h-screen">
+      {/* shadow-sm */}
       <nav className="h-full flex flex-col bg-cyan-950 shadow-sm">
         <div className={`p-4 pb-2 flex justify-between items-center border-b`}>
           {expanded && (
@@ -94,7 +94,6 @@ export default function Sidebar({ children }) {
               overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
           `}
           >
-            {/* leading-4 */}
             <div className="leading-4">
               <h4 className="font-semibold text-amber-50">{user.nombre}</h4>
               <span className="text-xs text-amber-50">{user.correo}</span>
@@ -274,3 +273,47 @@ export function SidebarItemWithSubItems({
     </li>
   );
 }
+
+// export function SidebarItemColumn({ icon, text, active, alert }) {
+//   const { expanded } = useContext(SidebarContext);
+
+//   return (
+//     <li
+//       className={`
+//         relative flex items-center flex-col py-2 px-3 my-1
+//         font-medium rounded-md cursor-pointer
+//         transition-colors group
+//         ${
+//           active
+//             ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 "
+//             : "hover:bg-teal-100 text-amber-50 hover:text-cyan-950"
+//         }
+//     `}
+//     >
+//       {!expanded && (
+//         <div
+//           data-tooltip-id="tooltip-expa"
+//           data-tooltip-place="right"
+//           data-tooltip-content={text}
+//         >
+//           {icon}
+//         </div>
+//       )}
+//       {expanded && icon}
+//       <span
+//         className={`overflow-hidden transition-all ${
+//           expanded ? "w-52 ml-3" : "w-0 invisible"
+//         }`}
+//       >
+//         {text}
+//       </span>
+//       {alert && (
+//         <div
+//           className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${
+//             expanded ? "" : "top-2"
+//           }`}
+//         />
+//       )}
+//     </li>
+//   );
+// }

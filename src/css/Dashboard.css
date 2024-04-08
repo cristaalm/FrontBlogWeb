@@ -16,6 +16,8 @@
 }
 .contenedor_cuadricular {
   width: auto;
+  background-color: whitesmoke;
+
 }
 .logo_i {
   margin-bottom: 100px;
@@ -143,7 +145,6 @@ h1 {
 .left {
   background-image: linear-gradient(to top, var(--color-2) 0%, var(--color-3) 100%);
   width: auto;
-  height: 510px;
   padding: 1rem;
   margin-right: 1rem;
   border-radius: 10px;

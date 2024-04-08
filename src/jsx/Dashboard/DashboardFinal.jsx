@@ -29,8 +29,12 @@ function LayoutPost() {
             icon={<Book className="text-white" />}
             text="Entradas"
             subItems={[
-              { icon: <Layers />, text: "Todas" },
-              { icon: <PlusSquare />, text: "Añadir Nueva" },
+              { icon: <Layers />, text: "Todas", to: "/post/all" },
+              {
+                icon: <PlusSquare />,
+                text: "Añadir Nueva",
+                to: "/post/add",
+              },
               // { icon: <Layers />, text: "Categorías" }
             ]}
           />
