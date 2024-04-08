@@ -51,10 +51,6 @@ function usuarios() {
   const [contraseña, setContraseña] = useState("");
   const [perfil, setPerfil] = useState([]);
 
-  const [showModal, setShowModal] = useState(false);
-  const [imageLink, setImageLink] = useState("");
-  const [imageWidth, setImageWidth] = useState("");
-  const [imageHeight, setImageHeight] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [deleteUserId, setDeleteUserId] = useState(null);
 
@@ -70,21 +66,7 @@ function usuarios() {
   const [messageClass, setMessageClass] = useState("");
 
   const [users, setUsers] = useState([]);
-  const handleAddImage = () => {
-    // Lógica para insertar la imagen en el editor de texto
-    console.log("Link de la imagen:", imageLink);
-    console.log("Ancho de la imagen:", imageWidth);
-    console.log("Alto de la imagen:", imageHeight);
-    // Aquí puedes realizar la lógica para insertar la imagen en el editor de texto si es necesario
-    setShowModal(false); // Cierra el modal después de procesar la imagen
-  };
-  const handleToggleModal = () => {
-    setShowModal(!showModal);
-  };
 
-  const toggleEntriesDropdown = () => {
-    setIsEntriesDropdownOpen(!isEntriesDropdownOpen);
-  };
   const cerrarSesion = () => {
     localStorage.removeItem("isAuthenticated");
     navigate("/login");
@@ -130,6 +112,35 @@ function usuarios() {
     };
     fetchData();
   }, [reloadTable]); // Vuelve a cargar la tabla cuando reloadTable cambia
+  // Get de entradas del usuario
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `https://backblogweb.onrender.com/api/categories/${id}`,
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //         }
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error("Network response was not ok");
+  //       }
+  //       const { data } = await response.json();
+  //       const names = {};
+  //       data.forEach((category) => {
+  //         names[category.id] = category.nombre;
+  //       });
+  //       setCategoryNames(names);
+  //       console.log(names);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [reloadTable]);
 
   useEffect(() => {
     if (message) {

@@ -147,7 +147,7 @@ function categorías() {
     }
   }, [message]);
 
-  // Elimina el usuario (POST)
+  // Elimina el usuario (DELETE)
   const handleDeleteCategory = async (deleteCategoryId) => {
     try {
       const response = await fetch(
@@ -173,6 +173,7 @@ function categorías() {
       console.error("Error al eliminar categoría:", error);
     }
   };
+  
   const cleanForm = () => {
     setNombre("");
     setDescripcion("");

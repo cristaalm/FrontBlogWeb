@@ -1,13 +1,42 @@
+import React, { useContext, useEffect, useState } from "react";
 import "../../../css/Dashboard.css";
 import Sidebar, {
   SidebarItem,
   SidebarItemWithSubItems,
 } from "../../Elements/SideBar";
 import { LayoutDashboard, Users, Book, PlusSquare, Layers } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 function LayoutPost() {
   let navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const [messageClass, setMessageClass] = useState("");
+  const { id } = useParams(); // Obtener el ID de la URL
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://backblogweb.onrender.com/api/entradas/${id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const { data } = await response.json();
+        setMessage(data.contenido);
+        console.log(data.contenido);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div style={{ display: "flex" }}>
       <div
@@ -26,9 +55,12 @@ function LayoutPost() {
             icon={<Book className="text-white" />}
             text="Entradas"
             subItems={[
-              { icon: <Layers />, text: "Todas" },
-              { icon: <PlusSquare />, text: "Añadir Nueva" },
-              // { icon: <Layers />, text: "Categorías" }
+              { icon: <Layers />, text: "Todas", to: "/post/all" },
+              {
+                icon: <PlusSquare />,
+                text: "Añadir Nueva",
+                to: "/post/add",
+              },
             ]}
           />
           <Link to="/categories" className="without_line">
@@ -45,6 +77,17 @@ function LayoutPost() {
             <div className="margin">
               <div className="entrada">
                 <h1 className="tamaño_fuente">Previsualizar nueva entrada</h1>
+              </div>
+              <div className="w-full">
+                <div className="mt-2">
+                  <div className="flex flex-col">
+                    <div className={`message ${messageClass}`}>
+                      {message && (
+                        <div dangerouslySetInnerHTML={{ __html: message }} />
+                      )}
+                    </div>  
+                  </div>
+                </div>
               </div>
             </div>
           </div>

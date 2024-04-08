@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-export const createPost = async (titulo, contenido, idcategoria, img, usuario) => {
-    console.log(titulo,contenido,idcategoria,img,usuario);
+export const createPost = async (titulo, contenido, idcategoria, img, usuario, descripcion) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/entradas/', {
+      const response = await axios.post('https://backblogweb.onrender.com/api/entradas/', {
         titulo: titulo,
         contenido: contenido,
         idcategoria: idcategoria,
         imgdestacada: img,
-        fechapublicacion: "2024-03-12",
+        fechapublicacion: Date.now(),
         usuario: usuario,
-        estatus: "estatus"
+        estatus: "Pendiente",
+        descripcion: descripcion
       });
   
       if (!response) {

@@ -10,7 +10,7 @@ import ForgotPsswd from "./Login/ForgotPsswd.jsx";
 import RestartPsswd from "./Login/RestartPsswd.jsx";
 import SentMsg from "./Login/SentMsg.jsx";
 import PreviewPost from "./Dashboard/Post/Preview.jsx";
-import CRUD from "./Dashboard/Post/CRUD.jsx";
+import CRUD from "./Dashboard/Post/crudPost.jsx";
 import Usuarios from "./Dashboard/Users/usuarios.jsx";
 import Categorias from "./Dashboard/Categories/categorias.jsx";
 // import Test from "./testG.jsx";
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
       { index: true, element: <CRUD /> },
       { path: "add", element: <NewPost /> },
       { path: "all", element: <CRUD /> },
-      { path: "preview", element: <PreviewPost /> },
+      { path: "preview/:id", element: <PreviewPost /> },
       // { path: "categories", element: <PreviewPost /> },
     ],
   },

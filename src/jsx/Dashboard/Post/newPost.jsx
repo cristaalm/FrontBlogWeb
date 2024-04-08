@@ -1,67 +1,65 @@
-import { useState, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import "../../../css/usuarios.css";
+import { Tooltip } from "react-tooltip";
+import Modal from "react-modal";
 import { createPost } from "../../../js/createPost";
-import "../../../css/Elements.css";
-import { useNavigate } from "react-router-dom";
 import { Editor } from "@tinymce/tinymce-react";
 
+// import "../../../css/App.css";
+import Sidebar, {
+  SidebarItem,
+  SidebarItemWithSubItems,
+} from "../../Elements/SideBar.jsx";
+import {
+  LayoutDashboard,
+  Users,
+  Book,
+  PlusSquare,
+  Layers,
+  Pencil,
+  Trash,
+} from "lucide-react";
+import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { Link, useNavigate } from "react-router-dom";
+function usuarios() {
+  const customStyles = {
+    content: {
+      // zIndex: "99999",
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      maxWidth: "400px", // Set the maximum width of the modal
+      padding: "20px", // Add padding to the modal content
+      borderRadius: "8px", // Add border radius to the modal
+      boxShadow: "0 2px 4px rgba(0,0,0,0.1)", // Add a subtle shadow
+    },
+    overlay: {
+      zIndex: "9999",
+      backgroundColor: "rgba(3, 81, 101, 0.5)", // Add a semi-transparent overlay
+    },
+  };
+  const navigate = useNavigate(); // Obtiene la función de navegación
 
-function newPost() {
+  // Datos del formulario
   const [title, setTitle] = useState("");
+  const [descripcion, setDescripcion] = useState("");
   const [categoryId, setCategoryId] = useState("");
-  const [description, setDescription] = useState("");
   const [categories, setCategories] = useState([]);
   const [tiny, setTiny] = useState("");
+  const fileInputRef = useRef(null);
+
+  const [deleteModal, setDeleteContact] = React.useState(false);
+  const [reloadTable, setReloadTable] = useState(false);
+
   const [message, setMessage] = useState("");
   const [messageClass, setMessageClass] = useState("");
-  const [isEntriesDropdownOpen, setIsEntriesDropdownOpen] = useState(false);
-
-  const navigate = useNavigate();
 
   const handleTinyChange = (content, editor) => {
     setTiny(content);
   };
-  // const [categories, setCategories] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/categories"
-      );
-      const data = await response.json();
-      setCategories(data);
-    };
-    fetchData();
-  }, []);
-  
-  useEffect(() => {
-    let storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth == null) {
-      localStorage.setItem("isAuthenticated", "false");
-      storedAuth = "false";
-    }
-    console.log("stored", storedAuth);
-    if (storedAuth == "false") {
-      navigate("/login");
-    }
-  }, []);
-  const logOff = async () => {
-    try {
-      localStorage.removeItem("isAuthenticated");
-    } catch (error) {
-      localStorage.removeItem("isAuthenticated");
-    }
-  };
-
-  useEffect(() => {
-    let storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth == null) {
-      localStorage.setItem("isAuthenticated", "false");
-      storedAuth = "false";
-    }
-    if (storedAuth === "false") {
-      navigate("/login");
-    }
-  }, []);
-
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -91,18 +89,40 @@ function newPost() {
       window.tinymce?.remove("#entryDescription");
     };
   }, []);
+  // const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://backblogweb.onrender.com/api/categories"
+      );
+      const data = await response.json();
+      setCategories(data);
+    };
+    fetchData();
+  }, []);
+  const [previewImage, setPreviewImage] = useState(null);
+
+  const handleImageUpload = (file) => {
+    // Aquí puedes manejar la lógica para subir la imagen
+    console.log("Archivo seleccionado:", file);
+    const imageUrl = URL.createObjectURL(file);
+    setPreviewImage(imageUrl);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(tiny);
       const usuario = localStorage.getItem("userName");
-      await createPost(title, tiny, categoryId, description, usuario);
-      setTimeout(() => {
-        navigate("/crud");
-      }, 1000);
-      setMessage("New post saved correctly.");
-      setMessageClass("success");
+      await createPost(
+        title,
+        tiny,
+        categoryId,
+        previewImage,
+        usuario,
+        descripcion
+      );
+      navigate("/post/all");
+      alert("Entrada creada exitosamente.");
     } catch (error) {
       console.error("Post creation failed:", error);
       setMessage("An error occurred while creating the post");
@@ -110,96 +130,223 @@ function newPost() {
     }
   };
 
-  return (
-    <div className="inicio">
-      <main className="todo_espacio">
-        <div className="todo_espacio2">
-          <div className="left">
-            <form onSubmit={handleSubmit}>
-              <div className="margen_boton">
-                <div className="ancho" htmlFor="title">
-                  Título de Entrada
-                </div>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  className="cuadro_txt"
-                />
-              </div>
-              <div className="margen_boton">
-                <div className="ancho" htmlFor="category">
-                  Categorías
-                </div>
-                <select
-                  value={categoryId}
-                  onChange={(e) => setCategoryId(e.target.value)}
-                  className="diseño"
-                >
-                  <option value="">Seleccione su categoría...</option>
-                  {categories.data &&
-                    categories.data.map((category) => (
-                      <option key={category.id} value={category.id}>
-                        {category.nombre}
-                      </option>
-                    ))}
-                </select>
-              </div>
-              <div className="margen_boton">
-                <div className="ancho" htmlFor="description">
-                  Descripción
-                </div>
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className="cuadro_txt"
-                ></textarea>
-              </div>
-              <div className="margen_boton">
-                <button
-                  type="button"
-                  className="pre"
-                  onClick={() => window.open("/preview-post", "_blank")}
-                >
-                  Previsualizar
-                </button>
-                <div className="liquid"></div>
-              </div>
-              <div className="margen_boton">
-                <button type="button" className="pre">
-                  Imagen Destacada
-                </button>
-                <div className="liquid"></div>
-              </div>
-              <div>
-                <button type="submit" className="entr">
-                  Guardar Entrada
-                </button>
-              </div>
-            </form>
-          </div>
+  const cerrarSesion = () => {
+    localStorage.removeItem("isAuthenticated");
+    navigate("/login");
+  };
 
-          <div className="right">
-            <div className="previsualizar">
-              <div className="bottonpre">
-                <h2 className="negt">Previsualización</h2>
+  useEffect(() => {
+    let storedAuth = localStorage.getItem("isAuthenticated");
+    if (storedAuth == null) {
+      localStorage.setItem("isAuthenticated", "false");
+      storedAuth = "false";
+    }
+    console.log("stored", storedAuth);
+    if (storedAuth == "false") {
+      navigate("/login");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setMessage("");
+        setMessageClass("");
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
+
+  const cleanForm = () => {
+    setUsuario("");
+    setNombre("");
+    setCorreo("");
+    setContraseña("");
+    setPerfil([]);
+  };
+
+  return (
+    <div
+      style={{ display: "flex", backgroundColor: "whitesmoke" }}
+      className="flex h-screen"
+    >
+      <div
+        style={{
+          // width:"13%",
+          position: "static",
+          height: "100%",
+          backgroundColor: "#fffdee",
+        }}
+      >
+        <Sidebar>
+          <Link to="/dashboard" className="without_line">
+            <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
+          </Link>
+          <SidebarItemWithSubItems
+            icon={<Book className="text-white" />}
+            text="Entradas"
+            subItems={[
+              { icon: <Layers />, text: "Todas", to: "/post/all" },
+              {
+                icon: <PlusSquare />,
+                text: "Añadir Nueva",
+                to: "/post/add",
+              },
+              // { icon: <Layers />, text: "Categorías" }
+            ]}
+          />
+          <Link to="/categories" className="without_line">
+            <SidebarItem icon={<Layers />} text="Categorías" />
+          </Link>
+          <Link to="/users" className="without_line">
+            <SidebarItem icon={<Users />} text="Usuario" />
+          </Link>
+        </Sidebar>
+      </div>
+      <div className="inicio">
+        <Tooltip
+          id="editar"
+          style={{
+            backgroundColor: "#d69e2e",
+            color: "whitesmoke",
+            zIndex: "999",
+          }}
+        />
+        <Tooltip
+          id="eliminar"
+          style={{
+            backgroundColor: "#e53e3e",
+            color: "whitesmoke",
+            zIndex: "999",
+          }}
+        />
+        <main className="todo_espacio flex-1">
+          <div className="contenedor_cuadricular">
+            <div className="margin">
+              <div className="entrada">
+                <h1 className="tamaño_fuente">Añadir nueva entrada</h1>
               </div>
-              <div>
-                <div className="form-group tinymce-container">
-                  <div className="enter"></div>
-                  <Editor
-                    id="entryDescription"
-                    name="content"
-                    value={tiny}
-                    onEditorChange={handleTinyChange}
-                  />
+              <div className="flex sm:flex-row w-full flex-col">
+                <form onSubmit={handleSubmit} className="mt-2 mr-4 p-2 w-100">
+                  <div className="">
+                    <div className="font-medium" htmlFor="title">
+                      Título de entrada
+                    </div>
+                    <input
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      className="m-0 w-full p-2 in2"
+                      placeholder="Ingrese título"
+                    ></input>
+                  </div>
+                  <div className="mt-4">
+                    <select
+                      value={categoryId}
+                      onChange={(e) => setCategoryId(e.target.value)}
+                      className="selectUsuarios ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-z focus:border-cyan-900"
+                    >
+                      <option
+                        value=""
+                        className="text-gray-400"
+                        disabled
+                        hidden
+                      >
+                        Seleccione su categoría...
+                      </option>
+                      {categories.data &&
+                        categories.data.map((category) => (
+                          <option key={category.id} value={category.id}>
+                            {category.nombre}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+                  <div className="mt-2">
+                    <div className="font-medium" htmlFor="title">
+                      Descripción
+                    </div>
+                    <textarea
+                      value={descripcion}
+                      onChange={(e) => setDescripcion(e.target.value)}
+                      className="w-full bg-neutral-100 p-2 in2 mt-2 ring-2 ring-teal-600 rounded"
+                      placeholder="Ingrese descripción"
+                    ></textarea>
+                    <p className="text-neutral-400 text-sm">
+                      Esta descripción será mostrada al usuario visitante.
+                    </p>
+                  </div>
+                  <div className="mt-2">
+                    <div className="font-medium" htmlFor="title">
+                      Imagen Destacada
+                    </div>
+                    {previewImage ? (
+                      <img
+                        src={previewImage}
+                        alt="Preview"
+                        className="mt-2 max-w-full h-48 mx-auto"
+                      />
+                    ) : (
+                      <img
+                        src="../../../../public/img/upload1.png"
+                        alt="Default Preview"
+                        className="mt-2 max-w-full h-48 mx-auto"
+                      />
+                    )}
+                    <button
+                      type="button"
+                      className="pre tracking-widest p-3 mt-4"
+                      onClick={() => fileInputRef.current.click()}
+                    >
+                      <div className="">
+                        Subir imagen
+                        {/* <ArrowUpFromLine size={20} className="ml-2" /> */}
+                      </div>
+                    </button>
+                    <input
+                      className="hidden"
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e.target.files[0])}
+                      ref={fileInputRef}
+                      // style={{ display: "none" }}
+                    />
+                  </div>
+                  <div>
+                    <button type="submit" className="entr tracking-widest mt-4">
+                      Añadir entrada
+                    </button>
+                  </div>
+                </form>
+                <div className="sm:w-full w-60%">
+                  <div className="mt-2">
+                    <div className="right">
+                      <div className="previsualizar">
+                        <div className="bottonpre">
+                          <h2 className="negt">Previsualización</h2>
+                        </div>
+                        <div>
+                          <div className="form-group tinymce-container">
+                            <div className="enter"></div>
+                            <Editor
+                              id="entryDescription"
+                              name="content"
+                              value={tiny}
+                              onEditorChange={handleTinyChange}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 }
-export default newPost;
+
+export default usuarios;
