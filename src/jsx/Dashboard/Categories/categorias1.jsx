@@ -139,37 +139,7 @@ function categorias() {
                   <button type="button" className="dest" onClick={handleToggleModal}>
                     Imagen Destacada
                   </button>
-                  {showModal && (
-              <div className="modal">
-              <div className="modal-content">
-                <span className="close" onClick={() => setShowModal(false)}>
-                  &times;
-                </span>
-                <p className="apartadop">Inserta el enlace de la imagen:</p>
-                <input className="insertor"
-                  type="text"
-                  value={imageLink}
-                  onChange={(e) => setImageLink(e.target.value)}
-                />
-                <p className="apartadop">Inserta el ancho de la imagen (en píxeles):</p>
-                <input className="insertor"
-                  type="number"
-                  value={imageWidth}
-                  onChange={(e) => setImageWidth(e.target.value)}
-                />
-                <p className="apartadop">Inserta el alto de la imagen (en píxeles):</p>
-                <input className="insertor"
-                  type="number"
-                  value={imageHeight}
-                  onChange={(e) => setImageHeight(e.target.value)}
-                />
-                <button className="insert-button" onClick={handleAddImage}>
-                  Insertar
-                </button>
-              </div>
-            </div>
-              )}
-    
+                      
                 </div>
                 <div>
                   <button type="submit" className="entr">

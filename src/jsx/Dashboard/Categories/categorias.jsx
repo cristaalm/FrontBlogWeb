@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "../../../css/usuarios.css";
 import { Tooltip } from "react-tooltip";
 import Modal from "react-modal";
-import { FormattedMessage, useIntl } from "react-intl"; // Importa FormattedMessage y useIntl
 import { createCategory } from "../../../js/createCategory.js";
 import { editCategory } from "../../../js/editCategory.js";
-import { GithubPicker } from "react-color";
+import { Github } from "@uiw/react-color";
 
 import Sidebar, {
   SidebarItem,
@@ -17,8 +16,8 @@ import {
   Book,
   PlusSquare,
   Layers,
-  Pencil,
   Trash,
+  Pencil,
 } from "lucide-react";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
@@ -47,6 +46,7 @@ function categorías() {
   // Datos del formulario
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
+  // Inicializa el estado de selectedColor con un color inicial
   const [selectedColor, setSelectedColor] = useState("");
 
   const [showModal, setShowModal] = useState(false);
@@ -68,6 +68,20 @@ function categorías() {
   const [messageClass, setMessageClass] = useState("");
 
   const [categories, setCategories] = useState([]);
+
+  const fileInputRef = useRef(null);
+
+  const handleUploadClick = () => {
+    // Activa el input de tipo file al hacer clic en otro elemento
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    // Aquí puedes manejar la lógica para subir el archivo
+    console.log("Archivo seleccionado:", file);
+  };
+
   const handleAddImage = () => {
     // Lógica para insertar la imagen en el editor de texto
     console.log("Link de la imagen:", imageLink);
@@ -79,7 +93,18 @@ function categorías() {
   const handleToggleModal = () => {
     setShowModal(!showModal);
   };
+  const [previewImage, setPreviewImage] = useState(null);
 
+  const handleImageUpload = (file) => {
+    // Aquí puedes manejar la lógica para subir la imagen
+    console.log("Archivo seleccionado:", file);
+    const imageUrl = URL.createObjectURL(file);
+    setPreviewImage(imageUrl);
+  };
+  // Función para actualizar el color seleccionado
+  const handleColorChange = (color) => {
+    setSelectedColor(color.hex);
+  };
   const toggleEntriesDropdown = () => {
     setIsEntriesDropdownOpen(!isEntriesDropdownOpen);
   };
@@ -99,7 +124,7 @@ function categorías() {
     setCategoryId(null);
   }
 
-  // Obtiene los categorías en la tabla (GET)
+  // Obtiene los categorías en la tabla (GET) y los ordena por ID ascendente
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
@@ -152,32 +177,44 @@ function categorías() {
     setNombre("");
     setDescripcion("");
     setSelectedColor("");
+    setPreviewImage(null);
   };
   // Modifica la función handleSubmit para que pueda enviar una solicitud de actualización en lugar de crear un usuario nuevo
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (nombre && descripcion) {
-      try {
-        if (editCategoryId !== null) {
-          // Si editCategoryId no es null, significa que se está editando una categoría existente
-          await editCategory(
-            nombre,
-            descripcion,
-            // selectedColor,
-            editCategoryId // Agregar el ID de la categoría a editar
-          );
-          setMessage("Categoría modificada exitosamente");
-        } else {
-          // Si editCategoryId es null, significa que se está creando una nueva categoría
-          await createCategory(nombre, descripcion, selectedColor);
-          setMessage("Categoría creada exitosamente");
+      if (selectedColor) {
+        try {
+          if (editCategoryId !== null) {
+            // Si editCategoryId no es null, significa que se está editando una categoría existente
+            await editCategory(
+              nombre,
+              descripcion,
+              selectedColor,
+              previewImage,
+              editCategoryId // Agregar el ID de la categoría a editar
+            );
+            setMessage("Categoría modificada exitosamente");
+          } else {
+            // Si editCategoryId es null, significa que se está creando una nueva categoría
+            await createCategory(
+              nombre,
+              descripcion,
+              selectedColor,
+              previewImage
+            );
+            setMessage("Categoría creada exitosamente");
+          }
+          setEditCategoryId(null); // Resetear el estado de editCategoryId a null
+          setReloadTable(!reloadTable); // Cambiar el estado para recargar la tabla
+          setMessageClass("success");
+          cleanForm(); // Limpiar el formulario después de enviar los datos
+        } catch (error) {
+          setMessage("Error al crear, intenta de nuevo");
+          setMessageClass("error");
         }
-        setEditCategoryId(null); // Resetear el estado de editCategoryId a null
-        setReloadTable(!reloadTable); // Cambiar el estado para recargar la tabla
-        setMessageClass("success");
-        cleanForm(); // Limpiar el formulario después de enviar los datos
-      } catch (error) {
-        setMessage("Error al crear, intenta de nuevo");
+      } else {
+        setMessage("Por favor selecciona un color");
         setMessageClass("error");
       }
     } else {
@@ -194,6 +231,10 @@ function categorías() {
     setEditCategoryData(categoryData);
     setNombre(categoryData.nombre);
     setDescripcion(categoryData.descripcion);
+    setSelectedColor(categoryData.color);
+    console.log(categoryData.imgdestacada);
+    // Actualiza el estado previewImage con la URL de la imagen
+    setPreviewImage(categoryData.imgdestacada);
   };
 
   return (
@@ -298,18 +339,22 @@ function categorías() {
                     <div className="font-medium" htmlFor="title">
                       Nombre de categoría
                     </div>
-                    <input
-                      value={nombre}
-                      onChange={(e) => setNombre(e.target.value)}
-                      className="m-0 w-full p-2 in2"
-                      placeholder="Ingrese categoría"
-                    ></input>
-                    <div className="flex items-center mt-2">
-                      <div className="font-medium mr-2">Color:</div>
-                      <div
-                        className="rounded-full w-6 h-6"
-                        style={{ backgroundColor: selectedColor }}
-                      ></div>
+                    <div className="flex items-center">
+                      <input
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        className="m-0 w-full p-2 in2"
+                        placeholder="Ingrese categoría"
+                      ></input>
+                      <Github
+                        style={{
+                          marginLeft: "10px",
+                          width: "150px",
+                          transform: "rotate(-90deg) scaleX(1)", // Rota la flecha 90 grados en sentido antihorario y la invierte horizontalmente
+                        }}
+                        color={selectedColor}
+                        onChange={handleColorChange}
+                      />
                     </div>
                   </div>
                   <div className="mt-2">
@@ -328,46 +373,45 @@ function categorías() {
                   </div>
                   <div className="mt-2">
                     <div className="font-medium" htmlFor="title">
-                      Color
-                    </div>
-                    <GithubPicker
-                      colors={[
-                        "#B80000",
-                        "#DB3E00",
-                        "#FCCB00",
-                        "#008B02",
-                        "#006B76",
-                        "#1273DE",
-                        "#004DCF",
-                        "#5300EB",
-                        "#EB9694",
-                        "#FAD0C3",
-                        "#FEF3BD",
-                        "#C1E1C5",
-                        "#BEDADC",
-                        "#C4DEF6",
-                        "#BED3F3",
-                        "#D4C4FB",
-                      ]}
-                      onChange={(color) => setSelectedColor(color.hex)}
-                      className="ml-2"
-                    />
-                  </div>
-                  <div></div>
-                  <div className="mt-2">
-                    <div className="font-medium" htmlFor="title">
                       Imagen Destacada
                     </div>
+                    {previewImage ? (
+                      <img
+                        src={previewImage}
+                        alt="Preview"
+                        className="mt-2 max-w-full h-48 mx-auto"
+                      />
+                    ) : (
+                      <img
+                        src="../../../../public/img/upload1.png"
+                        alt="Default Preview"
+                        className="mt-2 max-w-full h-48 mx-auto"
+                      />
+                    )}
                     <button
-                      className="w-full btn-yellow p-4 m-1"
-                      onClick={() => loadEditCategoryData(category.id)}
+                      type="button"
+                      className="pre tracking-widest p-3 mt-4"
+                      onClick={() => fileInputRef.current.click()}
                     >
-                      Añadir imagen
-                      <Pencil size={20} />
+                      <div className="">
+                        Subir imagen
+                        {/* <ArrowUpFromLine size={20} className="ml-2" /> */}
+                      </div>
                     </button>
+                    <input
+                      className="hidden"
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e.target.files[0])}
+                      ref={fileInputRef}
+                      // style={{ display: "none" }}
+                    />
                   </div>
                   <div>
-                    <button type="submit" className="entr tracking-widest mt-4">
+                    <button
+                      type="submit"
+                      className="entr tracking-widest p-3 mt-4"
+                    >
                       {editCategoryId !== null
                         ? "Actualizar categoría"
                         : "Añadir categoría"}
@@ -406,50 +450,52 @@ function categorías() {
                             </thead>
                             <tbody>
                               {categories.data &&
-                                categories.data.map((category) => (
-                                  <tr
-                                    key={category.id}
-                                    className="tr-body border-2 border-teal-600"
-                                  >
-                                    <td className="p-1 w-5">{category.id}</td>
-                                    <td className="border-2 border-teal-600 p-1">
-                                      {category.nombre}
-                                    </td>
-                                    <td className="border-2 border-teal-600 p-1">
-                                      <div
-                                        style={{
-                                          backgroundColor: category.color,
-                                          width: "20px",
-                                          height: "20px",
-                                        }}
-                                      ></div>
-                                    </td>
-                                    <td className="flex items-center justify-center">
-                                      <button
-                                        className="btn-yellow p-2 m-1"
-                                        data-tooltip-id="editar"
-                                        data-tooltip-place="top"
-                                        data-tooltip-content="Editar"
-                                        onClick={() =>
-                                          loadEditCategoryData(category.id)
-                                        }
-                                      >
-                                        <Pencil size={20} />
-                                      </button>
-                                      <button
-                                        onClick={() =>
-                                          toggleDelete(category.id)
-                                        }
-                                        className="btn-red p-2 m-1"
-                                        data-tooltip-id="eliminar"
-                                        data-tooltip-place="top-end"
-                                        data-tooltip-content="Eliminar"
-                                      >
-                                        <Trash size={20} />
-                                      </button>
-                                    </td>
-                                  </tr>
-                                ))}
+                                categories.data
+                                  .sort((a, b) => a.id - b.id) // Ordena las categorías por ID ascendente
+                                  .map((category) => (
+                                    <tr
+                                      key={category.id}
+                                      className="tr-body border-2 border-teal-600"
+                                    >
+                                      <td className="p-1 w-5">{category.id}</td>
+                                      <td className="border-2 border-teal-600 p-1">
+                                        {category.nombre}
+                                      </td>
+                                      <td className="border-2 border-teal-600 p-1">
+                                        <div
+                                          style={{
+                                            backgroundColor: category.color,
+                                            width: "auto",
+                                            height: "35px",
+                                          }}
+                                        ></div>
+                                      </td>
+                                      <td className="flex items-center justify-center">
+                                        <button
+                                          className="btn-yellow p-2 m-1"
+                                          data-tooltip-id="editar"
+                                          data-tooltip-place="top"
+                                          data-tooltip-content="Editar"
+                                          onClick={() =>
+                                            loadEditCategoryData(category.id)
+                                          }
+                                        >
+                                          <Pencil size={20} />
+                                        </button>
+                                        <button
+                                          onClick={() =>
+                                            toggleDelete(category.id)
+                                          }
+                                          className="btn-red p-2 m-1"
+                                          data-tooltip-id="eliminar"
+                                          data-tooltip-place="top-end"
+                                          data-tooltip-content="Eliminar"
+                                        >
+                                          <Trash size={20} />
+                                        </button>
+                                      </td>
+                                    </tr>
+                                  ))}
                             </tbody>
                           </table>
                         </div>

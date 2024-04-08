@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export const createCategory = async (nombre, descripcion) => {
+export const createCategory = async (nombre, descripcion,selectedColor,previewImage) => {
     try {
       const response = await axios.post('https://backblogweb.onrender.com/api/categories/', {
         nombre: nombre,
         descripcion: descripcion,
-        imgdestacada: "Lorem FACK",
-        color: "#EB9694"
+        imgdestacada: previewImage,
+        color: selectedColor
       });
   
       if (!response) {

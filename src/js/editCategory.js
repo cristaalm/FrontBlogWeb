@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export const editCategory = async (nombre, descripcion, id) => {
+export const editCategory = async (nombre, descripcion, selectedColor, previewImage, id) => {
   try {
     const response = await axios.patch(`https://backblogweb.onrender.com/api/categories/${id}`, {
       nombre: nombre,
       descripcion: descripcion,
-      imgdestacada: "Lorem FACK",
-      color: "#E44694"
+      imgdestacada: previewImage,
+      color: selectedColor
     });
     
     if (!response) {

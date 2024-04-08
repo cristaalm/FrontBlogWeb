@@ -449,10 +449,13 @@ function usuarios() {
                                 <th className="border-teal-600 border-r-2 encabezadoTabla"></th>
                               </tr>
                             </thead>
+
                             <tbody>
                               {users.data &&
-                                users.data.map((userInfo) => (
-                                  <tr key={userInfo.id} className="tr-body border-2 border-teal-600">
+                                users.data
+                                  .sort((a, b) => a.id - b.id) // Ordena las categorías por ID ascendente
+                                  .map((userInfo) => (
+                                    <tr key={userInfo.id} className="tr-body border-2 border-teal-600">
                                     <td className="p-1 w-5">{userInfo.id}</td>
                                     <td className="border-2 border-teal-600 p-1">
                                       {userInfo.nombre}

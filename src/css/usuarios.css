@@ -370,6 +370,13 @@ h1 {
   color: #fff;
   text-decoration: none;
 }
+.pre{
+  transition: 0.5s;
+}
+.pre:hover{
+  background-position: right center; /* change the direction of the change here */
+
+}
 .insertor {
   color: #000;
 }
@@ -696,4 +703,7 @@ input:valid{
 }
 .encabezadoTabla{
   background-color: #0d9488 !important;
+}
+.hidden{
+  display: none !important;
 }
