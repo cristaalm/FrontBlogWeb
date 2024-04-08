@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../../../css/usuarios.css";
-import { Tooltip } from "react-tooltip";
+import { Tooltip } from "react-tooltip"; // 1. Debemos de importar Tooltip
 import Modal from "react-modal";
 import { FormattedMessage, useIntl } from "react-intl"; // Importa FormattedMessage y useIntl
 import { createUser } from "../../../js/createUser";
@@ -61,7 +61,7 @@ function usuarios() {
   const [editUserId, setEditUserId] = useState(null);
   // Agrega un nuevo estado para almacenar los datos del usuario a editar
   const [editUserData, setEditUserData] = useState(null);
-  
+
   const [message, setMessage] = useState("");
   const [messageClass, setMessageClass] = useState("");
 
@@ -318,6 +318,7 @@ function usuarios() {
         </Sidebar>
       </div>
       <div className="inicio">
+        //2. Agregamos formato al Tooltip y definimos un "id"
         <Tooltip
           id="editar"
           style={{
@@ -466,43 +467,47 @@ function usuarios() {
                                 users.data
                                   .sort((a, b) => a.id - b.id) // Ordena las categorías por ID ascendente
                                   .map((userInfo) => (
-                                    <tr key={userInfo.id} className="tr-body border-2 border-teal-600">
-                                    <td className="p-1 w-5">{userInfo.id}</td>
-                                    <td className="border-2 border-teal-600 p-1">
-                                      {userInfo.nombre}
-                                    </td>
-                                    <td className="border-2 border-teal-600 p-1">
-                                      {userInfo.perfil}
-                                    </td>
-                                    <td className="border-2 border-teal-600 p-1">
-                                      #
-                                    </td>
-                                    <td className="flex items-center justify-center">
-                                      <button
-                                        className="btn-yellow p-2 m-1"
-                                        data-tooltip-id="editar"
-                                        data-tooltip-place="top"
-                                        data-tooltip-content="Editar"
-                                        onClick={() =>
-                                          loadEditUserData(userInfo.id)
-                                        }
-                                      >
-                                        <Pencil size={20} />
-                                      </button>
-                                      <button
-                                        onClick={() =>
-                                          toggleDelete(userInfo.id)
-                                        }
-                                        className="btn-red p-2 m-1"
-                                        data-tooltip-id="eliminar"
-                                        data-tooltip-place="top-end"
-                                        data-tooltip-content="Eliminar"
-                                      >
-                                        <Trash size={20} />
-                                      </button>
-                                    </td>
-                                  </tr>
-                                ))}
+                                    <tr
+                                      key={userInfo.id}
+                                      className="tr-body border-2 border-teal-600"
+                                    >
+                                      <td className="p-1 w-5">{userInfo.id}</td>
+                                      <td className="border-2 border-teal-600 p-1">
+                                        {userInfo.nombre}
+                                      </td>
+                                      <td className="border-2 border-teal-600 p-1">
+                                        {userInfo.perfil}
+                                      </td>
+                                      <td className="border-2 border-teal-600 p-1">
+                                        #
+                                      </td>
+                                      <td className="flex items-center justify-center">
+                                        <button
+                                          className="btn-yellow p-2 m-1"
+                                          // Estas tres líneas son importantes
+                                          data-tooltip-id="editar" // Anteriormente definimos id
+                                          data-tooltip-place="top" // Lugar Tooltip
+                                          data-tooltip-content="Editar" // Contenido
+                                          onClick={() =>
+                                            loadEditUserData(userInfo.id)
+                                          }
+                                        >
+                                          <Pencil size={20} />
+                                        </button>
+                                        <button
+                                          onClick={() =>
+                                            toggleDelete(userInfo.id)
+                                          }
+                                          className="btn-red p-2 m-1"
+                                          data-tooltip-id="eliminar"
+                                          data-tooltip-place="top-end"
+                                          data-tooltip-content="Eliminar"
+                                        >
+                                          <Trash size={20} />
+                                        </button>
+                                      </td>
+                                    </tr>
+                                  ))}
                             </tbody>
                           </table>
                         </div>
