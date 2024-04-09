@@ -6,18 +6,29 @@ const Encabezado =() => {
     return (
     <header className="headerhome">
         <div className="iml">
-            <img src="../../../public/img/logo.png" />
+            <img className="logo" src="../../../public/img/logo.png" />
         </div>
         <div className="menum">
             <button className="navegacion" >
-                <FormattedMessage id="index.Welcome" defaultMessage="Welcome " />
-            </button>
-            <button className="navegacion"><FormattedMessage id="index.Multimedia-Resources" defaultMessage="Multimedia Resources" /> 
+                <a className="mivimiento" href="welcome">
+                    <FormattedMessage id="index.Welcome" defaultMessage="Welcome " />
+                </a>
             </button>
             <button className="navegacion">
-                <FormattedMessage id="index.Tickets" defaultMessage="Tickets " />
+                <a className="mivimiento" href="#recursos-multimedia">
+                    <FormattedMessage id="index.Multimedia-Resources" defaultMessage="Recursos Multimedia" />
+                </a>
             </button>
-            <button className="navegacion">Quizz</button>
+            <button className="navegacion">
+                <a className="mivimiento" href="#ultima-entrada ">
+                    <FormattedMessage id="index.Tickets" defaultMessage="Tickets " />
+                </a>
+            </button>
+            <button className="navegacion">
+                <a className="mivimiento" href="#quizz">
+                    Quizz
+                </a>
+            </button>
         </div>
         <div className="log">
             <Link to="/login">

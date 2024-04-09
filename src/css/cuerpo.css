@@ -169,62 +169,13 @@
     
 }
 
-.categoria-seleccionada::before {
-    content: 'Categoría Seleccionada'; /* El texto de la insignia */
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #FFD700; /* Color amarillo dorado para la insignia */
-    padding: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 0.75em; /* Ajusta este tamaño según tu diseño */
-    color: black; /* Color del texto en la insignia */
-}
-.categoria-seleccionada2 {
-  border: 1px solid #a020f0; /* Un tono de púrpura */
-    padding: 10px;
-    text-align: center;
-    position: relative;
-}
 
-.categoria-seleccionada2::before {
-    content: 'Categoría Seleccionada'; /* El texto de la insignia */
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #e251e2; /* Color amarillo dorado para la insignia */
-    padding: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 0.75em; /* Ajusta este tamaño según tu diseño */
-    color: black; /* Color del texto en la insignia */
-}
-.categoria-seleccionada3 {
-  border: 1px solid #a020f0; /* Un tono de púrpura */
-    padding: 10px;
-    text-align: center;
-    position: relative;
-}
 
-.categoria-seleccionada3::before {
-    content: 'Categoría Seleccionada'; /* El texto de la insignia */
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #e89e9e; /* Color amarillo dorado para la insignia */
-    padding: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 0.75em; /* Ajusta este tamaño según tu diseño */
-    color: black; /* Color del texto en la insignia */
-}
 
   /* Asegúrate de que la imagen no tenga espacios extra alrededor */
 .catimg {
     display: block;
     max-width: 100%;
-    height: auto;
 }
 
 .contenido-entrada {
@@ -266,24 +217,58 @@
 .mostarmas:hover {
     background-color: #2980b9; /* Cambia el color de fondo al pasar el cursor */
 }
+/* ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]] */
+/* lista */
+/* Aplica estilos para la vista de lista *//* Estilos base para la vista de lista */
+.ultimasentradas-container.lista-view {
+    flex-direction: column;
+    gap: 20px;
+  }
 
-/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-/* Estilos para paginación */
-.paginacion {
+  /* Estilos para cada entrada en la vista de lista */
+  .ultimasentradas.lista-view {
+    width: 100%;
+    display: flex; /* Organizar imagen y contenido en fila */
+    align-items: center; /* Centrar elementos verticalmente */
+    padding: 20px;
+    box-shadow: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px; /* Espacio al final de cada entrada */
+  }
+  
+  /* Estilos para el contenido al lado de la imagen */
+  .contenido-entrada.lista-view {
+    flex-grow: 1; /* Ocupar el espacio restante */
+    display: flex;
+    flex-direction: column; /* Organizar meta, título y descripción en columna */
+  }
+
+
+  /* Estilos para metadatos, título y descripción */
+  .metaentrada.lista-view,
+  .tituloentrada.lista-view,
+  .descripcionentrada.lista-view {
+    margin-bottom: 5px; /* Espacio entre elementos de texto */
+  }
+  
+  /* Resto de estilos de botones y paginación sin cambios */
+  .categoria-seleccionada.lista-view {
+    height: 100%; /* Ajusta esto para que coincida con la altura deseada */
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-}
-
-.pagina {
-    margin: 0 5px;
-    padding: 5px 10px;
-    background-color: #e0e0e0;
-    cursor: pointer;
-}
-
-.pagina:hover {
-    background-color: #d0d0d0;
+    align-items: center;
+  }
+  
+  /* Para la insignia 'Categoría Seleccionada' */
+  .categoria-seleccionada.lista-view::before {
+    display: block; /* Mostrar como bloque para que aparezca encima del contenido */
+    margin-bottom: 10px; /* Espacio debajo de la insignia */
+  }
+  /* Estilos para la imagen en la vista de lista */
+.catimg.lista-view {
+  width: 30%; /* Ocupa todo el ancho del contenedor */
+  height: 100%; /* Ocupa toda la altura del contenedor */
+  object-fit: contain; /* Asegura que toda la imagen se ajuste dentro del contenedor */
 }
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */

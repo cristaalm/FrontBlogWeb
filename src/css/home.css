@@ -8,7 +8,7 @@
   background: linear-gradient(45deg, #5d9697, #81c0c6, #82c2c8, #82c2c8);
 }
 
-.headerhome .iml img {
+.headerhome .iml .logo {
   max-width: 70px;
 }
 
@@ -26,6 +26,55 @@
   color: inherit;
 }
 
+.menum {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.navegacion {
+  background-color: #4A90E2;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones para el color de fondo y el transform */
+  outline: none; /* Elimina el contorno cuando se hace clic en los botones */
+}
+
+.navegacion .mivimiento {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  display: block; /* Asegura que el enlace llene todo el espacio del botón */
+}
+
+.navegacion:hover {
+  background-color: #357ABD;
+  transform: translateY(-3px); /* Mueve el botón hacia arriba */
+}
+
+/* Opcional: añade una sombra para resaltar aún más el efecto de "levitación" */
+.navegacion:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Restablece la posición y sombra del botón cuando no se está haciendo hover */
+.navegacion:not(:hover) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Transición para el elemento que se mueve dentro del botón */
+.mivimiento {
+  transition: transform 0.2s ease;
+}
+
+/* Cuando se hace hover, solo se mueve el contenido del botón */
+.navegacion:hover .mivimiento {
+  transform: translateY(-3px);
+}
 
 /* @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
 *{

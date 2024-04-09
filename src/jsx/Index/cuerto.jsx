@@ -12,15 +12,12 @@ import {
 
 const Cuerpo =() => {
     
-
-
     const [viewMode, setViewMode] = useState('lista'); // Estado para manejar la vista de los elementos (lista o cuadrícula)
 
     // Función para cambiar a la vista de lista
     const changeToListView = () => {
         setViewMode('lista');
     };
-
     // Función para cambiar a la vista de cuadrícula
     const changeToGridView = () => {
         setViewMode('cuadricula');
@@ -28,7 +25,7 @@ const Cuerpo =() => {
     return (
     <div className="cuerpoo">
         {/* Video destacado */}
-        <article className="seccionesvideo">
+        <article id='welcome' className="seccionesvideo">
             <video className="vid" src="src/video/aquavision.mp4" autoPlay loop muted></video>
             <div className='vajovideo'></div>
         </article>
@@ -58,9 +55,9 @@ const Cuerpo =() => {
             </div>
         </article>
         {/* Últimas entradas */}
-        <article className="seccionescuerpoultima">
-            <div className=" titulosdecategoruas">
-            <FormattedMessage id="index.Last-entries" defaultMessage="Last entries"  />
+        <article id='ultima-entrada' className="seccionescuerpoultima">
+            <div className={`ultimasentradas-container ${viewMode}`}>
+                <FormattedMessage id="index.Last-entries" defaultMessage="Last entries"  />
                 <div className='contenedorbotoneslistacuad'>
                     <Tooltip
                     id="lista"
@@ -98,35 +95,35 @@ const Cuerpo =() => {
                     </ButtonGroup>
                 </div>
             </div>
-                <div className="ultimasentradas-container">
-                    <div className="ultimasentradas">
-                        <div className="categoria-seleccionada">
-                            <img className="catimg" src="../../../public/img/img5.png" alt="" />
+            <div className={`ultimasentradas-container ${viewMode === 'lista' ? 'lista-view' : ''}`}>
+                    <div className={`ultimasentradas ${viewMode === 'lista' ? 'lista-view' : ''}`}>
+                        <div className={`categoria-seleccionada ${viewMode === 'lista' ? 'lista-view' : ''}`}>
+                            <img className={`catimg ${viewMode === 'lista' ? 'lista-view' : ''}`} src="../../../public/img/img5.png" alt="" />
                         </div>
                         <div className="contenido-entrada">
-                            <div className="metaentrada">Nombre del creador - Fecha de publicación</div>
-                            <div className="tituloentrada">Título de Entrada</div>
-                            <div className="descripcionentrada">Descripción</div>
+                            <div className={`metaentrada ${viewMode === 'lista' ? 'lista-view' : ''}`}>Nombre del creador - Fecha de publicación</div>
+                            <div className={`tituloentrada ${viewMode === 'lista' ? 'lista-view' : ''}`}>Título de Entrada</div>
+                            <div className={`descripcionentrada ${viewMode === 'lista' ? 'lista-view' : ''}`}>Descripción</div>
                         </div>
                     </div>
-                    <div className="ultimasentradas">
-                        <div className="categoria-seleccionada2">
-                            <img className="catimg" src="../../../public/img/img5.png" alt="" />
+                    <div className={`ultimasentradas ${viewMode === 'lista' ? 'lista-view' : ''}`}>
+                        <div className={`categoria-seleccionada ${viewMode === 'lista' ? 'lista-view' : ''}`}>
+                            <img className={`catimg ${viewMode === 'lista' ? 'lista-view' : ''}`} src="../../../public/img/img5.png" alt="" />
                         </div>
                         <div className="contenido-entrada">
-                            <div className="metaentrada">Nombre del creador - Fecha de publicación</div>
-                            <div className="tituloentrada">Título de Entrada</div>
-                            <div className="descripcionentrada">Descripción</div>
+                            <div className={`metaentrada ${viewMode === 'lista' ? 'lista-view' : ''}`}>Nombre del creador - Fecha de publicación</div>
+                            <div className={`tituloentrada ${viewMode === 'lista' ? 'lista-view' : ''}`}>Título de Entrada</div>
+                            <div className={`descripcionentrada ${viewMode === 'lista' ? 'lista-view' : ''}`}>Descripción</div>
                         </div>
                     </div>
-                    <div className="ultimasentradas">
-                        <div className="categoria-seleccionada3">
-                            <img className="catimg" src="../../../public/img/img5.png" alt="" />
+                    <div className={`ultimasentradas ${viewMode === 'lista' ? 'lista-view' : ''}`}>
+                        <div className={`categoria-seleccionada ${viewMode === 'lista' ? 'lista-view' : ''}`}>
+                            <img className={`catimg ${viewMode === 'lista' ? 'lista-view' : ''}`} src="../../../public/img/img5.png" alt="" />
                         </div>
                         <div className="contenido-entrada">
-                            <div className="metaentrada">Nombre del creador - Fecha de publicación</div>
-                            <div className="tituloentrada">Título de Entrada</div>
-                            <div className="descripcionentrada">Descripción</div>
+                            <div className={`metaentrada ${viewMode === 'lista' ? 'lista-view' : ''}`}>Nombre del creador - Fecha de publicación</div>
+                            <div className={`tituloentrada ${viewMode === 'lista' ? 'lista-view' : ''}`}>Título de Entrada</div>
+                            <div className={`descripcionentrada ${viewMode === 'lista' ? 'lista-view' : ''}`}>Descripción</div>
                         </div>
                     </div>
                 </div>
@@ -143,7 +140,7 @@ const Cuerpo =() => {
 
 
         {/* Recursos Multimedia */}
-        <article className="seccionescuerporecursos">
+        <article id="recursos-multimedia" className="seccionescuerporecursos">
         <div className=" titulosdecategoruasbla">
             <FormattedMessage id="index.Multimedia-Resources" defaultMessage="Multimedia Resources" /> 
             </div>
@@ -163,7 +160,7 @@ const Cuerpo =() => {
         </article>
 
         {/* Quizz */}
-        <article className="seccionescuerpoquizz">
+        <article id='quizz' className="seccionescuerpoquizz">
         <div className=" titulosdecategoruas">
                 <h2 >Quizz</h2> 
             </div>
