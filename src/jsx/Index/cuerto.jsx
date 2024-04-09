@@ -1,13 +1,29 @@
 import React, { useState } from 'react';
 import "../../css/cuerpo.css"
+import { Tooltip } from "react-tooltip"; // 1. Debemos de importar Tooltip
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import { FormattedMessage } from "react-intl";
+
+import {
+    ListCollapse,
+    Grid2X2 
+} from "lucide-react";
 
 const Cuerpo =() => {
-      // Estado para manejar la vista de los elementos (lista o cuadricula)
-  const [viewMode, setViewMode] = useState('lista'); // 'lista' es el valor por defecto
+    
 
-  // Función para alternar entre vista de lista y cuadricula
-    const toggleViewMode = () => {
-    setViewMode(viewMode === 'lista' ? 'cuadricula' : 'lista');
+
+    const [viewMode, setViewMode] = useState('lista'); // Estado para manejar la vista de los elementos (lista o cuadrícula)
+
+    // Función para cambiar a la vista de lista
+    const changeToListView = () => {
+        setViewMode('lista');
+    };
+
+    // Función para cambiar a la vista de cuadrícula
+    const changeToGridView = () => {
+        setViewMode('cuadricula');
     };
     return (
     <div className="cuerpoo">
@@ -20,9 +36,8 @@ const Cuerpo =() => {
         {/* Top de categorías */}
         <article className="seccionescuerpo">
             <div className=" titulosdecategoruas">
-                <h2 >Top de categorías</h2> 
+                <FormattedMessage id="index.Top-categories" defaultMessage="Top categories"  />
             </div>
-            
             <div className="tutilocatego">
                 <div className="imagendest">
                     <img className="imgdest"  src="../../../public/img/img5.png" alt="" />
@@ -42,14 +57,46 @@ const Cuerpo =() => {
                 <div className="textodecategorias">Categoría <br/> # Entradas</div>
             </div>
         </article>
-
         {/* Últimas entradas */}
-        <article className={`seccionescuerpoultima ${viewMode}-container`}>
+        <article className="seccionescuerpoultima">
             <div className=" titulosdecategoruas">
-                <h2 >Últimas entradas</h2> 
-                <button className='listacuador' onClick={toggleViewMode}>
-                Cambiar vista a {viewMode === 'lista' ? 'Cuadricula' : 'Lista'}
-                </button>
+            <FormattedMessage id="index.Last-entries" defaultMessage="Last entries"  />
+                <div className='contenedorbotoneslistacuad'>
+                    <Tooltip
+                    id="lista"
+                    style={{
+                        backgroundColor: "#034077",
+                        color: "whitesmoke",
+                        zIndex: "999",
+                    }}
+                    />
+                    <Tooltip
+                    id="cuadricular"
+                    style={{
+                        backgroundColor: "#034077",
+                        color: "whitesmoke",
+                        zIndex: "999",
+                    }}
+                    />
+                    <ButtonGroup variant="contained" >
+                        <Button 
+                        onClick={changeToListView}
+                        data-tooltip-id="lista"
+                        data-tooltip-place="top"
+                        data-tooltip-content="lista"
+                        >
+                            <ListCollapse /> 
+                        </Button>
+                        <Button
+                        onClick={changeToGridView}
+                        data-tooltip-id="cuadricular"
+                        data-tooltip-place="top"
+                        data-tooltip-content="cuadricular"
+                        >
+                            <Grid2X2 /> 
+                        </Button>
+                    </ButtonGroup>
+                </div>
             </div>
                 <div className="ultimasentradas-container">
                     <div className="ultimasentradas">
@@ -84,11 +131,11 @@ const Cuerpo =() => {
                     </div>
                 </div>
                 <div className='mosrarmasyvav'>
-                    <nav className="paginacion">
-                        <span className="pagina">1</span>
-                        <span className="pagina">2</span>
-                        <span className="pagina">3</span>
-                    </nav>
+                <ButtonGroup variant="contained" aria-label="Basic button group">
+                    <Button>1</Button>
+                    <Button>2</Button>
+                    <Button>3</Button>
+                </ButtonGroup>
                     <button className='mostarmas'> mostar mas</button>
                 </div>
         </article>
@@ -97,17 +144,21 @@ const Cuerpo =() => {
 
         {/* Recursos Multimedia */}
         <article className="seccionescuerporecursos">
-        <div className=" titulosdecategoruas">
-                <h2 >Recursos Multimedia</h2> 
+        <div className=" titulosdecategoruasbla">
+            <FormattedMessage id="index.Multimedia-Resources" defaultMessage="Multimedia Resources" /> 
             </div>
             <div className="recurso">
-                <div className="imagen-recurso">Infografía</div>
+                <div className="imagen-recurso">
+                <video className="video-recursos" src="src/video/ODS6.mp4" autoPlay loop muted></video>
+                </div>
             </div>
             <div className="recurso">
-                <div className="imagen-recurso">Video</div>
+                <div className="imagen-recurso"></div>
             </div>
             <div className="recurso">
-                <div className="imagen-recurso">Video</div>
+                <div className="imagen-recurso">
+                    <video className="video-recursos" src="src/video/text.mp4" autoPlay loop muted></video>
+                </div>
             </div>
         </article>
 

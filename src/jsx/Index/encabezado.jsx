@@ -1,6 +1,6 @@
 import { CircleUser } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { FormattedMessage } from "react-intl";
 
 const Encabezado =() => {
     return (
@@ -9,9 +9,14 @@ const Encabezado =() => {
             <img src="../../../public/img/logo.png" />
         </div>
         <div className="menum">
-            <button className="navegacion">Bienvenida</button>
-            <button className="navegacion">Recursos Multimedia</button>
-            <button className="navegacion">Entradas</button>
+            <button className="navegacion" >
+                <FormattedMessage id="index.Welcome" defaultMessage="Welcome " />
+            </button>
+            <button className="navegacion"><FormattedMessage id="index.Multimedia-Resources" defaultMessage="Multimedia Resources" /> 
+            </button>
+            <button className="navegacion">
+                <FormattedMessage id="index.Tickets" defaultMessage="Tickets " />
+            </button>
             <button className="navegacion">Quizz</button>
         </div>
         <div className="log">

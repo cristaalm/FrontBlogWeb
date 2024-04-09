@@ -13,5 +13,10 @@
   "login.sentMailText" : "We sent you an email. Follow the instructions to get back into your account.",
   "login.back":"Back to Login",
   "login.error":"Check password or username.",
-  "login.success":"User logged in correctly."
+  "login.success":"User logged in correctly.",
+  "index.Top-categories" : "Top categories",
+  "index.Last-entries": "Last entries",
+  "index.Multimedia-Resources": "Multimedia Resources",
+  "index.Welcome": "Welcome ",
+  "index.Tickets": "Tickets "
 }

@@ -13,6 +13,14 @@
     display: flex;
     
 }
+.titulosdecategoruasbla {
+    color: #f5f2f2;
+    font-size: 24px;
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    
+}
 .vajovideo{
     padding-bottom: 2.5rem;
 }
@@ -122,7 +130,7 @@
 }
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
-/* Estilos.css */
+/* ultimas entradas */
 .seccionescuerpoultima {
     width: 100%;
     padding: 20px;
@@ -135,24 +143,15 @@
   padding: 0 15px; /* Agrega algo de padding en los lados para no tocar los bordes */
   /* Resto de tus estilos... */
 }
-.titulosdecategoruas .listacuador {
-    padding: 10px 20px; /* Añade padding para aumentar el área de clic y la visibilidad */
-    background-color: #3498db; /* Un color de fondo claro, puedes elegir el que prefieras */
-    color: white; /* Color de texto que contraste con el fondo */
-    border: none; /* Remueve el borde por defecto */
-    border-radius: 5px; /* Bordes redondeados para un look más moderno */
-    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
-    font-weight: bold; /* Texto en negrita para que resalte */
-    transition: background-color 0.3s ease; /* Anima el cambio de color de fondo */
+.contenedorbotoneslistacuad{
+    padding: 1rem;
 }
-.titulosdecategoruas .listacuador:hover {
-  background-color: #2980b9; /* Oscurece el botón al pasar el cursor */
-  /* Otras transiciones o efectos al pasar el cursor */
-}
+
 .ultimasentradas-container {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    margin-bottom: 10px;
 }
 
 .ultimasentradas {
@@ -295,7 +294,7 @@
     padding: 20px;
     box-sizing: border-box;
     text-align: center; /* Alineación central para el título y los recursos */
-    background-color: #1c3729;
+    background-color: #050907;
 }
 
 
@@ -314,31 +313,15 @@
     margin-bottom: 10px; /* Espacio entre la imagen y el texto inferior */
     background: #eee; /* Color de fondo */
 }
-
-.imagen-recurso::before {
-    content: '';
-    display: block;
+.video-recursos {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    border: 1px dashed #000;
-    z-index: 0;
+    width: 100%;
+    height: 100%;
 }
 
-.imagen-recurso span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    background: white;
-    padding: 5px 10px;
-    border: 1px solid #000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    cursor: pointer; /* Si es interactivo */
-}
+
 
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -414,20 +397,3 @@
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4 */
 /* para mostrar en forma de lista */
-.lista-container .ultimasentradas-container {
-  display: flex; /* Asegura que el contenedor principal sea flex */
-  flex-direction: column; /* Coloca los elementos hijos en una columna */
-}
-
-.lista-container .ultimasentradas {
-  display: flex; /* Flex para alinear imagen y texto horizontalmente */
-  align-items: center; /* Centrar los elementos verticalmente */
-  width: 100%; /* Cada elemento ocupa el ancho completo del contenedor */
-  margin-bottom: 20px; /* Añadir un poco de margen entre los elementos */
-}
-
-.lista-container .ultimasentradas .catimg {
-  width: auto; /* Para mantener la relación de aspecto */
-  max-height: 200px; /* Ajusta esto para cambiar el tamaño de la imagen */
-  margin-right: 20px; /* Espacio entre la imagen y el texto */
-}
