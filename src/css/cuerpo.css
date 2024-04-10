@@ -59,6 +59,9 @@
     border: 1px solid #000;
     padding: 0 1rem;
     background-color: #6ea9aa;
+    width: auto;
+    height: 20rem;
+    justify-content: center;
 }
 
   /* Número de ranking */
@@ -80,6 +83,9 @@
     border: 1px solid #000;
     padding: 0 1rem;
     background-color: #6ea9aa;
+    width: auto;
+    height: 20rem;
+    justify-content: center;
 }
 
   /* Número de ranking */
@@ -101,6 +107,9 @@
     border: 1px solid #000;
     padding: 0 1rem;
     background-color: #6ea9aa;
+    width: auto;
+    height: 20rem;
+    justify-content: center;    
 }
 
   /* Número de ranking */
@@ -253,7 +262,8 @@
   
   /* Resto de estilos de botones y paginación sin cambios */
   .categoria-seleccionada.lista-view {
-    height: 100%; /* Ajusta esto para que coincida con la altura deseada */
+    width: auto;
+    height: 10rem; /* Ajusta esto para que coincida con la altura deseada */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -266,7 +276,7 @@
   }
   /* Estilos para la imagen en la vista de lista */
 .catimg.lista-view {
-  width: 30%; /* Ocupa todo el ancho del contenedor */
+  width: 100%; /* Ocupa todo el ancho del contenedor */
   height: 100%; /* Ocupa toda la altura del contenedor */
   object-fit: contain; /* Asegura que toda la imagen se ajuste dentro del contenedor */
 }

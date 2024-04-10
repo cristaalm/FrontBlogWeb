@@ -56,7 +56,7 @@ const Cuerpo =() => {
         </article>
         {/* Últimas entradas */}
         <article id='ultima-entrada' className="seccionescuerpoultima">
-            <div className={`ultimasentradas-container ${viewMode}`}>
+            <div className={`ultimasentradas-container titulosdecategoruas ${viewMode}`}>
                 <FormattedMessage id="index.Last-entries" defaultMessage="Last entries"  />
                 <div className='contenedorbotoneslistacuad'>
                     <Tooltip

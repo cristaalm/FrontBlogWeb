@@ -167,8 +167,8 @@ h1 {
 }
 
 a {
-  text-decoration: underline !important;
-  color: var(--color-1) !important;
+  /* text-decoration: underline !important; */
+  /* color: var(--color-1) !important; */
 }
 .msg {
   color: black !important;
