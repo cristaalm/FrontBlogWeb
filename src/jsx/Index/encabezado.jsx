@@ -1,39 +1,41 @@
 import { CircleUser } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
-
+import { Link as ScrollLink } from 'react-scroll';
 const Encabezado =() => {
     return (
-    <header className="headerhome">
+    <header id="header" className="headerhome">
         <div className="iml">
             <img className="logo" src="../../../public/img/logo.png" />
         </div>
         <div className="menum">
-            <button className="navegacion" >
-                <a className="mivimiento" href="welcome">
+            
+            <ScrollLink className="mivimiento" to="welcome" smooth={true} duration={500}>
+                <button className="navegacion" >
                     <FormattedMessage id="index.Welcome" defaultMessage="Welcome " />
-                </a>
-            </button>
-            <button className="navegacion">
-                <a className="mivimiento" href="#recursos-multimedia">
+                </button>
+            </ScrollLink>    
+            <ScrollLink className="mivimiento" to="recursos-multimedia" smooth={true} duration={500}>
+                <button className="navegacion">
                     <FormattedMessage id="index.Multimedia-Resources" defaultMessage="Recursos Multimedia" />
-                </a>
-            </button>
-            <button className="navegacion">
-                <a className="mivimiento" href="#ultima-entrada ">
+                </button>
+            </ScrollLink>    
+            <ScrollLink className="mivimiento" to="ultima-entrada" smooth={true} duration={500}>
+                <button className="navegacion">
                     <FormattedMessage id="index.Tickets" defaultMessage="Tickets " />
-                </a>
-            </button>
-            <button className="navegacion">
-                <a className="mivimiento" href="#quizz">
+                </button>
+            </ScrollLink>    
+            <ScrollLink className="mivimiento" to="quizz" smooth={true} duration={500}>
+                <button className="navegacion">
                     Quizz
-                </a>
-            </button>
+                </button>
+            </ScrollLink>
+            
         </div>
         <div className="log">
-            <Link to="/login">
+            <RouterLink to="/login">
             <CircleUser className="CircleUser" size={35}/>
-            </Link>
+            </RouterLink>
         </div>
     </header>
     );

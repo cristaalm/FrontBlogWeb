@@ -4,6 +4,7 @@ import { Tooltip } from "react-tooltip"; // 1. Debemos de importar Tooltip
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { FormattedMessage } from "react-intl";
+import { useIntl } from 'react-intl'; //importas esto para poder poner la traduccion en los tooltips
 
 import {
     ListCollapse,
@@ -22,6 +23,13 @@ const Cuerpo =() => {
     const changeToGridView = () => {
         setViewMode('cuadricula');
     };
+
+    const intl = useIntl();
+
+  // Usa intl.formatMessage para obtener los textos de los tooltips
+    const listViewTooltip = intl.formatMessage({ id: 'iTndex.list', defaultMessage: 'List' });
+    const gridViewTooltip = intl.formatMessage({ id: 'index.grid', defaultMessage: 'Grid' });
+
     return (
     <div className="cuerpoo">
         {/* Video destacado */}
@@ -80,7 +88,7 @@ const Cuerpo =() => {
                         onClick={changeToListView}
                         data-tooltip-id="lista"
                         data-tooltip-place="top"
-                        data-tooltip-content="lista"
+                        data-tooltip-content=   {listViewTooltip} //implementas la funcion aqui
                         >
                             <ListCollapse /> 
                         </Button>
@@ -88,7 +96,7 @@ const Cuerpo =() => {
                         onClick={changeToGridView}
                         data-tooltip-id="cuadricular"
                         data-tooltip-place="top"
-                        data-tooltip-content="cuadricular"
+                        data-tooltip-content=   {gridViewTooltip}   //implementas la funcion aqui
                         >
                             <Grid2X2 /> 
                         </Button>
@@ -162,7 +170,7 @@ const Cuerpo =() => {
         {/* Quizz */}
         <article id='quizz' className="seccionescuerpoquizz">
         <div className=" titulosdecategoruas">
-                <h2 >Quizz</h2> 
+        <FormattedMessage id="index.quizz" defaultMessage="Quizz" /> 
             </div>
             <div className="contenedor-quizz">
                 <div className="logo-quizz">
