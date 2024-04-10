@@ -20,7 +20,7 @@ export default function Sidebar({ children }) {
     // Mandar el nombre de usuario del fetch en el request body
     const fetchData = async () => {
       const response = await fetch(
-        "http://localhost:8080/api/users/find-user",
+        "https://backblogweb.onrender.com/api/users/find-user",
         {
           method: "POST",
           headers: {

@@ -21,6 +21,7 @@ import {
   Trash,
   CirclePlus,
   CloudUpload,
+  Search,
 } from "lucide-react";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 function crudPost() {
@@ -52,16 +53,13 @@ function crudPost() {
   const [contraseña, setContraseña] = useState("");
   const [perfil, setPerfil] = useState([]);
 
-  const [showModal, setShowModal] = useState(false);
-  const [imageLink, setImageLink] = useState("");
-  const [imageWidth, setImageWidth] = useState("");
-  const [imageHeight, setImageHeight] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [id, setId] = useState("");
   const [deleteEntradaId, setDeleteUserId] = useState(null);
 
   const [deleteModal, setDeleteEntrada] = React.useState(false);
   const [publicModal, setPublicEntrada] = React.useState(false);
+  const [revisarModal, setRevisarEntrada] = React.useState(false);
   const [reloadTable, setReloadTable] = useState(false);
 
   // Agrega un nuevo estado para almacenar el ID del usuario a editar
@@ -86,9 +84,14 @@ function crudPost() {
     setPublicEntrada(true);
     setDeleteUserId(id);
   };
+  const toggleRevisar = (id) => {
+    setRevisarEntrada(true);
+    setDeleteUserId(id);
+  };
   function closeModal() {
     setDeleteEntrada(false);
     setPublicEntrada(false);
+    setRevisarEntrada(false);
     setDeleteUserId(null);
   }
 
@@ -337,6 +340,38 @@ function crudPost() {
           </button>
         </div>
       </Modal>
+      <Modal
+        id="revisar"
+        isOpen={revisarModal}
+        onRequestClose={closeModal}
+        contentLabel="Revisar entrada"
+        style={customStyles}
+      >
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <ion-icon
+            name="close"
+            onClick={closeModal}
+            style={{
+              cursor: "pointer",
+              fontSize: "24px",
+              color: "#650303",
+            }}
+          ></ion-icon>
+        </div>
+        <h3 className="text-center text-lg font-semibold">Revisar entrada</h3>
+        <p>¿Estás seguro de que mandar a revisión entrada?</p>
+        <div className="flex flex-row justify-between">
+          <button className="btn-red flex-1 p-2 m-1" onClick={closeModal}>
+            Cancelar
+          </button>
+          <button
+            className="btn-green flex-1 p-2 m-1"
+            onClick={() => handleReview(deleteEntradaId)}
+          >
+            Revisar
+          </button>
+        </div>
+      </Modal>
       <div
         style={{
           // width:"13%",
@@ -398,6 +433,14 @@ function crudPost() {
           id="preview"
           style={{
             backgroundColor: "#2779bd",
+            color: "whitesmoke",
+            zIndex: "999",
+          }}
+        />
+        <Tooltip
+          id="revisar"
+          style={{
+            backgroundColor: "#805ad5",
             color: "whitesmoke",
             zIndex: "999",
           }}
@@ -468,15 +511,15 @@ function crudPost() {
                                       {categoryNames[entrada.idcategoria] ||
                                         "Categoría no encontrada"}
                                     </td>
-                                    <td className="border-2 border-teal-600 p-1">
+                                    <td className="border-2 border-teal-600 p-1 text-center">
                                       <span
                                         className={`${
                                           entrada.estatus === "Publicado"
-                                            ? "text-neutral-100 text-sm bg-green-600 p-1 pl-4 pr-4 rounded-full flex justify-center"
+                                            ? "text-neutral-100 text-sm bg-green-600 p-1 pl-4 pr-4 rounded-full"
                                             : entrada.estatus === "Pendiente"
-                                            ? "bg-yellow-400  text-sm p-1 pl-4 pr-4 rounded-full flex justify-center"
+                                            ? "bg-yellow-400 text-sm p-1 pl-4 pr-4 rounded-full"
                                             : ""
-                                        }`}
+                                        } inline-block overflow-hidden`}
                                       >
                                         {entrada.estatus}
                                       </span>
@@ -535,6 +578,25 @@ function crudPost() {
                                         data-tooltip-content="Eliminar"
                                       >
                                         <Trash size={20} />
+                                      </button>
+                                      <button
+                                        onClick={() => toggleRevisar(entrada.id)}
+                                        className={`btn-purple p-2 m-1 ${
+                                          entrada.estatus !== "Publicado"
+                                            ? ""
+                                            : "opacity-50 cursor-not-allowed"
+                                        }`}
+                                        data-tooltip-id="revisar"
+                                        data-tooltip-place="top"
+                                        data-tooltip-content="Revisar"
+                                        disabled={
+                                          entrada.estatus === "Publicado"
+                                        }
+                                        {...(entrada.estatus !== "Publicado"
+                                          ? {}
+                                          : { "data-tooltip-hidden": true })}
+                                      >
+                                        <Search size={20} />
                                       </button>
                                       <button
                                         onClick={() => togglePublic(entrada.id)}

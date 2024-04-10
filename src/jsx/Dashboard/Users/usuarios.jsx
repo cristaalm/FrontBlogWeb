@@ -318,7 +318,7 @@ function usuarios() {
         </Sidebar>
       </div>
       <div className="inicio">
-        //2. Agregamos formato al Tooltip y definimos un "id"
+        {/* 2. Agregamos formato al Tooltip y definimos un "id" */}
         <Tooltip
           id="editar"
           style={{
@@ -479,7 +479,7 @@ function usuarios() {
                                         {userInfo.perfil}
                                       </td>
                                       <td className="border-2 border-teal-600 p-1">
-                                        #
+                                      {userInfo.entradas}
                                       </td>
                                       <td className="flex items-center justify-center">
                                         <button
