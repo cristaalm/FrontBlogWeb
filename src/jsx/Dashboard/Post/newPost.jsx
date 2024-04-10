@@ -104,7 +104,6 @@ function usuarios() {
 
   const handleImageUpload = (file) => {
     // Aquí puedes manejar la lógica para subir la imagen
-    console.log("Archivo seleccionado:", file);
     const imageUrl = URL.createObjectURL(file);
     setPreviewImage(imageUrl);
   };
@@ -141,7 +140,6 @@ function usuarios() {
       localStorage.setItem("isAuthenticated", "false");
       storedAuth = "false";
     }
-    console.log("stored", storedAuth);
     if (storedAuth == "false") {
       navigate("/login");
     }

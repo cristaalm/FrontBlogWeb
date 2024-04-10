@@ -55,13 +55,19 @@ const AuthForm = () => {
           navigate("/dashboard");
         }, 1000);
         setMessage(
-          <FormattedMessage id="login.success" defaultMessage="User logged in correctly." />
+          <FormattedMessage
+            id="login.success"
+            defaultMessage="User logged in correctly."
+          />
         );
-                localStorage.setItem("userName", username);
+        localStorage.setItem("userName", username);
         setMessageClass("success");
       } else {
         setMessage(
-          <FormattedMessage id="login.error" defaultMessage="Check password or username" />
+          <FormattedMessage
+            id="login.error"
+            defaultMessage="Check password or username"
+          />
         );
         setMessageClass("error");
       }
