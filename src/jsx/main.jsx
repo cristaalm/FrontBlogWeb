@@ -6,6 +6,7 @@ import { IntlProvider } from "react-intl";
 import App from "./App.jsx";
 import AuthForm from "./Login/AuthForm.jsx";
 import NewPost from "./Dashboard/Post/newPost.jsx";
+import EditPost from "./Dashboard/Post/EditPost.jsx";
 import ForgotPsswd from "./Login/ForgotPsswd.jsx";
 import RestartPsswd from "./Login/RestartPsswd.jsx";
 import SentMsg from "./Login/SentMsg.jsx";
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <CRUD /> },
       { path: "add", element: <NewPost /> },
+      { path: "edit/:id", element: <EditPost /> },
       { path: "all", element: <CRUD /> },
       { path: "preview/:id", element: <PreviewPost /> },
       // { path: "categories", element: <PreviewPost /> },
