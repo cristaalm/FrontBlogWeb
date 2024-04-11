@@ -24,6 +24,8 @@ import { Context } from "./Elements/Wrapper.jsx";
 import messagesEn from "../lang/en.json";
 import messagesEs from "../lang/es.json";
 import Dashboard from "./Dashboard/DashboardFinal.jsx";
+import CategoriaView from "./Index/IndxEntrada.jsx";
+import Entradasview from "./Index/entradasvew.jsx";
 
 // import "../css/index.css";
 
@@ -35,6 +37,8 @@ const messages = {
 const router = createBrowserRouter([
   // General
   { path: "/welcome", element: <Home /> },
+  { path: "/categoriasview", element: <CategoriaView /> },
+  { path: "/entradasview", element: <Entradasview /> },
   { path: "/", element: <App /> },
   // { path: "/test", element: <Test /> },
   { path: "/side", element: <Side /> },

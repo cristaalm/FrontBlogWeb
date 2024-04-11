@@ -1,13 +1,65 @@
 import React from 'react'
 import "../../css/indexentrada.css";
-import { Link } from "react-router-dom";
-import { CircleUser } from "lucide-react";
 import Footer from "../Elements/Footer.jsx";
+import Encabezado from './encabezado.jsx';
 
-export default function Entrada() {
+function CategoriaView() {
     return (
-      <>
-        <header className="headerhome">
+      <div className='body'>
+        <Encabezado/>
+        {/* Body */}
+        <articule className="categoriasdestacada">
+          <div className="Imagen">
+            <img className='imgprincipal' src="img/bgcategoria.png" alt="Descripción de la imagen" />
+            <div className="textimg"> </div>
+            <div className="textimg2"></div>
+          </div>
+        </articule>
+        <article  className="contenedores-categorias">
+          <div className='Separador'>
+            <div className='Texsep'>Entradas</div>
+          </div>
+          <div >
+            <div className='cuadros-contenedores'>
+              <div className='contenedor-de-img'>
+                  <img className='img-destacada' src="../../../public/img/img5.png" alt="" />
+              </div>
+              <div className="contenido-entrada">
+                <div className='text' >Nombre del creador - Fecha de publicación</div>
+                <div className='text' >Título de Entrada</div>
+                <div className='text' >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+              </div>
+            </div>
+            <div className='cuadros-contenedores'>
+              <div className='contenedor-de-img'>
+                  <img className='img-destacada' src="../../../public/img/img5.png" alt="" />
+              </div>
+              <div className="contenido-entrada">
+                <div className='text' >Nombre del creador - Fecha de publicación</div>
+                <div className='text' >Título de Entrada</div>
+                <div className='text' >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+              </div>
+            </div>
+            <div className='cuadros-contenedores'>
+              <div className='contenedor-de-img'>
+                  <img className='img-destacada' src="../../../public/img/img5.png" alt="" />
+              </div>
+              <div className="contenido-entrada">
+                <div className='text' >Nombre del creador - Fecha de publicación</div>
+                <div className='text' >Título de Entrada</div>
+                <div className='text' >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <Footer />
+        
+      </div>
+    );
+}
+export default CategoriaView
+
+{/* <header className="headerhome">
           <div className="iml">
               <img src="/img/logo.png" alt="Logo" />
           </div>
@@ -23,7 +75,7 @@ export default function Entrada() {
             </Link>
           </div>
         </header>
-        {/* Body */}
+        {/* Body 
         <div className="bodyhome">
           <div className="Imagen">
             <img src="img/bgcategoria.png" alt="Descripción de la imagen" />
@@ -60,7 +112,4 @@ export default function Entrada() {
               <div className='texcon3'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
           </div>
           <Footer />
-        </div>
-      </>
-    );
-}
+        </div> */}
