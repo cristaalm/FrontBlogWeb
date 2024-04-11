@@ -166,10 +166,6 @@ h1 {
   width: 300px;
 }
 
-a {
-  /* text-decoration: underline !important; */
-  /* color: var(--color-1) !important; */
-}
 .msg {
   color: black !important;
 }
@@ -334,5 +330,9 @@ input:focus ~ .highlight {
     width: 0;
     background: transparent;
   }
+}
+
+.inicio {
+  overflow-y: auto;
 }
 

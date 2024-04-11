@@ -13,6 +13,7 @@ import PreviewPost from "./Dashboard/Post/Preview.jsx";
 import CRUD from "./Dashboard/Post/crudPost.jsx";
 import Usuarios from "./Dashboard/Users/usuarios.jsx";
 import Categorias from "./Dashboard/Categories/categorias.jsx";
+import CategoriasView from "./Index/IndxEntrada.jsx";
 // import Test from "./testG.jsx";
 import Side from "./Elements/SideNavBar.jsx";
 
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
   { path: "/forgot-psswd", element: <ForgotPsswd /> },
   { path: "/restart-psswd/:id", element: <RestartPsswd /> },
   { path: "/successfull-mail", element: <SentMsg /> },
-  // { path: "/preview", element: <PreviewPost /> },
+  { path: "/categorias", element: <CategoriasView /> },
   // NewPost - Entradas
   {
     path: "/post",
@@ -67,13 +68,6 @@ const router = createBrowserRouter([
 
 const AppWithIntl = () => {
   const context = useContext(Context);
-  // console.log(local);
-  // useEffect(() => {
-  //   if (selectedLocale === "es-MX") {
-  //     setSelectedLocale("es");
-  //   }
-  //   console.log(selectedLocale);
-  // }, [selectedLocale]);
 
   return (
     <Wrapper>
