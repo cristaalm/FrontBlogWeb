@@ -190,3 +190,11 @@ form .btn input[type="submit"] {
   font-weight: 500;
   cursor: pointer;
 }
+body,
+html {
+  margin: 0;  
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+

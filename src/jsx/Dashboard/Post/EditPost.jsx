@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
 import "../../../css/usuarios.css";
 import { Tooltip } from "react-tooltip";
-import Modal from "react-modal";
-import { createPost } from "../../../js/createPost";
+import { editPost } from "../../../js/editPost.js";
 import { Editor } from "@tinymce/tinymce-react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 // import "../../../css/App.css";
 import Sidebar, {
@@ -19,28 +19,9 @@ import {
   Pencil,
   Trash,
 } from "lucide-react";
-import { Eye, EyeSlash } from "react-bootstrap-icons";
-import { Link, useNavigate } from "react-router-dom";
-function usuarios() {
-  const customStyles = {
-    content: {
-      // zIndex: "99999",
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      maxWidth: "400px", // Set the maximum width of the modal
-      padding: "20px", // Add padding to the modal content
-      borderRadius: "8px", // Add border radius to the modal
-      boxShadow: "0 2px 4px rgba(0,0,0,0.1)", // Add a subtle shadow
-    },
-    overlay: {
-      zIndex: "9999",
-      backgroundColor: "rgba(3, 81, 101, 0.5)", // Add a semi-transparent overlay
-    },
-  };
+
+function EditPublish() {
+  const { id } = useParams();
   const navigate = useNavigate(); // Obtiene la función de navegación
 
   // Datos del formulario
@@ -50,9 +31,7 @@ function usuarios() {
   const [categories, setCategories] = useState([]);
   const [tiny, setTiny] = useState("");
   const fileInputRef = useRef(null);
-
-  const [deleteModal, setDeleteContact] = React.useState(false);
-  const [reloadTable, setReloadTable] = useState(false);
+  const [previewImage, setPreviewImage] = useState(null);
 
   const [message, setMessage] = useState("");
   const [messageClass, setMessageClass] = useState("");
@@ -65,7 +44,6 @@ function usuarios() {
     script.src =
       "https://cdn.tiny.cloud/1/kovdcfjaqbeap5tn2t47qcgag4xk6qwtg473e9iu0rmn2kd2/tinymce/6/tinymce.min.js";
     script.referrerpolicy = "origin";
-    document.head.appendChild(script);
 
     script.onload = () => {
       window.tinymce.init({
@@ -85,22 +63,41 @@ function usuarios() {
       });
     };
 
+    document.head.appendChild(script);
+
     return () => {
       window.tinymce?.remove("#entryDescription");
     };
   }, []);
-  // const [categories, setCategories] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/categories"
-      );
-      const data = await response.json();
-      setCategories(data);
+      try {
+        const response = await fetch(
+          `https://backblogweb.onrender.com/api/entradas/${id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const { data } = await response.json();
+        setTiny(data.contenido);
+        setTitle(data.titulo);
+        setCategoryId(data.idcategoria);
+        setDescripcion(data.descripcion);
+        setPreviewImage(data.imgdestacada);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
     fetchData();
-  }, []);
-  const [previewImage, setPreviewImage] = useState(null);
+  }, [id]); // Se agrega `id` como dependencia para que se vuelva a llamar cuando cambie
 
   const handleImageUpload = (file) => {
     const reader = new FileReader();
@@ -115,7 +112,7 @@ function usuarios() {
     e.preventDefault();
     try {
       const usuario = localStorage.getItem("userName");
-      await createPost(
+      await editPost(
         title,
         tiny,
         categoryId,
@@ -124,47 +121,12 @@ function usuarios() {
         descripcion
       );
       navigate("/post/all");
-      alert("Entrada creada exitosamente.");
+      alert("Entrada actualizada exitosamente.");
     } catch (error) {
       console.error("Post creation failed:", error);
       setMessage("An error occurred while creating the post");
       setMessageClass("error");
     }
-  };
-
-  const cerrarSesion = () => {
-    localStorage.removeItem("isAuthenticated");
-    navigate("/login");
-  };
-
-  useEffect(() => {
-    let storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth == null) {
-      localStorage.setItem("isAuthenticated", "false");
-      storedAuth = "false";
-    }
-    if (storedAuth == "false") {
-      navigate("/login");
-    }
-  }, []);
-
-  useEffect(() => {
-    if (message) {
-      const timer = setTimeout(() => {
-        setMessage("");
-        setMessageClass("");
-      }, 2000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [message]);
-
-  const cleanForm = () => {
-    setUsuario("");
-    setNombre("");
-    setCorreo("");
-    setContraseña("");
-    setPerfil([]);
   };
 
   return (
@@ -247,17 +209,12 @@ function usuarios() {
                       onChange={(e) => setCategoryId(e.target.value)}
                       className="selectUsuarios ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-z focus:border-cyan-900"
                     >
-                      <option
-                        value=""
-                        className="text-gray-400"
-                        disabled
-                        hidden
-                      >
+                      <option className="text-gray-400" disabled hidden>
                         Seleccione su categoría...
                       </option>
                       {categories.data &&
                         categories.data.map((category) => (
-                          <option key={category.id} value={category.id}>
+                          <option key={category.id} value={category.id} >
                             {category.nombre}
                           </option>
                         ))}
@@ -310,12 +267,11 @@ function usuarios() {
                       accept="image/*"
                       onChange={(e) => handleImageUpload(e.target.files[0])}
                       ref={fileInputRef}
-                      // style={{ display: "none" }}
                     />
                   </div>
                   <div>
                     <button type="submit" className="entr tracking-widest mt-4">
-                      Añadir entrada
+                      Actualizar entrada
                     </button>
                   </div>
                 </form>
@@ -332,8 +288,9 @@ function usuarios() {
                             <Editor
                               id="entryDescription"
                               name="content"
+                              apiKey="af8109ckb7vf2pm3g5io2hw55z53nxfdnkak2yc324pnvqa3"
                               value={tiny}
-                              onEditorChange={handleTinyChange}
+                              onEditorChange={setTiny}
                             />
                           </div>
                         </div>
@@ -350,4 +307,4 @@ function usuarios() {
   );
 }
 
-export default usuarios;
+export default EditPublish;

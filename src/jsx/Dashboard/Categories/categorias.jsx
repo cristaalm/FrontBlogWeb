@@ -96,10 +96,13 @@ function categorías() {
   const [previewImage, setPreviewImage] = useState(null);
 
   const handleImageUpload = (file) => {
-    // Aquí puedes manejar la lógica para subir la imagen
-    console.log("Archivo seleccionado:", file);
-    const imageUrl = URL.createObjectURL(file);
-    setPreviewImage(imageUrl);
+    const reader = new FileReader();
+    console.log("base64String");
+    reader.onloadend = () => {
+      const base64String = reader.result;
+      setPreviewImage(base64String);
+    };
+    reader.readAsDataURL(file);
   };
   // Función para actualizar el color seleccionado
   const handleColorChange = (color) => {
@@ -366,7 +369,7 @@ function categorías() {
                       value={descripcion}
                       onChange={(e) => setDescripcion(e.target.value)}
                       className="w-full bg-neutral-100 p-2 in2 mt-2 ring-2 ring-teal-600 rounded"
-                      placeholder="Ingrese correo electrónico"
+                      placeholder="Ingrese descripción"
                     ></textarea>
                     <p className="text-neutral-400 text-sm">
                       Esta descripción será mostrada al usuario visitante.

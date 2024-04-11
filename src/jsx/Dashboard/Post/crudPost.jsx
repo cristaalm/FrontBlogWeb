@@ -573,29 +573,32 @@ function crudPost() {
                                       </td>
                                       <td className="flex items-center justify-center">
                                         {user.rol !== "Administrador" && (
-                                          <button
-                                            className={`btn-yellow p-2 m-1 ${
-                                              entrada.estatus !== "Revisión"
-                                                ? ""
-                                                : "opacity-50 cursor-not-allowed"
-                                            }`}
-                                            data-tooltip-id="editar"
-                                            data-tooltip-place="top"
-                                            data-tooltip-content="Editar"
-                                            disabled={
-                                              entrada.estatus === "Revisión"
-                                            }
-                                            {...(entrada.estatus !== "Revisión"
-                                              ? {}
-                                              : {
-                                                  "data-tooltip-hidden": true,
-                                                })}
-                                            onClick={() =>
-                                              loadEditUserData(entrada.id)
-                                            }
-                                          >
-                                            <Pencil size={20} />
-                                          </button>
+                                          <Link to={`/post/edit/${entrada.id}`}>
+                                            <button
+                                              className={`btn-yellow p-2 m-1 ${
+                                                entrada.estatus !== "Revisión"
+                                                  ? ""
+                                                  : "opacity-50 cursor-not-allowed"
+                                              }`}
+                                              data-tooltip-id="editar"
+                                              data-tooltip-place="top"
+                                              data-tooltip-content="Editar"
+                                              disabled={
+                                                entrada.estatus === "Revisión"
+                                              }
+                                              {...(entrada.estatus !==
+                                              "Revisión"
+                                                ? {}
+                                                : {
+                                                    "data-tooltip-hidden": true,
+                                                  })}
+                                              onClick={() =>
+                                                loadEditUserData(entrada.id)
+                                              }
+                                            >
+                                              <Pencil size={20} />
+                                            </button>
+                                          </Link>
                                         )}
                                         <Link
                                           to={`/post/preview/${entrada.id}`}
