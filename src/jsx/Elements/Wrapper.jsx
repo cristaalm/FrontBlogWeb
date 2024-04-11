@@ -22,7 +22,6 @@ const Wrapper = (props) => {
   }
 
   const selectedMessages = messages; // locale === "en" ? messages["en"] : messages["es"] ;
-  console.log(selectedMessages);
   return (
     <Context.Provider value={{ locale, selectLanguage }}>
       <IntlProvider locale={locale} messages={messages}>

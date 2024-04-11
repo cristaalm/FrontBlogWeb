@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../../../css/usuarios.css";
 import { Tooltip } from "react-tooltip"; // 1. Debemos de importar Tooltip
-import Modal from "react-modal";
+import Modal from "react-modal"; // 1. Importamos el MODAL
 import { FormattedMessage, useIntl } from "react-intl"; // Importa FormattedMessage y useIntl
 import { createUser } from "../../../js/createUser";
 import { editUser } from "../../../js/editUser";
@@ -55,6 +55,8 @@ function usuarios() {
   const [deleteUserId, setDeleteUserId] = useState(null);
 
   const [deleteModal, setDeleteContact] = React.useState(false);
+  const [pruebaModal, setPruebaModal] = React.useState(false); // 2. Duplicamos la línea de arriba
+
   const [reloadTable, setReloadTable] = useState(false);
 
   // Agrega un nuevo estado para almacenar el ID del usuario a editar
@@ -75,10 +77,14 @@ function usuarios() {
     setShowPassword(!showPassword);
   };
   const toggleDelete = (id) => {
+    // setPruebaModal(true); // Ponemos la variable azul que declaramos arriba
     setDeleteContact(true);
     setDeleteUserId(id);
   };
   function closeModal() {
+    //Agregar tu variable aZUL y ponerla en false
+    setPruebaModal(false); 
+
     setDeleteContact(false);
     setDeleteUserId(null);
   }
@@ -251,7 +257,8 @@ function usuarios() {
       style={{ display: "flex", backgroundColor: "whitesmoke" }}
       className="flex h-screen"
     >
-      <Modal
+      {/* 3 Inicias a copiar desde acá */}
+       <Modal 
         id="root"
         isOpen={deleteModal}
         onRequestClose={closeModal}
@@ -283,6 +290,29 @@ function usuarios() {
           </button>
         </div>
       </Modal>
+      {/* Terminas acá de seleccionar todas las líneas y Ctrl+V */}
+      <Modal 
+        id="prueba"
+        isOpen={pruebaModal} // Ponemos la variable amarilla que declaramos arriba
+        onRequestClose={closeModal}
+        contentLabel="Prueba Modal"
+        style={customStyles}
+      >
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <ion-icon
+            name="close"
+            onClick={closeModal}
+            style={{
+              cursor: "pointer",
+              fontSize: "24px",
+              color: "#650303",
+            }}
+          ></ion-icon>
+        </div>
+        {/* Formato del Modal,todo esto */}
+        <h3 className="text-center text-lg font-semibold">Prueba Modal</h3>
+        <p>Prueba Modal</p>
+      </Modal>
 
       <div
         style={{
@@ -312,9 +342,11 @@ function usuarios() {
           <Link to="/categories" className="without_line">
             <SidebarItem icon={<Layers />} text="Categorías" />
           </Link>
+          
           <Link to="/users" className="without_line">
             <SidebarItem icon={<Users />} text="Usuario" />
           </Link>
+          
         </Sidebar>
       </div>
       <div className="inicio">

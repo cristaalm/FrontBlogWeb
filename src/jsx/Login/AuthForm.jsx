@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { hydrateRoot } from "react-dom/client";
-
 import { loginUser } from "../../js/readUsers.js";
 import "../../css/AuthForm.css";
 import { Link, useNavigate } from "react-router-dom";
-import { Context } from "../Elements/Wrapper.jsx";
 import { FormattedMessage } from "react-intl";
 
 // Icons
@@ -12,42 +9,17 @@ import { Eye, EyeSlash } from "react-bootstrap-icons";
 import Footer from "../Elements/Footer.jsx";
 
 const AuthForm = () => {
-  const context = useContext(Context);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [messageClass, setMessageClass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [labelsAnimated, setLabelsAnimated] = useState(false);
 
-  let navigate = useNavigate();
-  const animateLabels = () => {
-    const labels = document.querySelectorAll(".form-control label");
-    labels.forEach((label) => {
-      const labelText = label.getAttribute("data-message-id");
-      if (labelText) {
-        const messageComponent = (
-          <FormattedMessage id={labelText} defaultMessage={labelText} />
-        );
-        hydrateRoot(document.getElementById(label.id), messageComponent);
-      }
-    });
-  };
-  useEffect(() => {
-    let storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth === null || storedAuth === "false") {
-      localStorage.setItem("isAuthenticated", "false");
-    } else {
-      navigate("/dashboard");
-    }
-  }, [navigate]);
-
-  useEffect(() => {}, [labelsAnimated]);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let userName = localStorage.getItem("userName");
       const data = await loginUser(username, password);
       localStorage.setItem("isAuthenticated", data.logged.toString());
       if (data.logged) {
@@ -55,13 +27,19 @@ const AuthForm = () => {
           navigate("/dashboard");
         }, 1000);
         setMessage(
-          <FormattedMessage id="login.success" defaultMessage="User logged in correctly." />
+          <FormattedMessage
+            id="login.success"
+            defaultMessage="User logged in correctly."
+          />
         );
-                localStorage.setItem("userName", username);
+        localStorage.setItem("userName", username);
         setMessageClass("success");
       } else {
         setMessage(
-          <FormattedMessage id="login.error" defaultMessage="Check password or username" />
+          <FormattedMessage
+            id="login.error"
+            defaultMessage="Check password or username"
+          />
         );
         setMessageClass("error");
       }
@@ -86,39 +64,40 @@ const AuthForm = () => {
         <div className="container">
           <img src="/img/logo.png" alt="Logo" />
           {message && (
-            <div className={`message ${messageClass}`}>{message}</div>
+            <div className={`message ${messageClass} mb-10`}>{message}</div>
           )}
+          {/* <h3 className="mb-4">Inicio de Sesión</h3> */}
           <form onSubmit={handleSubmit}>
-            <div className="input-group" style={{ marginBottom: "20px" }}>
+            <div className="relative z-0 w-full mb-5">
               <input
                 type="text"
+                name="text"
+                placeholder=" "
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                required
+                className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
               />
-              <span className="highlight"></span>
-              <span className="bar"></span>
-              <label>
-                {" "}
-                <FormattedMessage id="login.username" defaultMessage="Username">
-                  {(message) => <div>{message}</div>}
-                </FormattedMessage>
-                {/* <FormattedMessage
-                  id="login.username"
-                  defaultMessage="Username"
-                /> */}
+              <label
+                htmlFor="email"
+                className="absolute duration-300 top-3 -z-1 origin-0 text-gray-500"
+              >
+                <FormattedMessage id="login.username" defaultMessage="Username" />
               </label>
             </div>
-            <div className="input-group">
+
+            <div className="relative z-0 w-full">
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
+                name="text"
+                placeholder=" "
+                className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
               />
-              <span className="highlight"></span>
-              <span className="bar"></span>
-              <label>
+              <label
+                htmlFor="pss"
+                className="absolute duration-300 top-3 -z-1 origin-0 text-gray-500"
+              >
                 <FormattedMessage
                   id="login.password"
                   defaultMessage="Password"
@@ -137,7 +116,7 @@ const AuthForm = () => {
               </button>
             </div>
             <div className="form-control2">
-              <Link to="/forgot-psswd">
+              <Link to="/forgot-psswd" className="underline">
                 <FormattedMessage
                   id="login.forgotPssd"
                   defaultMessage="Forgot your password?"

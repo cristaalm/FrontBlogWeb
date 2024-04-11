@@ -4,39 +4,12 @@ import Sidebar, {
   SidebarItem,
   SidebarItemWithSubItems,
 } from "../../Elements/SideBar";
+import PreviewComponent from "../../Elements/PreviewComponent.jsx";
 import { LayoutDashboard, Users, Book, PlusSquare, Layers } from "lucide-react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+// import { Preview } from "@mui/icons-material";
 
-function LayoutPost() {
-  let navigate = useNavigate();
-  const [message, setMessage] = useState("");
-  const [messageClass, setMessageClass] = useState("");
-  const { id } = useParams(); // Obtener el ID de la URL
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://backblogweb.onrender.com/api/entradas/${id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const { data } = await response.json();
-        setMessage(data.contenido);
-        console.log(data.contenido);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
+function Preview() {
   return (
     <div style={{ display: "flex" }}>
       <div
@@ -80,12 +53,8 @@ function LayoutPost() {
               </div>
               <div className="w-full">
                 <div className="mt-2">
-                  <div className="flex flex-col">
-                    <div className={`message ${messageClass}`}>
-                      {message && (
-                        <div dangerouslySetInnerHTML={{ __html: message }} />
-                      )}
-                    </div>  
+                  <div className="flex flex-col ">
+                    <PreviewComponent />
                   </div>
                 </div>
               </div>
@@ -96,4 +65,4 @@ function LayoutPost() {
     </div>
   );
 }
-export default LayoutPost;
+export default Preview;

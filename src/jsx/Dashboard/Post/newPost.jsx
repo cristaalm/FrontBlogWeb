@@ -103,10 +103,12 @@ function usuarios() {
   const [previewImage, setPreviewImage] = useState(null);
 
   const handleImageUpload = (file) => {
-    // Aquí puedes manejar la lógica para subir la imagen
-    console.log("Archivo seleccionado:", file);
-    const imageUrl = URL.createObjectURL(file);
-    setPreviewImage(imageUrl);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result;
+      setPreviewImage(base64String);
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e) => {
@@ -141,7 +143,6 @@ function usuarios() {
       localStorage.setItem("isAuthenticated", "false");
       storedAuth = "false";
     }
-    console.log("stored", storedAuth);
     if (storedAuth == "false") {
       navigate("/login");
     }
