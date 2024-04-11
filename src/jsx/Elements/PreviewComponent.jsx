@@ -9,6 +9,16 @@ import {
   EmailIcon,
 } from "react-share";
 
+import { Link, Unlink, Mail, Twitter, Facebook } from "lucide-react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import {
+  // Link,
+  // Facebook,
+  // TwitterX,
+  Mailbox,
+  // Twitter,
+} from "react-bootstrap-icons";
+
 const PreviewComponent = () => {
   const { id } = useParams();
   const [contenidoTiny, setContenidoTiny] = useState("");
@@ -108,7 +118,18 @@ const PreviewComponent = () => {
   console.log(color[categoria]);
   const colorClass = colorMap[color[categoria]] || "cyan-400";
   console.log(colorClass);
-
+  const copiarAlPortapapeles = (e) => {
+    e.preventDefault();
+    const enlace = `http://localhost:5173/post/preview/${id}`;
+    navigator.clipboard
+      .writeText(enlace)
+      .then(() => {
+        alert("Enlace copiado al portapapeles: " + enlace);
+      })
+      .catch((err) => {
+        console.error("Error al copiar el enlace: ", err);
+      });
+  };
   return (
     <div>
       <div className="flex flex-row">
@@ -127,9 +148,9 @@ const PreviewComponent = () => {
                 alt="Preview"
                 className="mt-2 w-14 h-14"
               />
-              <div className="ml-4">
-                <p>{nombreCompleto}</p>
-                <p>{fPublicacion}</p>
+              <div className="ml-4 leading-0 mb-0">
+                <p className="m-0">{nombreCompleto}</p>
+                <p className="m-0">{fPublicacion}</p>
               </div>
             </div>
           </div>
@@ -144,32 +165,39 @@ const PreviewComponent = () => {
         </div>
       </div>
       <hr></hr>
-      <p className="text-sm">Esta es la descripción : {descripcion}</p>
+      <p className="text-sm italic">Descripción: {descripcion}</p>
       <div
         className="contenidoTiny"
         dangerouslySetInnerHTML={{ __html: contenidoTiny }}
       ></div>
 
       <div className="flex justify-center space-x-4 mb-8">
+        <a
+        className="cursor-pointer"
+          // href={`http://localhost:5173/post/preview/${id}`}
+          onClick={copiarAlPortapapeles}
+        >
+          <Link />
+        </a>
         <FacebookShareButton
-          url="https://yourwebsite.com"
+          url={`http://localhost:5173/post/preview/${id}`}
           quote="Check out this amazing content!"
           hashtag="#react"
         >
-          <FacebookIcon size={60} iconFillColor="yellow" borderRadius={25} />
+          <Facebook />
         </FacebookShareButton>
         <TwitterShareButton
-          url="https://yourwebsite.com"
+          url={`http://localhost:5173/post/preview/${id}`}
           title="My awesome article"
         >
-          <TwitterIcon size={60} iconFillColor="blue" borderRadius={25} />
+          <Twitter />
         </TwitterShareButton>
         <EmailShareButton
-          url="https://yourwebsite.com"
+          url={`http://localhost:5173/post/preview/${id}`}
           subject="Don't miss this!"
           body="This is a must-read!"
         >
-          <EmailIcon size={60} iconFillColor="red" borderRadius={25} />
+          <Mail />
         </EmailShareButton>
       </div>
     </div>
