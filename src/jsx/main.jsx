@@ -15,6 +15,7 @@ import CRUD from "./Dashboard/Post/crudPost.jsx";
 import Usuarios from "./Dashboard/Users/usuarios.jsx";
 import Categorias from "./Dashboard/Categories/categorias.jsx";
 import CategoriasView from "./Index/IndxEntrada.jsx";
+import EntradasView from "./Index/entradasvew.jsx";
 // import Test from "./testG.jsx";
 import Side from "./Elements/SideNavBar.jsx";
 
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
   { path: "/restart-psswd/:id", element: <RestartPsswd /> },
   { path: "/successfull-mail", element: <SentMsg /> },
   { path: "/categorias", element: <CategoriasView /> },
+  { path: "/entrada-index", element: <EntradasView /> },
   // NewPost - Entradas
   {
     path: "/post",

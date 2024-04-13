@@ -11,8 +11,48 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <style>
+      .loading-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9999;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.5
+        ); /* Fondo semi-transparente */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .loading {
+        border: 8px solid rgba(0, 0, 0, 0.1);
+        border-top: 8px solid #035165; /* Cambia el color del loading */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
+    <div id="loadingwrapper" class="loading-wrapper">
+      <div id="loading" class="loading"></div>
+    </div>
     <div id="root"></div>
     <script type="module" src="src/jsx/main.jsx"></script>
     <script
@@ -29,5 +69,49 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script type="text/javascript">
+      const loadingWrapperElement = document.getElementById("loadingwrapper");
+      const loadingElement = document.getElementById("loading");
+      function showLoading() {
+        // Mostrar tu indicador de carga aquí (puedes usar una animación, spinner, etc.)
+        loadingWrapperElement.style.display = "flex";
+        loadingElement.style.display = "block";
+      }
+
+      // Función para ocultar el indicador de carga
+      function hideLoading() {
+        // Ocultar tu indicador de carga aquí
+        loadingWrapperElement.style.display = "none";
+        loadingElement.style.display = "none";
+      }
+      // Event listener para el inicio de una petición fetch
+      document.addEventListener("fetchStart", () => {
+        showLoading();
+      });
+
+      // Event listener para el final de una petición fetch
+      document.addEventListener("fetchEnd", () => {
+        setTimeout(function () {
+          hideLoading();
+        }, 1000);
+      });
+      const originalFetch = window.fetch;
+      window.fetch = function () {
+        const fetchPromise = originalFetch.apply(this, arguments);
+        // Disparar el evento fetchStart cuando se inicie la petición
+        document.dispatchEvent(new Event("fetchStart"));
+
+        // Disparar el evento fetchEnd cuando la petición se resuelva o se rechace
+        fetchPromise
+          .then(() => {
+            document.dispatchEvent(new Event("fetchEnd"));
+          })
+          .catch(() => {
+            document.dispatchEvent(new Event("fetchEnd"));
+          });
+
+        return fetchPromise;
+      };
+    </script>
   </body>
 </html>
