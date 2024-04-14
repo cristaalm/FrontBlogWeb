@@ -96,3 +96,24 @@
   transform: scale(1.1); /* Aumenta el tamaño al 110% */
   transition: transform 0.5s ease; /* Suaviza la transición */
 }
+/* Estilos para pantallas pequeñas (teléfonos móviles) */
+@media screen and (max-width: 768px) {
+  .headerhome {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .headerhome .menum {
+    margin-top: 1rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .headerhome .menum .navegacion {
+    margin: 0.5rem;
+  }
+
+  .headerhome .log {
+    margin-top: 1rem;
+  }
+}

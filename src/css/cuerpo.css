@@ -19,7 +19,6 @@
     margin-bottom: 10px;
     width: 100%;
     display: flex;
-    
 }
 .vajovideo{
     padding-bottom: 2.5rem;
@@ -162,6 +161,34 @@
 .mostarmas:hover {
     background-color: #2980b9; /* Cambia el color de fondo al pasar el cursor */
 }
+@media screen and (max-width: 768px) {
+    .ultimasentradas {
+        width: 100%; /* Haz que cada entrada ocupe todo el ancho disponible */
+        margin-bottom: 20px; /* Añade un espacio entre las entradas */
+    }
+
+    .mosrarmasyvav {
+        flex-direction: column; /* Cambia la dirección del flex a columna para apilar elementos verticalmente */
+    }
+
+    .mostarmas {
+        margin-left: 0; /* Elimina el margen izquierdo auto */
+        width: 100%; /* Haz que el botón ocupe todo el ancho disponible */
+    }
+    .ultimasentradas-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ultimasentradas {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .categoria-seleccionada {
+        width: 100%;
+    }
+}
 /* ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]] */
 /* lista */
 /* Aplica estilos para la vista de lista *//* Estilos base para la vista de lista */
@@ -243,7 +270,12 @@
     width: 100%;
     height: 100%;
 }
-
+@media screen and (max-width: 768px) {
+    .recurso {
+        width: 100%; /* Cambia el ancho a 100% para ocupar todo el ancho disponible */
+        margin: 0; /* Elimina el margen entre los recursos */
+    }
+}
 
 
 
@@ -285,6 +317,17 @@
     content: '➔'; /* Icono de flecha, puedes cambiarlo por una imagen si lo prefieres */
     display: inline-block;
     font-size: 1.5em; /* Tamaño del icono de la flecha */
+}
+/* Estilos para pantallas pequeñas (teléfonos móviles) */
+@media screen and (max-width: 768px) {
+    .contenedor-quizz {
+        flex-direction: column; /* Cambia la dirección del flex a columna para apilar elementos verticalmente */
+    }
+
+    .logo-quizz {
+        width: 100%; /* Haz que el logo ocupe todo el ancho disponible */
+        margin-bottom: 20px; /* Añade un espacio entre el logo y el botón */
+    }
 }
 
 

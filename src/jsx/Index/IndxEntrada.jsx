@@ -19,7 +19,7 @@ function CategoriaView() {
           <div className='Separador'>
             <div className='Texsep'>Entradas</div>
           </div>
-          <div >
+          <div className='todos-los-cuadros'>
             <div className='cuadros-contenedores'>
               <div className='contenedor-de-img'>
                   <img className='img-destacada' src="../../../public/img/img5.png" alt="" />
@@ -34,7 +34,7 @@ function CategoriaView() {
               <div className='contenedor-de-img'>
                   <img className='img-destacada' src="../../../public/img/img5.png" alt="" />
               </div>
-              <div className="contenido-entrada">
+              <div className="texto-entradas">
                 <div className='text' >Nombre del creador - Fecha de publicación</div>
                 <div className='text' >Título de Entrada</div>
                 <div className='text' >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
