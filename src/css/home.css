@@ -1,3 +1,14 @@
+:root {
+  --color-blanco: #fff;
+  --color-1: #fffdee;
+  --color-2: #b8ddd6;
+  --color-3: #56a1a6;
+  --color-4: #035165;
+  --color-5: #84b6f4;
+  --color-green1: #56a686;
+  --color-green2: #03653e;
+  --color-red: #650303;
+}
 
 /* Encabezado */
 .headerhome {
@@ -5,11 +16,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background: linear-gradient(45deg, #5d9697, #81c0c6, #82c2c8, #82c2c8);
+  /* background: linear-gradient(45deg, #5d9697, #81c0c6, #82c2c8, #82c2c8); */
+  background: var(--color-3);
 }
 
 .headerhome .iml .logo {
-  max-width: 70px;
+  max-width: 75px;
 }
 
 .headerhome .menum .navegacion {
@@ -19,7 +31,7 @@
   cursor: pointer;
 }
 
-.headerhome .log{
+.headerhome .log {
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -34,7 +46,6 @@
 }
 
 .navegacion {
-  background-color: #4A90E2;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -44,22 +55,22 @@
 }
 
 .navegacion {
+  color:var(--color-1);
   text-decoration: none;
-  color: white;
   font-weight: bold;
   display: block; /* Asegura que el enlace llene todo el espacio del botón */
 }
 
-.navegacion:hover {
-  background-color: #357ABD;
-  transform: translateY(-3px); /* Mueve el botón hacia arriba */
-}
-
 /* Opcional: añade una sombra para resaltar aún más el efecto de "levitación" */
 .navegacion:hover {
+  transform: translateY(-3px); /* Mueve el botón hacia arriba */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: var(--color-4);
 }
 
+.headerhome .menum .navegacion:hover{
+  background-color: var(--color-2);
+}
 /* Restablece la posición y sombra del botón cuando no se está haciendo hover */
 .navegacion:not(:hover) {
   transform: translateY(0);
@@ -67,15 +78,21 @@
 }
 
 /* Transición para el elemento que se mueve dentro del botón */
-.mivimiento {
+.movimiento {
   transition: transform 0.2s ease;
 }
 
 /* Cuando se hace hover, solo se mueve el contenido del botón */
-.navegacion:hover .mivimiento {
+.navegacion:hover .movimiento {
   transform: translateY(-3px);
 }
+.CircleUser{
+  color: var(--color-1);
+
+}
 .CircleUser:hover {
+  color: var(--color-4);
+
   transform: scale(1.1); /* Aumenta el tamaño al 110% */
   transition: transform 0.5s ease; /* Suaviza la transición */
 }

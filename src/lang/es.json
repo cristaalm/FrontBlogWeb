@@ -14,13 +14,13 @@
   "login.back":"Volver a Iniciar Sesión",
   "login.error":"Verifique la contraseña o el nombre de usuario.",
   "login.success":"El usuario inició sesión correctamente.",
-  "index.Top-categories": "Top De Categorias",
+  "index.Top-categories": "Top de categorías",
   "index.Last-entries": "Últimas entradas",
   "index.Multimedia-Resources": "Recursos Multimedia",
-  "index.Welcome": "Bienvenida ",
-  "index.Tickets": "Entradas ",
-  "iTndex.list": "lista ",
-  "index.grid": "cuadricular",
+  "index.Welcome": "Bienvenida",
+  "index.Tickets": "Entradas",
+  "iTndex.list": "Lista",
+  "index.grid": "Cuadricular",
   "index.start": "Inicio",
-  "index.quizz": "prueba"
+  "index.quizz": "Trivia"
 }

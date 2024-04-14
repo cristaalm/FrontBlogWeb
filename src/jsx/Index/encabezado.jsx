@@ -9,23 +9,22 @@ const Encabezado =() => {
             <img className="logo" src="../../../public/img/logo.png" />
         </div>
         <div className="menum">
-            
-            <ScrollLink className="mivimiento" to="welcome" smooth={true} duration={500}>
+            <ScrollLink className="movimiento" to="welcome" smooth={true} duration={500}>
                 <button className="navegacion" >
                     <FormattedMessage id="index.Welcome" defaultMessage="Welcome " />
                 </button>
             </ScrollLink>    
-            <ScrollLink className="mivimiento" to="recursos-multimedia" smooth={true} duration={500}>
+            <ScrollLink className="movimiento" to="recursos-multimedia" smooth={true} duration={500}>
                 <button className="navegacion">
                     <FormattedMessage id="index.Multimedia-Resources" defaultMessage="Recursos Multimedia" />
                 </button>
             </ScrollLink>    
-            <ScrollLink className="mivimiento" to="ultima-entrada" smooth={true} duration={500}>
+            <ScrollLink className="movimiento" to="ultima-entrada" smooth={true} duration={500}>
                 <button className="navegacion">
                     <FormattedMessage id="index.Tickets" defaultMessage="Tickets " />
                 </button>
             </ScrollLink>    
-            <ScrollLink className="mivimiento" to="quizz" smooth={true} duration={500}>
+            <ScrollLink className="movimiento" to="quizz" smooth={true} duration={500}>
                 <button className="navegacion">
                     Quizz
                 </button>
@@ -34,7 +33,7 @@ const Encabezado =() => {
         </div>
         <div className="log">
             <RouterLink to="/login">
-            <CircleUser className="CircleUser" size={35}/>
+            <CircleUser className="CircleUser mr-1" size={35}/>
             </RouterLink>
         </div>
     </header>
