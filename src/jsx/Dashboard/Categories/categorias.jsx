@@ -21,7 +21,35 @@ import {
 } from "lucide-react";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 function categorías() {
+
+  
+const driverObj = driver({
+  showProgress: true,
+    overlayColor: 'gray',
+    theme: 'dark',
+  onPopoverRender: (popover, { config, state }) => {
+    const firstButton = document.createElement("button");
+    firstButton.innerText = "Go to First";
+    popover.footerButtons.appendChild(firstButton);
+
+    firstButton.addEventListener("click", () => {
+      driverObj.drive(0);
+    });
+  },
+  
+  steps: [
+    { element: '.cat1', popover: { title: 'Categorias', description: 'Esta es la seccion para añadir nuevas categorias' } },
+    { element: '.p-2', popover: { title: 'Nombre de Categoria', description: 'Esto se llama input text, es donde se va añadir el nombre de la categoria ' } },
+    { element: '.ring-2', popover: { title: 'Ingresar Descripción', description: 'En este input text, se añade una descripción de lo que trata la categoría ' } },
+    { element: '.colorp', popover: { title: 'Title', description: 'Description' } },
+  ]
+});
+
+driverObj.drive();
+
   const customStyles = {
     content: {
       // zIndex: "99999",
@@ -335,7 +363,7 @@ function categorías() {
           <div className="contenedor_cuadricular">
             <div className="margin">
               <div className="entrada">
-                <h1 className="tamaño_fuente">Categorías</h1>
+                <h1 className="tamaño_fuente cat1">Categorías</h1>
               </div>
               <div className="flex sm:flex-row w-40% flex-col">
                 <form onSubmit={handleSubmit} className="mt-4 sm:w-full mr-4">
@@ -351,6 +379,7 @@ function categorías() {
                         placeholder="Ingrese categoría"
                       ></input>
                       <Github
+                      className="colorp"
                         style={{
                           marginLeft: "10px",
                           width: "150px",
