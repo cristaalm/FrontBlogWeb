@@ -1,38 +1,50 @@
 import React, { useState } from "react";
 import "../../css/cuerpo.css";
-import { Tooltip } from "react-tooltip"; // 1. Debemos de importar Tooltip
+import { Tooltip } from "react-tooltip";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { FormattedMessage } from "react-intl";
-import { useIntl } from "react-intl"; //importas esto para poder poner la traduccion en los tooltips
-
+import { useIntl } from "react-intl";
 import { ListCollapse, Grid2X2 } from "lucide-react";
+import VideoPopup from '../Elements/M&Rmodal'; // Importa el componente del modal
 
 const Cuerpo = () => {
-  const [viewMode, setViewMode] = useState("lista"); // Estado para manejar la vista de los elementos (lista o cuadrícula)
-  const [isListView, setIsListView] = useState(true); // Estado para determinar si la vista de lista está seleccionada
+  const [viewMode, setViewMode] = useState("lista");
+  const [isListView, setIsListView] = useState(true);
+  const [videoSrc, setVideoSrc] = useState(''); // Estado para la URL del video seleccionado
+  const [showVideoModal, setShowVideoModal] = useState(false); // Estado para controlar la visibilidad del modal
 
-  // Función para cambiar a la vista de lista
   const changeToListView = () => {
     setIsListView(true);
     setViewMode("lista");
   };
-  // Función para cambiar a la vista de cuadrícula
+
   const changeToGridView = () => {
     setViewMode("cuadricula");
     setIsListView(false);
   };
+
   const intl = useIntl();
 
-  // Usa intl.formatMessage para obtener los textos de los tooltips
   const listViewTooltip = intl.formatMessage({
     id: "iTndex.list",
     defaultMessage: "List",
   });
+
   const gridViewTooltip = intl.formatMessage({
     id: "index.grid",
     defaultMessage: "Grid",
   });
+
+  const openVideoModal = (src) => {
+    setVideoSrc(src);
+    setShowVideoModal(true);
+  };
+
+  const closeVideoModal = () => {
+    setVideoSrc('');
+    setShowVideoModal(false);
+  };
 
   return (
     <div className="cuerpoo">
@@ -315,7 +327,6 @@ const Cuerpo = () => {
           </button>
         </div>
       </article>
-
       {/* Recursos Multimedia */}
       <article id="recursos-multimedia" className="seccionescuerporecursos">
         <div className="titulosdecategoruasbla font-bold">
@@ -324,33 +335,43 @@ const Cuerpo = () => {
             defaultMessage="Multimedia Resources"
           />
         </div>
-        <div className="recurso">
-          <div className="imagen-recurso">
-            <video
-              className="video-recursos"
-              src="src/video/ODS6.mp4"
-              autoPlay
-              loop
-              muted
-            ></video>
-          </div>
+        <div className="recurso1">
+          {/* Primer video con evento onClick */}
+          <video
+            className="recurso1-video"
+            src="src/video/ODS6.mp4"
+            autoPlay
+            loop
+            muted
+            onClick={() => openVideoModal("src/video/ODS6.mp4")}
+          ></video>
         </div>
-        <div className="recurso">
-          <div className="imagen-recurso"></div>
+        <div className="recurso2">
+          {/* Segundo video con evento onClick */}
+          <video
+            className="recurso2-video"
+            src="src/video/ODS6.mp4" // Asegúrate de cambiar la ruta si este es un video diferente
+            autoPlay
+            loop
+            muted
+            onClick={() => openVideoModal("src/video/ODS6.mp4")} // Asegúrate de cambiar la ruta si este es un video diferente
+          ></video>
         </div>
-        <div className="recurso">
-          <div className="imagen-recurso">
-            <video
-              className="video-recursos"
-              src="src/video/text.mp4"
-              autoPlay
-              loop
-              muted
-            ></video>
-          </div>
+        <div className="recurso3">
+          {/* Tercer video con evento onClick */}
+          <video
+            className="recurso3-video"
+            src="src/video/text.mp4" // Asegúrate de cambiar la ruta si este es un video diferente
+            autoPlay
+            loop
+            muted
+            onClick={() => openVideoModal("src/video/text.mp4")} // Asegúrate de cambiar la ruta si este es un video diferente
+          ></video>
         </div>
       </article>
-
+      {/* Modal */}
+      {showVideoModal && <VideoPopup src={videoSrc} onClose={closeVideoModal} />}
+    
       {/* Quizz */}
       <article id="quizz" className="seccionescuerpoquizz">
         <div className=" titulosdecategoruas">

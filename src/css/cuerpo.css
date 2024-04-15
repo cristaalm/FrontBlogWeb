@@ -242,15 +242,25 @@
 /* Estilos para Recursos Multimedia */
 
 /* RecursosMultimedia.css */
+
 .seccionescuerporecursos {
     padding: 20px;
     box-sizing: border-box;
     text-align: center; /* Alineación central para el título y los recursos */
     background-color: var(--color-4);
+    display: flex; /* Establecer el contenedor como flexbox */
+    justify-content: space-around; /* Espacio uniforme entre los elementos */
+}
+
+.seccionescuerporecursos video {
+    width: 30%; /* Ancho de cada video */
+    margin: 0 10px; /* Espacio entre los videos */
 }
 
 
-.recurso {
+.recurso1 video,
+.recurso2 video,
+.recurso3 video {
     display: inline-block;
     width: 30%;
     margin: 1.66%; /* Espacio entre los elementos */
@@ -258,28 +268,12 @@
     box-sizing: border-box;
 }
 
-.imagen-recurso {
-    /* border: 1px solid #000; */
-    position: relative;
-    padding-top: 56.25%; /* Relación de aspecto 16:9 */
-    /* margin-bottom: 10px; Espacio entre la imagen y el texto inferior */
-    background: #eee; 
-}
-.video-recursos {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
 @media screen and (max-width: 768px) {
     .recurso {
         width: 100%; /* Cambia el ancho a 100% para ocupar todo el ancho disponible */
         margin: 0; /* Elimina el margen entre los recursos */
     }
 }
-
-
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 /* Quizz.css */
