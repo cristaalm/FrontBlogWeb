@@ -14,7 +14,7 @@
     
 }
 .titulosdecategoruasbla {
-    color: #f5f2f2;
+    color: var(--color-1);
     font-size: 24px;
     margin-bottom: 10px;
     width: 100%;
@@ -117,15 +117,17 @@
     /* border: 1px solid #000; */
     width: calc(33.333% - 20px);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    background-color: var(--color-3);
+    background-color: var(--color-2);
 }
 
 .categoria-seleccionada {
-    /* padding: 10px; */
+    padding: 15px;
     text-align: center;
     position: relative;
 }
-
+.categoria-seleccionada.lista-view{
+    padding: 0;
+}
   /* Asegúrate de que la imagen no tenga espacios extra alrededor */
 .catimg {
     display: block;
@@ -133,7 +135,7 @@
 }
 
 .contenido-entrada {
-    padding: 15px;
+    padding: 0 15px 15px 15px;
 }
 
 .tituloentrada {
@@ -149,8 +151,8 @@
 .mostarmas {
     margin-left: auto; /* Empuja el botón hacia la derecha */
     padding: 10px 20px; /* Añade padding para aumentar el área de clic */
-    background-color: #3498db; /* Color de fondo del botón */
-    color: white; /* Color del texto del botón */
+    background-color: var(--color-3); /* Color de fondo del botón */
+    color: var(--color-1); /* Color del texto del botón */
     border: none; /* Quita el borde predeterminado del botón */
     border-radius: 5px; /* Bordes redondeados */
     cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
@@ -159,7 +161,7 @@
 }
 
 .mostarmas:hover {
-    background-color: #2980b9; /* Cambia el color de fondo al pasar el cursor */
+    background-color: var(--color-4); /* Cambia el color de fondo al pasar el cursor */
 }
 @media screen and (max-width: 768px) {
     .ultimasentradas {
@@ -204,8 +206,8 @@
     align-items: center; /* Centrar elementos verticalmente */
     padding: 15px;
     box-shadow: none;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 20px; /* Espacio al final de cada entrada */
+    /* border-bottom: 1px solid #ccc; */
+    margin-bottom: 10px; /* Espacio al final de cada entrada */
   }
   
   /* Estilos para el contenido al lado de la imagen */
@@ -244,7 +246,7 @@
     padding: 20px;
     box-sizing: border-box;
     text-align: center; /* Alineación central para el título y los recursos */
-    background-color: #050907;
+    background-color: var(--color-4);
 }
 
 
@@ -257,11 +259,11 @@
 }
 
 .imagen-recurso {
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     position: relative;
     padding-top: 56.25%; /* Relación de aspecto 16:9 */
-    margin-bottom: 10px; /* Espacio entre la imagen y el texto inferior */
-    background: #eee; /* Color de fondo */
+    /* margin-bottom: 10px; Espacio entre la imagen y el texto inferior */
+    background: #eee; 
 }
 .video-recursos {
     position: absolute;
@@ -358,3 +360,19 @@
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4 */
 /* para mostrar en forma de lista */
+
+  /* Estilo para botón cuando no está seleccionado */
+  .button-normal {
+    background-color: var(--color-2) !important; /* Color de fondo normal */
+    color: var(--color-4) !important;
+  }
+
+  /* Estilo para botón cuando está seleccionado */
+  .button-selected {
+    background-color:var(--color-4) !important; /* Color de fondo seleccionado */
+    color: var(--color-1) !important;
+  }
+
+  .cursor-pointer{
+    cursor: pointer !important;
+  }

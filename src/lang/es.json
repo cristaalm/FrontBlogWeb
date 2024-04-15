@@ -22,5 +22,8 @@
   "iTndex.list": "Lista",
   "index.grid": "Cuadricular",
   "index.start": "Inicio",
-  "index.quizz": "Trivia"
+  "index.quizz": "Trivia",
+  "btn.showMore": "Mostrar más",
+  "index.pressStart" : "Presiona para empezar"
+
 }

@@ -117,3 +117,11 @@
     margin-top: 1rem;
   }
 }
+
+.MuiFab-extended{
+  background-color: var(--color-3) !important;
+  color: var(--color-1) !important;
+}
+.MuiFab-extended:hover{
+  background-color: var(--color-4) !important;
+}

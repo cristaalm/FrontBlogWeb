@@ -10,16 +10,18 @@ import { ListCollapse, Grid2X2 } from "lucide-react";
 
 const Cuerpo = () => {
   const [viewMode, setViewMode] = useState("lista"); // Estado para manejar la vista de los elementos (lista o cuadrícula)
+  const [isListView, setIsListView] = useState(true); // Estado para determinar si la vista de lista está seleccionada
 
   // Función para cambiar a la vista de lista
   const changeToListView = () => {
+    setIsListView(true);
     setViewMode("lista");
   };
   // Función para cambiar a la vista de cuadrícula
   const changeToGridView = () => {
     setViewMode("cuadricula");
+    setIsListView(false);
   };
-
   const intl = useIntl();
 
   // Usa intl.formatMessage para obtener los textos de los tooltips
@@ -135,10 +137,10 @@ const Cuerpo = () => {
               id="lista"
               className="font-normal"
               style={{
-                padding:"10px",
+                padding: "10px",
                 fontSize: "15px",
-                backgroundColor: "#034077",
-                color: "whitesmoke",
+                backgroundColor: "#035165",
+                color: "#fffdee",
                 zIndex: "999",
               }}
             />
@@ -146,16 +148,17 @@ const Cuerpo = () => {
               id="cuadricular"
               className="font-normal"
               style={{
-                padding:"10px",
+                padding: "10px",
                 fontSize: "15px",
-                backgroundColor: "#034077",
-                color: "whitesmoke",
+                backgroundColor: "#035165",
+                color: "#fffdee",
                 zIndex: "999",
               }}
             />
-            <ButtonGroup variant="contained">
+            <ButtonGroup variant="contained" className="cursor-pointer">
               <Button
                 onClick={changeToListView}
+                className={isListView ? "button-selected" : "button-normal"} // Aplicar estilo según el estado
                 data-tooltip-id="lista"
                 data-tooltip-place="top"
                 data-tooltip-content={listViewTooltip} //implementas la funcion aqui
@@ -164,6 +167,7 @@ const Cuerpo = () => {
               </Button>
               <Button
                 onClick={changeToGridView}
+                className={!isListView ? "button-selected" : "button-normal"} // Aplicar estilo según el estado
                 data-tooltip-id="cuadricular"
                 data-tooltip-place="top"
                 data-tooltip-content={gridViewTooltip} //implementas la funcion aqui
@@ -174,12 +178,12 @@ const Cuerpo = () => {
           </div>
         </div>
         <div
-          className={`ultimasentradas-container ${
+          className={`ultimasentradas-container  ${
             viewMode === "lista" ? "lista-view" : ""
           }`}
         >
           <div
-            className={`ultimasentradas ${
+            className={`ultimasentradas text-cyan-950 hover:text-yellow-50 cursor-pointer ${
               viewMode === "lista" ? "lista-view" : ""
             }`}
           >
@@ -194,9 +198,9 @@ const Cuerpo = () => {
                 alt=""
               />
             </div>
-            <div className="contenido-entrada  font-medium">
+            <div className="contenido-entrada font-medium">
               <div
-                className={`metaentrada text-amber-50 ${
+                className={`metaentrada ${
                   viewMode === "lista" ? "lista-view" : ""
                 }`}
               >
@@ -219,7 +223,7 @@ const Cuerpo = () => {
             </div>
           </div>
           <div
-            className={`ultimasentradas ${
+            className={`ultimasentradas text-cyan-950 hover:text-yellow-50 cursor-pointer ${
               viewMode === "lista" ? "lista-view" : ""
             }`}
           >
@@ -234,7 +238,7 @@ const Cuerpo = () => {
                 alt=""
               />
             </div>
-            <div className="contenido-entrada">
+            <div className="contenido-entrada font-medium">
               <div
                 className={`metaentrada ${
                   viewMode === "lista" ? "lista-view" : ""
@@ -250,7 +254,7 @@ const Cuerpo = () => {
                 Título de Entrada
               </div>
               <div
-                className={`descripcionentrada ${
+                className={`descripcionentrada italic ${
                   viewMode === "lista" ? "lista-view" : ""
                 }`}
               >
@@ -259,7 +263,7 @@ const Cuerpo = () => {
             </div>
           </div>
           <div
-            className={`ultimasentradas ${
+            className={`ultimasentradas text-cyan-950 hover:text-yellow-50 cursor-pointer ${
               viewMode === "lista" ? "lista-view" : ""
             }`}
           >
@@ -274,7 +278,7 @@ const Cuerpo = () => {
                 alt=""
               />
             </div>
-            <div className="contenido-entrada">
+            <div className="contenido-entrada font-medium">
               <div
                 className={`metaentrada ${
                   viewMode === "lista" ? "lista-view" : ""
@@ -290,7 +294,7 @@ const Cuerpo = () => {
                 Título de Entrada
               </div>
               <div
-                className={`descripcionentrada ${
+                className={`descripcionentrada italic ${
                   viewMode === "lista" ? "lista-view" : ""
                 }`}
               >
@@ -300,18 +304,21 @@ const Cuerpo = () => {
           </div>
         </div>
         <div className="mosrarmasyvav">
-          <ButtonGroup variant="contained" aria-label="Basic button group">
+          {/* <ButtonGroup variant="contained" aria-label="Basic button group">
             <Button>1</Button>
             <Button>2</Button>
             <Button>3</Button>
-          </ButtonGroup>
-          <button className="mostarmas"> mostar mas</button>
+          </ButtonGroup> */}
+          <button className="mostarmas">
+            {" "}
+            <FormattedMessage id="btn.showMore" defaultMessage="Show more" />
+          </button>
         </div>
       </article>
 
       {/* Recursos Multimedia */}
       <article id="recursos-multimedia" className="seccionescuerporecursos">
-        <div className=" titulosdecategoruasbla">
+        <div className="titulosdecategoruasbla font-bold">
           <FormattedMessage
             id="index.Multimedia-Resources"
             defaultMessage="Multimedia Resources"
@@ -357,7 +364,10 @@ const Cuerpo = () => {
             className="boton-quizz"
             onClick={() => window.open("/quizz", "_blank")}
           >
-            Presiona para empezar
+            <FormattedMessage
+              id="index.pressStart"
+              defaultMessage="Press to start"
+            />
           </button>
         </div>
       </article>

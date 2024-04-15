@@ -22,5 +22,7 @@
   "iTndex.list": "List",
   "index.grid": "Grid",
   "index.start": "Start",
-  "index.quizz": "Quizz"
+  "index.quizz": "Quizz",
+  "btn.showMore": "Show more",
+  "index.pressStart" : "Press to start"
 }

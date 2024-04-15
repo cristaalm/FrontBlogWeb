@@ -93,7 +93,7 @@ const Footer = () => {
     backgroundColor: "#fff",
     color: "#035165",
     fontSize: "1rem",
-    fontWeight: 300,
+    fontWeight: 400,
     borderRadius: "5px",
     transition: "border-color 0.3s, background-color 0.3s, color 0.3s",
   };
