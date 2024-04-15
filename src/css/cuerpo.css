@@ -81,6 +81,7 @@
     max-height: 200px; /* Altura máxima de la imagen */
 }
 .imgdest {
+    border-radius: 10px;
     opacity: 1;
     transition: opacity 0.3s ease;
   }
@@ -114,6 +115,7 @@
 }
 
 .ultimasentradas {
+    border-radius: 10px;
     /* border: 1px solid #000; */
     width: calc(33.333% - 20px);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -130,6 +132,7 @@
 }
   /* Asegúrate de que la imagen no tenga espacios extra alrededor */
 .catimg {
+    border-radius: 10px;
     display: block;
     max-width: 100%;
 }
@@ -290,17 +293,18 @@
 }
 
 .contenedor-quizz {
-    border: 1px solid #000;
+    border: 2px solid var(--color-4);
     position: relative;
     padding: 20px;
     display: flex;
     align-items: center; /* Centra verticalmente el logo y el botón */
+    border-radius: 10px;
     justify-content: space-between; /* Separa el logo y el botón en extremos opuestos */
 }
 
 .logo-quizz {
-    border: 1px dashed #000;
-    padding: 20px;
+    /* border: 1px dashed #000; */
+    /* padding: 5px; */
     width: 30%; /* O el tamaño que prefieras para el logo */
     text-align: center;
 }
