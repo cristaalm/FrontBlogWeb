@@ -1,0 +1,105 @@
+{
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál es el principal objetivo del ODS 6 de las Naciones Unidas?",
+        "opciones": [
+          "A) Promover la educación de calidad para todos.",
+          "B) Garantizar la disponibilidad de agua y su gestión sostenible y el saneamiento para todos.",
+          "C) Lograr la igualdad de género y empoderar a todas las mujeres y niñas.",
+          "D) Tomar medidas urgentes para combatir el cambio climático y sus impactos."
+        ],
+        "respuestas_correctas": ["B"]
+      },
+      {
+        "pregunta": "¿Cuántas personas en el mundo carecen de acceso a servicios de agua potable gestionados de manera segura?",
+        "opciones": [
+          "A) Aproximadamente 500 millones.",
+          "B) Más de 2 mil millones.",
+          "C) Cerca de 1 billón.",
+          "D) Menos de 100 millones."
+        ],
+        "respuestas_correctas": ["B"]
+      },
+      {
+        "pregunta": "¿Qué porcentaje de las aguas residuales en el mundo se liberan al medio ambiente sin tratamiento?",
+        "opciones": [
+          "A) Menos del 20%.",
+          "B) Alrededor del 40%.",
+          "C) Más del 80%.",
+          "D) Exactamente el 50%."
+        ],
+        "respuestas_correctas": ["C"]
+      },
+      {
+        "pregunta": "¿Qué impacto tiene el saneamiento inadecuado en la salud?",
+        "opciones": [
+          "A) Aumenta la creatividad.",
+          "B) No tiene un impacto significativo.",
+          "C) Puede causar enfermedades transmitidas por el agua.",
+          "D) Mejora la resistencia física."
+        ],
+        "respuestas_correctas": ["C"]
+      },
+      {
+        "pregunta": "¿Cuál es una de las metas específicas del ODS 6?",
+        "opciones": [
+          "A) Eliminar completamente el uso de energías fósiles para 2030.",
+          "B) Asegurar la disponibilidad y gestión sostenible del agua y el saneamiento para todos.",
+          "C) Construir infraestructuras resilientes y promover la industrialización inclusiva.",
+          "D) Reducir la desigualdad dentro de y entre los países."
+        ],
+        "respuestas_correctas": ["B"]
+      },
+      {
+        "pregunta": "¿Qué práctica puede contribuir a una gestión sostenible del agua?",
+        "opciones": [
+          "A) La deforestación de cuencas hidrográficas.",
+          "B) El uso eficiente del agua en la agricultura.",
+          "C) Aumentar el consumo de agua per cápita.",
+          "D) Ignorar el reciclaje de aguas residuales."
+        ],
+        "respuestas_correctas": ["B"]
+      },
+      {
+        "pregunta": "¿Cómo afecta el cambio climático al ODS 6?",
+        "opciones": [
+          "A) No tiene ningún impacto.",
+          "B) Mejora la calidad del agua automáticamente.",
+          "C) Incrementa la escasez de agua en muchas áreas.",
+          "D) Reduce la cantidad de aguas residuales generadas."
+        ],
+        "respuestas_correctas": ["C"]
+      },
+      {
+        "pregunta": "¿Cuál es una acción importante para mejorar el saneamiento?",
+        "opciones": [
+          "A) Aumentar la producción de residuos.",
+          "B) Reducir la inversión en infraestructura de saneamiento.",
+          "C) Construir más instalaciones de tratamiento de aguas residuales.",
+          "D) Ignorar las recomendaciones de la OMS."
+        ],
+        "respuestas_correctas": ["C"]
+      },
+      {
+        "pregunta": "¿Qué papel juega la comunidad internacional en alcanzar el ODS 6?",
+        "opciones": [
+          "A) Ninguno, es responsabilidad exclusiva de cada país.",
+          "B) Proporcionar fondos y tecnología a países en desarrollo.",
+          "C) Aumentar el uso de combustibles fósiles.",
+          "D) Reducir la población mundial."
+        ],
+        "respuestas_correctas": ["B"]
+      },
+      {
+        "pregunta": "¿Qué se necesita para garantizar el acceso universal al saneamiento seguro para 2030?",
+        "opciones": [
+          "A) Disminuir la inversión en tecnologías limpias.",
+          "B) Incrementar la conciencia sobre la eficiencia del agua.",
+          "C) Invertir en infraestructura y educación sobre higiene.",
+          "D) Aumentar la explotación de recursos naturales."
+        ],
+        "respuestas_correctas": ["C"]
+      }
+    ]
+  }
+  
