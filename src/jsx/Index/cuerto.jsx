@@ -309,7 +309,7 @@ const Cuerpo = () => {
             <Button>2</Button>
             <Button>3</Button>
           </ButtonGroup> */}
-          <button className="mostarmas font-medium">
+          <button className="mostarmas">
             {" "}
             <FormattedMessage id="btn.showMore" defaultMessage="Show more" />
           </button>
@@ -353,7 +353,7 @@ const Cuerpo = () => {
 
       {/* Quizz */}
       <article id="quizz" className="seccionescuerpoquizz">
-        <div className=" titulosdecategoruas font-bold">
+        <div className=" titulosdecategoruas">
           <FormattedMessage id="index.quizz" defaultMessage="Quizz" />
         </div>
         <div className="contenedor-quizz">
