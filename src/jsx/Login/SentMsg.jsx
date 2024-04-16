@@ -12,7 +12,7 @@ const SentMsg = ({ message, messageClass }) => {
       <div className="wave wave3"></div>
       <div className="wave wave4"></div>
       <div className="container">
-        <h1>
+      <h1 className="font-semibold text-3xl pb-2">
           {" "}
           <FormattedMessage id="login.sentMail" defaultMessage="Email sent" />
         </h1>

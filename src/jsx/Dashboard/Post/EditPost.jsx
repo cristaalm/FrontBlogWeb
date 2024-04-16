@@ -135,13 +135,23 @@ function EditPublish() {
     e.preventDefault();
     try {
       const usuario = localStorage.getItem("userName");
+      console.log(
+        title,
+        tiny,
+        categoryId,
+        previewImage,
+        usuario,
+        descripcion,
+        id
+      );
       await editPost(
         title,
         tiny,
         categoryId,
         previewImage,
         usuario,
-        descripcion
+        descripcion,
+        id
       );
       navigate("/post/all");
       alert("Entrada actualizada exitosamente.");

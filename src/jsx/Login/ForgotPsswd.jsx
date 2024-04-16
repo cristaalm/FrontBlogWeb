@@ -42,7 +42,7 @@ const ForgotPsswd = () => {
       <div className="wave wave4"></div>
       <div className="container">
         {/* <img src="/img/logo.png" alt="Logo" /> */}
-        <h1>
+        <h1 className="font-semibold text-3xl pb-2">
           {" "}
           <FormattedMessage
             id="login.reset"
@@ -56,21 +56,29 @@ const ForgotPsswd = () => {
           />
         </p>
         {message && <div className={`message ${messageClass}`}>{message}</div>}
-        <form onSubmit={handleSubmit}>
-          <div className="form-control">
+        <form onSubmit={handleSubmit} className="mt-5">
+          <div className="relative z-0 w-full mb-5">
             <input
               type="text"
               value={mail}
               onChange={(e) => setUsername(e.target.value)}
               required
+              // className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
             />
-            <label>
-              {" "}
-              <FormattedMessage id="login.email" defaultMessage="Mail Address" />
+            <label
+              htmlFor="text"
+              className="mt-2"
+              // className="absolute duration-300 top-3 -z-1 origin-0 text-gray-500"
+            >
+              <FormattedMessage
+                id="login.email"
+                defaultMessage="Mail Address"
+              />{" "}
             </label>
           </div>
+
           <button type="submit" className="btn">
-          <FormattedMessage id="login.sendLink" defaultMessage="Send Link" />
+            <FormattedMessage id="login.sendLink" defaultMessage="Send Link" />
           </button>
         </form>
       </div>

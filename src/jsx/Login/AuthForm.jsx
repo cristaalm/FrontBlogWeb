@@ -62,41 +62,45 @@ const AuthForm = () => {
         <div className="wave wave3"></div>
         <div className="wave wave4"></div>
         <div className="container">
-          <img src="/img/logo.png" alt="Logo" />
+          <img src="/img/logo.png" alt="Logo"/>
           {message && (
-            <div className={`message ${messageClass} mb-10`}>{message}</div>
+            <div className={`message ${messageClass} mt-0 mb-5`}>{message}</div>
           )}
-          {/* <h3 className="mb-4">Inicio de Sesión</h3> */}
+          <p className="pb-3 font-semibold text-center text-2xl ml-1">
+            <FormattedMessage id="login.login" defaultMessage="Login" />
+          </p>
           <form onSubmit={handleSubmit}>
             <div className="relative z-0 w-full mb-5">
               <input
                 type="text"
-                name="text"
-                placeholder=" "
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+                required
+                // className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
               />
               <label
-                htmlFor="email"
-                className="absolute duration-300 top-3 -z-1 origin-0 text-gray-500"
+                htmlFor="text"
+                className="mt-2"
+                // className="absolute duration-300 top-3 -z-1 origin-0 text-gray-500"
               >
-                <FormattedMessage id="login.username" defaultMessage="Username" />
+                <FormattedMessage
+                  id="login.username"
+                  defaultMessage="Username"
+                />
               </label>
             </div>
-
-            <div className="relative z-0 w-full">
+            <div className="relative z-0 w-full mb-5">
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                name="text"
-                placeholder=" "
-                className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+                required
+                // className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
               />
               <label
-                htmlFor="pss"
-                className="absolute duration-300 top-3 -z-1 origin-0 text-gray-500"
+                htmlFor="text"
+                className="mt-2"
+                // className="absolute duration-300 top-3 -z-1 origin-0 text-gray-500"
               >
                 <FormattedMessage
                   id="login.password"

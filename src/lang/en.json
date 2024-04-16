@@ -1,4 +1,5 @@
 {
+  "login.login":"Login",
   "login.signIn": "Sign In",
   "login.forgotPssd": "Forgot your password?",
   "login.password" : "Password",

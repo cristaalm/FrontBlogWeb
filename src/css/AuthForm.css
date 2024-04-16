@@ -7,7 +7,7 @@
   --color-5: #84b6f4;
   --color-green1: #56a686;
   --color-green2: #03653e;
-  --color-red: #650303; 
+  --color-red: #650303;
 }
 
 * {
@@ -19,9 +19,14 @@
 
 section img {
   display: flex;
-  margin-left: 22.4%;
+  margin-left: 28%;
   justify-content: center; /* Centra horizontalmente */
   height: 150px; /* Ajusta el tamaño de la imagen según sea necesario */
+}
+@media screen and (max-width: 768px) {
+  section img {
+    margin-left: 52px;
+  }
 }
 
 .msg {
@@ -107,7 +112,7 @@ section {
   top: 100px; /* Ajusta esta valor para mover el contenedor hacia abajo desde la parte superior de la sección */
   left: 1000px; /* Ajusta este valor para mover el contenedor hacia la derecha desde el lado izquierdo de la sección */
   background-color: rgba(0, 0, 0, 0.4);
-  padding: 20px 40px !important;
+  padding: 5px 35px 20px 35px !important;
   border-radius: 5px;
   z-index: 9999;
   max-width: 320px; /* Establece un ancho máximo para el contenedor */
@@ -119,6 +124,7 @@ h1 {
   /* margin-bottom: 30px; */
 }
 .btn {
+  color: #035165 !important;
   cursor: pointer !important;
   display: inline-block !important;
   width: 100% !important;
@@ -208,7 +214,7 @@ input:valid + label span {
 .message {
   /* Estilos generales del mensaje */
   padding: 10px !important;
-  margin-top: 10px !important;
+  /* margin-top: 10px !important; */
   border-radius: 5px !important;
   text-align: center !important;
 }
@@ -335,4 +341,3 @@ input:focus ~ .highlight {
 .inicio {
   overflow-y: auto;
 }
-

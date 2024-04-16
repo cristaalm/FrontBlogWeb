@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const editPost = async (titulo, contenido, idcategoria, img, usuario, descripcion) => {
+export const editPost = async (titulo, contenido, idcategoria, img, usuario, descripcion,id) => {
     try {
-      const response = await axios.post('https://backblogweb.onrender.com/api/entradas/', {
+      const response = await axios.patch(`https://backblogweb.onrender.com/api/entradas/${id}`, {
         titulo: titulo,
         contenido: contenido,
         idcategoria: idcategoria,

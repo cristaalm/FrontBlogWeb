@@ -683,14 +683,14 @@ h1 {
 
 input:focus,
 input:valid {
-  border-bottom-color: none !important;
+  /* border-bottom-color: none !important; */
   outline: 0 !important;
   color: var(--color-4) !important;
 }
 
 input:valid{
   /* border-bottom-color: #56a1a6 !important; */
-  border-bottom-color: transparent !important;
+  /* border-bottom-color: transparent !important; */
 }
 
 /* .btnUsarios {

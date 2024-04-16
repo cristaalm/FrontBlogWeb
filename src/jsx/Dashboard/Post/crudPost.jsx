@@ -194,10 +194,11 @@ function crudPost() {
       );
       const data = await response.json();
       setUser(data);
+      setUsuario(nombreusuario);
+      console.log("Datos del usuario", data);
     };
     fetchData();
   }, []);
-
   // Publica la entrada (POST)
   const handlePublished = async (id) => {
     try {
@@ -537,6 +538,11 @@ function crudPost() {
                               <th className="border-neutral-100 border-r-2 encabezadoTabla">
                                 Categoría
                               </th>
+                              {user.rol === "Administrador" && (
+                                <th className="border-neutral-100 border-r-2 encabezadoTabla">
+                                  Creador
+                                </th>
+                              )}
                               <th className="border-neutral-100 border-r-2 encabezadoTabla">
                                 Estatus
                               </th>
@@ -545,6 +551,13 @@ function crudPost() {
                           </thead>
                           {entradas.data &&
                             entradas.data
+                              .filter((entrada) => {
+                                if (user.rol !== "Administrador") {
+                                  return nombreusuario === entrada.usuario;
+                                } else {
+                                  return true;
+                                }
+                              })
                               .sort((a, b) => a.id - b.id)
                               .map((entrada) =>
                                 (user.rol !== "Administrador" &&
@@ -561,6 +574,11 @@ function crudPost() {
                                         {categoryNames[entrada.idcategoria] ||
                                           "Categoría no encontrada"}
                                       </td>
+                                      {user.rol === "Administrador" && (
+                                        <td className="border-2 border-teal-600 p-1">
+                                          {entrada.usuario}
+                                        </td>
+                                      )}
                                       <td className="border-2 border-teal-600 p-1 text-center">
                                         <span
                                           className={`${
@@ -577,34 +595,35 @@ function crudPost() {
                                         </span>
                                       </td>
                                       <td className="flex items-center justify-center">
-                                        {user.rol !== "Administrador" && (
-                                          <Link to={`/post/edit/${entrada.id}`}>
-                                            <button
-                                              className={`btn-yellow p-2 m-1 ${
-                                                entrada.estatus !== "Revisión"
-                                                  ? ""
-                                                  : "opacity-50 cursor-not-allowed"
-                                              }`}
-                                              data-tooltip-id="editar"
-                                              data-tooltip-place="top"
-                                              data-tooltip-content="Editar"
-                                              disabled={
-                                                entrada.estatus === "Revisión"
-                                              }
-                                              {...(entrada.estatus !==
-                                              "Revisión"
-                                                ? {}
-                                                : {
-                                                    "data-tooltip-hidden": true,
-                                                  })}
-                                              onClick={() =>
-                                                loadEditUserData(entrada.id)
-                                              }
-                                            >
-                                              <Pencil size={20} />
-                                            </button>
-                                          </Link>
-                                        )}
+                                        {/* {user.rol == "Administrador" && {e} ( */}
+                                        <Link to={`/post/edit/${entrada.id}`}>
+                                          <button
+                                            className={`btn-yellow p-2 m-1 ${
+                                              entrada.estatus !== "Revisión" &&
+                                              entrada.estatus !== "Publicado"
+                                                ? ""
+                                                : "opacity-50 cursor-not-allowed"
+                                            }`}
+                                            data-tooltip-id="editar"
+                                            data-tooltip-place="top"
+                                            data-tooltip-content="Editar"
+                                            disabled={
+                                              entrada.estatus === "Revisión" ||
+                                              entrada.estatus === "Publicado"
+                                            }
+                                            {...(entrada.estatus !== "Revisión"
+                                              ? {}
+                                              : {
+                                                  "data-tooltip-hidden": true,
+                                                })}
+                                            onClick={() =>
+                                              loadEditUserData(entrada.id)
+                                            }
+                                          >
+                                            <Pencil size={20} />
+                                          </button>
+                                        </Link>
+                                        {/* )} */}
                                         <Link
                                           to={`/post/preview/${entrada.id}`}
                                         >
