@@ -253,21 +253,33 @@
 }
 
 .seccionescuerporecursos video {
-    width: 50%; /* Ancho del video */
-    height: 300px; /* Altura fija del video */
+    width: 50%; 
+    height: 00px; /* Altura fija del video */
     margin: 0 10px; /* Espacio entre los videos */
 }
-
+.contenedorrecursos{
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex; /* Establecer el contenedor como flexbox */
+    justify-content: space-around; 
+}
 
 .recurso1 video,
-.recurso2 video,
+.recurso2 img,
 .recurso3 video {
     display: inline-block;
     margin: 1.66%; /* Espacio entre los elementos */
     vertical-align: top;
     box-sizing: border-box;
-    width: 80%; /* Ancho del video */
+    width: 80%; 
     height: auto; 
+}
+.titulosdecategoruasbla{
+    display: flex;
+    position: absolute;
+    left: 20px;
+    height: 100px;
+    font-size: 20px;
 }
 
 @media screen and (max-width: 768px) {
@@ -276,6 +288,38 @@
         margin: 0; /* Elimina el margen entre los recursos */
     }
 }
+.multimedia-title {
+    font-size: 2rem; 
+  }
+  
+  @media (max-width: 768px) {
+    .multimedia-title {
+      font-size: 1.5rem; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .multimedia-title {
+      font-size: 1.2rem; 
+    }
+  }
+  @media (max-width: 768px) {
+    .recurso1,
+    .recurso2,
+    .recurso3 {
+      width: 45%; /* Porcentaje de ancho para dispositivos medianos */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .recurso1,
+    .recurso2,
+    .recurso3 {
+      width: 100%; /* Ancho completo para dispositivos pequeños */
+      margin-bottom: 20px; /* Espacio entre los contenedores en dispositivos pequeños */
+    }
+  }
+  
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 /* Quizz.css */

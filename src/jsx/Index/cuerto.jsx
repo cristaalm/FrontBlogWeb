@@ -7,12 +7,15 @@ import { FormattedMessage } from "react-intl";
 import { useIntl } from "react-intl";
 import { ListCollapse, Grid2X2 } from "lucide-react";
 import VideoPopup from '../Elements/M&Rmodal'; // Importa el componente del modal
+import ImagePopup from '../Elements/M&Rmodal';
 
 const Cuerpo = () => {
   const [viewMode, setViewMode] = useState("lista");
   const [isListView, setIsListView] = useState(true);
   const [videoSrc, setVideoSrc] = useState(''); // Estado para la URL del video seleccionado
   const [showVideoModal, setShowVideoModal] = useState(false); // Estado para controlar la visibilidad del modal
+  const [imageSrc, setImageSrc] = useState(''); // Estado para la URL de la imagen seleccionada
+  const [showImageModal, setShowImageModal] = useState(false); // Estado para controlar la visibilidad del modal de imagen
 
   const changeToListView = () => {
     setIsListView(true);
@@ -44,6 +47,16 @@ const Cuerpo = () => {
   const closeVideoModal = () => {
     setVideoSrc('');
     setShowVideoModal(false);
+  };
+  
+  const openImageModal = (src) => {
+    setImageSrc(src);
+    setShowImageModal(true);
+  };
+  
+  const closeImageModal = () => {
+    setImageSrc('');
+    setShowImageModal(false);
   };
 
   return (
@@ -335,43 +348,47 @@ const Cuerpo = () => {
             defaultMessage="Multimedia Resources"
           />
         </div>
-        <div className="recurso1">
-          {/* Primer video con evento onClick */}
-          <video
-            className="recurso1-video"
-            src="src/video/ODS6.mp4"
-            autoPlay
-            loop
-            muted
-            onClick={() => openVideoModal("src/video/ODS6.mp4")}
-          ></video>
-        </div>
-        <div className="recurso2">
-          {/* Segundo video con evento onClick */}
-          <video
-            className="recurso2-video"
-            src="src/video/ODS6.mp4" // Asegúrate de cambiar la ruta si este es un video diferente
-            autoPlay
-            loop
-            muted
-            onClick={() => openVideoModal("src/video/ODS6.mp4")} // Asegúrate de cambiar la ruta si este es un video diferente
-          ></video>
-        </div>
-        <div className="recurso3">
-          {/* Tercer video con evento onClick */}
-          <video
-            className="recurso3-video"
-            src="src/video/text.mp4" // Asegúrate de cambiar la ruta si este es un video diferente
-            autoPlay
-            loop
-            muted
-            onClick={() => openVideoModal("src/video/text.mp4")} // Asegúrate de cambiar la ruta si este es un video diferente
-          ></video>
+        <div className="contenedorrecursos">
+          <div className="recurso1">
+            {/* Primer video con evento onClick */}
+            <button onClick={() => openVideoModal("src/video/ODS6.mp4")}>
+              <video
+                className="recurso1-video"
+                src="src/video/ODS6.mp4"
+                autoPlay
+                loop
+                muted
+              ></video>
+            </button>
+          </div>
+          <div className="recurso2">
+            {/* Segunda imagen con evento onClick */}
+            <button onClick={() => openImageModal("../../../public/img/ODS66.jpg")}>
+              <img
+                className="recurso2-video"
+                src="../../../public/img/ODS6.gif"
+                alt="Imagen de recurso"
+              />
+            </button>
+          </div>
+          <div className="recurso3">
+            {/* Tercer video con evento onClick */}
+            <button onClick={() => openVideoModal("src/video/text.mp4")}>
+              <video
+                className="recurso3-video"
+                src="src/video/text.mp4"
+                autoPlay
+                loop
+                muted
+              ></video>
+            </button>
+          </div>
         </div>
       </article>
+
       {/* Modal */}
       {showVideoModal && <VideoPopup src={videoSrc} onClose={closeVideoModal} />}
-    
+      {showImageModal && <ImagePopup src={imageSrc} type="image" onClose={closeImageModal} />}
       {/* Quizz */}
       <article id="quizz" className="seccionescuerpoquizz">
         <div className=" titulosdecategoruas">
@@ -397,3 +414,4 @@ const Cuerpo = () => {
 };
 
 export default Cuerpo;
+import "../../css/mrmodal.css";

@@ -1,44 +1,54 @@
 .popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    max-height: calc(100% - 40px); /* Resta el doble del padding vertical */
-    overflow-y: auto; /* Agrega barras de desplazamiento si el contenido es demasiado grande */
-    display: flex; /* Usa flexbox para alinear el botón */
-    flex-direction: column; /* Alinear elementos verticalmente */
-  }
-  
-  .popup-inner {
-    position: relative;
-    flex-grow: 1; /* Permite que el contenido se estire */
-  }
-  
-  .video-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px; /* Ajusta este valor según sea necesario */
-  }
-  
-  .video {
-    width: 100%;
-    height: auto; /* Ajustado para que el video sea responsive */
-  }
-  
-  .close-btn {
-    align-self: flex-end; /* Alinear el botón al final del contenedor */
-    margin-top: -10px; /* Agregar un espacio entre el video y el botón */
-    background-color: red; /* Cambia esto al color que desees */
-    border: none;
-    cursor: pointer;
-    color: white; /* Cambia esto al color de texto que desees */
-    font-size: 18px;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-height: calc(100% - 40px); 
+  overflow-y: auto; 
+  display: flex; 
+  flex-direction: column; 
+  pointer-events: visible;
+}
+
+.popup-inner {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%; 
+  max-height: 100%; 
+}
+
+.video-container {
+  max-width: 100%;
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  height: auto; 
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  object-fit: contain; 
+}
+
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff; 
+}
