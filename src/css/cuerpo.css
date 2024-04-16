@@ -253,7 +253,8 @@
 }
 
 .seccionescuerporecursos video {
-    width: 30%; /* Ancho de cada video */
+    width: 50%; /* Ancho del video */
+    height: 300px; /* Altura fija del video */
     margin: 0 10px; /* Espacio entre los videos */
 }
 
@@ -262,10 +263,11 @@
 .recurso2 video,
 .recurso3 video {
     display: inline-block;
-    width: 30%;
     margin: 1.66%; /* Espacio entre los elementos */
     vertical-align: top;
     box-sizing: border-box;
+    width: 80%; /* Ancho del video */
+    height: auto; 
 }
 
 @media screen and (max-width: 768px) {

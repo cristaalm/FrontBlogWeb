@@ -1,12 +1,9 @@
+// VideoPopup.js
+import "../../css/mrmodal.css"
 import React, { useState } from 'react';
 
 function VideoPopup({ src, onClose }) {
-  const [showPopup, setShowPopup] = useState(false);
-
-  // Función para abrir la ventana emergente
-  const openPopup = () => {
-    setShowPopup(true);
-  };
+  const [showPopup, setShowPopup] = useState(true);
 
   // Función para cerrar la ventana emergente
   const closePopup = () => {
@@ -16,18 +13,15 @@ function VideoPopup({ src, onClose }) {
 
   return (
     <div>
-      {/* Botón para abrir la ventana emergente */}
-      <button onClick={openPopup}>Mostrar Video</button>
-
       {/* Ventana emergente con el video */}
       {showPopup && (
         <div className="popup">
+          {/* Botón para cerrar la ventana emergente */}
+          <button className="close-btn" onClick={closePopup}>Cerrar</button>
           <div className="popup-inner">
-            {/* Botón para cerrar la ventana emergente */}
-            <button className="close-btn" onClick={closePopup}>Cerrar</button>
             {/* Video */}
-            <video controls>
-              <source src={src} type="/src/video/ODS6.mp4" />
+            <video className="video" controls>
+              <source src={src} type="video/mp4" />
               Tu navegador no soporta la reproducción de videos.
             </video>
           </div>
