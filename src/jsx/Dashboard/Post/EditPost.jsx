@@ -39,6 +39,29 @@ function EditPublish() {
   const handleTinyChange = (content, editor) => {
     setTiny(content);
   };
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    let nombreusuario = localStorage.getItem("userName");
+    // console.log(nombreusuario);
+    // Mandar el nombre de usuario del fetch en el request body
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://backblogweb.onrender.com/api/users/find-user",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ nombreusuario }),
+        }
+      );
+      const data = await response.json();
+      setUser(data);
+    };
+    fetchData();
+  }, []);
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -156,15 +179,18 @@ function EditPublish() {
                 text: "Añadir Nueva",
                 to: "/post/add",
               },
-              // { icon: <Layers />, text: "Categorías" }
             ]}
           />
-          <Link to="/categories" className="without_line">
-            <SidebarItem icon={<Layers />} text="Categorías" />
-          </Link>
-          <Link to="/users" className="without_line">
-            <SidebarItem icon={<Users />} text="Usuario" />
-          </Link>
+          {user.rol === "Administrador" && (
+            <>
+              <Link to="/categories" className="without_line">
+                <SidebarItem icon={<Layers />} text="Categorías" />
+              </Link>
+              <Link to="/users" className="without_line">
+                <SidebarItem icon={<Users />} text="Usuario" />
+              </Link>
+            </>
+          )}
         </Sidebar>
       </div>
       <div className="inicio">
@@ -214,7 +240,7 @@ function EditPublish() {
                       </option>
                       {categories.data &&
                         categories.data.map((category) => (
-                          <option key={category.id} value={category.id} >
+                          <option key={category.id} value={category.id}>
                             {category.nombre}
                           </option>
                         ))}

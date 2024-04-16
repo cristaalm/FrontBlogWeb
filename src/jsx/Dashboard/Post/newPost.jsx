@@ -60,6 +60,28 @@ function usuarios() {
   const handleTinyChange = (content, editor) => {
     setTiny(content);
   };
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    let nombreusuario = localStorage.getItem("userName");
+    // console.log(nombreusuario);
+    // Mandar el nombre de usuario del fetch en el request body
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://backblogweb.onrender.com/api/users/find-user",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ nombreusuario }),
+        }
+      );
+      const data = await response.json();
+      setUser(data);
+    };
+    fetchData();
+  }, []);
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
@@ -197,28 +219,24 @@ function usuarios() {
               // { icon: <Layers />, text: "Categorías" }
             ]}
           />
-          <Link to="/categories" className="without_line">
-            <SidebarItem icon={<Layers />} text="Categorías" />
-          </Link>
-          <Link to="/users" className="without_line">
-            <SidebarItem icon={<Users />} text="Usuario" />
-          </Link>
+          {user.rol === "Administrador" && (
+            <>
+              <Link to="/categories" className="without_line">
+                <SidebarItem icon={<Layers />} text="Categorías" />
+              </Link>
+              <Link to="/users" className="without_line">
+                <SidebarItem icon={<Users />} text="Usuario" />
+              </Link>
+            </>
+          )}
         </Sidebar>
       </div>
       <div className="inicio">
         <Tooltip
-          id="editar"
+          id="manual"
           style={{
-            backgroundColor: "#d69e2e",
-            color: "whitesmoke",
-            zIndex: "999",
-          }}
-        />
-        <Tooltip
-          id="eliminar"
-          style={{
-            backgroundColor: "#e53e3e",
-            color: "whitesmoke",
+            backgroundColor: "#b8ddd6",
+            color: "#035165",
             zIndex: "999",
           }}
         />
@@ -227,7 +245,17 @@ function usuarios() {
             <div className="margin">
               <div className="entrada">
                 <h1 className="tamaño_fuente">Añadir nueva entrada</h1>
+                {user.rol != "Administrador" && (
+                  <img
+                    src="../../../../public/img/logoRedB.png"
+                    data-tooltip-content="Manual"
+                    data-tooltip-id="manual"
+                    className="rounded mb-2 h-10 w-10"
+                    alt="Logo RedB"
+                  />
+                )}
               </div>
+
               <div className="flex sm:flex-row w-full flex-col">
                 <form onSubmit={handleSubmit} className="mt-2 mr-4 p-2 w-100">
                   <div className="">

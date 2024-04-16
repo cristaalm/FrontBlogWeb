@@ -312,7 +312,7 @@ function crudPost() {
     setUsuario(userData.nombreusuario);
     setNombre(userData.nombre);
     setCorreo(userData.correoelectronico);
-    setContraseña(userData.contraseña);
+    setContraseña(userData.contraseñentradasa);
     setPerfil(userData.perfil);
   };
 
@@ -439,14 +439,19 @@ function crudPost() {
                 text: "Añadir Nueva",
                 to: "/post/add",
               },
+              // { icon: <Layers />, text: "Categorías" }
             ]}
           />
-          <Link to="/categories" className="without_line">
-            <SidebarItem icon={<Layers />} text="Categorías" />
-          </Link>
-          <Link to="/users" className="without_line">
-            <SidebarItem icon={<Users />} text="Usuario" />
-          </Link>
+          {user.rol === "Administrador" && (
+            <>
+              <Link to="/categories" className="without_line">
+                <SidebarItem icon={<Layers />} text="Categorías" />
+              </Link>
+              <Link to="/users" className="without_line">
+                <SidebarItem icon={<Users />} text="Usuario" />
+              </Link>
+            </>
+          )}
         </Sidebar>
       </div>
       <div className="inicio">
