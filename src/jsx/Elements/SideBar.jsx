@@ -85,7 +85,7 @@ export default function Sidebar({ children }) {
             data-tooltip-place={!expanded ? "right" : "top-start"}
             data-tooltip-content="Cerrar Sesión"
             onClick={cerrarSesion}
-            className="ml-2.5 w-10 h-10 rounded-md cursor-pointer"
+            className="ml-2.5 w-10 h-10 rounded-md cursor-pointer cerrar-tour"
           />
           <div
             className={`

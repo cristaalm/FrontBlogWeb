@@ -21,7 +21,39 @@ import {
 } from "lucide-react";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 function usuarios() {
+  const startTour = () => {
+    const driverObj = driver({
+      showProgress: true,
+      overlayColor: 'lemon',
+      theme: 'dark',
+      onPopoverRender: (popover, { config, state }) => { 
+        const firstButton = document.createElement("button");
+        //firstButton.innerText = "Go to First";
+        //popover.footerButtons.appendChild(firstButton);
+  
+        firstButton.addEventListener("click", () => {
+          // Al hacer clic en el botón, finaliza el tour y marca como completado
+          driverObj.destroy();
+          sessionStorage.setItem('tourCompleted', true);
+        });
+      },
+      steps: [
+        { element: '.entrada1-tour', popover: { title: 'Añadir nueva entrada', description: 'Esta es la sección para agregar nuevas entradas.' } },
+        { element: '.inputentrada', popover: { title: 'Título de la entrada', description: 'Aquí puedes ingresar el título de la nueva entrada.' } },
+        { element: '.selectcat-tour', popover: { title: 'Seleccione su categoría', description: 'Este menú desplegable te permite seleccionar la categoría deseada para tu entrada.' } },
+        { element: '.descripcion-tour', popover: { title: 'Descripción', description: 'En este campo, puedes agregar una descripción para tu entrada.' } },
+        { element: '.imgdestaca-tour', popover: { title: 'Imagen destacada', description: 'Aquí puedes cargar y previsualizar la imagen que deseas destacar en tu entrada.' } },
+        { element: '.tiny-tour', popover: { title: 'Previsualización', description: 'TinyMCE es un editor de texto enriquecido que facilita la creación y edición de contenido web. Explora las opciones de formato, añade imágenes, enlaces y mucho más.' } },
+        { element: '.btn-tour', popover: { title: 'Añadir entrada', description: 'Haz clic en este botón para agregar la entrada con toda la información que has proporcionado anteriormente.' } },
+        { element: '.btn-iniciar-tour', popover: { title: 'Reiniciar Tour', description: 'Haz clic en este botón para volver a iniciar el tour por la página.' } },
+
+    ]
+    });
+    driverObj.drive();
+  };
   const customStyles = {
     content: {
       // zIndex: "99999",
@@ -243,22 +275,31 @@ function usuarios() {
         <main className="todo_espacio flex-1">
           <div className="contenedor_cuadricular">
             <div className="margin">
-              <div className="entrada">
-                <h1 className="tamaño_fuente">Añadir nueva entrada</h1>
+            <div className="entrada">
+                <h1 className="tamaño_fuente entrada1-tour">Añadir nueva entrada</h1>
                 {user.rol != "Administrador" && (
+                  
+                  <button
+                  onClick={startTour}
+                  data-tooltip-content="Iniciar tour"
+                  data-tooltip-id="manual"
+                  className="rounded mb-2 h-10 w-10 btn-iniciar-tour"
+                  alt="Iniciar Tour"
+                >
                   <img
                     src="../../../../public/img/logoRedB.png"
-                    data-tooltip-content="Manual"
-                    data-tooltip-id="manual"
-                    className="rounded mb-2 h-10 w-10"
+                    className="rounded h-full w-full"
                     alt="Logo RedB"
                   />
+                </button>
+                
+
                 )}
               </div>
 
               <div className="flex sm:flex-row w-full flex-col">
                 <form onSubmit={handleSubmit} className="mt-2 mr-4 p-2 w-100">
-                  <div className="">
+                  <div className="inputentrada">
                     <div className="font-medium" htmlFor="title">
                       Título de entrada
                     </div>
@@ -273,7 +314,7 @@ function usuarios() {
                     <select
                       value={categoryId}
                       onChange={(e) => setCategoryId(e.target.value)}
-                      className="selectUsuarios ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-z focus:border-cyan-900"
+                      className="selectUsuarios ring-teal-600 bg-neutral-100 ring-2 selectcat-tour rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-z focus:border-cyan-900"
                     >
                       <option
                         value=""
@@ -291,7 +332,7 @@ function usuarios() {
                         ))}
                     </select>
                   </div>
-                  <div className="mt-2">
+                  <div className="mt-2 descripcion-tour">
                     <div className="font-medium" htmlFor="title">
                       Descripción
                     </div>
@@ -305,7 +346,7 @@ function usuarios() {
                       Esta descripción será mostrada al usuario visitante.
                     </p>
                   </div>
-                  <div className="mt-2">
+                  <div className="mt-2 imgdestaca-tour">
                     <div className="font-medium" htmlFor="title">
                       Imagen Destacada
                     </div>
@@ -342,14 +383,14 @@ function usuarios() {
                     />
                   </div>
                   <div>
-                    <button type="submit" className="entr tracking-widest mt-4">
+                    <button type="submit" className="entr tracking-widest mt-4 btn-tour">
                       Añadir entrada
                     </button>
                   </div>
                 </form>
                 <div className="sm:w-full w-60%">
                   <div className="mt-2">
-                    <div className="right">
+                    <div className="right tiny-tour">
                       <div className="previsualizar">
                         <div className="bottonpre">
                           <h2 className="negt">Previsualización</h2>
