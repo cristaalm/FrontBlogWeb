@@ -341,6 +341,7 @@ function usuarios() {
                       onChange={(e) => setDescripcion(e.target.value)}
                       className="w-full bg-neutral-100 p-2 in2 mt-2 ring-2 ring-teal-600 rounded"
                       placeholder="Ingrese descripción"
+                      maxLength={440}
                     ></textarea>
                     <p className="text-neutral-400 text-sm">
                       Esta descripción será mostrada al usuario visitante.

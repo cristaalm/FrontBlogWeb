@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../css/cuerpo.css";
 import { Tooltip } from "react-tooltip";
 import Button from "@mui/material/Button";
@@ -6,16 +6,59 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import { FormattedMessage } from "react-intl";
 import { useIntl } from "react-intl";
 import { ListCollapse, Grid2X2 } from "lucide-react";
-import VideoPopup from '../Elements/M&Rmodal'; // Importa el componente del modal
-import ImagePopup from '../Elements/M&Rmodal';
+import VideoPopup from "../Elements/M&Rmodal"; // Importa el componente del modal
+import ImagePopup from "../Elements/M&Rmodal";
+import { format } from "date-fns";
+import "../../css/mrmodal.css";
+import { EngineeringTwoTone } from "@mui/icons-material";
+import { useNavigate } from 'react-router-dom';
 
 const Cuerpo = () => {
+  const navigate = useNavigate();
+
   const [viewMode, setViewMode] = useState("lista");
   const [isListView, setIsListView] = useState(true);
-  const [videoSrc, setVideoSrc] = useState(''); // Estado para la URL del video seleccionado
+  const [videoSrc, setVideoSrc] = useState(""); // Estado para la URL del video seleccionado
   const [showVideoModal, setShowVideoModal] = useState(false); // Estado para controlar la visibilidad del modal
-  const [imageSrc, setImageSrc] = useState(''); // Estado para la URL de la imagen seleccionada
+  const [imageSrc, setImageSrc] = useState(""); // Estado para la URL de la imagen seleccionada
   const [showImageModal, setShowImageModal] = useState(false); // Estado para controlar la visibilidad del modal de imagen
+
+  const [contenidoTiny, setContenidoTiny] = useState("");
+  const [categoria, setCategoria] = useState("");
+  const [categoryNames, setCategoryNames] = useState("");
+  const [tituloEntrada, setTituloEntrada] = useState("");
+  const [descripcion, setDescripcion] = useState("");
+  const [nombreCompleto, setNombre] = useState("");
+  const [fPublicacion, setFPublicacion] = useState("");
+  const [color, setColor] = useState("");
+  const [previewImage, setPreviewImage] = useState(null);
+  const [entradas, setEntradas] = useState([]);
+
+  //1. Declaro una variable para que se obtenga mi contenido de entradas
+
+  // 2. Obtiene los entradas en la tabla (GET)
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "https://backblogweb.onrender.com/api/entradas"
+      );
+      const data = await response.json();
+      setEntradas(data);
+      // Data me obtiene:
+      // contenido;
+      // descripcion;
+      // estatus;
+      // fechapublicacion;
+      // id;
+      // idcategoria;
+      // imgdestacada;
+      // nombre;
+      // perfil;
+      // titulo;
+      // usuario;
+    };
+    fetchData();
+  }, []);
 
   const changeToListView = () => {
     setIsListView(true);
@@ -45,18 +88,22 @@ const Cuerpo = () => {
   };
 
   const closeVideoModal = () => {
-    setVideoSrc('');
+    setVideoSrc("");
     setShowVideoModal(false);
   };
-  
+
   const openImageModal = (src) => {
     setImageSrc(src);
     setShowImageModal(true);
   };
-  
+
   const closeImageModal = () => {
-    setImageSrc('');
+    setImageSrc("");
     setShowImageModal(false);
+  };
+  const toggleViewEntrada = (id) => {
+    // alert(id);
+    navigate(`/blog-post/${id}`);
   };
 
   return (
@@ -83,9 +130,9 @@ const Cuerpo = () => {
         </div>
         <div className="tutilocatego cursor-pointer">
           <div className="imagendest">
-            <div class="numero bg-yellow-400 font-semibold">#1</div>
+            <div className="numero bg-yellow-400 font-semibold">#1</div>
             <img
-              className="imgdest"
+              className="imgdest rounded-md"
               src="../../../public/img/img5.png"
               alt=""
             />
@@ -105,9 +152,9 @@ const Cuerpo = () => {
         </div>
         <div className="tutilocatego cursor-pointer">
           <div className="imagendest">
-            <div class="numero bg-pink-400 font-semibold">#2</div>
+            <div className="numero bg-pink-400 font-semibold">#2</div>
             <img
-              className="imgdest"
+              className="imgdest rounded-md"
               src="../../../public/img/img5.png"
               alt=""
             />
@@ -127,7 +174,7 @@ const Cuerpo = () => {
         </div>
         <div className="tutilocatego cursor-pointer">
           <div className="imagendest">
-            <div class="numero bg-lime-400 font-semibold">#3</div>
+            <div className="numero bg-lime-400 font-semibold">#3</div>
             <img
               className="imgdest"
               src="../../../public/img/img5.png"
@@ -207,7 +254,60 @@ const Cuerpo = () => {
             viewMode === "lista" ? "lista-view" : ""
           }`}
         >
-          <div
+          {entradas.data &&
+            entradas.data.map((entrada) => (
+              <div
+                key={entrada.id}
+                onClick={() => toggleViewEntrada(entrada.id)}
+                className={`ultimasentradas rounded-md text-cyan-950 hover:text-yellow-50 cursor-pointer ${
+                  viewMode === "lista" ? "lista-view" : ""
+                }`}
+              >
+                <div
+                  className={`categoria-seleccionada ${
+                    viewMode === "lista" ? "lista-view" : ""
+                  }`}
+                >
+                  <img
+                    className={`catimg rounded-md  ${
+                      viewMode === "lista" ? "lista-view max-w-48 min-w-48" : ""
+                    }`}
+                    src={entrada.imgdestacada}
+                    alt={"Imagen Destacada de entrada " + entrada.id}
+                    style={{
+                      width: "400px",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+                <div className="contenido-entrada font-medium">
+                  <div
+                    className={`metaentrada ${
+                      viewMode === "lista" ? "lista-view" : ""
+                    }`}
+                  >
+                    {entrada.nombre} -{" "}
+                    {format(new Date(entrada.fechapublicacion), "dd/MM/yyyy")}
+                  </div>
+                  <div
+                    className={`tituloentrada ${
+                      viewMode === "lista" ? "lista-view" : ""
+                    }`}
+                  >
+                    {entrada.titulo}
+                  </div>
+                  <div
+                    className={`descripcionentrada italic ${
+                      viewMode === "lista" ? "lista-view" : ""
+                    }`}
+                  >
+                    {entrada.descripcion}
+                  </div>
+                </div>
+              </div>
+            ))}
+          {/* <div
             className={`ultimasentradas text-cyan-950 hover:text-yellow-50 cursor-pointer ${
               viewMode === "lista" ? "lista-view" : ""
             }`}
@@ -218,7 +318,9 @@ const Cuerpo = () => {
               }`}
             >
               <img
-                className={`catimg ${viewMode === "lista" ? "lista-view" : ""}`}
+                className={`catimg rounded-md ${
+                  viewMode === "lista" ? "lista-view" : ""
+                }`}
                 src="../../../public/img/img5.png"
                 alt=""
               />
@@ -286,47 +388,7 @@ const Cuerpo = () => {
                 Descripción
               </div>
             </div>
-          </div>
-          <div
-            className={`ultimasentradas text-cyan-950 hover:text-yellow-50 cursor-pointer ${
-              viewMode === "lista" ? "lista-view" : ""
-            }`}
-          >
-            <div
-              className={`categoria-seleccionada ${
-                viewMode === "lista" ? "lista-view" : ""
-              }`}
-            >
-              <img
-                className={`catimg ${viewMode === "lista" ? "lista-view" : ""}`}
-                src="../../../public/img/img5.png"
-                alt=""
-              />
-            </div>
-            <div className="contenido-entrada font-medium">
-              <div
-                className={`metaentrada ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Nombre del creador - Fecha de publicación
-              </div>
-              <div
-                className={`tituloentrada ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Título de Entrada
-              </div>
-              <div
-                className={`descripcionentrada italic ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Descripción
-              </div>
-            </div>
-          </div>
+          </div> */}
         </div>
         <div className="mosrarmasyvav">
           {/* <ButtonGroup variant="contained" aria-label="Basic button group">
@@ -349,9 +411,12 @@ const Cuerpo = () => {
           />
         </div>
         <div className="contenedorrecursos">
-          <div className="recurso1">
+          <div
+            className="recurso1"
+            onClick={() => openVideoModal("src/video/ODS6.mp4")}
+          >
             {/* Primer video con evento onClick */}
-            <button onClick={() => openVideoModal("src/video/ODS6.mp4")}>
+            <button>
               <video
                 className="recurso1-video"
                 src="src/video/ODS6.mp4"
@@ -363,7 +428,9 @@ const Cuerpo = () => {
           </div>
           <div className="recurso2">
             {/* Segunda imagen con evento onClick */}
-            <button onClick={() => openImageModal("../../../public/img/ODS66.jpg")}>
+            <button
+              onClick={() => openImageModal("../../../public/img/ODS66.jpg")}
+            >
               <img
                 className="recurso2-video"
                 src="../../../public/img/ODS6.gif"
@@ -387,11 +454,15 @@ const Cuerpo = () => {
       </article>
 
       {/* Modal */}
-      {showVideoModal && <VideoPopup src={videoSrc} onClose={closeVideoModal} />}
-      {showImageModal && <ImagePopup src={imageSrc} type="image" onClose={closeImageModal} />}
+      {showVideoModal && (
+        <VideoPopup src={videoSrc} onClose={closeVideoModal} />
+      )}
+      {showImageModal && (
+        <ImagePopup src={imageSrc} type="image" onClose={closeImageModal} />
+      )}
       {/* Quizz */}
       <article id="quizz" className="seccionescuerpoquizz">
-        <div className=" titulosdecategoruas">
+        <div className=" titulosdecategoruas font-bold">
           <FormattedMessage id="index.quizz" defaultMessage="Quizz" />
         </div>
         <div className="contenedor-quizz">
@@ -414,4 +485,3 @@ const Cuerpo = () => {
 };
 
 export default Cuerpo;
-import "../../css/mrmodal.css";

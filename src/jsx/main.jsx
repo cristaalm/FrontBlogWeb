@@ -53,7 +53,7 @@ const router = createBrowserRouter([
   { path: "/restart-psswd/:id", element: <RestartPsswd /> },
   { path: "/successfull-mail", element: <SentMsg /> },
   { path: "/categorias", element: <CategoriasView /> },
-  { path: "/entrada-index", element: <EntradasView /> },
+  { path: "/blog-post/:id", element: <EntradasView /> },
   { path: "/quizz", element: <Quizz /> },
   // NewPost - Entradas
   {

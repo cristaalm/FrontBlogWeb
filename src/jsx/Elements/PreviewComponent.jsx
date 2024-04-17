@@ -33,10 +33,9 @@ const PreviewComponent = () => {
   const [color, setColor] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
   const [fechaFormateada, setFechaFormateada] = useState("");
-
   useEffect(() => {
     const fecha = new Date(fPublicacion);
-  
+    
     // Verificar si la fecha es válida antes de formatearla
     if (isNaN(fecha.getTime())) {
       console.error("Fecha inválida");
@@ -49,10 +48,11 @@ const PreviewComponent = () => {
     console.log(fechaFormateada);
     setFechaFormateada(fechaFormateada);
   }, [fPublicacion]); // Añade fPublicacion como dependencia para que el efecto se ejecute cuando cambie
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log(id);
         const response = await fetch(
           `https://backblogweb.onrender.com/api/entradas/${id}`,
           {
@@ -186,7 +186,7 @@ const PreviewComponent = () => {
                   onClick={copiarAlPortapapeles}
                 >
                   <Link
-                    className={`text-zinc-300 hover:text-${colorClass} transition-transform transform hover:scale-110`}
+                    className={`text-amber-300 hover:text-${colorClass} transition-transform transform hover:scale-110`}
                   />
                 </a>
                 <FacebookShareButton
@@ -195,7 +195,7 @@ const PreviewComponent = () => {
                   hashtag="#react"
                 >
                   <Facebook
-                    className={`text-zinc-300 hover:text-${colorClass} transition-transform transform hover:scale-110`}
+                    className={`text-amber-300 hover:text-${colorClass} transition-transform transform hover:scale-110`}
                   />
                 </FacebookShareButton>
                 <TwitterShareButton
@@ -203,7 +203,7 @@ const PreviewComponent = () => {
                   title="My awesome article"
                 >
                   <Twitter
-                    className={`text-zinc-300 hover:text-${colorClass} transition-transform transform hover:scale-110`}
+                    className={`text-amber-300 hover:text-${colorClass} transition-transform transform hover:scale-110`}
                   />
                 </TwitterShareButton>
                 <EmailShareButton
@@ -212,7 +212,7 @@ const PreviewComponent = () => {
                   body="This is a must-read!"
                 >
                   <Mail
-                    className={`text-zinc-300 hover:text-${colorClass} transition-transform transform hover:scale-110`}
+                    className={`text-amber-300 hover:text-${colorClass} transition-transform transform hover:scale-110`}
                   />
                 </EmailShareButton>
               </div>

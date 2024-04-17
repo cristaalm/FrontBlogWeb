@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../../css/entradasvew.css";
 import Encabezado from "./encabezado";
 import Footer from "../Elements/Footer";
+import PreviewComponent from "../Elements/PreviewComponent.jsx";
+import { useParams } from "react-router-dom";
 
 const Entradasview = () => {
   const [nombre, setNombre] = useState("");
@@ -17,12 +19,12 @@ const Entradasview = () => {
   };
 
   return (
-    <div className="cont">
+    <div className="bg-amber-50">
       <Encabezado />
-      <article className="preview-de-contenido">
-        {/* Contenido del primer artículo si es necesario */}
+      <article className="preview-de-contenido m-10">
+        <PreviewComponent />
       </article>
-      <article className="contenido-de-comentarios">
+      <article className="m-10">
         <div className="titulosdecategoruas font-bold">
           <h2>Comentarios:</h2>
         </div>
