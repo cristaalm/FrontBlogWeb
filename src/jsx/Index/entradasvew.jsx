@@ -19,7 +19,7 @@ const Entradasview = () => {
   };
 
   return (
-    <div className="bg-amber-50">
+    <div className="bg-neutral-100">
       <Encabezado />
       <article className="preview-de-contenido m-10">
         <PreviewComponent />
@@ -37,7 +37,7 @@ const Entradasview = () => {
               {" "}
               {/* Contenedor para el input y las estrellas */}
               <input
-                className="w-full p-2 in2 mr-2"
+                className="btnVisitante w-full ring-2 border-b-none bg-neutral-100 p-2 ring-teal-600 rounded p-2 mr-2"
                 type="text"
                 placeholder="Nombre del visitante"
                 value={nombre}
@@ -49,7 +49,7 @@ const Entradasview = () => {
               </div>
             </div>
             <textarea
-              className="w-full p-2 in2 mt-2 ring-2 ring-teal-600 rounded"
+              className="txtComentario w-full p-2 in2 mt-2 ring-2 ring-teal-600 rounded"
               placeholder="Descripción del comentario"
               value={comentario}
               onChange={(e) => setComentario(e.target.value)}

@@ -467,7 +467,7 @@ const Cuerpo = () => {
         </div>
         <div className="contenedor-quizz">
           <div className="logo-quizz">
-            <img src="../../../public/img/quizz.png" alt="" />
+            <img src="../../../public/img/quizz.png" alt="Quizz img" />
           </div>
           <button
             className="boton-quizz"

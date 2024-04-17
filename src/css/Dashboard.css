@@ -3,7 +3,7 @@
 }
 .inicio {
   flex-grow: 1;
-
+  height: 100vh;
   /* display: grid; 
   position: relative; 
   left: 88px; 

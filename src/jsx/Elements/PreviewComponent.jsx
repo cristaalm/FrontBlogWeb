@@ -186,7 +186,7 @@ const PreviewComponent = () => {
                   onClick={copiarAlPortapapeles}
                 >
                   <Link
-                    className={`text-amber-300 hover:text-${colorClass} transition-transform transform hover:scale-110`}
+                    className={`text-teal-600 hover:text-${colorClass} transition-transform transform hover:scale-110`}
                   />
                 </a>
                 <FacebookShareButton
@@ -195,7 +195,7 @@ const PreviewComponent = () => {
                   hashtag="#react"
                 >
                   <Facebook
-                    className={`text-amber-300 hover:text-${colorClass} transition-transform transform hover:scale-110`}
+                    className={`text-teal-600 hover:text-${colorClass} transition-transform transform hover:scale-110`}
                   />
                 </FacebookShareButton>
                 <TwitterShareButton
@@ -203,7 +203,7 @@ const PreviewComponent = () => {
                   title="My awesome article"
                 >
                   <Twitter
-                    className={`text-amber-300 hover:text-${colorClass} transition-transform transform hover:scale-110`}
+                    className={`text-teal-600 hover:text-${colorClass} transition-transform transform hover:scale-110`}
                   />
                 </TwitterShareButton>
                 <EmailShareButton
@@ -212,7 +212,7 @@ const PreviewComponent = () => {
                   body="This is a must-read!"
                 >
                   <Mail
-                    className={`text-amber-300 hover:text-${colorClass} transition-transform transform hover:scale-110`}
+                    className={`text-teal-600 hover:text-${colorClass} transition-transform transform hover:scale-110`}
                   />
                 </EmailShareButton>
               </div>

@@ -1,3 +1,15 @@
+:root {
+  --color-blanco: #fff;
+  --color-1: #fffdee;
+  --color-2: #b8ddd6;
+  --color-3: #56a1a6;
+  --color-4: #035165;
+  --color-5: #84b6f4;
+  --color-green1: #56a686;
+  --color-green2: #03653e;
+  --color-red: #650303;
+}
+
 .preview-de-contenido {
   display: flex;
   flex-direction: column;
@@ -15,7 +27,8 @@
 }
 
 .input-area {
-  background-color: #ffffff;
+  border-radius: 10px;
+  background-color: var(--color-2);
   padding: 15px;
   border: 1px solid #ddd;
 }
@@ -68,8 +81,22 @@
   margin-top: 20px;
 }
 
+.btnVisitante{
+  padding: 10px !important;
+  background-color: white !important;
+  border-bottom: none !important;
+}
+.btnVisitante::placeholder {
+  color: var(--color-3) !important;
+}
+.txtComentario::placeholder{
+  color: var(--color-3) !important;
+
+}
+
 .contenedor-comentario-public {
-  background-color: #ffffff;
+  border-radius: 10px;
+  background-color: var(--color-2);
   padding: 15px;
   border: 1px solid #ddd;
   margin-bottom: 10px;
