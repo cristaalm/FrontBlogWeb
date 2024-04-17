@@ -554,166 +554,151 @@ function crudPost() {
                               .filter((entrada) => {
                                 if (user.rol !== "Administrador") {
                                   return nombreusuario === entrada.usuario;
-                                } else {
-                                  return true;
                                 }
+                                return true; // Mostrar todas las entradas si el usuario es administrador
                               })
                               .sort((a, b) => a.id - b.id)
-                              .map((entrada) =>
-                                (user.rol !== "Administrador" &&
-                                  entrada.estatus !== "Publicado") ||
-                                (user.rol === "Administrador" &&
-                                  entrada.estatus !== "Pendiente") ? (
-                                  <tbody key={entrada.id}>
-                                    <tr className="tr-body border-2 border-teal-600">
-                                      <td className="p-1 w-5">{entrada.id}</td>
+                              .map((entrada) => (
+                                <tbody key={entrada.id}>
+                                  <tr className="tr-body border-2 border-teal-600">
+                                    <td className="p-1 w-5">{entrada.id}</td>
+                                    <td className="border-2 border-teal-600 p-1">
+                                      {entrada.titulo}
+                                    </td>
+                                    <td className="border-2 border-teal-600 p-1">
+                                      {categoryNames[entrada.idcategoria] ||
+                                        "Categoría no encontrada"}
+                                    </td>
+                                    {user.rol === "Administrador" && (
                                       <td className="border-2 border-teal-600 p-1">
-                                        {entrada.titulo}
+                                        {entrada.usuario}
                                       </td>
-                                      <td className="border-2 border-teal-600 p-1">
-                                        {categoryNames[entrada.idcategoria] ||
-                                          "Categoría no encontrada"}
-                                      </td>
-                                      {user.rol === "Administrador" && (
-                                        <td className="border-2 border-teal-600 p-1">
-                                          {entrada.usuario}
-                                        </td>
-                                      )}
-                                      <td className="border-2 border-teal-600 p-1 text-center">
-                                        <span
-                                          className={`${
+                                    )}
+                                    <td className="border-2 border-teal-600 p-1 text-center">
+                                      <span
+                                        className={`${
+                                          entrada.estatus === "Publicado"
+                                            ? "text-neutral-100 text-sm bg-green-600 p-1 pl-4 pr-4 rounded-full"
+                                            : entrada.estatus === "Pendiente"
+                                            ? "bg-yellow-400 text-sm p-1 pl-4 pr-4 rounded-full"
+                                            : entrada.estatus === "Revisión"
+                                            ? "text-neutral-100 bg-purple-600 text-sm p-1 pl-4 pr-4 rounded-full"
+                                            : ""
+                                        } inline-block overflow-hidden`}
+                                      >
+                                        {entrada.estatus}
+                                      </span>
+                                    </td>
+                                    <td className="flex items-center justify-center">
+                                      <Link to={`/post/edit/${entrada.id}`}>
+                                        <button
+                                          className={`btn-yellow p-2 m-1 ${
+                                            entrada.estatus !== "Revisión" &&
+                                            entrada.estatus !== "Publicado" &&
+                                            entrada.usuario == nombreusuario &&
+                                            entrada.estatus === "Pendiente"
+                                              ? ""
+                                              : "opacity-50 cursor-not-allowed hidden"
+                                          }`}
+                                          data-tooltip-id="editar"
+                                          data-tooltip-place="top"
+                                          data-tooltip-content="Editar"
+                                          disabled={
+                                            entrada.estatus == "Revisión" &&
+                                            entrada.estatus == "Publicado" &&
+                                            entrada.usuario !== nombreusuario
+                                          }
+                                          {...(entrada.estatus !== "Revisión" &&
+                                          entrada.estatus !== "Publicado" &&
+                                          entrada.usuario == nombreusuario
+                                            ? {}
+                                            : { "data-tooltip-hidden": true })}
+                                          onClick={() =>
+                                            loadEditUserData(entrada.id)
+                                          }
+                                        >
+                                          <Pencil size={20} />
+                                        </button>
+                                      </Link>
+                                      <Link to={`/post/preview/${entrada.id}`}>
+                                        <button
+                                          className={`btn-blue p-2 m-1 ${
+                                            entrada.estatus !== "Publicado"
+                                              ? ""
+                                              : "opacity-50 cursor-not-allowed hidden"
+                                          }`}
+                                          data-tooltip-id="preview"
+                                          data-tooltip-place="top"
+                                          data-tooltip-content="Previsualizar"
+                                          disabled={
                                             entrada.estatus === "Publicado"
-                                              ? "text-neutral-100 text-sm bg-green-600 p-1 pl-4 pr-4 rounded-full"
-                                              : entrada.estatus === "Pendiente"
-                                              ? "bg-yellow-400 text-sm p-1 pl-4 pr-4 rounded-full"
-                                              : entrada.estatus === "Revisión"
-                                              ? "text-neutral-100 bg-purple-600 text-sm p-1 pl-4 pr-4 rounded-full"
-                                              : ""
-                                          } inline-block overflow-hidden`}
+                                          }
+                                          {...(entrada.estatus !== "Publicado"
+                                            ? {}
+                                            : { "data-tooltip-hidden": true })}
                                         >
-                                          {entrada.estatus}
-                                        </span>
-                                      </td>
-                                      <td className="flex items-center justify-center">
-                                        {/* {user.rol == "Administrador" && {e} ( */}
-                                        <Link to={`/post/edit/${entrada.id}`}>
-                                          <button
-                                            className={`btn-yellow p-2 m-1 ${
-                                              entrada.estatus !== "Revisión" &&
-                                              entrada.estatus !== "Publicado"
-                                                ? ""
-                                                : "opacity-50 cursor-not-allowed"
-                                            }`}
-                                            data-tooltip-id="editar"
-                                            data-tooltip-place="top"
-                                            data-tooltip-content="Editar"
-                                            disabled={
-                                              entrada.estatus === "Revisión" ||
-                                              entrada.estatus === "Publicado"
-                                            }
-                                            {...(entrada.estatus !== "Revisión"
-                                              ? {}
-                                              : {
-                                                  "data-tooltip-hidden": true,
-                                                })}
-                                            onClick={() =>
-                                              loadEditUserData(entrada.id)
-                                            }
-                                          >
-                                            <Pencil size={20} />
-                                          </button>
-                                        </Link>
-                                        {/* )} */}
-                                        <Link
-                                          to={`/post/preview/${entrada.id}`}
-                                        >
-                                          <button
-                                            className={`btn-blue p-2 m-1 ${
-                                              entrada.estatus !== "Publicado"
-                                                ? ""
-                                                : "opacity-50 cursor-not-allowed"
-                                            }`}
-                                            data-tooltip-id="preview"
-                                            data-tooltip-place="top"
-                                            data-tooltip-content="Previsualizar"
-                                            disabled={
-                                              entrada.estatus === "Publicado"
-                                            }
-                                            {...(entrada.estatus !== "Publicado"
-                                              ? {}
-                                              : {
-                                                  "data-tooltip-hidden": true,
-                                                })}
-                                          >
-                                            <Eye size={20} />
-                                          </button>
-                                        </Link>
+                                          <Eye size={20} />
+                                        </button>
+                                      </Link>
+                                      <button
+                                        onClick={() => toggleDelete(entrada.id)}
+                                        className="btn-red p-2 m-1"
+                                        data-tooltip-id="eliminar"
+                                        data-tooltip-place="top"
+                                        data-tooltip-content="Eliminar"
+                                      >
+                                        <Trash size={20} />
+                                      </button>
+                                      {user.rol !== "Administrador" && (
                                         <button
                                           onClick={() =>
-                                            toggleDelete(entrada.id)
+                                            toggleRevisar(entrada.id)
                                           }
-                                          className="btn-red p-2 m-1"
-                                          data-tooltip-id="eliminar"
+                                          className={`btn-purple p-2 m-1 ${
+                                            entrada.estatus !== "Revisión"
+                                              ? ""
+                                              : "opacity-50 cursor-not-allowed hidden"
+                                          }`}
+                                          data-tooltip-id="revisar"
                                           data-tooltip-place="top"
-                                          data-tooltip-content="Eliminar"
+                                          data-tooltip-content="Revisar"
+                                          disabled={
+                                            entrada.estatus === "Revisión"
+                                          }
+                                          {...(entrada.estatus !== "Revisión"
+                                            ? {}
+                                            : { "data-tooltip-hidden": true })}
                                         >
-                                          <Trash size={20} />
+                                          <Search size={20} />
                                         </button>
-                                        {user.rol !== "Administrador" && (
-                                          <button
-                                            onClick={() =>
-                                              toggleRevisar(entrada.id)
-                                            }
-                                            className={`btn-purple p-2 m-1 ${
-                                              entrada.estatus !== "Revisión"
-                                                ? ""
-                                                : "opacity-50 cursor-not-allowed"
-                                            }`}
-                                            data-tooltip-id="revisar"
-                                            data-tooltip-place="top"
-                                            data-tooltip-content="Revisar"
-                                            disabled={
-                                              entrada.estatus === "Revisión"
-                                            }
-                                            {...(entrada.estatus !== "Revisión"
-                                              ? {}
-                                              : {
-                                                  "data-tooltip-hidden": true,
-                                                })}
-                                          >
-                                            <Search size={20} />
-                                          </button>
-                                        )}
-                                        {user.rol === "Administrador" && (
-                                          <button
-                                            onClick={() =>
-                                              togglePublic(entrada.id)
-                                            }
-                                            className={`btn-green p-2 m-1 ${
-                                              entrada.estatus !== "Publicado"
-                                                ? ""
-                                                : "opacity-50 cursor-not-allowed"
-                                            }`}
-                                            data-tooltip-id="post"
-                                            data-tooltip-place="top"
-                                            data-tooltip-content="Publicar"
-                                            disabled={
-                                              entrada.estatus === "Publicado"
-                                            }
-                                            {...(entrada.estatus !== "Publicado"
-                                              ? {}
-                                              : {
-                                                  "data-tooltip-hidden": true,
-                                                })}
-                                          >
-                                            <CloudUpload size={20} />
-                                          </button>
-                                        )}
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                ) : null
-                              )}
+                                      )}
+                                      {user.rol === "Administrador" && (
+                                        <button
+                                          onClick={() =>
+                                            togglePublic(entrada.id)
+                                          }
+                                          className={`btn-green p-2 m-1 ${
+                                            entrada.estatus !== "Publicado"
+                                              ? ""
+                                              : "opacity-50 cursor-not-allowed hidden"
+                                          }`}
+                                          data-tooltip-id="post"
+                                          data-tooltip-place="top"
+                                          data-tooltip-content="Publicar"
+                                          disabled={
+                                            entrada.estatus === "Publicado"
+                                          }
+                                          {...(entrada.estatus !== "Publicado"
+                                            ? {}
+                                            : { "data-tooltip-hidden": true })}
+                                        >
+                                          <CloudUpload size={20} />
+                                        </button>
+                                      )}
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              ))}
                         </table>
                       </div>
                     </div>
