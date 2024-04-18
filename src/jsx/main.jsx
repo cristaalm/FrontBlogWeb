@@ -14,7 +14,7 @@ import PreviewPost from "./Dashboard/Post/Preview.jsx";
 import CRUD from "./Dashboard/Post/crudPost.jsx";
 import Usuarios from "./Dashboard/Users/usuarios.jsx";
 import Categorias from "./Dashboard/Categories/categorias.jsx";
-import CategoriasView from "./Index/IndxEntrada.jsx";
+import CategoriaView from "./Index/categoriasview.jsx";
 import EntradasView from "./Index/entradasvew.jsx";
 import Quizz from "./Quizz/quizz.jsx";
 // import Test from "./testG.jsx";
@@ -28,7 +28,6 @@ import { Context } from "./Elements/Wrapper.jsx";
 import messagesEn from "../lang/en.json";
 import messagesEs from "../lang/es.json";
 import Dashboard from "./Dashboard/DashboardFinal.jsx";
-import CategoriaView from "./Index/IndxEntrada.jsx";
 import Entradasview from "./Index/entradasvew.jsx";
 
 // import "../css/index.css";
@@ -52,7 +51,6 @@ const router = createBrowserRouter([
   { path: "/forgot-psswd", element: <ForgotPsswd /> },
   { path: "/restart-psswd/:id", element: <RestartPsswd /> },
   { path: "/successfull-mail", element: <SentMsg /> },
-  { path: "/categorias", element: <CategoriasView /> },
   { path: "/blog-post/:id", element: <EntradasView /> },
   { path: "/quizz", element: <Quizz /> },
   // NewPost - Entradas

@@ -5,7 +5,7 @@ function Quizz() {
   return (
     <div className='body'>
       <div className='fondo'>
-        <img className='imgfondo' src="img/quizzav.gif" alt='background' />
+        <img className='imgfondo' src="../../../public/img/quizzav.gif" alt='background' />
       </div>
 
       <div className='tablerojuego'>
