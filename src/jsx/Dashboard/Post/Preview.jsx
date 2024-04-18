@@ -13,8 +13,13 @@ function Preview() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    let nombreusuario = localStorage.getItem("userName");
-    // console.log(nombreusuario);
+    let storedAuth = localStorage.getItem("isAuthenticated");
+    if (storedAuth==null){
+      navigate("/login");
+    }
+    if (storedAuth=="false"){
+      navigate("/login");
+    }    // console.log(nombreusuario);
     // Mandar el nombre de usuario del fetch en el request body
     const fetchData = async () => {
       const response = await fetch(

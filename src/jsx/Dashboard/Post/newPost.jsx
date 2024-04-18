@@ -145,6 +145,13 @@ function usuarios() {
   }, []);
   // const [categories, setCategories] = useState([]);
   useEffect(() => {
+    let storedAuth = localStorage.getItem("isAuthenticated");
+    if (storedAuth==null){
+      navigate("/login");
+    }
+    if (storedAuth=="false"){
+      navigate("/login");
+    }
     const fetchData = async () => {
       const response = await fetch(
         "https://backblogweb.onrender.com/api/categories"

@@ -308,42 +308,44 @@ body {
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 /* Quizz.css */
 .seccionescuerpoquizz {
-  padding: 20px;
   box-sizing: border-box;
   text-align: center; /* Alinea el título al centro */
 }
 
 .contenedor-quizz {
-  border-radius: 10px;
-  border: 1px solid #000;
-  position: relative;
-  padding: 20px;
+  /* border-radius: 10px; */
+  /* border: 2px solid var(--color-2); */
+  /* position: relative; */
+  /* padding: 20px; */
   display: flex;
   align-items: center; /* Centra verticalmente el logo y el botón */
   justify-content: space-between; /* Separa el logo y el botón en extremos opuestos */
 }
 
-.logo-quizz {
-  border: 1px dashed #000;
-  padding: 20px;
-  width: 30%; /* O el tamaño que prefieras para el logo */
-  text-align: center;
-}
-
 .boton-quizz {
-  border: 1px solid #000;
-  padding: 10px 20px;
-  cursor: pointer; /* Estilo del cursor para indicar que es un botón clickeable */
+  position: relative; /* Hace que la sección sea el contenedor de referencia para el posicionamiento absoluto */
+  color: var(--color-3);
   font-weight: bold;
   display: inline-flex;
-  align-items: center; /* Centra el texto y el icono verticalmente */
-  gap: 10px; /* Espacio entre el texto y el icono */
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.5s ease; /* Transición suave para el color */
+}
+
+.boton-quizz:hover {
+   color:var(--color-1); 
 }
 
 .boton-quizz::after {
-  content: "➔"; /* Icono de flecha, puedes cambiarlo por una imagen si lo prefieres */
-  /* display: inline-block; */
-  font-size: 1.5em; /* Tamaño del icono de la flecha */
+  color: #dcfce7;
+  margin-left: 10px;
+  content: "➔";
+  font-size: 1.5em;
+  transition: color 0.3s ease; /* Transición suave para el color */
+}
+
+.boton-quizz:hover::after {
+  color:var(--color-1); 
 }
 /* Estilos para pantallas pequeñas (teléfonos móviles) */
 @media screen and (max-width: 768px) {
@@ -353,7 +355,7 @@ body {
 
   .logo-quizz {
     width: 100%; /* Haz que el logo ocupe todo el ancho disponible */
-    margin-bottom: 20px; /* Añade un espacio entre el logo y el botón */
+    /* margin-bottom: 20px; Añade un espacio entre el logo y el botón */
   }
 }
 
@@ -400,21 +402,3 @@ body {
 .cursor-pointer {
   cursor: pointer !important;
 }
-
-/* @media screen and (min-width: 1024px) {
-  .gridParaContener {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media screen and (max-width: 1023px) and (min-width: 640px) {
-  .gridParaContener {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media screen and (max-width: 639px) {
-  .gridParaContener {
-    grid-template-columns: repeat(1, 1fr);
-  }
-} */

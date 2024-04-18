@@ -102,6 +102,13 @@ function EditPublish() {
   }, []);
 
   useEffect(() => {
+    let storedAuth = localStorage.getItem("isAuthenticated");
+    if (storedAuth==null){
+      navigate("/login");
+    }
+    if (storedAuth=="false"){
+      navigate("/login");
+    }
     const fetchData = async () => {
       try {
         const response = await fetch(

@@ -40,15 +40,7 @@ const App = () => {
       navigate("/login");
     }
   }, []);
-  useLayoutEffect(() => {
-    if (user.rol !== "Administrador") {
-      navigate("/post/all");
-      navigate("/post/add");
-      navigate("/dashboard");
-    } else if (!isAuthenticated) {
-      navigate("/login");
-    }
-  }, [user.rol, isAuthenticated]);
+
   return <div className="App"></div>;
 };
 

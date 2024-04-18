@@ -13,6 +13,7 @@ export default function Sidebar({ children }) {
   const cerrarSesion = () => {
     localStorage.removeItem("isAuthenticated");
     navigate("/login");
+    localStorage.clear();
   };
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function Sidebar({ children }) {
   return (
     // max-w-80
     <aside className="h-screen flex flex-col">
-        {/* shadow-sm */}
+      {/* shadow-sm */}
       <nav className="h-full flex flex-col bg-cyan-950 shadow-sm">
         <div className={`p-4 pb-2 flex justify-between items-center border-b`}>
           {expanded && (

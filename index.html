@@ -72,6 +72,8 @@
     <script type="text/javascript">
       const loadingWrapperElement = document.getElementById("loadingwrapper");
       const loadingElement = document.getElementById("loading");
+      loadingWrapperElement.style.display = "none";
+      loadingElement.style.display = "none";
       function showLoading() {
         // Mostrar tu indicador de carga aquí (puedes usar una animación, spinner, etc.)
         loadingWrapperElement.style.display = "flex";
