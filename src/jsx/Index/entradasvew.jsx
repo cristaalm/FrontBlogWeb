@@ -8,14 +8,32 @@ import { useParams } from "react-router-dom";
 const Entradasview = () => {
   const [nombre, setNombre] = useState("");
   const [comentario, setComentario] = useState("");
+  const [rating, setRating] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aquí manejarías la lógica para publicar el comentario
-    console.log(nombre, comentario);
+    console.log(nombre, comentario, rating);
     // Luego limpiarías los estados
     setNombre("");
     setComentario("");
+    setRating(0);
+  };
+
+  const renderStars = (total) => {
+    const stars = [];
+    for (let i = 1; i <= total; i++) {
+      stars.push(
+        <span
+          key={i}
+          onClick={() => setRating(i)}
+          style={{ cursor: 'pointer', fontSize: '3rem', color: i <= rating ? '#ffc107' : '#e4e5e9' }}
+        >
+          ★
+        </span>
+      );
+    }
+    return stars;
   };
 
   return (
@@ -43,9 +61,8 @@ const Entradasview = () => {
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
               />
-              <div className="rating">
-                {/* Componente de estrellas aquí, si tienes uno */}
-                ★★★★★
+              <div className="rating" >
+                {renderStars(5) }
               </div>
             </div>
             <textarea

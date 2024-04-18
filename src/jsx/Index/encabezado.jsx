@@ -6,7 +6,10 @@ const Encabezado = () => {
   return (
     <header id="header" className="headerhome">
       <div className="iml">
+      <RouterLink to="/welcome">
         <img className="logo" src="../../../public/img/logo.png" />
+        </RouterLink>
+        
       </div>
       <div className="menum">
         <ScrollLink
