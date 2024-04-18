@@ -11,7 +11,7 @@ import ImagePopup from "../Elements/M&Rmodal";
 import { format } from "date-fns";
 import "../../css/mrmodal.css";
 import { EngineeringTwoTone } from "@mui/icons-material";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Cuerpo = () => {
   const navigate = useNavigate();
@@ -44,6 +44,7 @@ const Cuerpo = () => {
       );
       const data = await response.json();
       setEntradas(data);
+      console.log(data);  
       // Data me obtiene:
       // contenido;
       // descripcion;
@@ -251,7 +252,7 @@ const Cuerpo = () => {
         </div>
         <div
           className={`ultimasentradas-container  ${
-            viewMode === "lista" ? "lista-view" : ""
+            viewMode === "lista" ? "lista-view" : "grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
           }`}
         >
           {entradas.data &&
@@ -307,88 +308,6 @@ const Cuerpo = () => {
                 </div>
               </div>
             ))}
-          {/* <div
-            className={`ultimasentradas text-cyan-950 hover:text-yellow-50 cursor-pointer ${
-              viewMode === "lista" ? "lista-view" : ""
-            }`}
-          >
-            <div
-              className={`categoria-seleccionada ${
-                viewMode === "lista" ? "lista-view" : ""
-              }`}
-            >
-              <img
-                className={`catimg rounded-md ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-                src="../../../public/img/img5.png"
-                alt=""
-              />
-            </div>
-            <div className="contenido-entrada font-medium">
-              <div
-                className={`metaentrada ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Nombre del creador - Fecha de publicación
-              </div>
-              <div
-                className={`tituloentrada ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Título de Entrada
-              </div>
-              <div
-                className={`descripcionentrada italic ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Descripción
-              </div>
-            </div>
-          </div>
-          <div
-            className={`ultimasentradas text-cyan-950 hover:text-yellow-50 cursor-pointer ${
-              viewMode === "lista" ? "lista-view" : ""
-            }`}
-          >
-            <div
-              className={`categoria-seleccionada ${
-                viewMode === "lista" ? "lista-view" : ""
-              }`}
-            >
-              <img
-                className={`catimg ${viewMode === "lista" ? "lista-view" : ""}`}
-                src="../../../public/img/img5.png"
-                alt=""
-              />
-            </div>
-            <div className="contenido-entrada font-medium">
-              <div
-                className={`metaentrada ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Nombre del creador - Fecha de publicación
-              </div>
-              <div
-                className={`tituloentrada ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Título de Entrada
-              </div>
-              <div
-                className={`descripcionentrada italic ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Descripción
-              </div>
-            </div>
-          </div> */}
         </div>
         <div className="mosrarmasyvav">
           {/* <ButtonGroup variant="contained" aria-label="Basic button group">
