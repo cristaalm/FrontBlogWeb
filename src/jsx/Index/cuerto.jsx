@@ -57,9 +57,27 @@ const Cuerpo = () => {
       // perfil;
       // titulo;
       // usuario;
+      if (data && data.lenght>0){
+        console.log("hay info")
+      }else{
+        console.log("no")
+      }
     };
     fetchData();
   }, []);
+
+  // useEffect(() => {
+  //   console.log(entradas)
+  //   if (entradas.data && entradas.data.length > 0) {
+  //     // Filtrar por estado "Publicado" después de recibir los datos
+  //     const entradasPublicadas = entradas.data.filter(
+  //       (entrada) => entrada.estatus === "Publicado"
+  //     );
+  //     console.log(entradasPublicadas); // Muestra las entradas publicadas en la consola
+  //   } else {
+  //     console.log("no hay nada");
+  //   }
+  // }, [entradas]);
 
   const changeToListView = () => {
     setIsListView(true);
@@ -258,58 +276,67 @@ const Cuerpo = () => {
           }`}
         >
           {entradas.data &&
-            entradas.data.map((entrada) => (
-              <div
-                key={entrada.id}
-                onClick={() => toggleViewEntrada(entrada.id)}
-                className={`ultimasentradas rounded-md text-cyan-950 hover:text-yellow-50 cursor-pointer ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
+            entradas.data
+              // .filter((entrada) => entrada.estatus == "Publicado") // Filtrar por estado "Publicado"
+              .sort(
+                (a, b) =>
+                  new Date(b.fechapublicacion) - new Date(a.fechapublicacion)
+              ) // Ordenar por fecha de forma descendente
+              .slice(0, 4) // Tomar las últimas 4 entradas
+              .map((entrada) => (
                 <div
-                  className={`categoria-seleccionada ${
+                  key={entrada.id}
+                  onClick={() => toggleViewEntrada(entrada.id)}
+                  className={`ultimasentradas rounded-md text-cyan-950 hover:text-yellow-50 cursor-pointer ${
                     viewMode === "lista" ? "lista-view" : ""
                   }`}
                 >
-                  <img
-                    className={`catimg rounded-md  ${
-                      viewMode === "lista" ? "lista-view max-w-48 min-w-48" : ""
+                  <div
+                    className={`categoria-seleccionada ${
+                      viewMode === "lista" ? "lista-view" : ""
                     }`}
-                    src={entrada.imgdestacada}
-                    alt={"Imagen Destacada de entrada " + entrada.id}
-                    style={{
-                      width: "400px",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
+                  >
+                    <img
+                      className={`catimg rounded-md  ${
+                        viewMode === "lista"
+                          ? "lista-view max-w-48 min-w-48"
+                          : ""
+                      }`}
+                      src={entrada.imgdestacada}
+                      alt={"Imagen Destacada de entrada " + entrada.id}
+                      style={{
+                        width: "400px",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                  <div className="contenido-entrada font-medium">
+                    <div
+                      className={`metaentrada ${
+                        viewMode === "lista" ? "lista-view" : ""
+                      }`}
+                    >
+                      {entrada.nombre} -{" "}
+                      {format(new Date(entrada.fechapublicacion), "dd/MM/yyyy")}
+                    </div>
+                    <div
+                      className={`tituloentrada ${
+                        viewMode === "lista" ? "lista-view" : ""
+                      }`}
+                    >
+                      {entrada.titulo}
+                    </div>
+                    <div
+                      className={`descripcionentrada italic ${
+                        viewMode === "lista" ? "lista-view" : ""
+                      }`}
+                    >
+                      {entrada.descripcion}
+                    </div>
+                  </div>
                 </div>
-                <div className="contenido-entrada font-medium">
-                  <div
-                    className={`metaentrada ${
-                      viewMode === "lista" ? "lista-view" : ""
-                    }`}
-                  >
-                    {entrada.nombre} -{" "}
-                    {format(new Date(entrada.fechapublicacion), "dd/MM/yyyy")}
-                  </div>
-                  <div
-                    className={`tituloentrada ${
-                      viewMode === "lista" ? "lista-view" : ""
-                    }`}
-                  >
-                    {entrada.titulo}
-                  </div>
-                  <div
-                    className={`descripcionentrada italic ${
-                      viewMode === "lista" ? "lista-view" : ""
-                    }`}
-                  >
-                    {entrada.descripcion}
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))}
         </div>
         <div className="mosrarmasyvav">
           {/* <ButtonGroup variant="contained" aria-label="Basic button group">

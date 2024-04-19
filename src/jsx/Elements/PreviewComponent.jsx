@@ -155,7 +155,7 @@ const PreviewComponent = () => {
 
       <div className="hover:text-yellow-400 hover:text-green-600 hover:text-orange-700 hover:text-red-700 hover:text-blue-500 hover:text-cyan-700 hover:text-violet-700 hover:text-blue-700 hover:text-red-200 hover:text-red-300 hover:text-green-200 hover:text-yellow-100 hover:text-blue-200 hover:text-blue-300 hover:text-blueGray-300 hover:text-purple-300 text-neutral-100"></div>
 
-      <div className="flex flex-row">
+      <div className="flex flex-row select-none">
         <div className="basis-2/3">
           <span
             className={`bg-${colorClass} text-sm p-1 pl-4 pr-4 rounded-full font-medium`}

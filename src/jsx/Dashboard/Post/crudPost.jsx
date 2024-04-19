@@ -181,6 +181,12 @@ function crudPost() {
   const [entradas, setEntradas] = useState([]);
   const [isPublished, setIsPublished] = useState(false);
 
+  const [orden, setOrden] = useState("descendente");
+
+  const handleChangeOrden = (e) => {
+    setOrden(e.target.value);
+  };
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -218,6 +224,7 @@ function crudPost() {
       );
       const data = await response.json();
       setEntradas(data);
+      console.log(data);
     };
     fetchData();
   }, [reloadTable]); // Vuelve a cargar la tabla cuando reloadTable cambia
@@ -644,13 +651,23 @@ function crudPost() {
                     </div>
                     <div className="overflow-x-auto">
                       <div className="relative w-full overflow-auto">
-                        <div className="flex justify-end">
+                        <div className="flex justify-end gap-2">
                           <Link to="/post/add" className="without_line">
                             <button className="btn-blue p-2 m-1 flex items-center btnentrada-tour">
                               Añadir nueva entrada
                               <CirclePlus size={20} className="ml-2" />
                             </button>
                           </Link>
+                          <select
+                            className="m-1 ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2 w-z focus:border-cyan-900"
+                            id="orden"
+                            name="orden"
+                            value={orden}
+                            onChange={handleChangeOrden}
+                          >
+                            <option value="ascendente">Más antiguos</option>
+                            <option value="descendente">Más recientes</option>
+                          </select>
                         </div>
                         <div className="mb-2">
                           {message && (
@@ -663,9 +680,9 @@ function crudPost() {
                         <table className="w-full border-collapse border-teal-600 caption-bottom text-sm">
                           <thead className="">
                             <tr className="header encabezadoTabla border-2 border-teal-600 text-neutral-100 text-normal">
-                              <th className="border-neutral-100 border-r-2 encabezadoTabla w-5">
+                              {/* <th className="border-neutral-100 border-r-2 encabezadoTabla w-5">
                                 ID
-                              </th>
+                              </th> */}
                               <th className="border-neutral-100 border-r-2 encabezadoTabla Titulo-tour">
                                 Título
                               </th>
@@ -691,11 +708,15 @@ function crudPost() {
                                 }
                                 return true; // Mostrar todas las entradas si el usuario es administrador
                               })
-                              .sort((a, b) => a.id - b.id)
+                              .sort((a, b) =>
+                                orden === "ascendente"
+                                  ? a.id - b.id
+                                  : b.id - a.id
+                              )
                               .map((entrada) => (
                                 <tbody key={entrada.id}>
                                   <tr className="tr-body border-2 border-teal-600">
-                                    <td className="p-1 w-5">{entrada.id}</td>
+                                    {/* <td className="p-1 w-5">{entrada.id}</td> */}
                                     <td className="border-2 border-teal-600 p-1">
                                       {entrada.titulo}
                                     </td>

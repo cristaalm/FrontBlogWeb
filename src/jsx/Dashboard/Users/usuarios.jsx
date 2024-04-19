@@ -118,35 +118,6 @@ function usuarios() {
     };
     fetchData();
   }, [reloadTable]); // Vuelve a cargar la tabla cuando reloadTable cambia
-  // Get de entradas del usuario
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `https://backblogweb.onrender.com/api/categories/${id}`,
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //         }
-  //       );
-  //       if (!response.ok) {
-  //         throw new Error("Network response was not ok");
-  //       }
-  //       const { data } = await response.json();
-  //       const names = {};
-  //       data.forEach((category) => {
-  //         names[category.id] = category.nombre;
-  //       });
-  //       setCategoryNames(names);
-  //       console.log(names);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [reloadTable]);
 
   useEffect(() => {
     if (message) {
@@ -478,9 +449,9 @@ function usuarios() {
                           <table className="w-full border-collapse border-teal-600 caption-bottom text-sm">
                             <thead className="">
                               <tr className="header encabezadoTabla border-2 border-teal-600 text-neutral-100 text-normal">
-                                <th className="border-neutral-100 border-r-2 encabezadoTabla w-5">
+                                {/* <th className="border-neutral-100 border-r-2 encabezadoTabla w-5">
                                   ID
-                                </th>
+                                </th> */}
                                 <th className="border-neutral-100 border-r-2 encabezadoTabla">
                                   Nombre
                                 </th>
@@ -503,7 +474,7 @@ function usuarios() {
                                       key={userInfo.id}
                                       className="tr-body border-2 border-teal-600"
                                     >
-                                      <td className="p-1 w-5">{userInfo.id}</td>
+                                      {/* <td className="p-1 w-5">{userInfo.id}</td> */}
                                       <td className="border-2 border-teal-600 p-1">
                                         {userInfo.nombre}
                                       </td>

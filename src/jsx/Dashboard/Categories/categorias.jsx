@@ -449,9 +449,9 @@ function categorías() {
                           <table className="w-full border-collapse border-teal-600 caption-bottom text-sm">
                             <thead className="">
                               <tr className="header encabezadoTabla border-2 border-teal-600 text-neutral-100 text-normal">
-                                <th className="border-neutral-100 border-r-2 encabezadoTabla w-5">
+                                {/* <th className="border-neutral-100 border-r-2 encabezadoTabla w-5">
                                   ID
-                                </th>
+                                </th> */}
                                 <th className="border-neutral-100 border-r-2 encabezadoTabla">
                                   Nombre
                                 </th>
@@ -470,7 +470,7 @@ function categorías() {
                                       key={category.id}
                                       className="tr-body border-2 border-teal-600"
                                     >
-                                      <td className="p-1 w-5">{category.id}</td>
+                                      {/* <td className="p-1 w-5">{category.id}</td> */}
                                       <td className="border-2 border-teal-600 p-1">
                                         {category.nombre}
                                       </td>

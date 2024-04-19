@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef, useEffect } from "react";
 import { injectIntl, FormattedMessage } from "react-intl";
 import "../../css/entradasvew.css";
 import Encabezado from "./encabezado";
@@ -10,7 +10,11 @@ const Entradasview = ({ intl }) => {
   const [nombre, setNombre] = useState("");
   const [comentario, setComentario] = useState("");
   const [rating, setRating] = useState(0);
+  const topRef = useRef(null); // Referencia al elemento en la parte superior
 
+  useEffect(() => {
+    topRef.current.scrollIntoView({ behavior: "smooth" }); // Desplazamiento suave al montar el componente
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aquí manejarías la lógica para publicar el comentario
@@ -20,7 +24,7 @@ const Entradasview = ({ intl }) => {
     setComentario("");
     setRating(0);
   };
-  
+
   const namevist = intl.formatMessage({
     id: "index.Visitor's.name",
     defaultMessage: "Visitor's name",
@@ -37,7 +41,11 @@ const Entradasview = ({ intl }) => {
         <span
           key={i}
           onClick={() => setRating(i)}
-          style={{ cursor: 'pointer', fontSize: '3rem', color: i <= rating ? '#ffc107' : '#e4e5e9' }}
+          style={{
+            cursor: "pointer",
+            fontSize: "3rem",
+            color: i <= rating ? "#ffc107" : "#e4e5e9",
+          }}
         >
           ★
         </span>
@@ -48,6 +56,8 @@ const Entradasview = ({ intl }) => {
 
   return (
     <div className="bg-neutral-100">
+      <div ref={topRef}></div>{" "}
+      {/* Referencia al elemento en la parte superior */}
       <Encabezado />
       <article className="preview-de-contenido m-10">
         <PreviewComponent />
@@ -71,9 +81,7 @@ const Entradasview = ({ intl }) => {
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
               />
-              <div className="rating" >
-                {renderStars(5) }
-              </div>
+              <div className="rating">{renderStars(5)}</div>
             </div>
             <textarea
               className="txtComentario w-full p-2 in2 mt-2 ring-2 ring-teal-600 rounded"
@@ -83,7 +91,10 @@ const Entradasview = ({ intl }) => {
             ></textarea>
             <div className="contenedor-botn-public">
               <button className="entr tracking-widest p-3 mt-4" type="submit">
-                <FormattedMessage id="index.Post-comment" defaultMessage="Post comment" />
+                <FormattedMessage
+                  id="index.Post-comment"
+                  defaultMessage="Post comment"
+                />
               </button>
             </div>
           </div>
@@ -106,4 +117,3 @@ const Entradasview = ({ intl }) => {
 };
 
 export default injectIntl(Entradasview);
-
