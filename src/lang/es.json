@@ -25,6 +25,9 @@
   "index.start": "Inicio",
   "index.quizz": "Trivia",
   "btn.showMore": "Mostrar más",
-  "index.pressStart" : "Presiona para empezar"
-
+  "index.pressStart" : "Presiona para empezar",
+  "index.Post-comment" : "Publicar comentario",
+  "index.comment" : "Comentarios",
+  "index.Visitor's.name" : "Nombre del visitante",
+  "index.Comment-Description" : "Descripción del comentario"
 }

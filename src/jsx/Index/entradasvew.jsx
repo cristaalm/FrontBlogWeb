@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { injectIntl, FormattedMessage } from "react-intl";
 import "../../css/entradasvew.css";
 import Encabezado from "./encabezado";
 import Footer from "../Elements/Footer";
 import PreviewComponent from "../Elements/PreviewComponent.jsx";
 import { useParams } from "react-router-dom";
 
-const Entradasview = () => {
+const Entradasview = ({ intl }) => {
   const [nombre, setNombre] = useState("");
   const [comentario, setComentario] = useState("");
   const [rating, setRating] = useState(0);
@@ -19,6 +20,15 @@ const Entradasview = () => {
     setComentario("");
     setRating(0);
   };
+  
+  const namevist = intl.formatMessage({
+    id: "index.Visitor's.name",
+    defaultMessage: "Visitor's name",
+  });
+  const CommentDescription = intl.formatMessage({
+    id: "index.Comment-Description",
+    defaultMessage: "Comment Description",
+  });
 
   const renderStars = (total) => {
     const stars = [];
@@ -44,7 +54,7 @@ const Entradasview = () => {
       </article>
       <article className="m-10">
         <div className="titulosdecategoruas font-bold">
-          <h2>Comentarios:</h2>
+          <FormattedMessage id="index.comment" defaultMessage="Comments" />
         </div>
         <form
           onSubmit={handleSubmit}
@@ -57,7 +67,7 @@ const Entradasview = () => {
               <input
                 className="btnVisitante w-full ring-2 border-b-none bg-neutral-100 p-2 ring-teal-600 rounded p-2 mr-2"
                 type="text"
-                placeholder="Nombre del visitante"
+                placeholder={namevist}
                 value={nombre}
                 onChange={(e) => setNombre(e.target.value)}
               />
@@ -67,13 +77,13 @@ const Entradasview = () => {
             </div>
             <textarea
               className="txtComentario w-full p-2 in2 mt-2 ring-2 ring-teal-600 rounded"
-              placeholder="Descripción del comentario"
+              placeholder={CommentDescription}
               value={comentario}
               onChange={(e) => setComentario(e.target.value)}
             ></textarea>
             <div className="contenedor-botn-public">
               <button className="entr tracking-widest p-3 mt-4" type="submit">
-                Publicar comentario
+                <FormattedMessage id="index.Post-comment" defaultMessage="Post comment" />
               </button>
             </div>
           </div>
@@ -95,4 +105,5 @@ const Entradasview = () => {
   );
 };
 
-export default Entradasview;
+export default injectIntl(Entradasview);
+
