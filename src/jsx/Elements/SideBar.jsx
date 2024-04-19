@@ -2,7 +2,7 @@ import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
 import { useContext, createContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-
+import { BaseUrl } from "../../constants/global";
 const SidebarContext = createContext();
 
 export default function Sidebar({ children }) {
@@ -20,16 +20,13 @@ export default function Sidebar({ children }) {
     let nombreusuario = localStorage.getItem("userName");
     // Mandar el nombre de usuario del fetch en el request body
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/users/find-user",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ nombreusuario }),
-        }
-      );
+      const response = await fetch(BaseUrl + "/api/users/find-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nombreusuario }),
+      });
       const data = await response.json();
       setUser(data);
     };

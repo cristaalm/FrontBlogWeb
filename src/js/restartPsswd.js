@@ -1,9 +1,9 @@
 import axios from "axios";
-
+import { BaseUrl } from "../constants/global";
 export const restartPassword = async (id, pwwd) => {
   try {
     const response = await axios.post(
-      `https://backblogweb.onrender.com/api/users/restart-pwd/${id}`,
+      BaseUrl + `/api/users/restart-pwd/${id}`,
       {
         contraseña: pwwd,
       }

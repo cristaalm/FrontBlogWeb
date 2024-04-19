@@ -8,30 +8,27 @@ import PreviewComponent from "../../Elements/PreviewComponent.jsx";
 import { LayoutDashboard, Users, Book, PlusSquare, Layers } from "lucide-react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 // import { Preview } from "@mui/icons-material";
-
+import { BaseUrl } from "../../../constants/global.js";
 function Preview() {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
     let storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth==null){
+    if (storedAuth == null) {
       navigate("/login");
     }
-    if (storedAuth=="false"){
+    if (storedAuth == "false") {
       navigate("/login");
-    }    // console.log(nombreusuario);
+    } // console.log(nombreusuario);
     // Mandar el nombre de usuario del fetch en el request body
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/users/find-user",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ nombreusuario }),
-        }
-      );
+      const response = await fetch(BaseUrl + "/api/users/find-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nombreusuario }),
+      });
       const data = await response.json();
       setUser(data);
     };

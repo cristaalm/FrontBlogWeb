@@ -1,20 +1,16 @@
-import axios from "axios";
-
+import { BaseUrl } from "../constants/global";
 export const loginUser = async (username, password) => {
   try {
-    const response = await fetch(
-      "https://backblogweb.onrender.com/api/users/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nombreusuario: username,
-          contraseña: password,
-        }),
-      }
-    );
+    const response = await fetch(BaseUrl + "/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nombreusuario: username,
+        contraseña: password,
+      }),
+    });
 
     if (!response.ok) {
       throw new Error("Empty response");

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-
-const Categorias =() => {
+import React, { useState, useEffect } from "react";
+import { BaseUrl } from "../../../constants/global";
+const Categorias = () => {
   const [categories, setCategories] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [imageLink, setImageLink] = useState("");
@@ -12,7 +12,7 @@ const Categorias =() => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("https://backblogweb.onrender.com/api/categories");
+        const response = await fetch(BaseUrl + "/api/categories");
         const data = await response.json();
         setCategories(data);
       } catch (error) {
@@ -40,18 +40,18 @@ const Categorias =() => {
   };
   const handleCloseModal = () => {
     setShowModal(false);
-    setImageLink('');
-    setImageWidth('');
-    setImageHeight('');
+    setImageLink("");
+    setImageWidth("");
+    setImageHeight("");
   };
 
-    return (
-        <main className="todo_espacio">
-        <div className="contenedor_cuadicular">
-          <div className="margin">
-            <div className="entrada">
-              <h1 className="tamaño_fuente">Categorías</h1>
-              {/* <div className="entradaChil">
+  return (
+    <main className="todo_espacio">
+      <div className="contenedor_cuadicular">
+        <div className="margin">
+          <div className="entrada">
+            <h1 className="tamaño_fuente">Categorías</h1>
+            {/* <div className="entradaChil">
                 <img
                   src="/public/img/logo without bg.png"
                   width="50px;"
@@ -59,66 +59,70 @@ const Categorias =() => {
                 />
                 <span className="hello">¡Hola, Admin!</span>
               </div> */}
-            </div>
           </div>
         </div>
-        <div className="todo_espacio2">
-
-          <div className="left">
-            <div className="margen_boton">
-              <div className="ancho" htmlFor="title">
-                Nombre De La Categoria 
-              </div>
-              <textarea className="cuadro_txt" placeholder="Ingresa Tituo"></textarea>
+      </div>
+      <div className="todo_espacio2">
+        <div className="left">
+          <div className="margen_boton">
+            <div className="ancho" htmlFor="title">
+              Nombre De La Categoria
             </div>
-            <div className="margen_boton">
-              <div className="ancho" htmlFor="description">
-                Descripción
-              </div>
-              <textarea className="cuadro_txt" placeholder="Ingresa Descripcion"></textarea>
-            </div>
-            <div className="margen_boton">
-              <button type="button" className="dest" onClick={handleToggleModal}>
-                Imagen Destacada
-              </button>
-              {showModal && (
-                <div className="modalOverlay">
-                  <div className="modalContent">
-                    <h2>Añadir Imagen Destacada</h2>
-                    <input
-                      type="text"
-                      placeholder="Enlace de la imagen"
-                      value={imageLink}
-                      onChange={(e) => setImageLink(e.target.value)}
-                    />
-                    <input
-                      type="number"
-                      placeholder="Ancho"
-                      value={imageWidth}
-                      onChange={(e) => setImageWidth(e.target.value)}
-                    />
-                    <input
-                      type="number"
-                      placeholder="Alto"
-                      value={imageHeight}
-                      onChange={(e) => setImageHeight(e.target.value)}
-                    />
-                    <button onClick={handleAddImage}>Añadir</button>
-                    <button onClick={handleCloseModal}>Cancelar</button>
-                  </div>
-                </div>
-              )}
-
-            </div>
-            <div>
-              <button type="submit" className="entr">
-                Añadir Categoria
-              </button>
-            </div>
+            <textarea
+              className="cuadro_txt"
+              placeholder="Ingresa Tituo"
+            ></textarea>
           </div>
-          <div className="right">
-            <div className="bg-white p-6">
-              <div className="flex flex-col space-y-4">
+          <div className="margen_boton">
+            <div className="ancho" htmlFor="description">
+              Descripción
+            </div>
+            <textarea
+              className="cuadro_txt"
+              placeholder="Ingresa Descripcion"
+            ></textarea>
+          </div>
+          <div className="margen_boton">
+            <button type="button" className="dest" onClick={handleToggleModal}>
+              Imagen Destacada
+            </button>
+            {showModal && (
+              <div className="modalOverlay">
+                <div className="modalContent">
+                  <h2>Añadir Imagen Destacada</h2>
+                  <input
+                    type="text"
+                    placeholder="Enlace de la imagen"
+                    value={imageLink}
+                    onChange={(e) => setImageLink(e.target.value)}
+                  />
+                  <input
+                    type="number"
+                    placeholder="Ancho"
+                    value={imageWidth}
+                    onChange={(e) => setImageWidth(e.target.value)}
+                  />
+                  <input
+                    type="number"
+                    placeholder="Alto"
+                    value={imageHeight}
+                    onChange={(e) => setImageHeight(e.target.value)}
+                  />
+                  <button onClick={handleAddImage}>Añadir</button>
+                  <button onClick={handleCloseModal}>Cancelar</button>
+                </div>
+              </div>
+            )}
+          </div>
+          <div>
+            <button type="submit" className="entr">
+              Añadir Categoria
+            </button>
+          </div>
+        </div>
+        <div className="right">
+          <div className="bg-white p-6">
+            <div className="flex flex-col space-y-4">
               <div className="overflow-x-auto">
                 <div className="relative w-full overflow-auto">
                   <table className="w-full caption-bottom text-sm">
@@ -149,13 +153,13 @@ const Categorias =() => {
                     </tbody>
                   </table>
                 </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
-      </main>
-    );
-}
+      </div>
+    </main>
+  );
+};
 
 export default Categorias;

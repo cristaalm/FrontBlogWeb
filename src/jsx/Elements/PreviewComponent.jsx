@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useParams } from "react-router-dom";
+import { BaseUrl } from "../../constants/global";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -35,33 +36,30 @@ const PreviewComponent = () => {
   const [fechaFormateada, setFechaFormateada] = useState("");
   useEffect(() => {
     const fecha = new Date(fPublicacion);
-    
+
     // Verificar si la fecha es válida antes de formatearla
     if (isNaN(fecha.getTime())) {
       console.error("Fecha inválida");
       setFechaFormateada("Fecha inválida");
       return;
     }
-  
+
     // Formatear la fecha
     const fechaFormateada = format(fecha, "dd/MM/yyyy");
     console.log(fechaFormateada);
     setFechaFormateada(fechaFormateada);
   }, [fPublicacion]); // Añade fPublicacion como dependencia para que el efecto se ejecute cuando cambie
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         console.log(id);
-        const response = await fetch(
-          `https://backblogweb.onrender.com/api/entradas/${id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch(BaseUrl + `/api/entradas/${id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -81,19 +79,16 @@ const PreviewComponent = () => {
     };
     fetchData();
   }, []);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://backblogweb.onrender.com/api/categories/${categoria}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch(BaseUrl + `/api/categories/${categoria}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

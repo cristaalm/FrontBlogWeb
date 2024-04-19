@@ -1,7 +1,7 @@
 import React from "react";
 import { Tooltip } from "react-tooltip";
 // import "../../css/Elements.css";
-
+import { BaseUrl } from "../../constants/global";
 const Footer = () => {
   const footerStyle = {
     zIndex: "9999",
@@ -15,7 +15,7 @@ const Footer = () => {
     alignItems: "center",
     left: 0,
     bottom: 0,
-    };
+  };
 
   const footerColumnStyle = {
     flex: 1,
@@ -49,9 +49,9 @@ const Footer = () => {
   const pStyle = {
     display: "flex",
     alignItems: "center",
-    textDecoration: "none !important"
+    textDecoration: "none !important",
   };
-  
+
   return (
     <footer style={footerStyle}>
       <Tooltip
@@ -61,17 +61,29 @@ const Footer = () => {
       <div style={footerColumnStyle}>
         <div style={columnWrapperStyle}>
           <ul className="social-icon2">
-            <li className="social-icon__item" style={{ marginTop: "14px"}}>
+            <li className="social-icon__item" style={{ marginTop: "14px" }}>
               <a
                 className="social-icon_link"
                 data-tooltip-id="my-tooltip"
                 data-tooltip-content="AquaVision API"
-                href="https://backblogweb.onrender.com/api-docs/"
+                href={BaseUrl + "/api-docs/"}
                 target="_blank"
                 style={pStyle}
               >
-                <ion-icon name="logo-buffer" style={{ color: "#035165", fontSize: "1.3rem" }}></ion-icon>
-                <p style={{ paddingLeft: "10px", fontSize: "1rem", color: "#035165", textDecoration: "none" }} >AquaVision API</p>
+                <ion-icon
+                  name="logo-buffer"
+                  style={{ color: "#035165", fontSize: "1.3rem" }}
+                ></ion-icon>
+                <p
+                  style={{
+                    paddingLeft: "10px",
+                    fontSize: "1rem",
+                    color: "#035165",
+                    textDecoration: "none",
+                  }}
+                >
+                  AquaVision API
+                </p>
               </a>
             </li>
           </ul>
@@ -80,6 +92,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

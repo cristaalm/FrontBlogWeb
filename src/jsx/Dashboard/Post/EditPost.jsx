@@ -4,7 +4,7 @@ import { Tooltip } from "react-tooltip";
 import { editPost } from "../../../js/editPost.js";
 import { Editor } from "@tinymce/tinymce-react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-
+import { BaseUrl } from "../../../constants/global.js";
 // import "../../../css/App.css";
 import Sidebar, {
   SidebarItem,
@@ -46,23 +46,18 @@ function EditPublish() {
     // console.log(nombreusuario);
     // Mandar el nombre de usuario del fetch en el request body
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/users/find-user",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ nombreusuario }),
-        }
-      );
+      const response = await fetch(BaseUrl + "/api/users/find-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nombreusuario }),
+      });
       const data = await response.json();
       setUser(data);
     };
     const fetchCategoriesData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/categories"
-      );
+      const response = await fetch(BaseUrl + "/api/categories");
       const data = await response.json();
       setCategories(data);
     };
@@ -103,23 +98,20 @@ function EditPublish() {
 
   useEffect(() => {
     let storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth==null){
+    if (storedAuth == null) {
       navigate("/login");
     }
-    if (storedAuth=="false"){
+    if (storedAuth == "false") {
       navigate("/login");
     }
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://backblogweb.onrender.com/api/entradas/${id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch(BaseUrl + `/api/entradas/${id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

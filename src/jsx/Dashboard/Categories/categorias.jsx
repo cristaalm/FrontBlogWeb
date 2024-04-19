@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import { createCategory } from "../../../js/createCategory.js";
 import { editCategory } from "../../../js/editCategory.js";
 import { Github } from "@uiw/react-color";
-
+import { BaseUrl } from "../../../constants/global.js";
 import Sidebar, {
   SidebarItem,
   SidebarItemWithSubItems,
@@ -131,16 +131,14 @@ function categorías() {
   // Obtiene los categorías en la tabla (GET) y los ordena por ID ascendente
   useEffect(() => {
     let storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth==null){
+    if (storedAuth == null) {
       navigate("/login");
     }
-    if (storedAuth=="false"){
+    if (storedAuth == "false") {
       navigate("/login");
     }
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/categories"
-      );
+      const response = await fetch(BaseUrl + "/api/categories");
       const data = await response.json();
       setCategories(data);
     };
@@ -162,7 +160,7 @@ function categorías() {
   const handleDeleteCategory = async (deleteCategoryId) => {
     try {
       const response = await fetch(
-        `https://backblogweb.onrender.com/api/categories/${deleteCategoryId}`,
+        BaseUrl + `/api/categories/${deleteCategoryId}`,
         {
           method: "DELETE",
           headers: {
@@ -184,7 +182,7 @@ function categorías() {
       console.error("Error al eliminar categoría:", error);
     }
   };
-  
+
   const cleanForm = () => {
     setNombre("");
     setDescripcion("");
@@ -359,7 +357,7 @@ function categorías() {
                         placeholder="Ingrese categoría"
                       ></input>
                       <Github
-                      className="colorp"
+                        className="colorp"
                         style={{
                           marginLeft: "10px",
                           width: "150px",

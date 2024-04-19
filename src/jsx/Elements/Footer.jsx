@@ -4,6 +4,7 @@ import { Tooltip } from "react-tooltip";
 import Modal from "react-modal";
 import { FormattedMessage, useIntl } from "react-intl"; // Importa FormattedMessage y useIntl
 import React, { useContext, useRef, useState } from "react";
+import { BaseUrl } from "../../constants/global";
 const Footer = () => {
   const context = useContext(Context);
   const intl = useIntl(); // Obtiene el objeto intl para usar formatMessage
@@ -38,7 +39,8 @@ const Footer = () => {
   const subtitle = useRef(null);
 
   const [contactModalIsOpen, setContactModalIsOpen] = React.useState(false);
-  const [developersModalIsOpen, setDevelopersModalIsOpen] = React.useState(false);
+  const [developersModalIsOpen, setDevelopersModalIsOpen] =
+    React.useState(false);
 
   function openContactModal() {
     setContactModalIsOpen(true);
@@ -111,7 +113,7 @@ const Footer = () => {
               className="social-icon__link"
               data-tooltip-id="my-tooltip"
               data-tooltip-content="AquaVision API"
-              href="https://backblogweb.onrender.com/api-docs/"
+              href={BaseUrl + "/api-docs/"}
               target="_blank"
             >
               <ion-icon

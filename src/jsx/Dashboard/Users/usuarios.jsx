@@ -5,7 +5,7 @@ import Modal from "react-modal"; // 1. Importamos el MODAL
 import { FormattedMessage, useIntl } from "react-intl"; // Importa FormattedMessage y useIntl
 import { createUser } from "../../../js/createUser";
 import { editUser } from "../../../js/editUser";
-
+import { BaseUrl } from "../../../constants/global.js";
 // import "../../../css/App.css";
 import Sidebar, {
   SidebarItem,
@@ -83,7 +83,7 @@ function usuarios() {
   };
   function closeModal() {
     //Agregar tu variable aZUL y ponerla en false
-    setPruebaModal(false); 
+    setPruebaModal(false);
 
     setDeleteContact(false);
     setDeleteUserId(null);
@@ -110,9 +110,7 @@ function usuarios() {
   // Obtiene los usuarios en la tabla (GET)
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/users"
-      );
+      const response = await fetch(BaseUrl + "/api/users");
       const data = await response.json();
       setUsers(data);
     };
@@ -133,15 +131,12 @@ function usuarios() {
   // Elimina el usuario (POST)
   const handleDeleteUser = async (deleteUserId) => {
     try {
-      const response = await fetch(
-        `https://backblogweb.onrender.com/api/users/${deleteUserId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(BaseUrl + `/api/users/${deleteUserId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.ok) {
         setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
         console.log(`Usuario con ID ${deleteUserId} eliminado exitosamente`);
@@ -229,7 +224,7 @@ function usuarios() {
       className="flex h-screen"
     >
       {/* 3 Inicias a copiar desde acá */}
-       <Modal 
+      <Modal
         id="root"
         isOpen={deleteModal}
         onRequestClose={closeModal}
@@ -262,7 +257,7 @@ function usuarios() {
         </div>
       </Modal>
       {/* Terminas acá de seleccionar todas las líneas y Ctrl+V */}
-      <Modal 
+      <Modal
         id="prueba"
         isOpen={pruebaModal} // Ponemos la variable amarilla que declaramos arriba
         onRequestClose={closeModal}
@@ -313,11 +308,10 @@ function usuarios() {
           <Link to="/categories" className="without_line">
             <SidebarItem icon={<Layers />} text="Categorías" />
           </Link>
-          
+
           <Link to="/users" className="without_line">
             <SidebarItem icon={<Users />} text="Usuario" />
           </Link>
-          
         </Sidebar>
       </div>
       <div className="inicio">
@@ -482,7 +476,7 @@ function usuarios() {
                                         {userInfo.perfil}
                                       </td>
                                       <td className="border-2 border-teal-600 p-1">
-                                      {userInfo.entradas}
+                                        {userInfo.entradas}
                                       </td>
                                       <td className="flex items-center justify-center">
                                         <button

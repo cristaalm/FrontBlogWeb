@@ -4,26 +4,23 @@ import "../../css/Dashboard.css";
 import "../../css/App.css";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-import { BrowserRouter, Routes, Route, } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { CiUser } from "react-icons/ci";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from "react-bootstrap";
 import { CiCloudOn } from "react-icons/ci";
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Sidebar from "../Elements/SideNavBar";
-import { BiChevronRight,BiListUl } from 'react-icons/bi'; // Importa solo los íconos que vas a utilizar
+import { BiChevronRight, BiListUl } from "react-icons/bi"; // Importa solo los íconos que vas a utilizar
 import { FaUser } from "react-icons/fa";
-
+import { BaseUrl } from "../../constants/global";
 function newPost() {
-  
-  
   const navigate = useNavigate(); // Obtiene la función de navegación
 
   const [isEntriesDropdownOpen, setIsEntriesDropdownOpen] = useState(false);
 
-  
   const handleSelectionChange = (e) => {
     navigate(e.target.value);
   };
@@ -48,9 +45,7 @@ function newPost() {
     // Aquí puedes hacer una solicitud a tu API para obtener las categorías
     // Supongamos que la respuesta de la API es un array de objetos con propiedades 'id' y 'name'
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/categories"
-      );
+      const response = await fetch(BaseUrl + "/api/categories");
       const data = await response.json();
       setCategories(data);
       console.log(data);
@@ -65,7 +60,6 @@ function newPost() {
     localStorage.removeItem("isAuthenticated");
     navigate("/login");
   };
-  
 
   useEffect(() => {
     let storedAuth = localStorage.getItem("isAuthenticated");
@@ -85,7 +79,6 @@ function newPost() {
       localStorage.removeItem("isAuthenticated");
     }
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -115,7 +108,6 @@ function newPost() {
   };
   const [sidebarIsActive, setSidebarIsActive] = useState(false);
 
-
   const [isIconOnly, setIsIconOnly] = useState(false);
 
   const toggleIconOnly = () => {
@@ -123,27 +115,20 @@ function newPost() {
   };
 
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
-    const toggleMenu = () => {
+  const toggleMenu = () => {
     setIsMenuExpanded(!isMenuExpanded);
   };
 
-
-
   const toggleSections = () => setIsSectionsExpanded(!isSectionsExpanded); // Define esta función
-  const toggleUserMenu = () => setIsUserMenuExpanded(!isUserMenuExpanded); // Define esta función   
+  const toggleUserMenu = () => setIsUserMenuExpanded(!isUserMenuExpanded); // Define esta función
 
-const [isClosed, setIsClosed] = useState(false);
-
-
+  const [isClosed, setIsClosed] = useState(false);
 
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
-  
-
-
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
-};
+  };
 
   return (
     <div>
@@ -151,12 +136,17 @@ const [isClosed, setIsClosed] = useState(false);
         chin
       </a> */}
       <div className="inicio">
-      <Sidebar isCollapsed={isSidebarCollapsed} onToggleSidebar={setIsSidebarCollapsed} />
-      <main className={`main-content ${isSidebarCollapsed ? 'collapsed' : ''}`}>
-        <Outlet />
-      </main>
-      </div> 
-      {/*<Footer />*/} 
+        <Sidebar
+          isCollapsed={isSidebarCollapsed}
+          onToggleSidebar={setIsSidebarCollapsed}
+        />
+        <main
+          className={`main-content ${isSidebarCollapsed ? "collapsed" : ""}`}
+        >
+          <Outlet />
+        </main>
+      </div>
+      {/*<Footer />*/}
     </div>
   );
 }

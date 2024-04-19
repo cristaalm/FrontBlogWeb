@@ -1,21 +1,27 @@
-import axios from 'axios';
-
-export const editCategory = async (nombre, descripcion, selectedColor, previewImage, id) => {
+import axios from "axios";
+import { BaseUrl } from "../constants/global";
+export const editCategory = async (
+  nombre,
+  descripcion,
+  selectedColor,
+  previewImage,
+  id
+) => {
   try {
-    const response = await axios.patch(`https://backblogweb.onrender.com/api/categories/${id}`, {
+    const response = await axios.patch(BaseUrl + `/api/categories/${id}`, {
       nombre: nombre,
       descripcion: descripcion,
       imgdestacada: previewImage,
-      color: selectedColor
+      color: selectedColor,
     });
-    
+
     if (!response) {
-      throw new Error('Empty response');
+      throw new Error("Empty response");
     }
-    
+
     return response.data;
   } catch (error) {
-    let errorMessage = 'An error occurred';
+    let errorMessage = "An error occurred";
     if (error.response && error.response.data && error.response.data.error) {
       errorMessage = error.response.data.error;
     }

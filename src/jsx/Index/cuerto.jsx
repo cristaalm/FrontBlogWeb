@@ -12,7 +12,7 @@ import { format } from "date-fns";
 import "../../css/mrmodal.css";
 import { EngineeringTwoTone } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-
+import { BaseUrl } from "../../constants/global";
 const Cuerpo = () => {
   const navigate = useNavigate();
 
@@ -39,9 +39,7 @@ const Cuerpo = () => {
   // 2. Obtiene los entradas en la tabla (GET)
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/entradas"
-      );
+      const response = await fetch(BaseUrl + "/api/entradas");
       const data = await response.json();
       setEntradas(data);
       console.log(data);
@@ -57,10 +55,10 @@ const Cuerpo = () => {
       // perfil;
       // titulo;
       // usuario;
-      if (data && data.lenght>0){
-        console.log("hay info")
-      }else{
-        console.log("no")
+      if (data && data.lenght > 0) {
+        console.log("hay info");
+      } else {
+        console.log("no");
       }
     };
     fetchData();

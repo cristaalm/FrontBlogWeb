@@ -4,7 +4,7 @@ import { Tooltip } from "react-tooltip";
 import Modal from "react-modal";
 import { createPost } from "../../../js/createPost";
 import { Editor } from "@tinymce/tinymce-react";
-
+import { BaseUrl } from "../../../constants/global.js";
 // import "../../../css/App.css";
 import Sidebar, {
   SidebarItem,
@@ -27,30 +27,83 @@ function usuarios() {
   const startTour = () => {
     const driverObj = driver({
       showProgress: true,
-      overlayColor: 'lemon',
-      theme: 'dark',
-      onPopoverRender: (popover, { config, state }) => { 
+      overlayColor: "lemon",
+      theme: "dark",
+      onPopoverRender: (popover, { config, state }) => {
         const firstButton = document.createElement("button");
         //firstButton.innerText = "Go to First";
         //popover.footerButtons.appendChild(firstButton);
-  
+
         firstButton.addEventListener("click", () => {
           // Al hacer clic en el botón, finaliza el tour y marca como completado
           driverObj.destroy();
-          sessionStorage.setItem('tourCompleted', true);
+          sessionStorage.setItem("tourCompleted", true);
         });
       },
       steps: [
-        { element: '.entrada1-tour', popover: { title: 'Añadir nueva entrada', description: 'Esta es la sección para agregar nuevas entradas.' } },
-        { element: '.inputentrada', popover: { title: 'Título de la entrada', description: 'Aquí puedes ingresar el título de la nueva entrada.' } },
-        { element: '.selectcat-tour', popover: { title: 'Seleccione su categoría', description: 'Este menú desplegable te permite seleccionar la categoría deseada para tu entrada.' } },
-        { element: '.descripcion-tour', popover: { title: 'Descripción', description: 'En este campo, puedes agregar una descripción para tu entrada.' } },
-        { element: '.imgdestaca-tour', popover: { title: 'Imagen destacada', description: 'Aquí puedes cargar y previsualizar la imagen que deseas destacar en tu entrada.' } },
-        { element: '.tiny-tour', popover: { title: 'Previsualización', description: 'TinyMCE es un editor de texto enriquecido que facilita la creación y edición de contenido web. Explora las opciones de formato, añade imágenes, enlaces y mucho más.' } },
-        { element: '.btn-tour', popover: { title: 'Añadir entrada', description: 'Haz clic en este botón para agregar la entrada con toda la información que has proporcionado anteriormente.' } },
-        { element: '.btn-iniciar-tour', popover: { title: 'Reiniciar Tour', description: 'Haz clic en este botón para volver a iniciar el tour por la página.' } },
-
-    ]
+        {
+          element: ".entrada1-tour",
+          popover: {
+            title: "Añadir nueva entrada",
+            description: "Esta es la sección para agregar nuevas entradas.",
+          },
+        },
+        {
+          element: ".inputentrada",
+          popover: {
+            title: "Título de la entrada",
+            description: "Aquí puedes ingresar el título de la nueva entrada.",
+          },
+        },
+        {
+          element: ".selectcat-tour",
+          popover: {
+            title: "Seleccione su categoría",
+            description:
+              "Este menú desplegable te permite seleccionar la categoría deseada para tu entrada.",
+          },
+        },
+        {
+          element: ".descripcion-tour",
+          popover: {
+            title: "Descripción",
+            description:
+              "En este campo, puedes agregar una descripción para tu entrada.",
+          },
+        },
+        {
+          element: ".imgdestaca-tour",
+          popover: {
+            title: "Imagen destacada",
+            description:
+              "Aquí puedes cargar y previsualizar la imagen que deseas destacar en tu entrada.",
+          },
+        },
+        {
+          element: ".tiny-tour",
+          popover: {
+            title: "Previsualización",
+            description:
+              "TinyMCE es un editor de texto enriquecido que facilita la creación y edición de contenido web. Explora las opciones de formato, añade imágenes, enlaces y mucho más.",
+          },
+        },
+        {
+          element: ".btn-tour",
+          popover: {
+            title: "Añadir entrada",
+            description:
+              "Haz clic en este botón para agregar la entrada con toda la información que has proporcionado anteriormente.",
+          },
+        },
+        {
+          element: ".btn-iniciar-tour",
+          popover: {
+            title: "Reiniciar Tour",
+            description:
+              "Haz clic en este botón para volver a iniciar el tour por la página.",
+          },
+        },
+      ],
     });
     driverObj.drive();
   };
@@ -99,16 +152,13 @@ function usuarios() {
     // console.log(nombreusuario);
     // Mandar el nombre de usuario del fetch en el request body
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/users/find-user",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ nombreusuario }),
-        }
-      );
+      const response = await fetch(BaseUrl + "/api/users/find-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nombreusuario }),
+      });
       const data = await response.json();
       setUser(data);
     };
@@ -146,16 +196,14 @@ function usuarios() {
   // const [categories, setCategories] = useState([]);
   useEffect(() => {
     let storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth==null){
+    if (storedAuth == null) {
       navigate("/login");
     }
-    if (storedAuth=="false"){
+    if (storedAuth == "false") {
       navigate("/login");
     }
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/categories"
-      );
+      const response = await fetch(BaseUrl + "/api/categories");
       const data = await response.json();
       setCategories(data);
     };
@@ -282,25 +330,24 @@ function usuarios() {
         <main className="todo_espacio flex-1">
           <div className="contenedor_cuadricular">
             <div className="margin">
-            <div className="entrada">
-                <h1 className="tamaño_fuente entrada1-tour">Añadir nueva entrada</h1>
+              <div className="entrada">
+                <h1 className="tamaño_fuente entrada1-tour">
+                  Añadir nueva entrada
+                </h1>
                 {user.rol != "Administrador" && (
-                  
                   <button
-                  onClick={startTour}
-                  data-tooltip-content="Iniciar tour"
-                  data-tooltip-id="manual"
-                  className="rounded mb-2 h-10 w-10 btn-iniciar-tour"
-                  alt="Iniciar Tour"
-                >
-                  <img
-                    src="../../../../public/img/logoRedB.png"
-                    className="rounded h-full w-full"
-                    alt="Logo RedB"
-                  />
-                </button>
-                
-
+                    onClick={startTour}
+                    data-tooltip-content="Iniciar tour"
+                    data-tooltip-id="manual"
+                    className="rounded mb-2 h-10 w-10 btn-iniciar-tour"
+                    alt="Iniciar Tour"
+                  >
+                    <img
+                      src="../../../../public/img/logoRedB.png"
+                      className="rounded h-full w-full"
+                      alt="Logo RedB"
+                    />
+                  </button>
                 )}
               </div>
 
@@ -391,7 +438,10 @@ function usuarios() {
                     />
                   </div>
                   <div>
-                    <button type="submit" className="entr tracking-widest mt-4 btn-tour">
+                    <button
+                      type="submit"
+                      className="entr tracking-widest mt-4 btn-tour"
+                    >
                       Añadir entrada
                     </button>
                   </div>

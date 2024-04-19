@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import { createUser } from "../../../js/createUser.js";
 import { editUser } from "../../../js/editUser.js";
 import { Link, useNavigate } from "react-router-dom";
-
+import { BaseUrl } from "../../../constants/global.js";
 // import "../../../css/App.css";
 import Sidebar, {
   SidebarItem,
@@ -219,9 +219,7 @@ function crudPost() {
       navigate("/login");
     }
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/entradas"
-      );
+      const response = await fetch(BaseUrl + "/api/entradas");
       const data = await response.json();
       setEntradas(data);
       console.log(data);
@@ -236,15 +234,12 @@ function crudPost() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://backblogweb.onrender.com/api/categories/${id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch(BaseUrl + `/api/categories/${id}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -276,7 +271,7 @@ function crudPost() {
   const handleDeleteUser = async (deleteEntradaId) => {
     try {
       const response = await fetch(
-        `https://backblogweb.onrender.com/api/entradas/${deleteEntradaId}`,
+        BaseUrl + `/api/entradas/${deleteEntradaId}`,
         {
           method: "DELETE",
           headers: {
@@ -302,16 +297,13 @@ function crudPost() {
     let nombreusuario = localStorage.getItem("userName");
     // Mandar el nombre de usuario del fetch en el request body
     const fetchData = async () => {
-      const response = await fetch(
-        "https://backblogweb.onrender.com/api/users/find-user",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ nombreusuario }),
-        }
-      );
+      const response = await fetch(BaseUrl + "/api/users/find-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nombreusuario }),
+      });
       const data = await response.json();
       setUser(data);
       setUsuario(nombreusuario);
@@ -322,15 +314,12 @@ function crudPost() {
   // Publica la entrada (POST)
   const handlePublished = async (id) => {
     try {
-      const response = await fetch(
-        `https://backblogweb.onrender.com/api/entradas/status/${id}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(BaseUrl + `/api/entradas/status/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.ok) {
         setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
         setPublicEntrada(false);
@@ -348,15 +337,12 @@ function crudPost() {
   // Revisa la entrada, canmbia el status (POST)
   const handleReview = async (id) => {
     try {
-      const response = await fetch(
-        `https://backblogweb.onrender.com/api/entradas/review/${id}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(BaseUrl + `/api/entradas/review/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.ok) {
         setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
         setRevisarEntrada(false);
