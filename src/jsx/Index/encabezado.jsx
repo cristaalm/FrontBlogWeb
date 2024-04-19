@@ -6,10 +6,9 @@ const Encabezado = () => {
   return (
     <header id="header" className="headerhome">
       <div className="iml">
-      <RouterLink to="/welcome">
-        <img className="logo" src="../../../public/img/logo.png" />
+        <RouterLink to="/welcome">
+          <img className="logo" src="../../../public/img/logo.png" />
         </RouterLink>
-        
       </div>
       <div className="menum">
         <ScrollLink
@@ -24,6 +23,16 @@ const Encabezado = () => {
         </ScrollLink>
         <ScrollLink
           className="movimiento"
+          to="ultima-entrada"
+          smooth={true}
+          duration={500}
+        >
+          <button className="navegacion">
+            <FormattedMessage id="iTndex.blogPost" defaultMessage="Blog Post" />
+          </button>
+        </ScrollLink>
+        <ScrollLink
+          className="movimiento"
           to="recursos-multimedia"
           smooth={true}
           duration={500}
@@ -33,16 +42,6 @@ const Encabezado = () => {
               id="index.Multimedia-Resources"
               defaultMessage="Recursos Multimedia"
             />
-          </button>
-        </ScrollLink>
-        <ScrollLink
-          className="movimiento"
-          to="ultima-entrada"
-          smooth={true}
-          duration={500}
-        >
-          <button className="navegacion">
-            <FormattedMessage id="index.Tickets" defaultMessage="Tickets " />
           </button>
         </ScrollLink>
         <ScrollLink

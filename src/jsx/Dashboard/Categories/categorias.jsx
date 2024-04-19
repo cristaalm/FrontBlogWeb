@@ -130,6 +130,13 @@ function categorías() {
 
   // Obtiene los categorías en la tabla (GET) y los ordena por ID ascendente
   useEffect(() => {
+    let storedAuth = localStorage.getItem("isAuthenticated");
+    if (storedAuth==null){
+      navigate("/login");
+    }
+    if (storedAuth=="false"){
+      navigate("/login");
+    }
     const fetchData = async () => {
       const response = await fetch(
         "https://backblogweb.onrender.com/api/categories"

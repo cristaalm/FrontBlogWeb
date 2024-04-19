@@ -1,100 +1,106 @@
+body {
+  overflow-x: hidden;
+}
+
 /* Estilos generales */
 .cuerpoo {
-    margin: 0;
-    padding: 0;
-    background-color: var(--color-1);
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-1);
 }
 
 .titulosdecategoruas {
-    color: var(--color-4);
-    font-size: 24px;
-    margin-bottom: 10px;
-    width: 100%;
-    display: flex;
-    
+  color: var(--color-4);
+  font-size: 24px;
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
 }
 .titulosdecategoruasbla {
-    color: var(--color-1);
-    font-size: 24px;
-    margin-bottom: 10px;
-    width: 100%;
-    display: flex;
+  color: var(--color-1);
+  font-size: 24px;
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
 }
-.vajovideo{
-    padding-bottom: 2.5rem;
+.vajovideo {
+  padding-bottom: 2.5rem;
 }
 /* Estilos para el vídeo destacado */
 
 .vid {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 /* Estilos para el Top de categorías */
 
 /* Contenedor principal */
 .seccionescuerpo {
-    display: flex; /* Esto coloca todos los elementos de la categoría en una fila */
-    justify-content: space-around; /* Esto los distribuye equitativamente */
-    align-items: center; /* Esto centra los elementos verticalmente en el contenedor */
-    flex-wrap: wrap; /* Esto permite que los elementos se envuelvan si no hay suficiente espacio */
-    /* gap: 15px; Esto añade un espacio entre los elementos de la categoría */
+  display: flex; /* Esto coloca todos los elementos de la categoría en una fila */
+  justify-content: space-around; /* Esto los distribuye equitativamente */
+  align-items: center; /* Esto centra los elementos verticalmente en el contenedor */
+  flex-wrap: wrap; /* Esto permite que los elementos se envuelvan si no hay suficiente espacio */
+  /* gap: 15px; Esto añade un espacio entre los elementos de la categoría */
 }
 
-  /* Estilos para los títulos de las categorías */
+/* Estilos para los títulos de las categorías */
 .titulosdecategoruas {
-    /* padding-left: 50px; */
-    width: 100%; /* Esto asegura que el título ocupe el ancho completo */
-    text-align: center; /* Esto centra el título */
+  /* padding-left: 50px; */
+  width: 100%; /* Esto asegura que el título ocupe el ancho completo */
+  text-align: center; /* Esto centra el título */
 }
-
 
 .imagendest {
-    position: relative;
+  position: relative;
 }
 
 .numero {
-    margin: 10px 0 0 10px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco semi-transparente para que el texto sea legible */
-    opacity: 1;
-    padding: 5px;
-    border-radius: 5px;
+  margin: 10px 0 0 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.7
+  ); /* Fondo blanco semi-transparente para que el texto sea legible */
+  opacity: 1;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-
-  /* Estilos para la imagen destacada */
+/* Estilos para la imagen destacada */
 .imagendest {
-    display: flex; /* Flex para centrar la imagen dentro del contenedor */
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Tamaño completo dentro de su contenedor */
-    margin: 10px 0; /* Espacio arriba y abajo */
+  display: flex; /* Flex para centrar la imagen dentro del contenedor */
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Tamaño completo dentro de su contenedor */
+  margin: 10px 0; /* Espacio arriba y abajo */
 }
 .imagendest:hover .numero {
-    opacity: 0;
-  }
-.imgdest {
-    max-width: 100%; /* Hace que la imagen no sea más grande que su contenedor */
-    max-height: 200px; /* Altura máxima de la imagen */
+  opacity: 0;
 }
 .imgdest {
-    opacity: 1;
-    transition: opacity 0.3s ease;
-  }
+  max-width: 100%; /* Hace que la imagen no sea más grande que su contenedor */
+  max-height: 200px; /* Altura máxima de la imagen */
+}
+.imgdest {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
 
-  .imagendest:hover .imgdest {
-    opacity: 0.7; /* Puedes ajustar el valor de la opacidad según tu preferencia */
-  }
+.imagendest:hover .imgdest {
+  opacity: 0.7; /* Puedes ajustar el valor de la opacidad según tu preferencia */
+}
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
 /* ultimas entradas */
 .seccionescuerpoultima {
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 .titulosdecategoruas {
   display: flex; /* Usa flexbox para alinear los elementos */
@@ -102,289 +108,297 @@
   align-items: center; /* Alinea el título y el botón verticalmente */
   padding: 0 15px; /* Agrega algo de padding en los lados para no tocar los bordes */
 }
-.contenedorbotoneslistacuad{
-    padding: 1rem;
+.contenedorbotoneslistacuad {
+  padding: 1rem;
 }
 
 .ultimasentradas-container {
-    display: flex;
-    justify-content: space-between;
-    /* gap: 20px; */
-    margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 15px;
 }
 
 .ultimasentradas {
-    /* border: 1px solid #000; */
-    width: calc(33.333% - 20px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    background-color: var(--color-2);
+  /* border: 1px solid #000; */
+  /* width: calc(33.333% - 20px); */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: var(--color-2);
 }
 
 .categoria-seleccionada {
-    padding: 15px;
-    text-align: center;
-    position: relative;
+  padding: 15px;
+  text-align: center;
+  position: relative;
 }
-.categoria-seleccionada.lista-view{
-    padding: 0;
+.categoria-seleccionada.lista-view {
+  padding: 0;
 }
-  /* Asegúrate de que la imagen no tenga espacios extra alrededor */
+/* Asegúrate de que la imagen no tenga espacios extra alrededor */
 .catimg {
-    display: block;
-    max-width: 100%;
+  display: block;
+  max-width: 100%;
 }
 
 .contenido-entrada {
-    padding: 0 15px 15px 15px;
+  padding: 0 15px 15px 15px;
 }
 
 .tituloentrada {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-top: 5px;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 5px;
 }
 .mosrarmasyvav {
-    display: flex; /* Establece el contenedor como flex */
-    justify-content: space-between; /* Alinea el contenido a ambos extremos */
-    align-items: center; /* Alinea los elementos verticalmente */
+  display: flex; /* Establece el contenedor como flex */
+  justify-content: space-between; /* Alinea el contenido a ambos extremos */
+  align-items: center; /* Alinea los elementos verticalmente */
 }
 .mostarmas {
-    margin-left: auto; /* Empuja el botón hacia la derecha */
-    padding: 10px 20px; /* Añade padding para aumentar el área de clic */
-    background-color: var(--color-3); /* Color de fondo del botón */
-    color: var(--color-1); /* Color del texto del botón */
-    border: none; /* Quita el borde predeterminado del botón */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
-    font-weight: bold; /* Texto en negrita para que resalte */
-    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+  margin-left: auto; /* Empuja el botón hacia la derecha */
+  padding: 10px 20px; /* Añade padding para aumentar el área de clic */
+  background-color: var(--color-3); /* Color de fondo del botón */
+  color: var(--color-1); /* Color del texto del botón */
+  border: none; /* Quita el borde predeterminado del botón */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+  font-weight: bold; /* Texto en negrita para que resalte */
+  transition: background-color 0.3s ease; /* Transición suave del color de fondo */
 }
 
 .mostarmas:hover {
-    background-color: var(--color-4); /* Cambia el color de fondo al pasar el cursor */
+  background-color: var(
+    --color-4
+  ); /* Cambia el color de fondo al pasar el cursor */
 }
 @media screen and (max-width: 768px) {
-    .ultimasentradas {
-        width: 100%; /* Haz que cada entrada ocupe todo el ancho disponible */
-        margin-bottom: 20px; /* Añade un espacio entre las entradas */
-    }
+  .ultimasentradas {
+    width: 100%; /* Haz que cada entrada ocupe todo el ancho disponible */
+    margin-bottom: 20px; /* Añade un espacio entre las entradas */
+  }
 
-    .mosrarmasyvav {
-        flex-direction: column; /* Cambia la dirección del flex a columna para apilar elementos verticalmente */
-    }
+  .mosrarmasyvav {
+    flex-direction: column; /* Cambia la dirección del flex a columna para apilar elementos verticalmente */
+  }
 
-    .mostarmas {
-        margin-left: 0; /* Elimina el margen izquierdo auto */
-        width: 100%; /* Haz que el botón ocupe todo el ancho disponible */
-    }
-    .ultimasentradas-container {
-        display: flex;
-        flex-direction: column;
-    }
+  .mostarmas {
+    margin-left: 0; /* Elimina el margen izquierdo auto */
+    width: 100%; /* Haz que el botón ocupe todo el ancho disponible */
+  }
 
-    .ultimasentradas {
-        width: 100%;
-        margin-bottom: 20px;
-    }
+  .ultimasentradas-container {
+    display: grid; /* Usar CSS Grid en lugar de flexbox */
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(250px, 1fr)
+    ); /* Columnas automáticas con un mínimo de 250px */
+    gap: 20px; /* Espacio entre las entradas */
+    margin-bottom: 15px;
+  }
 
-    .categoria-seleccionada {
-        width: 100%;
-    }
+  .ultimasentradas {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .categoria-seleccionada {
+    width: 100%;
+  }
 }
 /* ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]] */
 /* lista */
-/* Aplica estilos para la vista de lista *//* Estilos base para la vista de lista */
+/* Aplica estilos para la vista de lista */ /* Estilos base para la vista de lista */
 .ultimasentradas-container.lista-view {
-    flex-direction: column;
-    gap: 20px;
-  }
+  flex-direction: column;
+  gap: 20px;
+}
 
-  /* Estilos para cada entrada en la vista de lista */
-  .ultimasentradas.lista-view {
-    width: 100%;
-    display: flex; /* Organizar imagen y contenido en fila */
-    align-items: center; /* Centrar elementos verticalmente */
-    padding: 15px;
-    box-shadow: none;
-    /* border-bottom: 1px solid #ccc; */
-    margin-bottom: 10px; /* Espacio al final de cada entrada */
-  }
+/* Estilos para cada entrada en la vista de lista */
+.ultimasentradas.lista-view {
+  width: 100%;
+  display: flex; /* Organizar imagen y contenido en fila */
+  align-items: center; /* Centrar elementos verticalmente */
+  padding: 15px;
+  box-shadow: none;
+  /* border-bottom: 1px solid #ccc; */
+  margin-bottom: 10px; /* Espacio al final de cada entrada */
+}
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 /* Estilos para Recursos Multimedia */
 
 /* RecursosMultimedia.css */
 
 .seccionescuerporecursos {
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center; /* Alineación central para el título y los recursos */
-    background-color: var(--color-4);
-    display: flex; /* Establecer el contenedor como flexbox */
-    justify-content: space-around; /* Espacio uniforme entre los elementos */
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center; /* Alineación central para el título y los recursos */
+  background-color: var(--color-4);
+  display: flex; /* Establecer el contenedor como flexbox */
+  justify-content: space-around; /* Espacio uniforme entre los elementos */
 }
 
 .seccionescuerporecursos video {
-    width: 50%; 
-    height: 00px; /* Altura fija del video */
-    margin: 0 10px; /* Espacio entre los videos */
+  width: 50%;
+  height: 00px; /* Altura fija del video */
+  margin: 0 10px; /* Espacio entre los videos */
 }
-.contenedorrecursos{
-    padding: 40px;
-    box-sizing: border-box;
-    display: flex; /* Establecer el contenedor como flexbox */
-    justify-content: space-around; 
+.contenedorrecursos {
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex; /* Establecer el contenedor como flexbox */
+  justify-content: space-around;
 }
 
 .recurso1 video,
 .recurso2 img,
 .recurso3 video {
-    display: inline-block;
-    margin: 1.66%; /* Espacio entre los elementos */
-    vertical-align: top;
-    box-sizing: border-box;
-    width: 80%; 
-    height: auto; 
+  display: inline-block;
+  margin: 1.66%; /* Espacio entre los elementos */
+  vertical-align: top;
+  box-sizing: border-box;
+  width: 80%;
+  height: auto;
 }
-.titulosdecategoruasbla{
-    display: flex;
-    position: absolute;
-    left: 20px;
-    height: 100px;
-    font-size: 20px;
+.titulosdecategoruasbla {
+  display: flex;
+  position: absolute;
+  left: 20px;
+  height: 100px;
+  font-size: 20px;
 }
 
 @media screen and (max-width: 768px) {
-    .recurso {
-        width: 100%; /* Cambia el ancho a 100% para ocupar todo el ancho disponible */
-        margin: 0; /* Elimina el margen entre los recursos */
-    }
+  .recurso {
+    width: 100%; /* Cambia el ancho a 100% para ocupar todo el ancho disponible */
+    margin: 0; /* Elimina el margen entre los recursos */
+  }
 }
 .multimedia-title {
-    font-size: 2rem; 
+  font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+  .multimedia-title {
+    font-size: 1.5rem;
   }
-  
-  @media (max-width: 768px) {
-    .multimedia-title {
-      font-size: 1.5rem; 
-    }
+}
+
+@media (max-width: 480px) {
+  .multimedia-title {
+    font-size: 1.2rem;
   }
-  
-  @media (max-width: 480px) {
-    .multimedia-title {
-      font-size: 1.2rem; 
-    }
+}
+@media (max-width: 768px) {
+  .recurso1,
+  .recurso2,
+  .recurso3 {
+    width: 45%; /* Porcentaje de ancho para dispositivos medianos */
   }
-  @media (max-width: 768px) {
-    .recurso1,
-    .recurso2,
-    .recurso3 {
-      width: 45%; /* Porcentaje de ancho para dispositivos medianos */
-    }
+}
+
+@media (max-width: 480px) {
+  .recurso1,
+  .recurso2,
+  .recurso3 {
+    width: 100%; /* Ancho completo para dispositivos pequeños */
+    margin-bottom: 20px; /* Espacio entre los contenedores en dispositivos pequeños */
   }
-  
-  @media (max-width: 480px) {
-    .recurso1,
-    .recurso2,
-    .recurso3 {
-      width: 100%; /* Ancho completo para dispositivos pequeños */
-      margin-bottom: 20px; /* Espacio entre los contenedores en dispositivos pequeños */
-    }
-  }
-  
+}
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 /* Quizz.css */
 .seccionescuerpoquizz {
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center; /* Alinea el título al centro */
+  box-sizing: border-box;
+  text-align: center; /* Alinea el título al centro */
 }
 
 .contenedor-quizz {
-    border-radius: 10px;
-    border: 1px solid #000;
-    position: relative;
-    padding: 20px;
-    display: flex;
-    align-items: center; /* Centra verticalmente el logo y el botón */
-    justify-content: space-between; /* Separa el logo y el botón en extremos opuestos */
-}
-
-.logo-quizz {
-    border: 1px dashed #000;
-    padding: 20px;
-    width: 30%; /* O el tamaño que prefieras para el logo */
-    text-align: center;
+  /* border-radius: 10px; */
+  /* border: 2px solid var(--color-2); */
+  /* position: relative; */
+  /* padding: 20px; */
+  display: flex;
+  align-items: center; /* Centra verticalmente el logo y el botón */
+  justify-content: space-between; /* Separa el logo y el botón en extremos opuestos */
 }
 
 .boton-quizz {
-    border: 1px solid #000;
-    padding: 10px 20px;
-    cursor: pointer; /* Estilo del cursor para indicar que es un botón clickeable */
-    font-weight: bold;
-    display: inline-flex;
-    align-items: center; /* Centra el texto y el icono verticalmente */
-    gap: 10px; /* Espacio entre el texto y el icono */
+  position: relative; /* Hace que la sección sea el contenedor de referencia para el posicionamiento absoluto */
+  color: var(--color-3);
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.5s ease; /* Transición suave para el color */
+}
+
+.boton-quizz:hover {
+   color:var(--color-1); 
 }
 
 .boton-quizz::after {
-    content: '➔'; /* Icono de flecha, puedes cambiarlo por una imagen si lo prefieres */
-    display: inline-block;
-    font-size: 1.5em; /* Tamaño del icono de la flecha */
+  color: #dcfce7;
+  margin-left: 10px;
+  content: "➔";
+  font-size: 1.5em;
+  transition: color 0.3s ease; /* Transición suave para el color */
+}
+
+.boton-quizz:hover::after {
+  color:var(--color-1); 
 }
 /* Estilos para pantallas pequeñas (teléfonos móviles) */
 @media screen and (max-width: 768px) {
-    .contenedor-quizz {
-        flex-direction: column; /* Cambia la dirección del flex a columna para apilar elementos verticalmente */
-    }
+  .contenedor-quizz {
+    flex-direction: column; /* Cambia la dirección del flex a columna para apilar elementos verticalmente */
+  }
 
-    .logo-quizz {
-        width: 100%; /* Haz que el logo ocupe todo el ancho disponible */
-        margin-bottom: 20px; /* Añade un espacio entre el logo y el botón */
-    }
+  .logo-quizz {
+    width: 100%; /* Haz que el logo ocupe todo el ancho disponible */
+    /* margin-bottom: 20px; Añade un espacio entre el logo y el botón */
+  }
 }
-
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 /* animaciones */
 /* Estilo para animar el botón al pasar el cursor */
 .boton-quizz:hover {
-    transform: scale(1.05); /* Hace el botón un poco más grande */
-    transition: transform 0.3s ease; /* Suaviza la transición de la transformación */
-    cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
+  transform: scale(1.05); /* Hace el botón un poco más grande */
+  transition: transform 0.3s ease; /* Suaviza la transición de la transformación */
+  cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickeable */
 }
 
-
-  /* Estilo para animar las entradas al pasar el cursor */
+/* Estilo para animar las entradas al pasar el cursor */
 .ultimasentradas:hover {
-    background-color: var(--color-4); /* Cambia el color de fondo de las entradas */
-    transition: background-color 0.3s ease; /* Suaviza la transición del color de fondo */
+  background-color: var(
+    --color-4
+  ); /* Cambia el color de fondo de las entradas */
+  transition: background-color 0.3s ease; /* Suaviza la transición del color de fondo */
 }
 
-  /* Estilo para animar los números de página en la paginación */
+/* Estilo para animar los números de página en la paginación */
 .pagina:hover {
-    color: #000; /* Cambia el color del texto */
-    background-color: #e0e0e0; /* Cambia el color de fondo */
-    transition: all 0.3s ease; /* Suaviza todas las transiciones aplicadas */
-    cursor: pointer; /* Cambia el cursor a una mano */
+  color: #000; /* Cambia el color del texto */
+  background-color: #e0e0e0; /* Cambia el color de fondo */
+  transition: all 0.3s ease; /* Suaviza todas las transiciones aplicadas */
+  cursor: pointer; /* Cambia el cursor a una mano */
 }
-
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4 */
 /* para mostrar en forma de lista */
 
-  /* Estilo para botón cuando no está seleccionado */
-  .button-normal {
-    background-color: var(--color-2) !important; /* Color de fondo normal */
-    color: var(--color-4) !important;
-  }
+/* Estilo para botón cuando no está seleccionado */
+.button-normal {
+  background-color: var(--color-2) !important; /* Color de fondo normal */
+  color: var(--color-4) !important;
+}
 
-  /* Estilo para botón cuando está seleccionado */
-  .button-selected {
-    background-color:var(--color-4) !important; /* Color de fondo seleccionado */
-    color: var(--color-1) !important;
-  }
+/* Estilo para botón cuando está seleccionado */
+.button-selected {
+  background-color: var(--color-4) !important; /* Color de fondo seleccionado */
+  color: var(--color-1) !important;
+}
 
-  .cursor-pointer{
-    cursor: pointer !important;
-  }
+.cursor-pointer {
+  cursor: pointer !important;
+}

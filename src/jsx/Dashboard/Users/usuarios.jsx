@@ -95,11 +95,11 @@ function usuarios() {
       localStorage.setItem("isAuthenticated", "false");
       storedAuth = "false";
     }
-    console.log("stored", storedAuth);
     if (storedAuth == "false") {
       navigate("/login");
     }
   }, []);
+
   const logOff = async () => {
     try {
       localStorage.removeItem("isAuthenticated");

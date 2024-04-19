@@ -28,39 +28,106 @@ import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 
 function crudPost() {
-
   const startTour = () => {
     const driverObj = driver({
       showProgress: true,
-      overlayColor: 'lemon',
-      theme: 'dark',
+      overlayColor: "lemon",
+      theme: "dark",
       onPopoverRender: (popover, { config, state }) => {
         const firstButton = document.createElement("button");
         //firstButton.innerText = "Go to First";
         //popover.footerButtons.appendChild(firstButton);
-  
+
         firstButton.addEventListener("click", () => {
           // Al hacer clic en el botón, finaliza el tour y marca como completado
           driverObj.destroy();
-          sessionStorage.setItem('tourCompleted', true);
+          sessionStorage.setItem("tourCompleted", true);
         });
       },
       steps: [
-        { element: '.entradas-tour', popover: { title: 'Entradas', description: 'Esta sección es donde puedes editar, previsualizar, eliminar y mandar a revisar tus publicaciones o artículos fácilmente.' } },
-        { element: '.Titulo-tour', popover: { title: 'Título', description: 'Aquí verás los títulos de las entradas que has añadido.' } },
-        { element: '.Categoria-tour', popover: { title: 'Categoría', description: 'Esta columna muestra la categoría asignada a cada entrada.' } },
-        { element: '.estatus-tour', popover: { title: 'Estatus', description: 'Aquí encontrarás el estado actual de cada entrada.' } },
-        { element: '.editar-tour', popover: { title: 'Editar', description: 'Este botón te permite modificar una entrada existente.' } },
-        { element: '.previsualizar-tour', popover: { title: 'Previsualizar', description: 'Al presionar este botón, podrás ver cómo se verá una entrada una vez que se publique.' } },
-        { element: '.eliminar-tour', popover: { title: 'Eliminar', description: 'Usa este botón para eliminar una entrada. Asegúrate de estar seguro antes de hacerlo.' } },
-        { element: '.revisar-tour', popover: { title: 'Revisar', description: 'Con este botón, puedes enviar una entrada al administrador para su revisión.' } },
-        { element: '.btnentrada-tour', popover: { title: 'Añadir nueva entrada', description: 'Al hacer clic en este botón, serás dirigido a la sección donde puedes añadir nuevas entradas.' } },
+        {
+          element: ".entradas-tour",
+          popover: {
+            title: "Entradas",
+            description:
+              "Esta sección es donde puedes editar, previsualizar, eliminar y mandar a revisar tus publicaciones o artículos fácilmente.",
+          },
+        },
+        {
+          element: ".Titulo-tour",
+          popover: {
+            title: "Título",
+            description:
+              "Aquí verás los títulos de las entradas que has añadido.",
+          },
+        },
+        {
+          element: ".Categoria-tour",
+          popover: {
+            title: "Categoría",
+            description:
+              "Esta columna muestra la categoría asignada a cada entrada.",
+          },
+        },
+        {
+          element: ".estatus-tour",
+          popover: {
+            title: "Estatus",
+            description: "Aquí encontrarás el estado actual de cada entrada.",
+          },
+        },
+        {
+          element: ".editar-tour",
+          popover: {
+            title: "Editar",
+            description:
+              "Este botón te permite modificar una entrada existente.",
+          },
+        },
+        {
+          element: ".previsualizar-tour",
+          popover: {
+            title: "Previsualizar",
+            description:
+              "Al presionar este botón, podrás ver cómo se verá una entrada una vez que se publique.",
+          },
+        },
+        {
+          element: ".eliminar-tour",
+          popover: {
+            title: "Eliminar",
+            description:
+              "Usa este botón para eliminar una entrada. Asegúrate de estar seguro antes de hacerlo.",
+          },
+        },
+        {
+          element: ".revisar-tour",
+          popover: {
+            title: "Revisar",
+            description:
+              "Con este botón, puedes enviar una entrada al administrador para su revisión.",
+          },
+        },
+        {
+          element: ".btnentrada-tour",
+          popover: {
+            title: "Añadir nueva entrada",
+            description:
+              "Al hacer clic en este botón, serás dirigido a la sección donde puedes añadir nuevas entradas.",
+          },
+        },
         //{ element: '.imgdestaca-tour', popover: { title: 'Imagen destacada', description: 'Aquí puedes cargar y previsualizar la imagen que deseas destacar en tu entrada.' } },
-       // { element: '.tiny-tour', popover: { title: 'Previsualización', description: 'TinyMCE es un editor de texto enriquecido que facilita la creación y edición de contenido web. Explora las opciones de formato, añade imágenes, enlaces y mucho más.' } },
+        // { element: '.tiny-tour', popover: { title: 'Previsualización', description: 'TinyMCE es un editor de texto enriquecido que facilita la creación y edición de contenido web. Explora las opciones de formato, añade imágenes, enlaces y mucho más.' } },
         //{ element: '.btn-tour', popover: { title: 'Añadir entrada', description: 'Haz clic en este botón para agregar la entrada con toda la información que has proporcionado anteriormente.' } },
-        { element: '.btn-iniciar-tour', popover: { title: 'Reiniciar Tour', description: 'Si quieres comenzar el tour nuevamente, simplemente haz clic en este botón.' } },
-    ]
-    
+        {
+          element: ".btn-iniciar-tour",
+          popover: {
+            title: "Reiniciar Tour",
+            description:
+              "Si quieres comenzar el tour nuevamente, simplemente haz clic en este botón.",
+          },
+        },
+      ],
     });
     driverObj.drive();
   };
@@ -138,6 +205,13 @@ function crudPost() {
 
   // Obtiene los entradas en la tabla (GET)
   useEffect(() => {
+    let storedAuth = localStorage.getItem("isAuthenticated");
+    if (storedAuth == null) {
+      navigate("/login");
+    }
+    if (storedAuth == "false") {
+      navigate("/login");
+    }
     const fetchData = async () => {
       const response = await fetch(
         "https://backblogweb.onrender.com/api/entradas"
@@ -503,7 +577,7 @@ function crudPost() {
             zIndex: "999",
           }}
         />
-                <Tooltip
+        <Tooltip
           id="manual"
           style={{
             backgroundColor: "#b8ddd6",
@@ -546,7 +620,7 @@ function crudPost() {
         <main className="todo_espacio flex-1">
           <div className="contenedor_cuadricular">
             <div className="margin">
-            <div className="entrada">
+              <div className="entrada">
                 <h1 className="tamaño_fuente entradas-tour">Entradas</h1>
                 <button
                   onClick={startTour}
@@ -561,7 +635,6 @@ function crudPost() {
                     alt="Logo RedB"
                   />
                 </button>
-
               </div>
               <div className="w-full">
                 <div className="mt-2">
@@ -573,7 +646,7 @@ function crudPost() {
                       <div className="relative w-full overflow-auto">
                         <div className="flex justify-end">
                           <Link to="/post/add" className="without_line">
-                          <button className="btn-blue p-2 m-1 flex items-center btnentrada-tour">
+                            <button className="btn-blue p-2 m-1 flex items-center btnentrada-tour">
                               Añadir nueva entrada
                               <CirclePlus size={20} className="ml-2" />
                             </button>

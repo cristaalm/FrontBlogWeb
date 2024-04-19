@@ -11,7 +11,7 @@ import ImagePopup from "../Elements/M&Rmodal";
 import { format } from "date-fns";
 import "../../css/mrmodal.css";
 import { EngineeringTwoTone } from "@mui/icons-material";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Cuerpo = () => {
   const navigate = useNavigate();
@@ -44,6 +44,7 @@ const Cuerpo = () => {
       );
       const data = await response.json();
       setEntradas(data);
+      console.log(data);
       // Data me obtiene:
       // contenido;
       // descripcion;
@@ -112,7 +113,7 @@ const Cuerpo = () => {
       <article id="welcome" className="seccionesvideo">
         <video
           className="vid"
-          src="src/video/aquavision.mp4"
+          src="src/video/without.mp4"
           autoPlay
           loop
           muted
@@ -251,7 +252,9 @@ const Cuerpo = () => {
         </div>
         <div
           className={`ultimasentradas-container  ${
-            viewMode === "lista" ? "lista-view" : ""
+            viewMode === "lista"
+              ? "lista-view"
+              : "grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
           }`}
         >
           {entradas.data &&
@@ -307,88 +310,6 @@ const Cuerpo = () => {
                 </div>
               </div>
             ))}
-          {/* <div
-            className={`ultimasentradas text-cyan-950 hover:text-yellow-50 cursor-pointer ${
-              viewMode === "lista" ? "lista-view" : ""
-            }`}
-          >
-            <div
-              className={`categoria-seleccionada ${
-                viewMode === "lista" ? "lista-view" : ""
-              }`}
-            >
-              <img
-                className={`catimg rounded-md ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-                src="../../../public/img/img5.png"
-                alt=""
-              />
-            </div>
-            <div className="contenido-entrada font-medium">
-              <div
-                className={`metaentrada ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Nombre del creador - Fecha de publicación
-              </div>
-              <div
-                className={`tituloentrada ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Título de Entrada
-              </div>
-              <div
-                className={`descripcionentrada italic ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Descripción
-              </div>
-            </div>
-          </div>
-          <div
-            className={`ultimasentradas text-cyan-950 hover:text-yellow-50 cursor-pointer ${
-              viewMode === "lista" ? "lista-view" : ""
-            }`}
-          >
-            <div
-              className={`categoria-seleccionada ${
-                viewMode === "lista" ? "lista-view" : ""
-              }`}
-            >
-              <img
-                className={`catimg ${viewMode === "lista" ? "lista-view" : ""}`}
-                src="../../../public/img/img5.png"
-                alt=""
-              />
-            </div>
-            <div className="contenido-entrada font-medium">
-              <div
-                className={`metaentrada ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Nombre del creador - Fecha de publicación
-              </div>
-              <div
-                className={`tituloentrada ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Título de Entrada
-              </div>
-              <div
-                className={`descripcionentrada italic ${
-                  viewMode === "lista" ? "lista-view" : ""
-                }`}
-              >
-                Descripción
-              </div>
-            </div>
-          </div> */}
         </div>
         <div className="mosrarmasyvav">
           {/* <ButtonGroup variant="contained" aria-label="Basic button group">
@@ -461,16 +382,28 @@ const Cuerpo = () => {
         <ImagePopup src={imageSrc} type="image" onClose={closeImageModal} />
       )}
       {/* Quizz */}
-      <article id="quizz" className="seccionescuerpoquizz">
-        <div className=" titulosdecategoruas font-bold">
+      <article id="quizz" className="seccionescuerpoquizz p-10 relative">
+        <div className="titulosdecategoruas font-bold">
           <FormattedMessage id="index.quizz" defaultMessage="Quizz" />
         </div>
-        <div className="contenedor-quizz">
-          <div className="logo-quizz">
-            <img src="../../../public/img/quizz.png" alt="Quizz img" />
+        <div className="contenedor-quizz drop-shadow-md relative">
+          <video
+            className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
+            src="src/video/aguaBG.mp4"
+            type="video/mp4"
+            autoPlay
+            loop
+            muted
+          />
+          <div className="logo-quizz z-50">
+            <img
+              src="../../../public/img/quizz.png"
+              alt="Quizz img"
+              className="m-0 p-0 w-40 h-40"
+            />
           </div>
           <button
-            className="boton-quizz"
+            className="boton-quizz mr-10 text-green-100 animate-pulse scale-125"
             onClick={() => window.open("/quizz", "_blank")}
           >
             <FormattedMessage
