@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useParams } from "react-router-dom";
 import { BaseUrl } from "../../constants/global";
+
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -39,21 +40,18 @@ const PreviewComponent = () => {
 
     // Verificar si la fecha es válida antes de formatearla
     if (isNaN(fecha.getTime())) {
-      console.error("Fecha inválida");
       setFechaFormateada("Fecha inválida");
       return;
     }
 
     // Formatear la fecha
     const fechaFormateada = format(fecha, "dd/MM/yyyy");
-    console.log(fechaFormateada);
     setFechaFormateada(fechaFormateada);
   }, [fPublicacion]); // Añade fPublicacion como dependencia para que el efecto se ejecute cuando cambie
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(id);
         const response = await fetch(BaseUrl + `/api/entradas/${id}`, {
           method: "GET",
           headers: {
@@ -70,9 +68,7 @@ const PreviewComponent = () => {
         setDescripcion(data.descripcion);
         setFPublicacion(data.fechapublicacion);
         setNombre(data.nombre);
-        console.log(data);
         setPreviewImage(data.imgdestacada);
-        console.log(data.imgdestacada);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -111,6 +107,7 @@ const PreviewComponent = () => {
     };
     fetchData();
   }, [categoria]); // Added `categoria` as a dependency to re-fetch data when `categoria` changes
+
   const colorMap = {
     "#fccb00": "yellow-400",
     "#008b02": "green-600 text-neutral-100",
@@ -129,9 +126,7 @@ const PreviewComponent = () => {
     "#bedadc": "blueGray-300",
     "#d4c4fb": "purple-300",
   };
-  console.log(color[categoria]);
   const colorClass = colorMap[color[categoria]] || "cyan-400";
-  console.log(colorClass);
   const copiarAlPortapapeles = (e) => {
     e.preventDefault();
     const enlace = `http://localhost:5173/post/preview/${id}`;
@@ -161,7 +156,8 @@ const PreviewComponent = () => {
           <h1 className="font-bold text-5xl py-1 text-cyan-950">
             {tituloEntrada}
           </h1>
-          <div className="flex" style={{ height: "100px" }}>
+          <div className="flex">
+            {/* <div className="flex" style={{ height: "100px" }}> */}{" "}
             <div className="flex items-end">
               <img
                 src="../../../public/img/logo.png"

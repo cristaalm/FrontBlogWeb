@@ -29,5 +29,7 @@
   "index.Post-comment" : "Post comment",
   "index.comment" : "Comments",
   "index.Visitor's.name" : "Visitor's name",
-  "index.Comment-Description" : "Comment Description"
+  "index.Comment-Description" : "Comment Description",
+  "msg.commentSuccess": "Comment created successfully",
+  "msg.completeFields":"Please complete all fields"
 }

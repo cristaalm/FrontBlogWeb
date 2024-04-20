@@ -36,33 +36,25 @@ const Cuerpo = () => {
 
   //1. Declaro una variable para que se obtenga mi contenido de entradas
 
-  // 2. Obtiene los entradas en la tabla (GET)
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(BaseUrl + "/api/entradas");
+// Obtiene los entradas en la tabla (POST)
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch(BaseUrl + "/api/entradas/publish", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const data = await response.json();
       setEntradas(data);
       console.log(data);
-      // Data me obtiene:
-      // contenido;
-      // descripcion;
-      // estatus;
-      // fechapublicacion;
-      // id;
-      // idcategoria;
-      // imgdestacada;
-      // nombre;
-      // perfil;
-      // titulo;
-      // usuario;
-      if (data && data.lenght > 0) {
-        console.log("hay info");
-      } else {
-        console.log("no");
-      }
-    };
-    fetchData();
-  }, []);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  fetchData();
+}, []);
 
   // useEffect(() => {
   //   console.log(entradas)
@@ -273,12 +265,11 @@ const Cuerpo = () => {
               : "grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
           }`}
         >
-          {entradas.data &&
-            entradas.data
+          {entradas &&
+            entradas
               // .filter((entrada) => entrada.estatus == "Publicado") // Filtrar por estado "Publicado"
               .sort(
-                (a, b) =>
-                  new Date(b.fechapublicacion) - new Date(a.fechapublicacion)
+                (a, b) => new Date(b.fechapublicacion) - new Date(a.fechapublicacion)
               ) // Ordenar por fecha de forma descendente
               .slice(0, 4) // Tomar las últimas 4 entradas
               .map((entrada) => (
@@ -315,7 +306,7 @@ const Cuerpo = () => {
                         viewMode === "lista" ? "lista-view" : ""
                       }`}
                     >
-                      {entrada.nombre} -{" "}
+                      {entrada.usuario} -{" "}
                       {format(new Date(entrada.fechapublicacion), "dd/MM/yyyy")}
                     </div>
                     <div

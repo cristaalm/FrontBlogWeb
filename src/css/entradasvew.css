@@ -28,9 +28,8 @@
 
 .input-area {
   border-radius: 10px;
-  background-color: var(--color-2);
   padding: 15px;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
 }
 
 .insert-nombre {
@@ -83,24 +82,32 @@
 
 .btnVisitante{
   padding: 10px !important;
-  background-color: white !important;
+  background-color: whitesmoke !important;
   border-bottom: none !important;
+}
+.txtComentario{
+  background-color: whitesmoke !important;
 }
 .btnVisitante::placeholder {
   color: var(--color-3) !important;
 }
+.btnVisitante:focus {
+  background-color: #f0fdfa !important;
+}
 .txtComentario::placeholder{
   color: var(--color-3) !important;
-
+}
+.txtComentario:focus {
+  background-color: #f0fdfa !important;
 }
 
-.contenedor-comentario-public {
+/* .contenedor-comentario-public {
   border-radius: 10px;
-  background-color: var(--color-2);
+  background-color: var(--color-3);
   padding: 15px;
   border: 1px solid #ddd;
   margin-bottom: 10px;
-}
+} */
 
 .nomnre-y-fecha h5 {
   margin-bottom: 5px;

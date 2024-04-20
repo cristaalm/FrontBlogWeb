@@ -29,5 +29,8 @@
   "index.Post-comment" : "Publicar comentario",
   "index.comment" : "Comentarios",
   "index.Visitor's.name" : "Nombre del visitante",
-  "index.Comment-Description" : "Descripción del comentario"
+  "index.Comment-Description" : "Descripción del comentario",
+  "msg.commentSuccess": "Comentario creado exitosamente",
+  "msg.completeFields":"Por favor completa todos los campos"
+
 }
