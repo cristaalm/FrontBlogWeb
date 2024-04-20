@@ -18,11 +18,18 @@ function LayoutPost() {
     showProgress: true,
     overlayColor: "lemon",
     theme: "dark",
+    nextBtnText: '—›',
+    prevBtnText: '‹—',
+    doneBtnText: '✕',
     onPopoverRender: (popover, { config, state }) => {
       const firstButton = document.createElement("button");
-      firstButton.innerText = "Go to First";
+      const icon = document.createElement("img");
+      icon.src = "../public/refresh.png"; // Reemplaza "ruta/al/icono.svg" con la ruta de tu icono SVG
+      icon.width = 24; // Ajusta el ancho según sea necesario
+      icon.height = 24; // Ajusta la altura según sea necesario
+      firstButton.appendChild(icon);
       popover.footerButtons.appendChild(firstButton);
-
+  
       firstButton.addEventListener("click", () => {
         driverObj.drive(0);
       });

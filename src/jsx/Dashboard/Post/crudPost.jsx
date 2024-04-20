@@ -33,6 +33,9 @@ function crudPost() {
       showProgress: true,
       overlayColor: "lemon",
       theme: "dark",
+      nextBtnText: '—›',
+      prevBtnText: '‹—',
+      doneBtnText: '✕',
       onPopoverRender: (popover, { config, state }) => {
         const firstButton = document.createElement("button");
         //firstButton.innerText = "Go to First";
