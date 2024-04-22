@@ -24,8 +24,8 @@ const Cuerpo = () => {
   const [showImageModal, setShowImageModal] = useState(false); // Estado para controlar la visibilidad del modal de imagen
 
   const [contenidoTiny, setContenidoTiny] = useState("");
-  const [categoria, setCategoria] = useState("");
-  const [categoryNames, setCategoryNames] = useState("");
+  const [categoria, setCategoria] = useState([]);
+  const [categoryNames, setCategoryNames] = useState([]);
   const [tituloEntrada, setTituloEntrada] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [nombreCompleto, setNombre] = useState("");
@@ -55,6 +55,26 @@ useEffect(() => {
   };
   fetchData();
 }, []);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch(BaseUrl + "/api/categories/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      setCategoria(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  fetchData();
+}, []);
+
 
   // useEffect(() => {
   //   console.log(entradas)
@@ -137,7 +157,9 @@ useEffect(() => {
             defaultMessage="Top categories"
           />
         </div>
-        <div className="tutilocatego cursor-pointer">
+        {categoria.data && 
+        categoria.data.map((category) => (
+        <div key={category.id} className="tutilocatego cursor-pointer">
           <div className="imagendest">
             <div className="numero bg-yellow-400 font-semibold">#1</div>
             <img
@@ -151,7 +173,7 @@ useEffect(() => {
             {/* Circulo de color obtenido*/}
             <div className="categorias flex flex-col leading-tight">
               <div>
-                <span className="mr-2 font-semibold">Categoría</span>
+                <span className="mr-2 font-semibold">{category.descripcion}</span>
               </div>
               <div>
                 <span className="text-zinc-500 text-sm"># Entradas</span>
@@ -159,7 +181,8 @@ useEffect(() => {
             </div>
           </div>
         </div>
-        <div className="tutilocatego cursor-pointer">
+              ))}
+        {/* <div className="tutilocatego cursor-pointer">
           <div className="imagendest">
             <div className="numero bg-pink-400 font-semibold">#2</div>
             <img
@@ -170,7 +193,7 @@ useEffect(() => {
           </div>
           <div className="flex items-center">
             <div className="w-8 h-8 bg-pink-400 rounded-full mr-4"></div>{" "}
-            {/* Circulo de color obtenido*/}
+            
             <div className="categorias flex flex-col leading-tight">
               <div>
                 <span className="mr-2 font-semibold">Categoría</span>
@@ -192,7 +215,7 @@ useEffect(() => {
           </div>
           <div className="flex items-center">
             <div className="w-8 h-8 bg-lime-400 rounded-full mr-4"></div>{" "}
-            {/* Circulo de color obtenido*/}
+            
             <div className="categorias flex flex-col leading-tight">
               <div>
                 <span className="mr-2 font-semibold">Categoría</span>
@@ -202,7 +225,7 @@ useEffect(() => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </article>
       {/* Últimas entradas */}
       <article id="ultima-entrada" className="seccionescuerpoultima font-bold">
