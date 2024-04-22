@@ -134,6 +134,10 @@ useEffect(() => {
     // alert(id);
     navigate(`/blog-post/${id}`);
   };
+  const togglecategorie = (id) => {
+    // alert(id);
+    navigate(`/categories/${id}`);
+  };
 
   return (
     <div className="cuerpoo">
@@ -159,17 +163,20 @@ useEffect(() => {
         </div>
         {categoria.data && 
         categoria.data.map((category) => (
-        <div key={category.id} className="tutilocatego cursor-pointer">
+        <div
+        onClick={() => togglecategorie(category.id)}
+        key={category.id} 
+        className="tutilocatego cursor-pointer">
           <div className="imagendest">
-            <div className="numero bg-yellow-400 font-semibold">#1</div>
+            <div className="numero font-semibold" style={{ backgroundColor: category.color }} >#{category.id}</div>
             <img
               className="imgdest rounded-md"
-              src="../../../public/img/img5.png"
+              src={category.imgdestacada}
               alt=""
             />
           </div>
           <div className="flex items-center">
-            <div className="w-8 h-8 bg-yellow-400 rounded-full mr-4"></div>{" "}
+            <div className="w-8 h-8  rounded-full mr-4" style={{ backgroundColor: category.color }} > </div>{" "}
             {/* Circulo de color obtenido*/}
             <div className="categorias flex flex-col leading-tight">
               <div>
