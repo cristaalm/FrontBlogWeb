@@ -60,7 +60,7 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       const response = await fetch(BaseUrl + "/api/categories/", {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
