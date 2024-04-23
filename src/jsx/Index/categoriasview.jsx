@@ -1,12 +1,12 @@
 import React from 'react';
 import "../../css/categoriaview.css";
 import Footer from "../Elements/Footer.jsx";
-import Encabezado from './encabezado.jsx';
+import Encabezado2 from './encabezado2.jsx';
 
 function CategoriaView() {
   return (
     <div className='cuerpo'>
-      <Encabezado />
+      <Encabezado2 />
       {/* Contenido */}
       <article className="categoriasdestacada">
         <div className="Imagen">
