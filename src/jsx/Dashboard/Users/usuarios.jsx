@@ -453,7 +453,7 @@ function usuarios() {
                                   Perfil
                                 </th>
                                 <th className="border-neutral-100 border-r-2 encabezadoTabla">
-                                  Entradas
+                                  Entradas Redactadas
                                 </th>
                                 <th className="border-teal-600 border-r-2 encabezadoTabla"></th>
                               </tr>

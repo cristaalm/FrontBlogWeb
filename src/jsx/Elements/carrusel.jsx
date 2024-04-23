@@ -43,7 +43,6 @@ const Carrusel = () => {
       {/* Duplicar los carruseles para crear un bucle */}
       <div className="carrusel1">
         <div className="imagendes">
-          <div className="numero bg-yellow-400 font-semibold">#1</div>
           <img className="imgdest rounded-md" src="../../../public/img/img3.png" alt="Carrusel 1"/>
         </div>
         <div className="flex items-center">

@@ -36,58 +36,44 @@ const Cuerpo = () => {
 
   //1. Declaro una variable para que se obtenga mi contenido de entradas
 
-// Obtiene los entradas en la tabla (POST)
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await fetch(BaseUrl + "/api/entradas/publish", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      setEntradas(data);
-      console.log(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  fetchData();
-}, []);
+  // Obtiene los entradas en la tabla (POST)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(BaseUrl + "/api/entradas/publish", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        setEntradas(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await fetch(BaseUrl + "/api/categories/", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      setCategoria(data);
-      console.log(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-  fetchData();
-}, []);
-
-
-  // useEffect(() => {
-  //   console.log(entradas)
-  //   if (entradas.data && entradas.data.length > 0) {
-  //     // Filtrar por estado "Publicado" después de recibir los datos
-  //     const entradasPublicadas = entradas.data.filter(
-  //       (entrada) => entrada.estatus === "Publicado"
-  //     );
-  //     console.log(entradasPublicadas); // Muestra las entradas publicadas en la consola
-  //   } else {
-  //     console.log("no hay nada");
-  //   }
-  // }, [entradas]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(BaseUrl + "/api/categories/", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        setCategoria(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const changeToListView = () => {
     setIsListView(true);
@@ -161,78 +147,55 @@ useEffect(() => {
             defaultMessage="Top categories"
           />
         </div>
-        {categoria.data && 
-        categoria.data.map((category) => (
-        <div
-        onClick={() => togglecategorie(category.id)}
-        key={category.id} 
-        className="tutilocatego cursor-pointer">
-          <div className="imagendest">
-            <div className="numero font-semibold" style={{ backgroundColor: category.color }} >#{category.id}</div>
-            <img
-              className="imgdest rounded-md"
-              src={category.imgdestacada}
-              alt=""
-            />
-          </div>
-          <div className="flex items-center">
-            <div className="w-8 h-8  rounded-full mr-4" style={{ backgroundColor: category.color }} > </div>{" "}
-            {/* Circulo de color obtenido*/}
-            <div className="categorias flex flex-col leading-tight">
-              <div>
-                <span className="mr-2 font-semibold">{category.descripcion}</span>
+        {categoria.data &&
+          categoria.data
+            .sort((a, b) => b.entradas - a.entradas) // Ordenar de mayor a menor por la cantidad de entradas
+            .filter((category) => category.entradas > 0) // Filtrar categorías con al menos una entrada
+            .map((category, index) => (
+              <div
+                onClick={() => togglecategorie(category.id)}
+                key={category.id}
+                className="tutilocatego cursor-pointer"
+              >
+                <div className="imagendest rounded-lg">
+                  <div
+                    className="numero font-semibold"
+                    style={{ backgroundColor: category.color }}
+                  >
+                    #{index + 1}
+                  </div>
+                  <div className="overlay rounded-lg " style={{ backgroundColor: category.color }}>
+                    <div className="texto-overlay">Mostrar más entradas</div>
+                  </div>
+                  <img
+                    className="imgdest rounded-lg"
+                    src={category.imgdestacada}
+                    alt=""
+                  />
+                </div>
+                <div className="flex items-center">
+                  <div
+                    className="w-8 h-8  rounded-full mr-4"
+                    style={{ backgroundColor: category.color }}
+                  >
+                    {" "}
+                  </div>{" "}
+                  {/* Circulo de color obtenido*/}
+                  <div className="categorias flex flex-col leading-tight">
+                    <div>
+                      <span className="mr-2 font-semibold">
+                        {category.descripcion}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-zinc-500 text-sm">
+                        {category.entradas} Entradas
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <span className="text-zinc-500 text-sm"># Entradas</span>
-              </div>
-            </div>
-          </div>
-        </div>
-              ))}
-        {/* <div className="tutilocatego cursor-pointer">
-          <div className="imagendest">
-            <div className="numero bg-pink-400 font-semibold">#2</div>
-            <img
-              className="imgdest rounded-md"
-              src="../../../public/img/img5.png"
-              alt=""
-            />
-          </div>
-          <div className="flex items-center">
-            <div className="w-8 h-8 bg-pink-400 rounded-full mr-4"></div>{" "}
-            
-            <div className="categorias flex flex-col leading-tight">
-              <div>
-                <span className="mr-2 font-semibold">Categoría</span>
-              </div>
-              <div>
-                <span className="text-zinc-500 text-sm"># Entradas</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="tutilocatego cursor-pointer">
-          <div className="imagendest">
-            <div className="numero bg-lime-400 font-semibold">#3</div>
-            <img
-              className="imgdest"
-              src="../../../public/img/img5.png"
-              alt=""
-            />
-          </div>
-          <div className="flex items-center">
-            <div className="w-8 h-8 bg-lime-400 rounded-full mr-4"></div>{" "}
-            
-            <div className="categorias flex flex-col leading-tight">
-              <div>
-                <span className="mr-2 font-semibold">Categoría</span>
-              </div>
-              <div>
-                <span className="text-zinc-500 text-sm"># Entradas</span>
-              </div>
-            </div>
-          </div>
-        </div> */}
+            ))}
       </article>
       {/* Últimas entradas */}
       <article id="ultima-entrada" className="seccionescuerpoultima font-bold">
@@ -299,7 +262,8 @@ useEffect(() => {
             entradas
               // .filter((entrada) => entrada.estatus == "Publicado") // Filtrar por estado "Publicado"
               .sort(
-                (a, b) => new Date(b.fechapublicacion) - new Date(a.fechapublicacion)
+                (a, b) =>
+                  new Date(b.fechapublicacion) - new Date(a.fechapublicacion)
               ) // Ordenar por fecha de forma descendente
               .slice(0, 4) // Tomar las últimas 4 entradas
               .map((entrada) => (
@@ -336,7 +300,7 @@ useEffect(() => {
                         viewMode === "lista" ? "lista-view" : ""
                       }`}
                     >
-                      {entrada.usuario} -{" "}
+                      {entrada.nombre} -{" "}
                       {format(new Date(entrada.fechapublicacion), "dd/MM/yyyy")}
                     </div>
                     <div

@@ -82,6 +82,10 @@ body {
 .imagendest:hover .numero {
   opacity: 0;
 }
+.imagendest:hover{
+  background-color: #000  ;
+  z-index: 999;
+}
 .imgdest {
   max-width: 100%; /* Hace que la imagen no sea más grande que su contenedor */
   max-height: 200px; /* Altura máxima de la imagen */
@@ -89,10 +93,6 @@ body {
 .imgdest {
   opacity: 1;
   transition: opacity 0.3s ease;
-}
-
-.imagendest:hover .imgdest {
-  opacity: 0.7; /* Puedes ajustar el valor de la opacidad según tu preferencia */
 }
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
@@ -401,4 +401,56 @@ body {
 
 .cursor-pointer {
   cursor: pointer !important;
+}
+
+/* Estilos para la imagen destacada */
+.imagendest {
+  display: flex; /* Flex para centrar la imagen dentro del contenedor */
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Tamaño completo dentro de su contenedor */
+  margin: 10px 0; /* Espacio arriba y abajo */
+  position: relative; /* Posición relativa para alinear el texto encima de la imagen */
+}
+
+.imagendest:hover .numero {
+  opacity: 0; /* Oculta el número al hacer hover */
+}
+
+.imagendest:hover .overlay {
+  opacity: 1; /* Muestra el overlay al hacer hover */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* background-color: rgba(0, 0, 0, 0.5); Color de fondo semi-transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Oculta el overlay por defecto */
+  transition: opacity 0.3s ease; /* Transición suave */
+}
+
+.texto-overlay {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Estilos para la imagen */
+.imgdest {
+  width: 100%; /* Tamaño completo */
+  height: auto; /* Altura automática para mantener la proporción */
+  border-radius: 0.25rem; /* Borde redondeado */
+  transition: transform 0.3s ease; /* Transición suave para el efecto de zoom */
+}
+
+.imgdest:hover {
+  transform: scale(1.1); /* Efecto de zoom al hacer hover */
 }

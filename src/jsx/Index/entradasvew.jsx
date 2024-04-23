@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { createComment } from "../../js/createComment";
 import { format } from "date-fns";
 import { BaseUrl } from "../../constants/global";
-import Carrusel from '../components/carrusel.jsx';
+import Carrusel from '../Elements/carrusel.jsx';
 import Encabezado2 from "./encabezado2.jsx";
 
 const Entradasview = ({ intl }) => {
