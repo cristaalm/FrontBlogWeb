@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { createComment } from "../../js/createComment";
 import { format } from "date-fns";
 import { BaseUrl } from "../../constants/global";
+import Carrusel from '../components/carrusel.jsx';
 
 const Entradasview = ({ intl }) => {
   const { id } = useParams();
@@ -102,7 +103,6 @@ const Entradasview = ({ intl }) => {
     id: "index.Comment-Description",
     defaultMessage: "Comment Description",
   });
-
   const renderStars = (total) => {
     const stars = [];
     for (let i = 1; i <= total; i++) {
@@ -131,6 +131,7 @@ const Entradasview = ({ intl }) => {
       <article className="preview-de-contenido m-10">
         <PreviewComponent />
       </article>
+        <Carrusel />
       <article className="m-10">
         <div className="titulosdecategoruas font-bold">
           <FormattedMessage id="index.comment" defaultMessage="Comments" />

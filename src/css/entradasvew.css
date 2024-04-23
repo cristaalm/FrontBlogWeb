@@ -116,3 +116,32 @@
 .contendero-de-descriccion {
   font-size: 14px;
 }
+.Carruselimg {
+  display: flex;       
+  flex-wrap: nowrap;   
+  overflow-x: auto;    
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding: 20px;
+  
+}
+
+.Carruselimg::-webkit-scrollbar {
+  display: none;
+}
+
+.carrusel1, .carrusel2, .carrusel3, .carrusel4 {
+  flex: 0 0 auto; 
+  width: 500px;
+  height: 100%;
+  margin-right: 20px; 
+}
+.carrusel1 img, .carrusel2 img, .carrusel3 img, .carrusel4 img {
+width: auto;
+height: auto;
+}
+.imgdest {
+  width: 100%; 
+  height: auto;
+  height: 400px;
+}
