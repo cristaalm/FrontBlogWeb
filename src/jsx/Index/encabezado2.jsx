@@ -17,9 +17,12 @@ const Encabezado2 = () => {
           smooth={true}
           duration={500}
         >
-          <button className="navegacion">
-            <FormattedMessage id="index.Welcome" defaultMessage="Welcome " />
-          </button>
+          <RouterLink to="/welcome">
+            <button className="navegacion">
+              <FormattedMessage id="index.Welcome" defaultMessage="Welcome " />
+            </button>
+          </RouterLink>
+
         </ScrollLink>
         <ScrollLink
           className="movimiento"
@@ -41,9 +44,12 @@ const Encabezado2 = () => {
           smooth={true}
           duration={500}
         >
-          <button className="navegacion">
-            <FormattedMessage id="index.quizz" defaultMessage="Quizz " />
-          </button>
+          <RouterLink to="/welcome">
+            <button className="navegacion">
+              <FormattedMessage id="index.quizz" defaultMessage="Quizz " />
+            </button>
+          </RouterLink>
+
         </ScrollLink>
       </div>
       <div className="log">
