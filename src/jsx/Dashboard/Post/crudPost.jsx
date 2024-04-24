@@ -715,7 +715,7 @@ function crudPost() {
                                     </td>
                                     {user.rol === "Administrador" && (
                                       <td className="border-2 border-teal-600 p-1">
-                                        {entrada.usuario}
+                                        {entrada.nombre}
                                       </td>
                                     )}
                                     <td className="border-2 border-teal-600 p-1 text-center">

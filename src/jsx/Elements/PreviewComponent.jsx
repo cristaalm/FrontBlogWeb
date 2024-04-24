@@ -130,7 +130,7 @@ const PreviewComponent = () => {
   const colorClass = colorMap[color[categoria]] || "cyan-400";
   const copiarAlPortapapeles = (e) => {
     e.preventDefault();
-    const enlace = `http://localhost:5173/post/preview/${id}`;
+    const enlace = `http://localhost:5173/blog-post/${id}`;
     navigator.clipboard
       .writeText(enlace)
       .then(() => {
