@@ -52,6 +52,7 @@ const PreviewComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log(id);
         const response = await fetch(BaseUrl + `/api/entradas/${id}`, {
           method: "GET",
           headers: {

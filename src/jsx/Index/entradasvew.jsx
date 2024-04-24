@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { injectIntl, FormattedMessage } from "react-intl";
 import "../../css/entradasvew.css";
-import Encabezado from "./encabezado";
 import Footer from "../Elements/Footer";
 import PreviewComponent from "../Elements/PreviewComponent.jsx";
 import { useParams } from "react-router-dom";
 import { createComment } from "../../js/createComment";
 import { format } from "date-fns";
 import { BaseUrl } from "../../constants/global";
-import Carrusel from '../components/carrusel.jsx';
+import Carrusel from '../Elements/carrusel.jsx';
+import Encabezado2 from "./encabezado2.jsx";
 
 const Entradasview = ({ intl }) => {
   const { id } = useParams();
@@ -127,7 +127,7 @@ const Entradasview = ({ intl }) => {
     <div className="bg-neutral-100">
       <div ref={topRef}></div>{" "}
       {/* Referencia al elemento en la parte superior */}
-      <Encabezado />
+      <Encabezado2 />
       <article className="preview-de-contenido m-10">
         <PreviewComponent />
       </article>
