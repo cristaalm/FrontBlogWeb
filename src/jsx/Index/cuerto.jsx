@@ -136,6 +136,8 @@ const Cuerpo = () => {
           loop
           muted
         ></video>
+        <div className="textvideo">Aguas de Cambio</div>
+        <div className="textvideo2">Sumérgete en la acción: colabora, aprende y lidera en nuestra comunidad dedicada al agua y saneamiento. Unete a nosotros y apoya los ODS de la ONU con cada gota.</div>
         <div className="vajovideo"></div>
       </article>
 

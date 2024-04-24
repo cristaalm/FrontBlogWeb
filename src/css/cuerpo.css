@@ -32,6 +32,25 @@ body {
   width: 100%;
   height: auto;
 }
+.textvideo{
+  position: absolute;
+  top: 35%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff;
+}
+.textvideo2{
+  position: absolute;
+  top: 47%;
+  left: 24%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: #ffffff;
+  padding: 20px 40px;
+  max-width: 40%;
+}
 
 /* Estilos para el Top de categorías */
 
