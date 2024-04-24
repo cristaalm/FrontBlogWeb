@@ -123,6 +123,7 @@
   scroll-snap-type: x mandatory;
   gap: 20px;
   padding: 20px;
+  cursor: pointer;
   
 }
 

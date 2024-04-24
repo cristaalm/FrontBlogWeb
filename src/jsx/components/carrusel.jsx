@@ -5,7 +5,7 @@ const Carrusel = () => {
   const carruselRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
   const [scrollLeft, setScrollLeft] = useState(0);
-  const speed = 2; // Velocidad de desplazamiento
+  const speed = 1; // Velocidad de desplazamiento
 
   useEffect(() => {
     let animationFrameId;
@@ -43,7 +43,6 @@ const Carrusel = () => {
       {/* Duplicar los carruseles para crear un bucle */}
       <div className="carrusel1">
         <div className="imagendes">
-          <div className="numero bg-yellow-400 font-semibold">#1</div>
           <img className="imgdest rounded-md" src="../../../public/img/img3.png" alt="Carrusel 1"/>
         </div>
         <div className="flex items-center">
@@ -60,7 +59,6 @@ const Carrusel = () => {
       </div>
       <div className="carrusel2">
         <div className="imagendes">
-          <div className="numero bg-pink-400 font-semibold">#2</div>
           <img className="imgdest rounded-md" src="../../../public/img/img4.png" alt="Carrusel 2"/>
         </div>
         <div className="flex items-center">
@@ -77,7 +75,6 @@ const Carrusel = () => {
       </div>
       <div className="carrusel3">
         <div className="imagendes">
-          <div className="numero bg-lime-400 font-semibold">#3</div>
           <img className="imgdest rounded-md" src="../../../public/img/img5.png" alt="Carrusel 3"/>
         </div>
         <div className="flex items-center">
@@ -94,7 +91,6 @@ const Carrusel = () => {
       </div>
       <div className="carrusel4">
         <div className="imagendes">
-          <div className="numero bg-blue-400 font-semibold">#4</div>
           <img className="imgdest rounded-md" src="../../../public/img/img6.png" alt="Carrusel 4"/>
         </div>
         <div className="flex items-center">
@@ -113,7 +109,6 @@ const Carrusel = () => {
       {/* Repetir los carruseles para crear un bucle */}
       <div className="carrusel1">
         <div className="imagendes">
-          <div className="numero bg-yellow-400 font-semibold">#1</div>
           <img className="imgdest rounded-md" src="../../../public/img/img3.png" alt="Carrusel 1"/>
         </div>
         <div className="flex items-center">
@@ -130,7 +125,6 @@ const Carrusel = () => {
       </div>
       <div className="carrusel2">
         <div className="imagendes">
-          <div className="numero bg-pink-400 font-semibold">#2</div>
           <img className="imgdest rounded-md" src="../../../public/img/img4.png" alt="Carrusel 2"/>
         </div>
         <div className="flex items-center">
@@ -147,7 +141,6 @@ const Carrusel = () => {
       </div>
       <div className="carrusel3">
         <div className="imagendes">
-          <div className="numero bg-lime-400 font-semibold">#3</div>
           <img className="imgdest rounded-md" src="../../../public/img/img5.png" alt="Carrusel 3"/>
         </div>
         <div className="flex items-center">
@@ -164,7 +157,6 @@ const Carrusel = () => {
       </div>
       <div className="carrusel4">
         <div className="imagendes">
-          <div className="numero bg-blue-400 font-semibold">#4</div>
           <img className="imgdest rounded-md" src="../../../public/img/img6.png" alt="Carrusel 4"/>
         </div>
         <div className="flex items-center">
