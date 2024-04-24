@@ -46,11 +46,11 @@ const Encabezado2 = () => {
           </button>
         </ScrollLink>
       </div>
-      {/* <div className="log">
+      <div className="log">
         <RouterLink to="/login">
           <CircleUser className="CircleUser mr-1" size={35} />
         </RouterLink>
-      </div> */}
+      </div>
     </header>
   );
 };

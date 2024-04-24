@@ -176,7 +176,7 @@ const AuthForm = () => {
             </div>
             <div className="form-control2">
               <Checkbox {...label}  onClick={handleAccept} />
-              <Link to="" className="" onClick={openTerminosYcondiciones} >
+              <Link to="" className="underline" onClick={openTerminosYcondiciones} >
                 <FormattedMessage
                   id="login.terms"  
                 />
