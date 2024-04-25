@@ -3,7 +3,7 @@ import "../../css/mrmodal.css";
 
 const MediaPopup = ({ src, type, onClose }) => {
   const closeModal = () => {
-    onClose(); // Llama a la función onClose pasada como prop
+    onClose(); 
   };
 
   return (

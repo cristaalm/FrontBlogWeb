@@ -29,45 +29,69 @@ body {
 /* Estilos para el vídeo destacado */
 
 .vid {
-  width: 100%;
-  height: auto;
+  width: 100%; 
+  height: calc(100vw / (21 / 9)); 
+  object-fit: cover; 
+  max-height: 100vh; 
 }
 .textvideo{
   position: absolute;
   top: 35%;
   left: 15%;
   transform: translate(-50%, -50%);
-  font-size: 32px;
+  font-size: 2.5vw;
   font-weight: bold;
   color: #ffffff;
 }
 .textvideo2{
   position: absolute;
   top: 47%;
-  left: 24%;
+  left: 21%;
   transform: translate(-50%, -50%);
-  font-size: 20px;
+  font-size: 1.5vw;
   color: #ffffff;
   padding: 20px 40px;
   max-width: 40%;
 }
+@media screen and (max-width: 768px) {
+  .vid {
+    height: 100vw; 
+    max-height: 100vh;
+  }
+  .textvideo {
+    font-size: 20px;
+    top: 70%; 
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-/* Estilos para el Top de categorías */
-
-/* Contenedor principal */
-.seccionescuerpo {
-  display: flex; /* Esto coloca todos los elementos de la categoría en una fila */
-  justify-content: space-around; /* Esto los distribuye equitativamente */
-  align-items: center; /* Esto centra los elementos verticalmente en el contenedor */
-  flex-wrap: wrap; /* Esto permite que los elementos se envuelvan si no hay suficiente espacio */
-  /* gap: 15px; Esto añade un espacio entre los elementos de la categoría */
+  .textvideo2 {
+    position: absolute;
+    top: 77%;
+    left: 50%;
+    transform: translateX(-50%);  
+    font-size: 16px;
+    color: #ffffff;
+    padding: 20px;
+    max-width: 80%; 
+    text-align: center; 
+    white-space: normal;
+    width: 300px;
+  }
 }
 
-/* Estilos para los títulos de las categorías */
+
+.seccionescuerpo {
+  display: flex; 
+  justify-content: space-around; 
+  align-items: center; 
+  flex-wrap: wrap; 
+}
+
+
 .titulosdecategoruas {
-  /* padding-left: 50px; */
-  width: 100%; /* Esto asegura que el título ocupe el ancho completo */
-  text-align: center; /* Esto centra el título */
+  width: 100%; 
+  text-align: center; 
 }
 
 .imagendest {
@@ -84,7 +108,7 @@ body {
     255,
     255,
     0.7
-  ); /* Fondo blanco semi-transparente para que el texto sea legible */
+  ); 
   opacity: 1;
   padding: 5px;
   border-radius: 5px;
@@ -249,78 +273,69 @@ body {
 
 .seccionescuerporecursos {
   padding: 20px;
+  width: 100%;
   box-sizing: border-box;
-  text-align: center; /* Alineación central para el título y los recursos */
+  text-align: center;
   background-color: var(--color-4);
-  display: flex; /* Establecer el contenedor como flexbox */
-  justify-content: space-around; /* Espacio uniforme entre los elementos */
+  justify-content: center; 
 }
 
-.seccionescuerporecursos video {
-  width: 50%;
-  height: 00px; /* Altura fija del video */
-  margin: 0 10px; /* Espacio entre los videos */
-}
 .contenedorrecursos {
   padding: 40px;
   box-sizing: border-box;
-  display: flex; /* Establecer el contenedor como flexbox */
-  justify-content: space-around;
+  display: flex;
+  justify-content: space-around; /* Distribuye el espacio alrededor de los elementos de video/imágenes */
 }
 
 .recurso1 video,
 .recurso2 img,
 .recurso3 video {
   display: inline-block;
-  margin: 1.66%; /* Espacio entre los elementos */
+  margin: 1.66%;
   vertical-align: top;
   box-sizing: border-box;
-  width: 80%;
-  height: auto;
+  width: 80%; /* O ajusta según la necesidad */
+  height: auto; /* Para mantener la proporción del video/imágen */
 }
+
 .titulosdecategoruasbla {
   display: flex;
-  position: absolute;
-  left: 20px;
-  height: 100px;
-  font-size: 20px;
+  position: relative;
+  font-weight: bold;
+  align-items: center;
+  justify-content: left; 
 }
+
 
 @media screen and (max-width: 768px) {
-  .recurso {
-    width: 100%; /* Cambia el ancho a 100% para ocupar todo el ancho disponible */
-    margin: 0; /* Elimina el margen entre los recursos */
+  #recursos-multimedia{
+    position: relative;
   }
-}
-.multimedia-title {
-  font-size: 2rem;
-}
+  .seccionescuerporecursos {
+    position: relative; /* Cambiar la posición a relativa */
+    left: auto; /* Restablecer la posición */
+    top: -1px; /* Restablecer la posición */
+    font-size: 16px;
+  }
+  .titulosdecategoruasbla {
+    margin-bottom: 20px; 
+    font-weight: bold; 
+    justify-content: center;
+  }
 
-@media (max-width: 768px) {
-  .multimedia-title {
-    font-size: 1.5rem;
+  .contenedorrecursos {
+    padding: 20px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: space-between; 
   }
-}
 
-@media (max-width: 480px) {
-  .multimedia-title {
-    font-size: 1.2rem;
-  }
-}
-@media (max-width: 768px) {
-  .recurso1,
-  .recurso2,
-  .recurso3 {
-    width: 45%; /* Porcentaje de ancho para dispositivos medianos */
-  }
-}
-
-@media (max-width: 480px) {
-  .recurso1,
-  .recurso2,
-  .recurso3 {
-    width: 100%; /* Ancho completo para dispositivos pequeños */
-    margin-bottom: 20px; /* Espacio entre los contenedores en dispositivos pequeños */
+  .recurso1 video,
+  .recurso2 img,
+  .recurso3 video{
+    width: 100%; 
+    margin-bottom: 20px; 
   }
 }
 
