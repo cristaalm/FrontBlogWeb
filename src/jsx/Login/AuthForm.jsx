@@ -19,54 +19,54 @@ const AuthForm = () => {
 
   const navigate = useNavigate();
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-console.log(acceptTerms);
+    console.log(acceptTerms);
     if (username && password && acceptTerms) {
-        console.log("sí");
-        try {
-            const data = await loginUser(username, password);
-            localStorage.setItem("isAuthenticated", data.logged.toString());
-            if (data.logged) {
-                setTimeout(() => {
-                    navigate("/dashboard");
-                }, 1000);
-                setMessage(
-                    <FormattedMessage
-                        id="login.success"
-                        defaultMessage="User logged in correctly."
-                    />
-                );
-                localStorage.setItem("userName", username);
-                setMessageClass("success");
-                console.log("success");
-            } else {
-                console.log("Check password or username.");
-                setMessage(
-                    <FormattedMessage
-                        id="login.error"
-                        defaultMessage="Check password or username"
-                    />
-                );
-                setMessageClass("error");
-            }
-        } catch (error) {
-            console.error("Login failed:", error);
-            setMessage("Check password or username.");
-            localStorage.setItem("isAuthenticated", "false");
-            console.log("Check password or username.");
-        }
-    } else {
-        console.log("Falta algo");
-        setMessage(
+      console.log("sí");
+      try {
+        const data = await loginUser(username, password);
+        localStorage.setItem("isAuthenticated", data.logged.toString());
+        if (data.logged) {
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 1000);
+          setMessage(
             <FormattedMessage
-                id="login.fields"
-                defaultMessage="Username, password, and terms acceptance are required fields."
+              id="login.success"
+              defaultMessage="User logged in correctly."
             />
-        );
-        setMessageClass("error");
+          );
+          localStorage.setItem("userName", username);
+          setMessageClass("success");
+          console.log("success");
+        } else {
+          console.log("Check password or username.");
+          setMessage(
+            <FormattedMessage
+              id="login.error"
+              defaultMessage="Check password or username"
+            />
+          );
+          setMessageClass("error");
+        }
+      } catch (error) {
+        console.error("Login failed:", error);
+        setMessage("Check password or username.");
+        localStorage.setItem("isAuthenticated", "false");
+        console.log("Check password or username.");
+      }
+    } else {
+      console.log("Falta algo");
+      setMessage(
+        <FormattedMessage
+          id="login.check"
+          defaultMessage="Check the terms and conditions box."
+        />
+      );
+      setMessageClass("error");
     }
-};
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -185,7 +185,25 @@ console.log(acceptTerms);
               </Link>
             </div>
             <div className="form-control2">
-              <Checkbox {...label} onClick={handleAccept} />
+              <Checkbox
+                {...label}
+                onClick={handleAccept}
+                sx={{
+                  margin: 0,
+                  padding: 0,
+                  color: "white", // Use the correct color value from your theme
+                  "&:hover": {
+                    color: "white", // Use the correct color value from your theme
+                  },
+                  "&.Mui-checked": {
+                    color: "#b8ddd6", // Change color when checkbox is checked
+                  },
+                  "&.Mui-focused": {
+                    outline: "none",
+                  },
+                }}
+              />
+
               <Link className="underline" onClick={openTerminosYcondiciones}>
                 <FormattedMessage id="login.terms" />
               </Link>
@@ -208,7 +226,7 @@ console.log(acceptTerms);
                     }}
                   ></ion-icon>
                 </div>
-                <div style={{ maxHeight: "300px", overflowY: "auto" }}>
+                <div style={{ maxHeight: "400px", overflowY: "auto" }}>
                   <strong>Términos y Condiciones</strong>
                   <ol>
                     <li>
@@ -275,7 +293,7 @@ console.log(acceptTerms);
             <button
               type="submit"
               className={`btn ${!acceptTerms ? "disabled" : ""}`} // Agregar clase 'disabled' si no se aceptan los términos
-              disabled={!acceptTerms} // Deshabilitar el botón si no se aceptan los términos
+              // disabled={!acceptTerms} // Deshabilitar el botón si no se aceptan los términos
             >
               <FormattedMessage id="login.signIn" defaultMessage="Sign In" />
             </button>

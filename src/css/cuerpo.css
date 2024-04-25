@@ -174,14 +174,12 @@ body {
   align-items: center; /* Alinea los elementos verticalmente */
 }
 .mostarmas {
-  margin-left: auto; /* Empuja el botón hacia la derecha */
-  padding: 10px 20px; /* Añade padding para aumentar el área de clic */
+  margin-left: 10px; /* Empuja el botón hacia la derecha */
+  padding: 5px 10px; /* Añade padding para aumentar el área de clic */
   background-color: var(--color-3); /* Color de fondo del botón */
   color: var(--color-1); /* Color del texto del botón */
   border: none; /* Quita el borde predeterminado del botón */
-  border-radius: 5px; /* Bordes redondeados */
   cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
-  font-weight: bold; /* Texto en negrita para que resalte */
   transition: background-color 0.3s ease; /* Transición suave del color de fondo */
 }
 

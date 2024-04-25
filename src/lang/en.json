@@ -32,5 +32,6 @@
   "index.Visitor's.name" : "Visitor's name",
   "index.Comment-Description" : "Comment Description",
   "msg.commentSuccess": "Comment created successfully",
-  "msg.completeFields":"Please complete all fields"
+  "msg.completeFields":"Please complete all fields",
+  "login.check":"Check the terms and conditions box."
 }

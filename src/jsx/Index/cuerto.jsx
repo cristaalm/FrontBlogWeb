@@ -48,6 +48,7 @@ const Cuerpo = () => {
         });
         const data = await response.json();
         setEntradas(data);
+        setColor(data.color);
         console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -137,7 +138,11 @@ const Cuerpo = () => {
           muted
         ></video>
         <div className="textvideo">Aguas de Cambio</div>
-        <div className="textvideo2">Sumérgete en la acción: colabora, aprende y lidera en nuestra comunidad dedicada al agua y saneamiento. Unete a nosotros y apoya los ODS de la ONU con cada gota.</div>
+        <div className="textvideo2">
+          Sumérgete en la acción: colabora, aprende y lidera en nuestra
+          comunidad dedicada al agua y saneamiento. Unete a nosotros y apoya los
+          ODS de la ONU con cada gota.
+        </div>
         <div className="vajovideo"></div>
       </article>
 
@@ -162,12 +167,38 @@ const Cuerpo = () => {
                 <div className="imagendest rounded-lg">
                   <div
                     className="numero font-semibold"
-                    style={{ backgroundColor: category.color }}
+                    style={{
+                      backgroundColor: category.color,
+                      color:
+                        category.color === "#b80000" ||
+                        category.color === "#5300eb" ||
+                        category.color === "#006b76" ||
+                        category.color === "#db3e00" ||
+                        category.color === "#008b02" ||
+                        category.color === "#1273de" ||
+                        category.color === "#004dcf"
+                          ? "whitesmoke"
+                          : "inherit",
+                    }}
                   >
                     #{index + 1}
                   </div>
-                  <div className="overlay rounded-lg " style={{ backgroundColor: category.color }}>
-                    <div className="texto-overlay">Mostrar más entradas</div>
+                  <div
+                    className="overlay rounded-lg "
+                    style={{
+                      backgroundColor: category.color,
+                      color:
+                        category.color === "#b80000" ||
+                        category.color === "#5300eb" ||
+                        category.color === "#006b76" ||
+                        category.color === "#db3e00" ||
+                        category.color === "#008b02" ||
+                        category.color === "#1273de" ||
+                        category.color === "#004dcf"
+                          ? "whitesmoke"
+                          : "black",
+                    }}                  >
+                    <div className="font-bold text-2xl">Mostrar más entradas</div>
                   </div>
                   <img
                     className="imgdest rounded-lg"
@@ -201,58 +232,64 @@ const Cuerpo = () => {
       </article>
       {/* Últimas entradas */}
       <article id="ultima-entrada" className="seccionescuerpoultima font-bold">
-        <div
-          className={`ultimasentradas-container titulosdecategoruas ${viewMode}`}
-        >
+        <div className="ultimasentradas-container titulosdecategoruas">
           <FormattedMessage
             id="index.Last-entries"
             defaultMessage="Last entries"
           />
-          <div className="contenedorbotoneslistacuad">
-            <Tooltip
-              id="lista"
-              className="font-normal"
-              style={{
-                padding: "10px",
-                fontSize: "15px",
-                backgroundColor: "#035165",
-                color: "#fffdee",
-                zIndex: "999",
-              }}
-            />
-            <Tooltip
-              id="cuadricular"
-              className="font-normal"
-              style={{
-                padding: "10px",
-                fontSize: "15px",
-                backgroundColor: "#035165",
-                color: "#fffdee",
-                zIndex: "999",
-              }}
-            />
-            <ButtonGroup variant="contained" className="cursor-pointer">
+          <div className="contenedorbotoneslistacuad"></div>
+          <Tooltip
+            id="lista"
+            className="font-normal"
+            style={{
+              padding: "10px",
+              fontSize: "15px",
+              backgroundColor: "#035165",
+              color: "#fffdee",
+              zIndex: "999",
+            }}
+          />
+          <Tooltip
+            id="cuadricular"
+            className="font-normal"
+            style={{
+              padding: "10px",
+              fontSize: "15px",
+              backgroundColor: "#035165",
+              color: "#fffdee",
+              zIndex: "999",
+            }}
+          />
+          <div>
+            <ButtonGroup variant="contained" className="cursor-pointer ml-auto">
               <Button
                 onClick={changeToListView}
-                className={isListView ? "button-selected" : "button-normal"} // Aplicar estilo según el estado
+                className={isListView ? "button-selected" : "button-normal"}
                 data-tooltip-id="lista"
                 data-tooltip-place="top"
-                data-tooltip-content={listViewTooltip} //implementas la funcion aqui
+                data-tooltip-content={listViewTooltip}
               >
                 <ListCollapse />
               </Button>
               <Button
                 onClick={changeToGridView}
-                className={!isListView ? "button-selected" : "button-normal"} // Aplicar estilo según el estado
+                className={!isListView ? "button-selected" : "button-normal"}
                 data-tooltip-id="cuadricular"
                 data-tooltip-place="top"
-                data-tooltip-content={gridViewTooltip} //implementas la funcion aqui
+                data-tooltip-content={gridViewTooltip}
               >
                 <Grid2X2 />
               </Button>
             </ButtonGroup>
+
+            <button className="mostarmas font-semibold shadow-md text-lg bg bg-cyan-650 rounded float-right">
+              <FormattedMessage id="btn.showMore" defaultMessage="Show more" />
+            </button>
           </div>
         </div>
+        <div className="bg-yellow-400 bg-green-600 text-neutral-100 bg-orange-700 bg-red-700 text-neutral-100 bg-blue-500 bg-cyan-700 bg-violet-700 bg-blue-700 bg-red-200 bg-red-300 bg-green-200 bg-yellow-100 bg-blue-200 bg-blue-300 bg-blueGray-300 bg-purple-300"></div>
+
+        <div className="hover:text-yellow-400 hover:text-green-600 hover:text-orange-700 hover:text-red-700 hover:text-blue-500 hover:text-cyan-700 hover:text-violet-700 hover:text-blue-700 hover:text-red-200 hover:text-red-300 hover:text-green-200 hover:text-yellow-100 hover:text-blue-200 hover:text-blue-300 hover:text-blueGray-300 hover:text-purple-300 text-neutral-100"></div>
         <div
           className={`ultimasentradas-container  ${
             viewMode === "lista"
@@ -314,25 +351,32 @@ const Cuerpo = () => {
                     </div>
                     <div
                       className={`descripcionentrada italic ${
-                        viewMode === "lista" ? "lista-view" : ""
+                        viewMode === "lista" ? "lista-view" : "hidden"
                       }`}
                     >
                       {entrada.descripcion}
                     </div>
+                    <span
+                      style={{
+                        backgroundColor: entrada.color,
+                        color:
+                          entrada.color === "#b80000" ||
+                          entrada.color === "#5300eb" ||
+                          entrada.color === "#006b76" ||
+                          entrada.color === "#db3e00" ||
+                          entrada.color === "#008b02" ||
+                          entrada.color === "#1273de" ||
+                          entrada.color === "#004dcf"
+                            ? "whitesmoke"
+                            : "inherit",
+                      }}
+                      className="text-sm p-1 pl-4 pr-4 rounded-full font-medium"
+                    >
+                      {entrada.nombrecategoria}
+                    </span>
                   </div>
                 </div>
               ))}
-        </div>
-        <div className="mosrarmasyvav">
-          {/* <ButtonGroup variant="contained" aria-label="Basic button group">
-            <Button>1</Button>
-            <Button>2</Button>
-            <Button>3</Button>
-          </ButtonGroup> */}
-          <button className="mostarmas">
-            {" "}
-            <FormattedMessage id="btn.showMore" defaultMessage="Show more" />
-          </button>
         </div>
       </article>
       {/* Recursos Multimedia */}

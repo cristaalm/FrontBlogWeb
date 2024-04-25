@@ -167,7 +167,7 @@ const Footer = () => {
               </h2>
               <div>
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/2560px-Gmail_icon_%282020%29.svg.png" // Ruta a la imagen del logo de Gmail
+                  src="../../../public/img/Gmail_icon_(2020).svg.png" // Ruta a la imagen del logo de Gmail
                   alt="Gmail Logo"
                   style={{ width: "25px", height: "19px", marginRight: "8px" }}
                 />

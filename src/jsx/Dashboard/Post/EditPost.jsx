@@ -67,9 +67,9 @@ function EditPublish() {
 
   useEffect(() => {
     const script = document.createElement("script");
-    script.src =
-      "https://cdn.tiny.cloud/1/kovdcfjaqbeap5tn2t47qcgag4xk6qwtg473e9iu0rmn2kd2/tinymce/6/tinymce.min.js";
-    script.referrerpolicy = "origin";
+    // script.src =
+    //   "https://cdn.tiny.cloud/1/kovdcfjaqbeap5tn2t47qcgag4xk6qwtg473e9iu0rmn2kd2/tinymce/6/tinymce.min.js";
+    // script.referrerpolicy = "origin";
 
     script.onload = () => {
       window.tinymce.init({
