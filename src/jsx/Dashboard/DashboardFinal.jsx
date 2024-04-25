@@ -13,78 +13,77 @@ import { driver } from "driver.js";
 import { Tooltip } from "react-tooltip";
 import "driver.js/dist/driver.css";
 import { BaseUrl } from "../../constants/global";
+
 function LayoutPost() {
-  const driverObj = driver({
-    showProgress: true,
-    overlayColor: "lemon",
-    theme: "dark",
-    nextBtnText: '—›',
-    prevBtnText: '‹—',
-    doneBtnText: '✕',
-    onPopoverRender: (popover, { config, state }) => {
-      const firstButton = document.createElement("button");
-      const icon = document.createElement("img");
-      icon.src = "../public/img/refresh.png"; // Reemplaza "ruta/al/icono.svg" con la ruta de tu icono SVG
-      icon.width = 24; // Ajusta el ancho según sea necesario
-      icon.height = 24; // Ajusta la altura según sea necesario
-      firstButton.appendChild(icon);
-      popover.footerButtons.appendChild(firstButton);
-  
-      firstButton.addEventListener("click", () => {
-        driverObj.drive(0);
-      });
-    },
-
-    steps: [
-      {
-        element: ".bienvenida-tour",
-        popover: {
-          title: "Bienvenido",
-          description:
-            "¡Bienvenido! Estás a punto de embarcarte en un recorrido interactivo por nuestra plataforma. Explora cada sección y descubre todas las funciones que tenemos para ofrecerte. ¡Disfruta del viaje!",
-        },
-      },
-      {
-        element: ".dash-tour",
-        popover: {
-          title: "Secciones",
-          description:
-            "En este menú, también conocido como sidebar, encontrarás la opcion de entradas. Al dar clic en esta se desplegará un menú con dos secciones: Todas las entradas y Añadir nueva entrada.",
-        },
-      },
-      {
-        element: ".cerrar-tour",
-        popover: {
-          title: "Cerrar Sesión",
-          description:
-            "Al hacer clic en este botón, cerrarás la sesión del usuario y serás redirigido de vuelta a la página de inicio de sesión.",
-        },
-      },
-      {
-        element: ".btn-iniciar-tour",
-        popover: {
-          title: "Iniciar tour",
-          description:
-            "Este botón te permitirá iniciar el recorrido por la página en las dos secciones mencionadas anteriormente del sidebar.",
-        },
-      },
-    ],
-  });
-
-  driverObj.drive();
   const [user, setUser] = useState([]);
+  const startTour = () => {
+    const driverObj = driver({
+      showProgress: true,
+      overlayColor: "lemon",
+      theme: "dark",
+      nextBtnText: "—›",
+      prevBtnText: "‹—",
+      doneBtnText: "✕",
+      onPopoverRender: (popover, { config, state }) => {
+        const firstButton = document.createElement("button");
+        const icon = document.createElement("img");
+        icon.src = "../public/img/refresh.png"; // Reemplaza "ruta/al/icono.svg" con la ruta de tu icono SVG
+        icon.width = 24; // Ajusta el ancho según sea necesario
+        icon.height = 24; // Ajusta la altura según sea necesario
+        firstButton.appendChild(icon);
+        popover.footerButtons.appendChild(firstButton);
+
+        firstButton.addEventListener("click", () => {
+          driverObj.drive(0);
+        });
+      },
+
+      steps: [
+        {
+          element: ".bienvenida-tour",
+          popover: {
+            title: "Bienvenido",
+            description:
+              "¡Bienvenido! Estás a punto de embarcarte en un recorrido interactivo por nuestra plataforma. Explora cada sección y descubre todas las funciones que tenemos para ofrecerte. ¡Disfruta del viaje!",
+          },
+        },
+        {
+          element: ".dash-tour",
+          popover: {
+            title: "Secciones",
+            description:
+              "En este menú, también conocido como sidebar, encontrarás la opcion de entradas. Al dar clic en esta se desplegará un menú con dos secciones: Todas las entradas y Añadir nueva entrada.",
+          },
+        },
+        {
+          element: ".cerrar-tour",
+          popover: {
+            title: "Cerrar Sesión",
+            description:
+              "Al hacer clic en este botón, cerrarás la sesión del usuario y serás redirigido de vuelta a la página de inicio de sesión.",
+          },
+        },
+        {
+          element: ".btn-iniciar-tour",
+          popover: {
+            title: "Iniciar tour",
+            description:
+              "Este botón te permitirá iniciar el recorrido por la página en las dos secciones mencionadas anteriormente del sidebar.",
+          },
+        },
+      ],
+    });
+    driverObj.drive();
+  };
 
   useEffect(() => {
     let nombreusuario = localStorage.getItem("userName");
     let storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth == null) {
+    if (storedAuth == null || storedAuth === "false") {
       navigate("/login");
+      return; // Exit early if authentication is not valid
     }
-    if (storedAuth == "false") {
-      navigate("/login");
-    }
-    // console.log(nombreusuario);
-    // Mandar el nombre de usuario del fetch en el request body
+
     const fetchData = async () => {
       const response = await fetch(BaseUrl + "/api/users/find-user", {
         method: "POST",
@@ -95,11 +94,24 @@ function LayoutPost() {
       });
       const data = await response.json();
       setUser(data);
+      if (!data.tour) {
+        // Show the tour
+        startTour();
+        // Update the tour status in the backend
+        await fetch(BaseUrl + "/api/users/change-tour", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ nombreusuario }),
+        });
+      }
     };
     fetchData();
   }, []);
 
   let navigate = useNavigate();
+
   return (
     <div style={{ display: "flex" }}>
       {/* <Tooltip
@@ -123,21 +135,27 @@ function LayoutPost() {
             <Link to="/dashboard" className="without_line">
               <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
             </Link>
-            <SidebarItemWithSubItems
-              icon={<Book className="text-white" />}
-              text="Entradas"
-              subItems={[
-                { icon: <Layers />, text: "Todas", to: "/post/all" },
-                {
-                  icon: <PlusSquare />,
-                  text: "Añadir Nueva",
-                  to: "/post/add",
-                },
-                // { icon: <Layers />, text: "Categorías" }
-              ]}
-            />
+            {user.rol != "Administrador" && (
+              <Link to="/post/all" className="without_line">
+                <SidebarItem icon={<Book />} text="Entradas" />
+              </Link>
+            )}
+
             {user.rol === "Administrador" && (
               <>
+                <SidebarItemWithSubItems
+                  icon={<Book className="text-white" />}
+                  text="Entradas"
+                  subItems={[
+                    { icon: <Layers />, text: "Todas", to: "/post/all" },
+                    {
+                      icon: <PlusSquare />,
+                      text: "Añadir Nueva",
+                      to: "/post/add",
+                    },
+                    // { icon: <Layers />, text: "Categorías" }
+                  ]}
+                />
                 <Link to="/categories" className="without_line">
                   <SidebarItem icon={<Layers />} text="Categorías" />
                 </Link>
@@ -155,18 +173,21 @@ function LayoutPost() {
             <div className="margin">
               <div className="entrada">
                 <h1 className="tamaño_fuente">Panel de Administración</h1>
-                <button
-                  data-tooltip-content="Iniciar tour"
-                  data-tooltip-id="manual"
-                  className="rounded mb-2 h-10 w-10 btn-iniciar-tour"
-                  alt="Iniciar Tour"
-                >
-                  <img
-                    src="../../../../public/img/logoRedB.png"
-                    className="rounded h-full w-full"
-                    alt="Logo RedB"
-                  />
-                </button>
+                {user.rol != "Administrador" && (
+                  <button
+                    onClick={startTour}
+                    data-tooltip-content="Iniciar tour"
+                    data-tooltip-id="manual"
+                    className="rounded mb-2 h-10 w-10 btn-iniciar-tour"
+                    alt="Iniciar Tour"
+                  >
+                    <img
+                      src="../../../../public/img/logoRedB.png"
+                      className="rounded h-full w-full"
+                      alt="Logo RedB"
+                    />
+                  </button>
+                )}
               </div>
             </div>
           </div>

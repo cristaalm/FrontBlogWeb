@@ -33,9 +33,9 @@ function crudPost() {
       showProgress: true,
       overlayColor: "lemon",
       theme: "dark",
-      nextBtnText: '—›',
-      prevBtnText: '‹—',
-      doneBtnText: '✕',
+      nextBtnText: "—›",
+      prevBtnText: "‹—",
+      doneBtnText: "✕",
       onPopoverRender: (popover, { config, state }) => {
         const firstButton = document.createElement("button");
         //firstButton.innerText = "Go to First";
@@ -225,6 +225,7 @@ function crudPost() {
       const response = await fetch(BaseUrl + "/api/entradas");
       const data = await response.json();
       setEntradas(data);
+      paginate("#tableEntradas", 10);
       console.log(data);
     };
     fetchData();
@@ -539,21 +540,27 @@ function crudPost() {
           <Link to="/dashboard" className="without_line">
             <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
           </Link>
-          <SidebarItemWithSubItems
-            icon={<Book className="text-white" />}
-            text="Entradas"
-            subItems={[
-              { icon: <Layers />, text: "Todas", to: "/post/all" },
-              {
-                icon: <PlusSquare />,
-                text: "Añadir Nueva",
-                to: "/post/add",
-              },
-              // { icon: <Layers />, text: "Categorías" }
-            ]}
-          />
+          {user.rol != "Administrador" && (
+            <Link to="/post/all" className="without_line">
+              <SidebarItem icon={<Book />} text="Entradas" />
+            </Link>
+          )}
+
           {user.rol === "Administrador" && (
             <>
+              <SidebarItemWithSubItems
+                icon={<Book className="text-white" />}
+                text="Entradas"
+                subItems={[
+                  { icon: <Layers />, text: "Todas", to: "/post/all" },
+                  {
+                    icon: <PlusSquare />,
+                    text: "Añadir Nueva",
+                    to: "/post/add",
+                  },
+                  // { icon: <Layers />, text: "Categorías" }
+                ]}
+              />
               <Link to="/categories" className="without_line">
                 <SidebarItem icon={<Layers />} text="Categorías" />
               </Link>
@@ -618,19 +625,21 @@ function crudPost() {
             <div className="margin">
               <div className="entrada">
                 <h1 className="tamaño_fuente entradas-tour">Entradas</h1>
-                <button
-                  onClick={startTour}
-                  data-tooltip-content="Iniciar tour"
-                  data-tooltip-id="manual"
-                  className="rounded mb-2 h-10 w-10 btn-iniciar-tour"
-                  alt="Iniciar Tour"
-                >
-                  <img
-                    src="../../../../public/img/logoRedB.png"
-                    className="rounded h-full w-full"
-                    alt="Logo RedB"
-                  />
-                </button>
+                {user.rol != "Administrador" && (
+                  <button
+                    onClick={startTour}
+                    data-tooltip-content="Iniciar tour"
+                    data-tooltip-id="manual"
+                    className="rounded mb-2 h-10 w-10 btn-iniciar-tour"
+                    alt="Iniciar Tour"
+                  >
+                    <img
+                      src="../../../../public/img/logoRedB.png"
+                      className="rounded h-full w-full"
+                      alt="Logo RedB"
+                    />
+                  </button>
+                )}
               </div>
               <div className="w-full">
                 <div className="mt-2">
@@ -666,12 +675,12 @@ function crudPost() {
                           )}
                         </div>
 
-                        <table className="w-full border-collapse border-teal-600 caption-bottom text-sm">
+                        <table
+                          id="tableEntradas"
+                          className="w-full border-collapse border-teal-600 caption-bottom text-sm"
+                        >
                           <thead className="">
                             <tr className="header encabezadoTabla border-2 border-teal-600 text-neutral-100 text-normal">
-                              {/* <th className="border-neutral-100 border-r-2 encabezadoTabla w-5">
-                                ID
-                              </th> */}
                               <th className="border-neutral-100 border-r-2 encabezadoTabla Titulo-tour">
                                 Título
                               </th>

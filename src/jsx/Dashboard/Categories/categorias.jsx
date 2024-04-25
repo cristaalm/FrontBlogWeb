@@ -140,6 +140,7 @@ function categorías() {
     const fetchData = async () => {
       const response = await fetch(BaseUrl + "/api/categories");
       const data = await response.json();
+      paginate("#tableCategorias", 10);
       setCategories(data);
     };
     fetchData();
@@ -444,7 +445,7 @@ function categorías() {
                               </div>
                             )}
                           </div>
-                          <table className="w-full border-collapse border-teal-600 caption-bottom text-sm">
+                          <table id="tableCategorias" className="w-full border-collapse border-teal-600 caption-bottom text-sm">
                             <thead className="">
                               <tr className="header encabezadoTabla border-2 border-teal-600 text-neutral-100 text-normal">
                                 {/* <th className="border-neutral-100 border-r-2 encabezadoTabla w-5">
