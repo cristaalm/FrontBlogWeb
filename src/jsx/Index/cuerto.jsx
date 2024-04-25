@@ -34,6 +34,10 @@ const Cuerpo = () => {
   const [previewImage, setPreviewImage] = useState(null);
   const [entradas, setEntradas] = useState([]);
 
+  useEffect(() => { 
+    window.scrollTo(0, 0) 
+  }, [])
+  
   //1. Declaro una variable para que se obtenga mi contenido de entradas
 
   // Obtiene los entradas en la tabla (POST)
@@ -197,8 +201,11 @@ const Cuerpo = () => {
                         category.color === "#004dcf"
                           ? "whitesmoke"
                           : "black",
-                    }}                  >
-                    <div className="font-bold text-2xl">Mostrar más entradas</div>
+                    }}
+                  >
+                    <div className="font-bold text-2xl">
+                      Mostrar más entradas
+                    </div>
                   </div>
                   <img
                     className="imgdest rounded-lg"
@@ -340,7 +347,10 @@ const Cuerpo = () => {
                       }`}
                     >
                       {entrada.nombre} -{" "}
-                      {format(new Date(entrada.fechapublicacion), "dd/MM/yyyy")}
+                      {format(
+                        new Date(entrada.fechapublicacion + "T00:00:00-06:00"),
+                        "dd/MM/yyyy"
+                      )}{" "}
                     </div>
                     <div
                       className={`tituloentrada ${
@@ -368,9 +378,9 @@ const Cuerpo = () => {
                           entrada.color === "#1273de" ||
                           entrada.color === "#004dcf"
                             ? "whitesmoke"
-                            : "inherit",
+                            : "black",
                       }}
-                      className="text-sm p-1 pl-4 pr-4 rounded-full font-medium"
+                      className="text-sm p-1 object-bottom pl-4 pr-4 rounded-full font-medium"
                     >
                       {entrada.nombrecategoria}
                     </span>

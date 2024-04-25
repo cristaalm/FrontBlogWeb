@@ -11,6 +11,9 @@ import Carrusel from '../Elements/carrusel.jsx';
 import Encabezado2 from "./encabezado2.jsx";
 
 const Entradasview = ({ intl }) => {
+  useEffect(() => { 
+    window.scrollTo(0, 0) 
+  }, [])
   const { id } = useParams();
   const [nombre, setNombre] = useState("");
   const [comentario, setComentario] = useState("");

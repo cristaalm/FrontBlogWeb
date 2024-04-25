@@ -1,30 +1,35 @@
-import React, { useRef, useEffect, useState } from 'react';
-import '../../css/entradasvew.css'; 
+import React, { useRef, useEffect, useState } from "react";
+import { format } from "date-fns";
+import { BaseUrl } from "../../constants/global";
 
 const Carrusel = () => {
   const carruselRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
   const [scrollLeft, setScrollLeft] = useState(0);
   const speed = 1; // Velocidad de desplazamiento
+  const [entradas, setEntradas] = useState([]);
 
   useEffect(() => {
     let animationFrameId;
-
+  
     const loop = () => {
       if (carruselRef.current && !isHovering) {
+        // Obtener el ancho total del carrusel
+        const carruselWidth = carruselRef.current.scrollWidth;
         // Actualizar el desplazamiento
-        setScrollLeft(scrollLeft => (scrollLeft + speed) % (carruselRef.current.scrollWidth / 2));
+        setScrollLeft((scrollLeft) => (scrollLeft + speed) % carruselWidth);
       }
-
+  
       // Continuar el bucle
       animationFrameId = requestAnimationFrame(loop);
     };
-
+  
     loop();
-
+  
     // Limpiar el bucle cuando el componente se desmonta
     return () => cancelAnimationFrame(animationFrameId);
   }, [isHovering]);
+  
 
   useEffect(() => {
     if (!isHovering && carruselRef.current) {
@@ -33,143 +38,87 @@ const Carrusel = () => {
     }
   }, [isHovering, scrollLeft]);
 
+  // Obtiene los entradas en la tabla (POST)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(BaseUrl + "/api/entradas/publish", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        setEntradas(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
-    <div 
-      className="Carruselimg" 
-      ref={carruselRef}
+    <div
+      className="Carruselimg"
+      style={{ overflow: "hidden" }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {/* Duplicar los carruseles para crear un bucle */}
-      <div className="carrusel1">
-        <div className="imagendes">
-          <img className="imgdest rounded-md" src="../../../public/img/img3.png" alt="Carrusel 1"/>
-        </div>
-        <div className="flex items-center">
-          <div className="w-8 h-8 bg-yellow-400 rounded-full mr-4"></div>
-          <div className="categorias flex flex-col leading-tight">
-            <div>
-              <span className="mr-2 font-semibold">Categoría</span>
-            </div>
-            <div>
-              <span className="text-zinc-500 text-sm"># Entradas</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="carrusel2">
-        <div className="imagendes">
-          <img className="imgdest rounded-md" src="../../../public/img/img4.png" alt="Carrusel 2"/>
-        </div>
-        <div className="flex items-center">
-          <div className="w-8 h-8 bg-pink-400 rounded-full mr-4"></div>
-          <div className="categorias flex flex-col leading-tight">
-            <div>
-              <span className="mr-2 font-semibold">Categoría</span>
-            </div>
-            <div>
-              <span className="text-zinc-500 text-sm"># Entradas</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="carrusel3">
-        <div className="imagendes">
-          <img className="imgdest rounded-md" src="../../../public/img/img5.png" alt="Carrusel 3"/>
-        </div>
-        <div className="flex items-center">
-          <div className="w-8 h-8 bg-lime-400 rounded-full mr-4"></div>
-          <div className="categorias flex flex-col leading-tight">
-            <div>
-              <span className="mr-2 font-semibold">Categoría</span>
-            </div>
-            <div>
-              <span className="text-zinc-500 text-sm"># Entradas</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="carrusel4">
-        <div className="imagendes">
-          <img className="imgdest rounded-md" src="../../../public/img/img6.png" alt="Carrusel 4"/>
-        </div>
-        <div className="flex items-center">
-          <div className="w-8 h-8 bg-blue-400 rounded-full mr-4"></div>
-          <div className="categorias flex flex-col leading-tight">
-            <div>
-              <span className="mr-2 font-semibold">Categoría</span>
-            </div>
-            <div>
-              <span className="text-zinc-500 text-sm"># Entradas</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      {/* Repetir los carruseles para crear un bucle */}
-      <div className="carrusel1">
-        <div className="imagendes">
-          <img className="imgdest rounded-md" src="../../../public/img/img3.png" alt="Carrusel 1"/>
-        </div>
-        <div className="flex items-center">
-          <div className="w-8 h-8 bg-yellow-400 rounded-full mr-4"></div>
-          <div className="categorias flex flex-col leading-tight">
-            <div>
-              <span className="mr-2 font-semibold">Categoría</span>
-            </div>
-            <div>
-              <span className="text-zinc-500 text-sm"># Entradas</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="carrusel2">
-        <div className="imagendes">
-          <img className="imgdest rounded-md" src="../../../public/img/img4.png" alt="Carrusel 2"/>
-        </div>
-        <div className="flex items-center">
-          <div className="w-8 h-8 bg-pink-400 rounded-full mr-4"></div>
-          <div className="categorias flex flex-col leading-tight">
-            <div>
-              <span className="mr-2 font-semibold">Categoría</span>
-            </div>
-            <div>
-              <span className="text-zinc-500 text-sm"># Entradas</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="carrusel3">
-        <div className="imagendes">
-          <img className="imgdest rounded-md" src="../../../public/img/img5.png" alt="Carrusel 3"/>
-        </div>
-        <div className="flex items-center">
-          <div className="w-8 h-8 bg-lime-400 rounded-full mr-4"></div>
-          <div className="categorias flex flex-col leading-tight">
-            <div>
-              <span className="mr-2 font-semibold">Categoría</span>
-            </div>
-            <div>
-              <span className="text-zinc-500 text-sm"># Entradas</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="carrusel4">
-        <div className="imagendes">
-          <img className="imgdest rounded-md" src="../../../public/img/img6.png" alt="Carrusel 4"/>
-        </div>
-        <div className="flex items-center">
-          <div className="w-8 h-8 bg-blue-400 rounded-full mr-4"></div>
-          <div className="categorias flex flex-col leading-tight">
-            <div>
-              <span className="mr-2 font-semibold">Categoría</span>
-            </div>
-            <div>
-              <span className="text-zinc-500 text-sm"># Entradas</span>
-            </div>
-          </div>
-        </div>
+      <div
+        className="carrusel1"
+        style={{
+          display: "flex",
+          transition: "transform 0.5s ease",
+          transform: `translateX(-${scrollLeft}px)`,
+        }}
+        ref={carruselRef}
+      >
+        {entradas &&
+          entradas
+            .sort((a, b) => new Date(b.fechapublicacion) - new Date(a.fechapublicacion))
+            .map((entrada) => (
+              <div
+                key={entrada.id}
+                onClick={() => toggleViewEntrada(entrada.id)}
+                className="ultimasentradas rounded-md text-cyan-950 hover:text-yellow-50 cursor-pointer lista"
+                style={{ flex: "0 0 auto", marginRight: "20px" , width:"20rem"}}
+              >
+                <div className="categoria-seleccionada lista">
+                  <img
+                    className="catimg rounded-md lista"
+                    src={entrada.imgdestacada}
+                    alt={"Imagen Destacada de entrada " + entrada.id}
+                    style={{ width: "100%", height: "200px", objectFit: "cover" }}
+                  />
+                </div>
+                <div className="contenido-entrada font-medium">
+                  <div className="metaentrada lista">
+                    {entrada.nombre} -{" "}
+                    {format(new Date(entrada.fechapublicacion + "T00:00:00-06:00"), "dd/MM/yyyy")}
+                  </div>
+                  <div className="tituloentrada lista">{entrada.titulo}</div>
+                  <span
+                    style={{
+                      backgroundColor: entrada.color,
+                      color:
+                        entrada.color === "#b80000" ||
+                        entrada.color === "#5300eb" ||
+                        entrada.color === "#006b76" ||
+                        entrada.color === "#db3e00" ||
+                        entrada.color === "#008b02" ||
+                        entrada.color === "#1273de" ||
+                        entrada.color === "#004dcf"
+                          ? "whitesmoke"
+                          : "black",
+                    }}
+                    className="text-sm p-1 object-bottom pl-4 pr-4 rounded-full font-medium"
+                  >
+                    {entrada.nombrecategoria}
+                  </span>
+                </div>
+              </div>
+            ))}
       </div>
     </div>
   );

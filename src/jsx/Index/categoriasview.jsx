@@ -7,6 +7,9 @@ import { BaseUrl } from "../../constants/global";
 import { useNavigate } from "react-router-dom";
 
 function CategoriaView() {
+  useEffect(() => { 
+    window.scrollTo(0, 0) 
+  }, [])
   const navigate = useNavigate();
 
   const { id } = useParams();

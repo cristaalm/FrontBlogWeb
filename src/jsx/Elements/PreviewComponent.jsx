@@ -34,20 +34,6 @@ const PreviewComponent = () => {
   const [fPublicacion, setFPublicacion] = useState("");
   const [color, setColor] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
-  const [fechaFormateada, setFechaFormateada] = useState("");
-  useEffect(() => {
-    const fecha = new Date(fPublicacion);
-
-    // Verificar si la fecha es válida antes de formatearla
-    if (isNaN(fecha.getTime())) {
-      setFechaFormateada("Fecha inválida");
-      return;
-    }
-
-    // Formatear la fecha
-    const fechaFormateada = format(fecha, "dd/MM/yyyy");
-    setFechaFormateada(fechaFormateada);
-  }, [fPublicacion]); // Añade fPublicacion como dependencia para que el efecto se ejecute cuando cambie
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,6 +56,7 @@ const PreviewComponent = () => {
         setFPublicacion(data.fechapublicacion);
         setNombre(data.nombre);
         setPreviewImage(data.imgdestacada);
+        console.log(data.fechapublicacion);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -167,7 +154,14 @@ const PreviewComponent = () => {
               />
               <div className="ml-4 text-cyan-950 font-medium">
                 <p className="mb-0">{nombreCompleto}</p>
-                <p className="mb-0">{fechaFormateada}</p>
+                <p className="mb-0">
+                  {fPublicacion
+                    ? format(
+                        new Date(`${fPublicacion}T00:00:00-06:00`),
+                        "dd/MM/yyyy"
+                      )
+                    : "No hay fecha"}
+                </p>
               </div>
             </div>
             <div className="flex items-end ml-auto mb-2">

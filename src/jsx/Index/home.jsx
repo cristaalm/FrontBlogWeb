@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../css/home.css";
 import Button from "react-bootstrap/Button";
 import Footer from "../Elements/Footer";
@@ -11,6 +11,9 @@ import { FormattedMessage } from "react-intl";
 import { Link } from 'react-scroll';
 
 function Home() {
+  useEffect(() => { 
+    window.scrollTo(0, 0) 
+  }, [])
   return (
   <div className="coli">
     <Encabezado/>
