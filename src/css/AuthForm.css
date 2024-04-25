@@ -341,3 +341,6 @@ input:focus ~ .highlight {
 .inicio {
   overflow-y: auto;
 }
+.inputAuth:valid{
+  color:var(--color-1) !important;
+}

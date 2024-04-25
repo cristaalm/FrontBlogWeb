@@ -34,10 +34,10 @@ const Cuerpo = () => {
   const [previewImage, setPreviewImage] = useState(null);
   const [entradas, setEntradas] = useState([]);
 
-  useEffect(() => { 
-    window.scrollTo(0, 0) 
-  }, [])
-  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   //1. Declaro una variable para que se obtenga mi contenido de entradas
 
   // Obtiene los entradas en la tabla (POST)
@@ -158,7 +158,7 @@ const Cuerpo = () => {
             defaultMessage="Top categories"
           />
         </div>
-        {categoria.data &&
+        {categoria.data && categoria.data.length > 0 ? (
           categoria.data
             .sort((a, b) => b.entradas - a.entradas) // Ordenar de mayor a menor por la cantidad de entradas
             .filter((category) => category.entradas > 0) // Filtrar categorías con al menos una entrada
@@ -235,7 +235,10 @@ const Cuerpo = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            ))
+        ) : (
+          <div>No se encontraron categorías con entradas.</div>
+        )}
       </article>
       {/* Últimas entradas */}
       <article id="ultima-entrada" className="seccionescuerpoultima font-bold">
@@ -304,7 +307,7 @@ const Cuerpo = () => {
               : "grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
           }`}
         >
-          {entradas &&
+          {entradas && entradas.length > 0 ? (
             entradas
               // .filter((entrada) => entrada.estatus == "Publicado") // Filtrar por estado "Publicado"
               .sort(
@@ -386,7 +389,10 @@ const Cuerpo = () => {
                     </span>
                   </div>
                 </div>
-              ))}
+              ))
+          ) : (
+            <div>No se encontraron entradas.</div>
+          )}
         </div>
       </article>
       {/* Recursos Multimedia */}

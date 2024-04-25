@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { format } from "date-fns";
 import { BaseUrl } from "../../constants/global";
+import { Link, useNavigate } from "react-router-dom";
 
 const Carrusel = () => {
   const carruselRef = useRef(null);
@@ -8,10 +9,11 @@ const Carrusel = () => {
   const [scrollLeft, setScrollLeft] = useState(0);
   const speed = 1; // Velocidad de desplazamiento
   const [entradas, setEntradas] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let animationFrameId;
-  
+
     const loop = () => {
       if (carruselRef.current && !isHovering) {
         // Obtener el ancho total del carrusel
@@ -19,17 +21,16 @@ const Carrusel = () => {
         // Actualizar el desplazamiento
         setScrollLeft((scrollLeft) => (scrollLeft + speed) % carruselWidth);
       }
-  
+
       // Continuar el bucle
       animationFrameId = requestAnimationFrame(loop);
     };
-  
+
     loop();
-  
+
     // Limpiar el bucle cuando el componente se desmonta
     return () => cancelAnimationFrame(animationFrameId);
   }, [isHovering]);
-  
 
   useEffect(() => {
     if (!isHovering && carruselRef.current) {
@@ -58,6 +59,13 @@ const Carrusel = () => {
     fetchData();
   }, []);
 
+  const toggleViewEntrada = (id) => {
+    // alert(id);
+    navigate(`/blog-post/${id}`);
+    window.location.reload();
+    window.location.scrollTo(0, 0);
+  };
+
   return (
     <div
       className="Carruselimg"
@@ -76,26 +84,40 @@ const Carrusel = () => {
       >
         {entradas &&
           entradas
-            .sort((a, b) => new Date(b.fechapublicacion) - new Date(a.fechapublicacion))
+            .sort(
+              (a, b) =>
+                new Date(b.fechapublicacion) - new Date(a.fechapublicacion)
+            )
             .map((entrada) => (
               <div
                 key={entrada.id}
                 onClick={() => toggleViewEntrada(entrada.id)}
                 className="ultimasentradas rounded-md text-cyan-950 hover:text-yellow-50 cursor-pointer lista"
-                style={{ flex: "0 0 auto", marginRight: "20px" , width:"20rem"}}
+                style={{
+                  flex: "0 0 auto",
+                  marginRight: "20px",
+                  width: "20rem",
+                }}
               >
                 <div className="categoria-seleccionada lista">
                   <img
                     className="catimg rounded-md lista"
                     src={entrada.imgdestacada}
                     alt={"Imagen Destacada de entrada " + entrada.id}
-                    style={{ width: "100%", height: "200px", objectFit: "cover" }}
+                    style={{
+                      width: "100%",
+                      height: "200px",
+                      objectFit: "cover",
+                    }}
                   />
                 </div>
                 <div className="contenido-entrada font-medium">
                   <div className="metaentrada lista">
                     {entrada.nombre} -{" "}
-                    {format(new Date(entrada.fechapublicacion + "T00:00:00-06:00"), "dd/MM/yyyy")}
+                    {format(
+                      new Date(entrada.fechapublicacion + "T00:00:00-06:00"),
+                      "dd/MM/yyyy"
+                    )}
                   </div>
                   <div className="tituloentrada lista">{entrada.titulo}</div>
                   <span

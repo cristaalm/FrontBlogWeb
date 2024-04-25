@@ -40,11 +40,13 @@ export default function Sidebar({ children }) {
       <nav className="h-full flex flex-col bg-cyan-950 shadow-sm">
         <div className={`p-4 pb-2 flex justify-between items-center border-b`}>
           {expanded && (
-            <h3
-              className={`transition-all w-0 mb-3.5 mt-1 font-semibold text-amber-50 text-2xl tracking-widest`}
-            >
-              AQUAVISION
-            </h3>
+            <Link to="/welcome">
+              <h3
+                className={`transition-all w-0 mb-3.5 mt-1 font-semibold text-amber-50 text-2xl tracking-widest`}
+              >
+                AQUAVISION
+              </h3>
+            </Link>
           )}
           <button
             onClick={() => setExpanded((curr) => !curr)}

@@ -7,13 +7,13 @@ import { useParams } from "react-router-dom";
 import { createComment } from "../../js/createComment";
 import { format } from "date-fns";
 import { BaseUrl } from "../../constants/global";
-import Carrusel from '../Elements/carrusel.jsx';
+import Carrusel from "../Elements/carrusel.jsx";
 import Encabezado2 from "./encabezado2.jsx";
 
 const Entradasview = ({ intl }) => {
-  useEffect(() => { 
-    window.scrollTo(0, 0) 
-  }, [])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { id } = useParams();
   const [nombre, setNombre] = useState("");
   const [comentario, setComentario] = useState("");
@@ -134,7 +134,7 @@ const Entradasview = ({ intl }) => {
       <article className="preview-de-contenido m-10">
         <PreviewComponent />
       </article>
-        <Carrusel />
+      <Carrusel />
       <article className="m-10">
         <div className="titulosdecategoruas font-bold">
           <FormattedMessage id="index.comment" defaultMessage="Comments" />
@@ -179,51 +179,54 @@ const Entradasview = ({ intl }) => {
         </form>
 
         {/* <div className="posted-comments"> */}
-          <div className="contenedor-comentario-public mt-4">
-            {comments &&
-              comments.map((comment) => (
-                <div key={comment.id} className="flex items-center border-2 border-neutral-200 shadow-lg shadow-teal-600/20 rounded-2xl mt-6 p-2">
-                  <img
-                    src="../../../public/img/logo.png"
-                    alt="Preview"
-                    className="w-20 h-20"
-                  />
-                  <div className="ml-4">
-                    <div className="text-cyan-950 font-semibold text-base">
-                      <h5 style={{ display: "flex", alignItems: "center" }}>
-                        {comment.nombre}
-                        <span style={{ marginLeft: "20px" }}>
-                          {[...Array(comment.valoracion)].map((_, index) => (
-                            <span
-                              key={index}
-                              style={{ color: "#ffc107", fontSize: "1.5rem" }}
-                            >
-                              ★
-                            </span>
-                          ))}
-                          {[...Array(5 - comment.valoracion)].map(
-                            (_, index) => (
-                              <span
-                                key={index + comment.valoracion}
-                                style={{ color: "#0d9488", fontSize: "1.5rem" }}
-                              >
-                                ★
-                              </span>
-                            )
-                          )}
-                        </span>
-                      </h5>
-                      <p className="font-normal text-sm">{format(Date(comment.fechacreacion), "dd/MM/yyyy")}</p>
-                    </div>
-                    <div className="text-center italic">
-                      <p className="mb-0">{comment.descripcion}</p>
-                    </div>
-                    {/* <hr></hr> */}
+        <div className="contenedor-comentario-public mt-4">
+          {comments &&
+            comments.map((comment) => (
+              <div
+                key={comment.id}
+                className="flex items-center border-2 border-neutral-200 shadow-lg shadow-teal-600/20 rounded-2xl mt-6 p-2"
+              >
+                <img
+                  src="../../../public/img/logo.png"
+                  alt="Preview"
+                  className="w-20 h-20"
+                />
+                <div className="ml-4">
+                  <div className="text-cyan-950 font-semibold text-base">
+                    <h5 style={{ display: "flex", alignItems: "center" }}>
+                      {comment.nombre}
+                      <span style={{ marginLeft: "20px" }}>
+                        {[...Array(comment.valoracion)].map((_, index) => (
+                          <span
+                            key={index}
+                            style={{ color: "#ffc107", fontSize: "1.5rem" }}
+                          >
+                            ★
+                          </span>
+                        ))}
+                        {[...Array(5 - comment.valoracion)].map((_, index) => (
+                          <span
+                            key={index + comment.valoracion}
+                            style={{ color: "#0d9488", fontSize: "1.5rem" }}
+                          >
+                            ★
+                          </span>
+                        ))}
+                      </span>
+                    </h5>
+                    <p className="font-normal text-sm">
+                      {format(Date(comment.fechacreacion), "dd/MM/yyyy")}
+                    </p>
                   </div>
+                  <div className="text-center italic">
+                    <p className="mb-0">{comment.descripcion}</p>
+                  </div>
+                  {/* <hr></hr> */}
                 </div>
-              ))}
-            {comments && comments.length === 0 && <p>No hay comentarios aún</p>}
-          </div>
+              </div>
+            ))}
+          {comments && comments.length === 0 && <p>No hay comentarios aún</p>}
+        </div>
         {/* </div> */}
       </article>
       <Footer />

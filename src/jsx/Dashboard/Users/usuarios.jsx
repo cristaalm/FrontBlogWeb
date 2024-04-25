@@ -58,6 +58,7 @@ function usuarios() {
   const [pruebaModal, setPruebaModal] = React.useState(false); // 2. Duplicamos la línea de arriba
 
   const [reloadTable, setReloadTable] = useState(false);
+  const [usuarioLocal, setUsuarioLocal] = useState("");
 
   // Agrega un nuevo estado para almacenar el ID del usuario a editar
   const [editUserId, setEditUserId] = useState(null);
@@ -100,20 +101,17 @@ function usuarios() {
     }
   }, []);
 
-  const logOff = async () => {
-    try {
-      localStorage.removeItem("isAuthenticated");
-    } catch (error) {
-      localStorage.removeItem("isAuthenticated");
-    }
-  };
+
   // Obtiene los usuarios en la tabla (GET)
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(BaseUrl + "/api/users");
+      let nombreusuario = localStorage.getItem("userName");
+      setUsuarioLocal(nombreusuario);
       const data = await response.json();
-      paginate("#tableUsuarios", 10);
       setUsers(data);
+      paginate("#tableUsuarios", 10);
+      console.log(data);
     };
     fetchData();
   }, [reloadTable]); // Vuelve a cargar la tabla cuando reloadTable cambia
@@ -464,9 +462,16 @@ function usuarios() {
                             </thead>
 
                             <tbody>
+                              {console.log("De table user: ", users)}
+                              {console.log("De auth user: ", usuarioLocal)}
                               {users.data &&
                                 users.data
-                                  .sort((a, b) => a.id - b.id) // Ordena las categorías por ID ascendente
+                                  .filter((userInfo) => {
+                                    return (
+                                      usuarioLocal !== userInfo.nombreusuario
+                                    ); // Filter out entries that match the username
+                                  })
+                                  .sort((a, b) => a.id - b.id) // Sort categories by ascending ID
                                   .map((userInfo) => (
                                     <tr
                                       key={userInfo.id}

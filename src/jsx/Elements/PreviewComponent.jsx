@@ -49,6 +49,7 @@ const PreviewComponent = () => {
           throw new Error("Network response was not ok");
         }
         const { data } = await response.json();
+        window.scrollTo(0, 0);
         setContenidoTiny(data.contenido);
         setTituloEntrada(data.titulo);
         setCategoria(data.idcategoria);

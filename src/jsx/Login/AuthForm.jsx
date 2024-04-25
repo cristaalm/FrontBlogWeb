@@ -127,9 +127,10 @@ const AuthForm = () => {
             <FormattedMessage id="login.login" defaultMessage="Login" />
           </p>
           <form onSubmit={handleSubmit}>
-            <div className="relative z-0 w-full mb-5">
+            <div className=" relative z-0 w-full mb-5">
               <input
                 type="text"
+                className="inputAuth"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
@@ -148,6 +149,7 @@ const AuthForm = () => {
             </div>
             <div className="relative z-0 w-full mb-5">
               <input
+                className="inputAuth"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
