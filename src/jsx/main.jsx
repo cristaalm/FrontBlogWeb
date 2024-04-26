@@ -16,6 +16,7 @@ import Usuarios from "./Dashboard/Users/usuarios.jsx";
 import Categorias from "./Dashboard/Categories/categorias.jsx";
 import CategoriaView from "./Index/categoriasview.jsx";
 import EntradasView from "./Index/entradasvew.jsx";
+import TodasLasEntradas from "./Index/TodasLasEntradas.jsx";
 import Quizz from "./Quizz/quizz.jsx";
 // import Test from "./testG.jsx";
 import Side from "./Elements/SideNavBar.jsx";
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
   { path: "/welcome", element: <Home /> },
   { path: "/categoriasview", element: <CategoriaView /> },
   { path: "/entradasview", element: <Entradasview /> },
+  { path: "/all-the-blogpost", element: <TodasLasEntradas /> },
   { path: "/", element: <App /> },
   { path: "/error", element: <Error404 /> },
   // { path: "/test", element: <Test /> },

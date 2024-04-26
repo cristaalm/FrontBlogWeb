@@ -115,7 +115,10 @@ const PreviewComponent = () => {
     "#bedadc": "blueGray-300",
     "#d4c4fb": "purple-300",
   };
+
   const colorClass = colorMap[color[categoria]] || "cyan-400";
+  let colorLetra = calcularContraste(color[categoria]);
+  console.log(colorLetra);
   const copiarAlPortapapeles = (e) => {
     e.preventDefault();
     const enlace = `http://localhost:5173/blog-post/${id}`;
@@ -137,6 +140,7 @@ const PreviewComponent = () => {
       <div className="flex flex-row select-none">
         <div className="basis-2/3">
           <span
+            style={{ backgroundColor: color[categoria], color: colorLetra }}
             className={`bg-${colorClass} text-sm p-1 pl-4 pr-4 rounded-full font-medium`}
           >
             {categoryNames[categoria]}

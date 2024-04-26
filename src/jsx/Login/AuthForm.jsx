@@ -210,6 +210,7 @@ const AuthForm = () => {
                 <FormattedMessage id="login.terms" />
               </Link>
               <Modal
+                ariaHideApp={false}
                 id="root"
                 isOpen={openTerminosYcondicionesIsOpen}
                 onAfterOpen={afterOpenModal}

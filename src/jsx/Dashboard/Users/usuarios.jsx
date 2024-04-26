@@ -224,6 +224,7 @@ function usuarios() {
     >
       {/* 3 Inicias a copiar desde acá */}
       <Modal
+        ariaHideApp={false}
         id="root"
         isOpen={deleteModal}
         onRequestClose={closeModal}
@@ -257,6 +258,7 @@ function usuarios() {
       </Modal>
       {/* Terminas acá de seleccionar todas las líneas y Ctrl+V */}
       <Modal
+        ariaHideApp={false}
         id="prueba"
         isOpen={pruebaModal} // Ponemos la variable amarilla que declaramos arriba
         onRequestClose={closeModal}
