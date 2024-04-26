@@ -167,35 +167,7 @@ function usuarios() {
     };
     fetchData();
   }, []);
-  useEffect(() => {
-    const script = document.createElement("script");
-    // script.src =
-    //   "https://cdn.tiny.cloud/1/kovdcfjaqbeap5tn2t47qcgag4xk6qwtg473e9iu0rmn2kd2/tinymce/6/tinymce.min.js";
-    // script.referrerpolicy = "origin";
-    document.head.appendChild(script);
 
-    script.onload = () => {
-      window.tinymce.init({
-        selector: "#entryDescription",
-        apiKey: "af8109ckb7vf2pm3g5io2hw55z53nxfdnkak2yc324pnvqa3",
-        plugins:
-          "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
-        toolbar:
-          "undo redo | bold italic underline strikethrough | link image media table | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-        tinycomments_mode: "embedded",
-        setup: (editor) => {
-          editor.on("change", () => {
-            const content = editor.getContent();
-            setTiny(content);
-          });
-        },
-      });
-    };
-
-    return () => {
-      window.tinymce?.remove("#entryDescription");
-    };
-  }, []);
   // const [categories, setCategories] = useState([]);
   useEffect(() => {
     let storedAuth = localStorage.getItem("isAuthenticated");
@@ -459,12 +431,30 @@ function usuarios() {
                         <div>
                           <div className="form-group tinymce-container">
                             <div className="enter"></div>
-                            <Editor
-                              id="entryDescription"
-                              name="content"
-                              value={tiny}
-                              onEditorChange={handleTinyChange}
-                            />
+                            
+                    <Editor
+                      apiKey='4bf4juc56apg2x7qd86sdyhdrj1zjznysvz06bddzevq7ewb'
+                      init={{
+                        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+                        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                        tinycomments_mode: 'embedded',
+                        tinycomments_author: 'AQUAVISION',
+                        mergetags_list: [
+                          { value: 'First.Name', title: 'First Name' },
+                          { value: 'Email', title: 'Email' },
+                        ],
+                        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+                      }}
+                      id="entryDescription"
+                      name="content"
+                      value={tiny}
+                      onEditorChange={handleTinyChange}
+
+                    />
+                    
+                    
+                  
+
                           </div>
                         </div>
                       </div>
