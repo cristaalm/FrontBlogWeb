@@ -29,6 +29,7 @@ import messagesEn from "../lang/en.json";
 import messagesEs from "../lang/es.json";
 import Dashboard from "./Dashboard/DashboardFinal.jsx";
 import Entradasview from "./Index/entradasvew.jsx";
+import Error404 from "./Elements/Error404.jsx";
 
 // import "../css/index.css";
 
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
   { path: "/categoriasview", element: <CategoriaView /> },
   { path: "/entradasview", element: <Entradasview /> },
   { path: "/", element: <App /> },
+  { path: "/error", element: <Error404 /> },
   // { path: "/test", element: <Test /> },
   { path: "/side", element: <Side /> },
   { path: "/login", element: <AuthForm /> },
