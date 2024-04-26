@@ -46,7 +46,22 @@
       }
     </style>
     <script src="public/js/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js"></script>
+
     <script type="text/javascript">
+      function calcularContraste(colorFondo) {
+        // Convertir el color de fondo a un objeto tinycolor
+        const colorFondoObj = tinycolor(colorFondo);
+
+        // Calcular el luminosidad del color de fondo
+        const luminosidadFondo = colorFondoObj.getLuminance();
+
+        // Definir un umbral para decidir si usar texto claro u oscuro
+        const umbral = 0.5;
+
+        // Si la luminosidad del fondo es menor que el umbral, usar texto claro, de lo contrario usar texto oscuro
+        return luminosidadFondo < umbral ? "#ffffff" : "#000000";
+      }
       function paginate(tableName, RecordsPerPage) {
         debugger;
         $("#nav").remove();

@@ -4,7 +4,7 @@ import { Tooltip } from "react-tooltip";
 import Modal from "react-modal";
 import { createCategory } from "../../../js/createCategory.js";
 import { editCategory } from "../../../js/editCategory.js";
-import { Github } from "@uiw/react-color";
+import SketchColor from "./SketchColor.jsx";
 import { BaseUrl } from "../../../constants/global.js";
 import Sidebar, {
   SidebarItem,
@@ -254,6 +254,7 @@ function categorías() {
       className="flex h-screen"
     >
       <Modal
+        ariaHideApp={false}
         id="root"
         isOpen={deleteModal}
         onRequestClose={closeModal}
@@ -344,6 +345,7 @@ function categorías() {
               <div className="entrada">
                 <h1 className="tamaño_fuente cat1">Categorías</h1>
               </div>
+
               <div className="flex sm:flex-row w-40% flex-col">
                 <form onSubmit={handleSubmit} className="mt-4 sm:w-full mr-4">
                   <div className="">
@@ -357,7 +359,11 @@ function categorías() {
                         className="m-0 w-full p-2 in2"
                         placeholder="Ingrese categoría"
                       ></input>
-                      <Github
+                      <SketchColor
+                        color={selectedColor}
+                        onChange={handleColorChange}
+                      />
+                      {/* <Github
                         className="colorp"
                         style={{
                           marginLeft: "10px",
@@ -366,7 +372,7 @@ function categorías() {
                         }}
                         color={selectedColor}
                         onChange={handleColorChange}
-                      />
+                      /> */}
                     </div>
                   </div>
                   <div className="mt-2">
@@ -445,7 +451,10 @@ function categorías() {
                               </div>
                             )}
                           </div>
-                          <table id="tableCategorias" className="w-full border-collapse border-teal-600 caption-bottom text-sm">
+                          <table
+                            id="tableCategorias"
+                            className="w-full border-collapse border-teal-600 caption-bottom text-sm"
+                          >
                             <thead className="">
                               <tr className="header encabezadoTabla border-2 border-teal-600 text-neutral-100 text-normal">
                                 {/* <th className="border-neutral-100 border-r-2 encabezadoTabla w-5">

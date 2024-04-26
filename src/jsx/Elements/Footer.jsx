@@ -135,6 +135,7 @@ const Footer = () => {
               <ion-icon name="mail" style={{ color: "#035165" }}></ion-icon>
             </a>
             <Modal
+        ariaHideApp={false}
               id="root"
               isOpen={contactModalIsOpen}
               onAfterOpen={afterOpenModal}
@@ -188,6 +189,7 @@ const Footer = () => {
               <ion-icon name="people" style={{ color: "#035165" }}></ion-icon>
             </a>
             <Modal
+        ariaHideApp={false}
               id="root1"
               isOpen={developersModalIsOpen}
               onAfterOpen={afterOpenModal}

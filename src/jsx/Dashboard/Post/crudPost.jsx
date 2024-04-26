@@ -433,6 +433,7 @@ function crudPost() {
       className="flex h-screen"
     >
       <Modal
+        ariaHideApp={false}
         id="root"
         isOpen={deleteModal}
         onRequestClose={closeModal}
@@ -465,6 +466,7 @@ function crudPost() {
         </div>
       </Modal>
       <Modal
+        ariaHideApp={false}
         id="publicar"
         isOpen={publicModal}
         onRequestClose={closeModal}
@@ -497,6 +499,7 @@ function crudPost() {
         </div>
       </Modal>
       <Modal
+        ariaHideApp={false}
         id="revisar"
         isOpen={revisarModal}
         onRequestClose={closeModal}
