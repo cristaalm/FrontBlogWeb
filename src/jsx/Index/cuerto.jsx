@@ -11,7 +11,7 @@ import ImagePopup from "../Elements/M&Rmodal";
 import { format } from "date-fns";
 import "../../css/mrmodal.css";
 import { EngineeringTwoTone } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { BaseUrl } from "../../constants/global";
 const Cuerpo = () => {
   const navigate = useNavigate();
@@ -148,10 +148,10 @@ const Cuerpo = () => {
           comunidad dedicada al agua y saneamiento. Unete a nosotros y apoya los
           ODS de la ONU con cada gota.
         </div>
-        <div className="wave wave1"></div>
-        <div className="wave wave2"></div>
-        <div className="wave wave3"></div>
-        <div className="wave wave4"></div>
+        <div className="wave wave1 wavesHome"></div>
+        <div className="wave wave2 wavesHome"></div>
+        <div className="wave wave3 wavesHome"></div>
+        <div className="wave wave4 wavesHome"></div>
         <div className="vajovideo"></div>
       </article>
 
