@@ -18,12 +18,44 @@ const AuthForm = () => {
   const [acceptTerms, setAcceptTerms] = useState(false);
 
   const navigate = useNavigate();
+  //
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
+    script.async = true;
+    script.defer = true;
+    window.onloadCallback = () => {
+      window.grecaptcha.render('recaptcha-container', {
+        'sitekey' : '6Lc3UsgpAAAAAFG8_eUiJennqPF7KoYJR3Pi2PEU',
+        'size': 'invisible',
+        'callback' : verifyCallback
+      });
+    };
+    document.body.appendChild(script);
 
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  const verifyCallback = (response) => {
+    console.log("ReCAPTCHA verified with response: ", response);
+  };
+// IMPLEMENTAR EL TOKEN EN EL BACK PARA LAS SOLICITUDES
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (username && password && acceptTerms) {
+    //  
+      window.grecaptcha.execute();
+
+      const response = window.grecaptcha.getResponse();
+    if (response.length === 0) {
+      setMessageClass("error");
+      return;
+    }
+    //recaptcha
       try {
-        const data = await loginUser(username, password);
+        const data = await loginUser(username, password,response);
         localStorage.setItem("isAuthenticated", data.logged.toString());
         if (data.logged) {
           setTimeout(() => {
@@ -287,6 +319,8 @@ const AuthForm = () => {
                 </div>
               </Modal>
             </div>
+            
+            <div id="recaptcha-container"></div>
             <button
               type="submit"
               className={`btn ${!acceptTerms ? "disabled" : ""}`} // Agregar clase 'disabled' si no se aceptan los términos
