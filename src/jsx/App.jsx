@@ -8,7 +8,6 @@ const App = () => {
 
   useEffect(() => {
     let nombreusuario = localStorage.getItem("userName");
-    // console.log(nombreusuario);
     // Mandar el nombre de usuario del fetch en el request body
     const fetchData = async () => {
       const response = await fetch(BaseUrl + "/api/users/find-user", {
@@ -28,7 +27,6 @@ const App = () => {
 
   useEffect(() => {
     const storedAuth = localStorage.getItem("isAuthenticated");
-    console.log(storedAuth);
     if (storedAuth == null) {
       localStorage.setItem("isAuthenticated", "false");
     }

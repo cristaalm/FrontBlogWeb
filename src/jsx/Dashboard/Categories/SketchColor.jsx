@@ -27,7 +27,6 @@ class SketchColor extends React.Component {
   };
 
   handleChange = (color) => {
-    console.log(color.rgb);
     this.setState({ color: color.rgb });
     if (this.props.onChange) {
       this.props.onChange(color);

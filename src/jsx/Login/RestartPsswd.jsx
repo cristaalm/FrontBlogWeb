@@ -20,7 +20,6 @@ const RestartPsswd = () => {
     e.preventDefault();
     try {
       await restartPassword(id, password);
-      console.log(id);
       if (password === passwordConfirm) {
         setTimeout(() => {
           navigate("/login");
@@ -61,7 +60,11 @@ const RestartPsswd = () => {
             />
             <label>Password</label>
             <button type="button" onClick={togglePasswordVisibility}>
-              {showPassword ? <Eye color="whitesmoke" /> : <EyeSlash color="whitesmoke" />}
+              {showPassword ? (
+                <Eye color="whitesmoke" />
+              ) : (
+                <EyeSlash color="whitesmoke" />
+              )}
             </button>
           </div>
           <div className="form-control">
@@ -73,7 +76,11 @@ const RestartPsswd = () => {
             />
             <label>Confirm Password</label>
             <button type="button" onClick={togglePasswordVisibility}>
-              {showPassword ? <Eye color="whitesmoke" /> : <EyeSlash color="whitesmoke" />}
+              {showPassword ? (
+                <Eye color="whitesmoke" />
+              ) : (
+                <EyeSlash color="whitesmoke" />
+              )}
             </button>
           </div>
           <button type="submit" className="btn">

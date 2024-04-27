@@ -135,7 +135,7 @@ const Footer = () => {
               <ion-icon name="mail" style={{ color: "#035165" }}></ion-icon>
             </a>
             <Modal
-        ariaHideApp={false}
+              ariaHideApp={false}
               id="root"
               isOpen={contactModalIsOpen}
               onAfterOpen={afterOpenModal}
@@ -154,11 +154,7 @@ const Footer = () => {
                   }}
                 ></ion-icon>
               </div>
-              <img
-                src="public/img/contactUs.png"
-                width="100%"
-                alt="Contact Us"
-              />
+              <img src="/img/contactUs.png" width="100%" alt="Contact Us" />
               <h2>
                 {" "}
                 <FormattedMessage
@@ -168,7 +164,7 @@ const Footer = () => {
               </h2>
               <div>
                 <img
-                  src="../../../public/img/Gmail_icon_(2020).svg.png" // Ruta a la imagen del logo de Gmail
+                  src="/img/Gmail_icon_(2020).svg.png" // Ruta a la imagen del logo de Gmail
                   alt="Gmail Logo"
                   style={{ width: "25px", height: "19px", marginRight: "8px" }}
                 />
@@ -189,7 +185,7 @@ const Footer = () => {
               <ion-icon name="people" style={{ color: "#035165" }}></ion-icon>
             </a>
             <Modal
-        ariaHideApp={false}
+              ariaHideApp={false}
               id="root1"
               isOpen={developersModalIsOpen}
               onAfterOpen={afterOpenModal}
@@ -208,7 +204,7 @@ const Footer = () => {
                   }}
                 ></ion-icon>
               </div>
-              <img src="public/img/teamOne.jpg" width="100%" alt="Developers" />
+              <img src="/img/teamOne.jpg" width="100%" alt="Developers" />
               <h2>
                 {" "}
                 <FormattedMessage

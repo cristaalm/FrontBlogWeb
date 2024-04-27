@@ -74,12 +74,10 @@ const Entradasview = ({ intl }) => {
           },
         });
         if (!response.ok) {
-          console.log("No hay comentarios aún");
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
         setComments(data);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -181,16 +179,12 @@ const Entradasview = ({ intl }) => {
         {/* <div className="posted-comments"> */}
         <div className="contenedor-comentario-public mt-4">
           {comments &&
-            comments.map((comment) => (
+            comments.map((comment, i) => (
               <div
-                key={comment.id}
+                key={i}
                 className="flex items-center border-2 border-neutral-200 shadow-lg shadow-teal-600/20 rounded-2xl mt-6 p-2"
               >
-                <img
-                  src="../../../public/img/logo.png"
-                  alt="Preview"
-                  className="w-20 h-20"
-                />
+                <img src="/img/logo.png" alt="Preview" className="w-20 h-20" />
                 <div className="ml-4">
                   <div className="text-cyan-950 font-semibold text-base">
                     <h5 style={{ display: "flex", alignItems: "center" }}>

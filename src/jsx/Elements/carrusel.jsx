@@ -51,7 +51,6 @@ const Carrusel = () => {
         });
         const data = await response.json();
         setEntradas(data);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

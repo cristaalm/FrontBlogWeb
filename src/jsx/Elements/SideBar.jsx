@@ -79,7 +79,7 @@ export default function Sidebar({ children }) {
             style={{ backgroundColor: "#CCFBF1", color: "#083344" }}
           />
           <img
-            src="../../../public/img/logoRedW.png"
+            src="/img/logoRedW.png"
             alt=""
             data-tooltip-id="my-tooltip"
             data-tooltip-place={!expanded ? "right" : "top-start"}

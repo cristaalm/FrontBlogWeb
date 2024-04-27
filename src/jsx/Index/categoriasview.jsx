@@ -60,7 +60,6 @@ function CategoriaView() {
         }
         const data = await response.json();
         setEntradas(data);
-        console.log(data);
         const colorMap = {};
         data.forEach((entradaColor) => {
           colorMap[entradaColor.color] = entradaColor.color;

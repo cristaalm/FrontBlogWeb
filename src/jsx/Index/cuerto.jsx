@@ -53,7 +53,6 @@ const Cuerpo = () => {
         const data = await response.json();
         setEntradas(data);
         setColor(data.color);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -72,7 +71,6 @@ const Cuerpo = () => {
         });
         const data = await response.json();
         setCategoria(data);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -430,12 +428,10 @@ const Cuerpo = () => {
           </div>
           <div className="recurso2">
             {/* Segunda imagen con evento onClick */}
-            <button
-              onClick={() => openImageModal("../../../public/img/ODS66.jpg")}
-            >
+            <button onClick={() => openImageModal("/img/ODS66.jpg")}>
               <img
                 className="recurso2-video"
-                src="../../../public/img/ODS6.gif"
+                src="/img/ODS6.gif"
                 alt="Imagen de recurso"
               />
             </button>
@@ -478,7 +474,7 @@ const Cuerpo = () => {
           />
           <div className="logo-quizz z-50">
             <img
-              src="../../../public/img/quizz.png"
+              src="/img/quizz.png"
               alt="Quizz img"
               className="m-0 p-0 w-40 h-40"
             />

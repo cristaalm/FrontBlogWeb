@@ -226,7 +226,6 @@ function crudPost() {
       const data = await response.json();
       setEntradas(data);
       paginate("#tableEntradas", 10);
-      console.log(data);
     };
     fetchData();
   }, [reloadTable]); // Vuelve a cargar la tabla cuando reloadTable cambia
@@ -311,7 +310,6 @@ function crudPost() {
       const data = await response.json();
       setUser(data);
       setUsuario(nombreusuario);
-      console.log("Datos del usuario", data);
     };
     fetchData();
   }, []);
@@ -637,7 +635,7 @@ function crudPost() {
                     alt="Iniciar Tour"
                   >
                     <img
-                      src="../../../../public/img/logoRedB.png"
+                      src="/img/logoRedB.png"
                       className="rounded h-full w-full"
                       alt="Logo RedB"
                     />

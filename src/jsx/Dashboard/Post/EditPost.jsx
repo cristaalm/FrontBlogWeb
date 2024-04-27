@@ -43,7 +43,6 @@ function EditPublish() {
 
   useEffect(() => {
     let nombreusuario = localStorage.getItem("userName");
-    // console.log(nombreusuario);
     // Mandar el nombre de usuario del fetch en el request body
     const fetchData = async () => {
       const response = await fetch(BaseUrl + "/api/users/find-user", {
@@ -121,7 +120,6 @@ function EditPublish() {
         setCategoryId(data.idcategoria);
         setDescripcion(data.descripcion);
         setPreviewImage(data.imgdestacada);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -142,15 +140,6 @@ function EditPublish() {
     e.preventDefault();
     try {
       const usuario = localStorage.getItem("userName");
-      console.log(
-        title,
-        tiny,
-        categoryId,
-        previewImage,
-        usuario,
-        descripcion,
-        id
-      );
       await editPost(
         title,
         tiny,
@@ -290,7 +279,7 @@ function EditPublish() {
                       />
                     ) : (
                       <img
-                        src="../../../../public/img/upload1.png"
+                        src="/img/upload1.png"
                         alt="Default Preview"
                         className="mt-2 max-w-full h-48 mx-auto"
                       />

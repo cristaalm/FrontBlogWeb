@@ -80,14 +80,10 @@ function categorías() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     // Aquí puedes manejar la lógica para subir el archivo
-    console.log("Archivo seleccionado:", file);
   };
 
   const handleAddImage = () => {
     // Lógica para insertar la imagen en el editor de texto
-    console.log("Link de la imagen:", imageLink);
-    console.log("Ancho de la imagen:", imageWidth);
-    console.log("Alto de la imagen:", imageHeight);
     // Aquí puedes realizar la lógica para insertar la imagen en el editor de texto si es necesario
     setShowModal(false); // Cierra el modal después de procesar la imagen
   };
@@ -98,7 +94,6 @@ function categorías() {
 
   const handleImageUpload = (file) => {
     const reader = new FileReader();
-    console.log("base64String");
     reader.onloadend = () => {
       const base64String = reader.result;
       setPreviewImage(base64String);
@@ -243,7 +238,6 @@ function categorías() {
     setNombre(categoryData.nombre);
     setDescripcion(categoryData.descripcion);
     setSelectedColor(categoryData.color);
-    console.log(categoryData.imgdestacada);
     // Actualiza el estado previewImage con la URL de la imagen
     setPreviewImage(categoryData.imgdestacada);
   };
@@ -401,7 +395,7 @@ function categorías() {
                       />
                     ) : (
                       <img
-                        src="../../../../public/img/upload1.png"
+                        src="/img/upload1.png"
                         alt="Default Preview"
                         className="mt-2 max-w-full h-48 mx-auto"
                       />

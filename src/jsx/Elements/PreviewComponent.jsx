@@ -38,7 +38,6 @@ const PreviewComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(id);
         const response = await fetch(BaseUrl + `/api/entradas/${id}`, {
           method: "GET",
           headers: {
@@ -57,7 +56,6 @@ const PreviewComponent = () => {
         setFPublicacion(data.fechapublicacion);
         setNombre(data.nombre);
         setPreviewImage(data.imgdestacada);
-        console.log(data.fechapublicacion);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -81,10 +79,16 @@ const PreviewComponent = () => {
         if (data !== null) {
           const names = {};
           const color = {};
-          data.forEach((category) => {
-            names[category.id] = category.nombre;
-            color[category.id] = category.color;
-          });
+          if (Array.isArray(data)) {
+            // Data is an array
+            data.forEach((category) => {
+              names[category.id] = category.nombre;
+              color[category.id] = category.color;
+            });
+          } else {
+            names[data.id] = data.nombre;
+            color[data.id] = data.color;
+          }
           setCategoryNames(names);
           setColor(color);
         } else {
@@ -118,7 +122,6 @@ const PreviewComponent = () => {
 
   const colorClass = colorMap[color[categoria]] || "cyan-400";
   let colorLetra = calcularContraste(color[categoria]);
-  console.log(colorLetra);
   const copiarAlPortapapeles = (e) => {
     e.preventDefault();
     const enlace = `http://localhost:5173/blog-post/${id}`;
@@ -153,7 +156,7 @@ const PreviewComponent = () => {
             {/* <div className="flex" style={{ height: "100px" }}> */}{" "}
             <div className="flex items-end">
               <img
-                src="../../../public/img/logo.png"
+                src="/img/logo.png"
                 alt="Preview"
                 className="mt-2 w-14 h-14"
               />

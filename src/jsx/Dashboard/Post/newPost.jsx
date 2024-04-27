@@ -29,9 +29,9 @@ function usuarios() {
       showProgress: true,
       overlayColor: "lemon",
       theme: "dark",
-      nextBtnText: '—›',
-      prevBtnText: '‹—',
-      doneBtnText: '✕',
+      nextBtnText: "—›",
+      prevBtnText: "‹—",
+      doneBtnText: "✕",
       onPopoverRender: (popover, { config, state }) => {
         const firstButton = document.createElement("button");
         //firstButton.innerText = "Go to First";
@@ -152,7 +152,6 @@ function usuarios() {
 
   useEffect(() => {
     let nombreusuario = localStorage.getItem("userName");
-    // console.log(nombreusuario);
     // Mandar el nombre de usuario del fetch en el request body
     const fetchData = async () => {
       const response = await fetch(BaseUrl + "/api/users/find-user", {
@@ -318,7 +317,7 @@ function usuarios() {
                     alt="Iniciar Tour"
                   >
                     <img
-                      src="../../../../public/img/logoRedB.png"
+                      src="/img/logoRedB.png"
                       className="rounded h-full w-full"
                       alt="Logo RedB"
                     />
@@ -388,7 +387,7 @@ function usuarios() {
                       />
                     ) : (
                       <img
-                        src="../../../../public/img/upload1.png"
+                        src="/img/upload1.png"
                         alt="Default Preview"
                         className="mt-2 max-w-full h-48 mx-auto"
                       />
@@ -431,30 +430,32 @@ function usuarios() {
                         <div>
                           <div className="form-group tinymce-container">
                             <div className="enter"></div>
-                            
-                    <Editor
-                      apiKey='4bf4juc56apg2x7qd86sdyhdrj1zjznysvz06bddzevq7ewb'
-                      init={{
-                        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
-                        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-                        tinycomments_mode: 'embedded',
-                        tinycomments_author: 'AQUAVISION',
-                        mergetags_list: [
-                          { value: 'First.Name', title: 'First Name' },
-                          { value: 'Email', title: 'Email' },
-                        ],
-                        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
-                      }}
-                      id="entryDescription"
-                      name="content"
-                      value={tiny}
-                      onEditorChange={handleTinyChange}
 
-                    />
-                    
-                    
-                  
-
+                            <Editor
+                              apiKey="4bf4juc56apg2x7qd86sdyhdrj1zjznysvz06bddzevq7ewb"
+                              init={{
+                                plugins:
+                                  "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown",
+                                toolbar:
+                                  "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+                                tinycomments_mode: "embedded",
+                                tinycomments_author: "AQUAVISION",
+                                mergetags_list: [
+                                  { value: "First.Name", title: "First Name" },
+                                  { value: "Email", title: "Email" },
+                                ],
+                                ai_request: (request, respondWith) =>
+                                  respondWith.string(() =>
+                                    Promise.reject(
+                                      "See docs to implement AI Assistant"
+                                    )
+                                  ),
+                              }}
+                              id="entryDescription"
+                              name="content"
+                              value={tiny}
+                              onEditorChange={handleTinyChange}
+                            />
                           </div>
                         </div>
                       </div>

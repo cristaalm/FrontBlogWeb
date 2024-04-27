@@ -27,7 +27,7 @@ function LayoutPost() {
       onPopoverRender: (popover, { config, state }) => {
         const firstButton = document.createElement("button");
         const icon = document.createElement("img");
-        icon.src = "../public/img/refresh.png"; // Reemplaza "ruta/al/icono.svg" con la ruta de tu icono SVG
+        icon.src = "/img/refresh.png"; // Reemplaza "ruta/al/icono.svg" con la ruta de tu icono SVG
         icon.width = 24; // Ajusta el ancho según sea necesario
         icon.height = 24; // Ajusta la altura según sea necesario
         firstButton.appendChild(icon);
@@ -182,7 +182,7 @@ function LayoutPost() {
                     alt="Iniciar Tour"
                   >
                     <img
-                      src="../../../../public/img/logoRedB.png"
+                      src="/img/logoRedB.png"
                       className="rounded h-full w-full"
                       alt="Logo RedB"
                     />

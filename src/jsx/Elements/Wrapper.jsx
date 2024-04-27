@@ -18,7 +18,6 @@ const Wrapper = (props) => {
     const selectedMessages = e === "en" ? English : Español;
     setMessages(selectedMessages);
     // setSelectedLocale(e);
-    // console.log(selectedMessages);
   }
 
   const selectedMessages = messages; // locale === "en" ? messages["en"] : messages["es"] ;

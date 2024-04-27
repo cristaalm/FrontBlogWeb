@@ -71,11 +71,11 @@ h1 {
   text-align: center;
 }
 .menu-item.plus {
-  background-image: url("././public/abajo.svg");
+  background-image: url("/abajo.svg");
 }
 
 .menu-item.minus {
-  background-image: url("././public/arriba.svg");
+  background-image: url("/arriba.svg");
 }
 .dropdown {
   background-color: #f0f0f0;

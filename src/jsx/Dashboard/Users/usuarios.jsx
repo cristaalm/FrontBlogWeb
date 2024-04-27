@@ -101,7 +101,6 @@ function usuarios() {
     }
   }, []);
 
-
   // Obtiene los usuarios en la tabla (GET)
   useEffect(() => {
     const fetchData = async () => {
@@ -111,7 +110,6 @@ function usuarios() {
       const data = await response.json();
       setUsers(data);
       paginate("#tableUsuarios", 10);
-      console.log(data);
     };
     fetchData();
   }, [reloadTable]); // Vuelve a cargar la tabla cuando reloadTable cambia
@@ -138,7 +136,6 @@ function usuarios() {
       });
       if (response.ok) {
         setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
-        console.log(`Usuario con ID ${deleteUserId} eliminado exitosamente`);
         setDeleteContact(false);
         setMessage("Usuario eliminado exitosamente");
         setMessageClass("success");
@@ -464,8 +461,6 @@ function usuarios() {
                             </thead>
 
                             <tbody>
-                              {console.log("De table user: ", users)}
-                              {console.log("De auth user: ", usuarioLocal)}
                               {users.data &&
                                 users.data
                                   .filter((userInfo) => {

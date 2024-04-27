@@ -7,7 +7,7 @@ const Encabezado = () => {
     <header id="header" className="headerhome">
       <div className="iml">
         <RouterLink to="/welcome">
-          <img className="logo" src="../../../public/img/logo.png" />
+          <img className="logo" src="/img/logo.png" />
         </RouterLink>
       </div>
       <div className="menum">

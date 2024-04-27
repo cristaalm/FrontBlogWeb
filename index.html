@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./public/img/logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/img/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AquaVision</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,7 +45,7 @@
         }
       }
     </style>
-    <script src="public/js/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js"></script>
 
     <script type="text/javascript">
@@ -63,7 +63,6 @@
         return luminosidadFondo < umbral ? "#ffffff" : "#000000";
       }
       function paginate(tableName, RecordsPerPage) {
-        debugger;
         $("#nav").remove();
         $(tableName).after('<div id="nav"></div>');
         var rowsShown = RecordsPerPage;
@@ -118,7 +117,7 @@
       nomodule
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
-    <script nomodule src="public/js/react-modal.min.js"></script>
+    <script nomodule src="/js/react-modal.min.js"></script>
     <script type="text/javascript">
       const loadingWrapperElement = document.getElementById("loadingwrapper");
       const loadingElement = document.getElementById("loading");

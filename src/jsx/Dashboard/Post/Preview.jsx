@@ -19,7 +19,8 @@ function Preview() {
     }
     if (storedAuth == "false") {
       navigate("/login");
-    } // console.log(nombreusuario);
+    }
+    let nombreusuario = localStorage.getItem("userName");
     // Mandar el nombre de usuario del fetch en el request body
     const fetchData = async () => {
       const response = await fetch(BaseUrl + "/api/users/find-user", {

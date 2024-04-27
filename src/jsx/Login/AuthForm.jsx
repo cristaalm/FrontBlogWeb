@@ -21,9 +21,7 @@ const AuthForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(acceptTerms);
     if (username && password && acceptTerms) {
-      console.log("sí");
       try {
         const data = await loginUser(username, password);
         localStorage.setItem("isAuthenticated", data.logged.toString());
@@ -39,9 +37,7 @@ const AuthForm = () => {
           );
           localStorage.setItem("userName", username);
           setMessageClass("success");
-          console.log("success");
         } else {
-          console.log("Check password or username.");
           setMessage(
             <FormattedMessage
               id="login.error"
@@ -54,10 +50,8 @@ const AuthForm = () => {
         console.error("Login failed:", error);
         setMessage("Check password or username.");
         localStorage.setItem("isAuthenticated", "false");
-        console.log("Check password or username.");
       }
     } else {
-      console.log("Falta algo");
       setMessage(
         <FormattedMessage
           id="login.check"
