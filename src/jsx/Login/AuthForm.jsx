@@ -16,73 +16,96 @@ const AuthForm = () => {
   const [messageClass, setMessageClass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
 
   const navigate = useNavigate();
-  //
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
-    script.async = true;
-    script.defer = true;
-    window.onloadCallback = () => {
-      window.grecaptcha.render('recaptcha-container', {
-        'sitekey' : '6Lc3UsgpAAAAAFG8_eUiJennqPF7KoYJR3Pi2PEU',
-        'size': 'invisible',
-        'callback' : verifyCallback
-      });
-    };
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
+    if (!recaptchaLoaded) {
+      const script = document.createElement('script');
+      script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+  
+      window.onloadCallback = () => {
+        window.grecaptcha.render('recaptcha-container', {
+          'sitekey' : '6Lc3UsgpAAAAAFG8_eUiJennqPF7KoYJR3Pi2PEU',
+          'size': 'invisible',
+          'callback' : verifyCallback
+        });
+        setRecaptchaLoaded(true);  // Marca que reCAPTCHA ha sido cargado
+      };
+  
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, [recaptchaLoaded]);
   const verifyCallback = (response) => {
     console.log("ReCAPTCHA verified with response: ", response);
   };
-// IMPLEMENTAR EL TOKEN EN EL BACK PARA LAS SOLICITUDES
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (username && password && acceptTerms) {
-    //  
-      window.grecaptcha.execute();
-
-      const response = window.grecaptcha.getResponse();
-    if (response.length === 0) {
-      setMessageClass("error");
-      return;
-    }
-    //recaptcha
-      try {
-        const data = await loginUser(username, password,response);
-        localStorage.setItem("isAuthenticated", data.logged.toString());
-        if (data.logged) {
-          setTimeout(() => {
-            navigate("/dashboard");
-          }, 1000);
+      // Inicia la ejecución de reCAPTCHA y maneja la promesa resultante.
+      window.grecaptcha.execute().then(async function() {
+        const response = window.grecaptcha.getResponse();
+        if (response.length === 0) {
+          setMessageClass("error");
           setMessage(
             <FormattedMessage
-              id="login.success"
-              defaultMessage="User logged in correctly."
+              id="login.completeCaptcha"
+              defaultMessage="Please complete the CAPTCHA."
             />
           );
-          localStorage.setItem("userName", username);
-          setMessageClass("success");
-        } else {
+          return; // Asegúrate de retornar aquí para evitar ejecución adicional si CAPTCHA falla.
+        }
+        // Recaptcha es válido, procede con el inicio de sesión
+        try {
+          const data = await loginUser(username, password, response);
+          localStorage.setItem("isAuthenticated", data.logged.toString());
+          if (data.logged) {
+            setMessage(
+              <FormattedMessage
+                id="login.success"
+                defaultMessage="User logged in correctly."
+              />
+            );
+            localStorage.setItem("userName", username);
+            setMessageClass("success");
+            setTimeout(() => {
+              navigate("/dashboard");
+            }, 1000);
+          } else {
+            setMessage(
+              <FormattedMessage
+                id="login.error"
+                defaultMessage="Check password or username."
+              />
+            );
+            setMessageClass("error");
+          }
+        } catch (error) {
+          console.error("Login failed:", error);
           setMessage(
             <FormattedMessage
               id="login.error"
-              defaultMessage="Check password or username"
+              defaultMessage="Check password or username."
             />
           );
           setMessageClass("error");
+          localStorage.setItem("isAuthenticated", "false");
         }
-      } catch (error) {
-        console.error("Login failed:", error);
-        setMessage("Check password or username.");
-        localStorage.setItem("isAuthenticated", "false");
-      }
+      }).catch(error => {
+        console.error("reCAPTCHA execution failed:", error);
+        setMessageClass("error");
+        setMessage(
+          <FormattedMessage
+            id="login.captchaError"
+            defaultMessage="CAPTCHA verification failed. Please try again."
+          />
+        );
+      });
     } else {
       setMessage(
         <FormattedMessage
@@ -93,6 +116,7 @@ const AuthForm = () => {
       setMessageClass("error");
     }
   };
+  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
