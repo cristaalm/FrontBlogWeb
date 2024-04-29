@@ -151,10 +151,21 @@ h1 {
 }
 .form-control {
   position: relative;
-  margin: 20px 0 25px;
+  margin: 48px 0 25px;
   width: 100%;
 }
 
+.eye2{
+  color: whitesmoke;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  text-decoration-thickness: 10%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 .eye {
   color: whitesmoke;
   position: absolute;

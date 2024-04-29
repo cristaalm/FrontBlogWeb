@@ -20,102 +20,97 @@ const AuthForm = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (!recaptchaLoaded) {
-      const script = document.createElement('script');
-      script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
-      script.async = true;
-      script.defer = true;
-      document.body.appendChild(script);
-  
-      window.onloadCallback = () => {
+    loadRecaptcha();
+    return () => {
+      const recaptchaScript = document.querySelector('script[src="https://www.google.com/recaptcha/api.js"]');
+      if (recaptchaScript) {
+        document.body.removeChild(recaptchaScript);
+      }
+    };
+  }, []);
+
+  const loadRecaptcha = () => {
+    const script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit';
+    script.async = true;
+    script.defer = true;
+    script.onerror = () => {
+      console.error("No se pudo cargar el reCAPTCHA. Verifique la conexión a Internet y las configuraciones de seguridad del navegador.");
+      setMessage("Error loading reCAPTCHA. Please check your internet connection.");
+      setMessageClass("error");
+    };
+    document.body.appendChild(script);
+
+    window.onloadCallback = () => {
+      if (window.grecaptcha && document.getElementById('recaptcha-container').innerHTML === '') {
         window.grecaptcha.render('recaptcha-container', {
           'sitekey' : '6Lc3UsgpAAAAAFG8_eUiJennqPF7KoYJR3Pi2PEU',
           'size': 'invisible',
           'callback' : verifyCallback
         });
-        setRecaptchaLoaded(true);  // Marca que reCAPTCHA ha sido cargado
-      };
-  
-      return () => {
-        document.body.removeChild(script);
-      };
-    }
-  }, [recaptchaLoaded]);
+        setRecaptchaLoaded(true);
+      }
+    };
+  };
+
   const verifyCallback = (response) => {
     console.log("ReCAPTCHA verified with response: ", response);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (username && password && acceptTerms) {
-      // Inicia la ejecución de reCAPTCHA y maneja la promesa resultante.
-      window.grecaptcha.execute().then(async function() {
-        const response = window.grecaptcha.getResponse();
-        if (response.length === 0) {
-          setMessageClass("error");
-          setMessage(
-            <FormattedMessage
-              id="login.completeCaptcha"
-              defaultMessage="Please complete the CAPTCHA."
-            />
-          );
-          return; // Asegúrate de retornar aquí para evitar ejecución adicional si CAPTCHA falla.
-        }
-        // Recaptcha es válido, procede con el inicio de sesión
-        try {
-          const data = await loginUser(username, password, response);
-          localStorage.setItem("isAuthenticated", data.logged.toString());
-          if (data.logged) {
-            setMessage(
-              <FormattedMessage
-                id="login.success"
-                defaultMessage="User logged in correctly."
-              />
-            );
-            localStorage.setItem("userName", username);
-            setMessageClass("success");
-            setTimeout(() => {
-              navigate("/dashboard");
-            }, 1000);
-          } else {
-            setMessage(
-              <FormattedMessage
-                id="login.error"
-                defaultMessage="Check password or username."
-              />
-            );
-            setMessageClass("error");
-          }
-        } catch (error) {
-          console.error("Login failed:", error);
-          setMessage(
-            <FormattedMessage
-              id="login.error"
-              defaultMessage="Check password or username."
-            />
-          );
-          setMessageClass("error");
-          localStorage.setItem("isAuthenticated", "false");
-        }
-      }).catch(error => {
-        console.error("reCAPTCHA execution failed:", error);
-        setMessageClass("error");
-        setMessage(
-          <FormattedMessage
-            id="login.captchaError"
-            defaultMessage="CAPTCHA verification failed. Please try again."
-          />
-        );
-      });
-    } else {
+    if (!acceptTerms) {
       setMessage(
         <FormattedMessage
           id="login.check"
           defaultMessage="Check the terms and conditions box."
         />
+        
       );
       setMessageClass("error");
+      return;
     }
+    if (!recaptchaLoaded) {
+      setMessage("reCAPTCHA not loaded yet. Please wait and try again.");
+      setMessageClass("error");
+      return;
+    }
+
+    window.grecaptcha.execute().then(async function() {
+      const response = window.grecaptcha.getResponse();
+      if (response.length === 0) {
+        setMessageClass("error");
+        setMessage("Please complete the CAPTCHA.");
+        return;
+      }
+      try {
+        const data = await loginUser(username, password, response);
+        if (data.logged) {
+          localStorage.setItem("isAuthenticated", data.logged.toString());
+          setMessage("User logged in correctly.");
+          localStorage.setItem("userName", username);
+          setMessageClass("success");
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 1000);
+        } else {
+          setMessage("Check password or username.");
+          setMessageClass("error");
+        }
+      } catch (error) {
+        console.error("Login failed:", error);
+        setMessage("Check password or username.");
+        setMessageClass("error");
+        localStorage.setItem("isAuthenticated", "false");
+      }
+    }).catch(error => {
+      console.error("reCAPTCHA execution failed:", error);
+      setMessageClass("error");
+      setMessage("CAPTCHA verification failed. Please try again.");
+      
+    });
   };
+    
   
 
   const togglePasswordVisibility = () => {
@@ -355,7 +350,7 @@ const AuthForm = () => {
           </form>
         </div>
       </section>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
