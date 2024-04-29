@@ -122,16 +122,7 @@ const Carrusel = () => {
                   <span
                     style={{
                       backgroundColor: entrada.color,
-                      color:
-                        entrada.color === "#b80000" ||
-                        entrada.color === "#5300eb" ||
-                        entrada.color === "#006b76" ||
-                        entrada.color === "#db3e00" ||
-                        entrada.color === "#008b02" ||
-                        entrada.color === "#1273de" ||
-                        entrada.color === "#004dcf"
-                          ? "whitesmoke"
-                          : "black",
+                      color: calcularContraste(entrada.color),
                     }}
                     className="text-sm p-1 object-bottom pl-4 pr-4 rounded-full font-medium"
                   >

@@ -49,7 +49,7 @@ function usuarios() {
   const [nombre, setNombre] = useState("");
   const [correoelectronico, setCorreo] = useState("");
   const [contraseña, setContraseña] = useState("");
-  const [perfil, setPerfil] = useState([]);
+  const [perfil, setPerfil] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
   const [deleteUserId, setDeleteUserId] = useState(null);

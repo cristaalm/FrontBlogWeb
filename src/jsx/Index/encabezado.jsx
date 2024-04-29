@@ -1,8 +1,13 @@
+import React, { useContext, useEffect, useState } from "react";
 import { CircleUser } from "lucide-react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import { Link as ScrollLink } from "react-scroll";
 const Encabezado = () => {
+  useEffect(() => { 
+    window.scrollTo(0, 0) 
+  }, [])
+
   return (
     <header id="header" className="headerhome">
       <div className="iml">

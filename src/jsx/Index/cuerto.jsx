@@ -176,16 +176,7 @@ const Cuerpo = () => {
                     className="numero font-semibold"
                     style={{
                       backgroundColor: category.color,
-                      color:
-                        category.color === "#b80000" ||
-                        category.color === "#5300eb" ||
-                        category.color === "#006b76" ||
-                        category.color === "#db3e00" ||
-                        category.color === "#008b02" ||
-                        category.color === "#1273de" ||
-                        category.color === "#004dcf"
-                          ? "whitesmoke"
-                          : "inherit",
+                      color: calcularContraste(category.color),
                     }}
                   >
                     #{index + 1}
@@ -194,16 +185,7 @@ const Cuerpo = () => {
                     className="overlay rounded-lg "
                     style={{
                       backgroundColor: category.color,
-                      color:
-                        category.color === "#b80000" ||
-                        category.color === "#5300eb" ||
-                        category.color === "#006b76" ||
-                        category.color === "#db3e00" ||
-                        category.color === "#008b02" ||
-                        category.color === "#1273de" ||
-                        category.color === "#004dcf"
-                          ? "whitesmoke"
-                          : "black",
+                      color: calcularContraste(category.color),
                     }}
                   >
                     <div className="font-bold text-2xl">
@@ -344,8 +326,8 @@ const Cuerpo = () => {
                       src={entrada.imgdestacada}
                       alt={"Imagen Destacada de entrada " + entrada.id}
                       style={{
-                        width: "400px",
-                        height: "100%",
+                        width: "100%",
+                        height: "200px",
                         objectFit: "cover",
                       }}
                     />
@@ -379,16 +361,7 @@ const Cuerpo = () => {
                     <span
                       style={{
                         backgroundColor: entrada.color,
-                        color:
-                          entrada.color === "#b80000" ||
-                          entrada.color === "#5300eb" ||
-                          entrada.color === "#006b76" ||
-                          entrada.color === "#db3e00" ||
-                          entrada.color === "#008b02" ||
-                          entrada.color === "#1273de" ||
-                          entrada.color === "#004dcf"
-                            ? "whitesmoke"
-                            : "black",
+                        color: calcularContraste(entrada.color),
                       }}
                       className="text-sm p-1 object-bottom pl-4 pr-4 rounded-full font-medium"
                     >
