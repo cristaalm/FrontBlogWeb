@@ -6,6 +6,7 @@ import Encabezado2 from "./encabezado2.jsx";
 import { BaseUrl } from "../../constants/global.js";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
+import { FormattedMessage } from "react-intl";
 
 function TodasLasEntradas() {
   const [entradas, setEntradas] = useState([]);
@@ -28,7 +29,7 @@ function TodasLasEntradas() {
         }
         const data = await response.json();
         setEntradas(data);
-
+        paginatePost("#listaEntradas", 2);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -41,8 +42,11 @@ function TodasLasEntradas() {
       <Encabezado2 />
       {/* Contenido */}
       <article className="m-10">
-        <div className="titulosdecategoruas font-bold">Blog Post</div>
-        <div className="flex flex-wrap justify-center">
+        <div className="titulosdecategoruas font-bold">
+          {" "}
+          <FormattedMessage id="index.blogPost" defaultMessage="blogPost" />
+        </div>
+        <div id="listaEntradas" className="flex flex-wrap justify-center">
           {entradas &&
             entradas
               .sort(
@@ -97,7 +101,7 @@ function TodasLasEntradas() {
                         }}
                         className="text-sm p-1 pl-4 pr-4 rounded-full font-medium"
                       >
-                        {entrada.categoria}
+                        {entrada.nombrecategoria}{" "}
                       </span>
                     </div>
                   </div>

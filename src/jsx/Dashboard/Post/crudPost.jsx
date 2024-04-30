@@ -22,6 +22,7 @@ import {
   CirclePlus,
   CloudUpload,
   Search,
+  Globe,
 } from "lucide-react";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { driver } from "driver.js";
@@ -201,6 +202,16 @@ function crudPost() {
     setPublicEntrada(true);
     setDeleteUserId(id);
   };
+  const toggleViewPost = (id) => {
+    navigate(`/blog-post/${id}`);
+  };
+  const togglePreview = (id) => {
+    navigate(`/post/preview/${id}`);
+  };
+  const toggleEditPost = (id) => {
+    navigate(`/post/edit/${id}`);
+  };
+
   const toggleRevisar = (id) => {
     setRevisarEntrada(true);
     setDeleteUserId(id);
@@ -606,6 +617,14 @@ function crudPost() {
           }}
         />
         <Tooltip
+          id="viewWeb"
+          style={{
+            backgroundColor: "#000",
+            color: "whitesmoke",
+            zIndex: "999",
+          }}
+        />
+        <Tooltip
           id="preview"
           style={{
             backgroundColor: "#2779bd",
@@ -744,46 +763,71 @@ function crudPost() {
                                       </span>
                                     </td>
                                     <td className="flex items-center justify-center">
-                                      <Link to={`/post/edit/${entrada.id}`}>
-                                        <button
-                                          className={`btn-yellow p-2 m-1 editar-tour ${
-                                            entrada.estatus !== "Revisión" &&
-                                            entrada.estatus !== "Publicado" &&
-                                            entrada.usuario == nombreusuario &&
-                                            entrada.estatus === "Pendiente"
-                                              ? ""
-                                              : "opacity-50 cursor-not-allowed hidden"
-                                          }`}
-                                          data-tooltip-id="editar"
-                                          data-tooltip-place="top"
-                                          data-tooltip-content="Editar"
-                                          disabled={
-                                            entrada.estatus == "Revisión" &&
-                                            entrada.estatus == "Publicado" &&
-                                            entrada.usuario !== nombreusuario
-                                          }
-                                          {...(entrada.estatus !== "Revisión" &&
+                                      <button
+                                        // onClick={() =>
+                                        //   toggleEditPost(entrada.id)
+                                        // }
+                                        className={`btn-yellow p-2 m-1 editar-tour ${
+                                          entrada.estatus !== "Revisión" &&
                                           entrada.estatus !== "Publicado" &&
-                                          entrada.usuario == nombreusuario
-                                            ? {}
-                                            : { "data-tooltip-hidden": true })}
-                                          onClick={() =>
-                                            loadEditUserData(entrada.id)
-                                          }
-                                        >
-                                          <Pencil size={20} />
-                                        </button>
-                                      </Link>
-                                      <Link to={`/post/preview/${entrada.id}`}>
+                                          entrada.usuario == nombreusuario &&
+                                          entrada.estatus === "Pendiente"
+                                            ? ""
+                                            : "opacity-25 cursor-not-allowed"
+                                        }`}
+                                        data-tooltip-id="editar"
+                                        data-tooltip-place="top"
+                                        data-tooltip-content="Editar"
+                                        disabled={
+                                          entrada.estatus == "Revisión" &&
+                                          entrada.estatus == "Publicado" &&
+                                          entrada.usuario !== nombreusuario
+                                        }
+                                        {...(entrada.estatus !== "Revisión" &&
+                                        entrada.estatus !== "Publicado" &&
+                                        entrada.usuario == nombreusuario
+                                          ? {}
+                                          : { "data-tooltip-hidden": true })}
+                                        onClick={() =>
+                                          loadEditUserData(entrada.id)
+                                        }
+                                      >
+                                        <Pencil size={20} />
+                                      </button>
+                                      <button
+                                        onClick={() =>
+                                          togglePreview(entrada.id)
+                                        }
+                                        className={`btn-blue p-2 m-1 previsualizar-tour ${
+                                          entrada.estatus !== "Publicado"
+                                            ? ""
+                                            : "opacity-25 cursor-not-allowed"
+                                        }`}
+                                        data-tooltip-id="preview"
+                                        data-tooltip-place="top"
+                                        data-tooltip-content="Previsualizar"
+                                        disabled={
+                                          entrada.estatus === "Publicado"
+                                        }
+                                        {...(entrada.estatus !== "Publicado"
+                                          ? {}
+                                          : { "data-tooltip-hidden": true })}
+                                      >
+                                        <Eye size={20} />
+                                      </button>
+                                      {user.rol === "Administrador" && (
                                         <button
-                                          className={`btn-blue p-2 m-1 previsualizar-tour ${
+                                          onClick={() =>
+                                            togglePublic(entrada.id)
+                                          }
+                                          className={`btn-green p-2 m-1 ${
                                             entrada.estatus !== "Publicado"
                                               ? ""
-                                              : "opacity-50 cursor-not-allowed hidden"
+                                              : "opacity-25 cursor-not-allowed"
                                           }`}
-                                          data-tooltip-id="preview"
+                                          data-tooltip-id="post"
                                           data-tooltip-place="top"
-                                          data-tooltip-content="Previsualizar"
+                                          data-tooltip-content="Publicar"
                                           disabled={
                                             entrada.estatus === "Publicado"
                                           }
@@ -791,9 +835,9 @@ function crudPost() {
                                             ? {}
                                             : { "data-tooltip-hidden": true })}
                                         >
-                                          <Eye size={20} />
+                                          <CloudUpload size={20} />
                                         </button>
-                                      </Link>
+                                      )}
                                       <button
                                         onClick={() => toggleDelete(entrada.id)}
                                         className="btn-red p-2 m-1 eliminar-tour"
@@ -811,7 +855,7 @@ function crudPost() {
                                           className={`btn-purple p-2 m-1 revisar-tour ${
                                             entrada.estatus !== "Revisión"
                                               ? ""
-                                              : "opacity-50 cursor-not-allowed hidden"
+                                              : "opacity-25 cursor-not-allowed"
                                           }`}
                                           data-tooltip-id="revisar"
                                           data-tooltip-place="top"
@@ -825,30 +869,29 @@ function crudPost() {
                                         >
                                           <Search size={20} />
                                         </button>
-                                      )}
-                                      {user.rol === "Administrador" && (
-                                        <button
-                                          onClick={() =>
-                                            togglePublic(entrada.id)
-                                          }
-                                          className={`btn-green p-2 m-1 ${
-                                            entrada.estatus !== "Publicado"
-                                              ? ""
-                                              : "opacity-50 cursor-not-allowed hidden"
-                                          }`}
-                                          data-tooltip-id="post"
-                                          data-tooltip-place="top"
-                                          data-tooltip-content="Publicar"
-                                          disabled={
-                                            entrada.estatus === "Publicado"
-                                          }
-                                          {...(entrada.estatus !== "Publicado"
-                                            ? {}
-                                            : { "data-tooltip-hidden": true })}
-                                        >
-                                          <CloudUpload size={20} />
-                                        </button>
-                                      )}
+                                      )}  
+                                      <button
+                                        style={{ backgroundColor: "#000" }}
+                                        onClick={() =>
+                                          toggleViewPost(entrada.id)
+                                        }
+                                        className={`btn-black rounded-lg p-2 m-1 ${
+                                          entrada.estatus === "Publicado"
+                                            ? ""
+                                            : "opacity-25 cursor-not-allowed"
+                                        }`}
+                                        data-tooltip-id="viewWeb"
+                                        data-tooltip-place="top"
+                                        data-tooltip-content="Visitar Entrada"
+                                        disabled={
+                                          entrada.estatus !== "Publicado"
+                                        }
+                                        {...(entrada.estatus === "Publicado"
+                                          ? {}
+                                          : { "data-tooltip-hidden": true })}
+                                      >
+                                        <Globe size={20} color="whitesmoke" />
+                                      </button>
                                     </td>
                                   </tr>
                                 </tbody>

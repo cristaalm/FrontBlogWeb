@@ -101,6 +101,48 @@
             .animate({ opacity: 1 }, 300);
         });
       }
+      function paginatePost(tableName, RecordsPerPage) {
+        $("#nav").remove();
+        $(tableName).after('<div id="nav"></div>');
+        var rowsShown = RecordsPerPage;
+        var rowsTotal = $(
+          tableName + " > div.ultimasentradas-container"
+        ).length;
+        debugger;
+        var numPages = rowsTotal / rowsShown;
+        $("#nav").append(
+          '<span class="relative z-0 mt-10 inline-flex shadow-sm rounded-md">'
+        );
+        for (i = 0; i < numPages; i++) {
+          var pageNum = i + 1;
+          $("#nav").append(
+            '<a class="relative inline-flex mb-10 items-center px-2 py-2 rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" href="#" rel="' +
+              i +
+              '">' +
+              pageNum +
+              "</a> "
+          );
+        }
+        $("#nav").append("</span>");
+        $(tableName + " > div.ultimasentradas-container").hide();
+        $(tableName + " > div.ultimasentradas-container")
+          .slice(0, rowsShown)
+          .show();
+        $("#nav a:first").addClass("active");
+        $("#nav a").bind("click", function () {
+          $("#nav a").removeClass("active");
+          $(this).addClass("active");
+          var currPage = $(this).attr("rel");
+          var startItem = currPage * rowsShown;
+          var endItem = startItem + rowsShown;
+          $(tableName + " > div.ultimasentradas-container")
+            .css("opacity", "0.0")
+            .hide()
+            .slice(startItem, endItem)
+            .css("display", "table-row")
+            .animate({ opacity: 1 }, 300);
+        });
+      }
     </script>
   </head>
   <body>

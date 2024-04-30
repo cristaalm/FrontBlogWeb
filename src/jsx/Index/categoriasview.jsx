@@ -7,9 +7,9 @@ import { BaseUrl } from "../../constants/global";
 import { useNavigate } from "react-router-dom";
 
 function CategoriaView() {
-  useEffect(() => { 
-    window.scrollTo(0, 0) 
-  }, [])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const navigate = useNavigate();
 
   const { id } = useParams();
@@ -60,11 +60,6 @@ function CategoriaView() {
         }
         const data = await response.json();
         setEntradas(data);
-        const colorMap = {};
-        data.forEach((entradaColor) => {
-          colorMap[entradaColor.color] = entradaColor.color;
-        });
-        setColor(colorMap);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -75,21 +70,25 @@ function CategoriaView() {
     <div className="cuerpo">
       <Encabezado2 />
       {/* Contenido */}
-      <div className="bg-yellow-400 bg-green-600 text-neutral-100 bg-orange-700 bg-red-700 text-neutral-100 bg-blue-500 bg-cyan-700 bg-violet-700 bg-blue-700 bg-red-200 bg-red-300 bg-green-200 bg-yellow-100 bg-blue-200 bg-blue-300 bg-blueGray-300 bg-purple-300"></div>
-      <div className="hover:text-yellow-400 hover:text-green-600 hover:text-orange-700 hover:text-red-700 hover:text-blue-500 hover:text-cyan-700 hover:text-violet-700 hover:text-blue-700 hover:text-red-200 hover:text-red-300 hover:text-green-200 hover:text-yellow-100 hover:text-blue-200 hover:text-blue-300 hover:text-blueGray-300 hover:text-purple-300 text-neutral-100"></div>
       <article className="categoriasdestacada">
-        <div className="bg-yellow-400 h-40 flex items-center justify-center">
-          {entradas.length > 0 ? (
+        {entradas.length > 0 ? (
+          <div
+            className="h-40 flex items-center justify-center"
+            style={{
+              backgroundColor: entradas[0].color,
+              color: calcularContraste(entradas[0].color),
+            }}
+          >
             <div className="text-center">
               <div className="font-bold text-2xl animate-bounce">
                 {entradas[0].nombrecategoria}
               </div>
               <div className="italic">{entradas[0].descripcioncategoria}</div>
             </div>
-          ) : (
-            <div>No existen entradas publicadas en la categoría</div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div>No existen entradas publicadas en la categoría</div>
+        )}
       </article>
 
       <article className="m-10">
