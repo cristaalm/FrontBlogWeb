@@ -44,7 +44,7 @@ function TodasLasEntradas() {
       <article className="m-10">
         <div className="titulosdecategoruas font-bold">
           {" "}
-          <FormattedMessage id="index.blogPost" defaultMessage="blogPost" />
+          <FormattedMessage id="index.blogPost" defaultMessage="All Blog Post" />
         </div>
         <div id="listaEntradas" className="flex flex-wrap justify-center">
           {entradas &&

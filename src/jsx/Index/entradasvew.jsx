@@ -73,17 +73,22 @@ const Entradasview = ({ intl }) => {
             "Content-Type": "application/json",
           },
         });
+        if (response.status === 404) {
+          return; // No hacer nada si el recurso no se encuentra
+        }
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setComments(data);
+        setComments(Array.isArray(data) ? data : []);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        if (error.message !== "Network response was not ok") {
+          console.error("Error fetching data:", error);
+        }
       }
     };
     fetchData();
-  }, [reloadComments]); // Dependencia para recargar comentarios
+  }, [reloadComments]);
 
   useEffect(() => {
     if (message) {

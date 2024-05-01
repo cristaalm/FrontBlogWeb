@@ -5,6 +5,7 @@ import Footer from "../Elements/Footer.jsx";
 import Encabezado2 from "./encabezado2.jsx";
 import { BaseUrl } from "../../constants/global";
 import { useNavigate } from "react-router-dom";
+import { injectIntl, FormattedMessage } from "react-intl";
 
 function CategoriaView() {
   useEffect(() => {
@@ -92,7 +93,13 @@ function CategoriaView() {
       </article>
 
       <article className="m-10">
-        <div className="titulosdecategoruas font-bold">Blog Post</div>
+        <div className="titulosdecategoruas font-bold">
+          {" "}
+          <FormattedMessage
+            id="index.blogPost"
+            defaultMessage="Comment created successfully."
+          />
+        </div>
         <div className="flex flex-wrap justify-center">
           {entradas.length > 0 ? (
             entradas.map((entrada) => (

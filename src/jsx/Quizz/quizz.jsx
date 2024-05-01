@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import quizData from "./quizz.json";
+import { FormattedMessage, useIntl } from "react-intl"; // Importa FormattedMessage y useIntl
+
 // Antes de tu componente Quizz
 const savedSelection = localStorage.getItem("selectedOption");
 const initialSelectedOption = savedSelection ? parseInt(savedSelection) : null;
 const Quizz = () => {
+  const intl = useIntl();
+  console.log(intl);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [timer, setTimer] = useState(12); // Temporizador de 5 segundos
   const [timerColor, setTimerColor] = useState("green"); // Color inicial del temporizador
-
+  const namevist = intl.formatMessage({
+    id: "index.Visitor's.name",
+    defaultMessage: "Visitor's name",
+  });
   const questions = quizData.preguntas; // Get the questions from the JSON file
   useEffect(() => {
     localStorage.setItem("selectedOption", selectedOption || "");
@@ -100,21 +107,34 @@ const Quizz = () => {
         )}
         {showResult ? (
           <div className="!text-center">
-            <h2 className="text-2xl font-semibold mb-4">Quiz completed!</h2>
-            <p className="text-lg mb-4" style={{ textAlign: "center !important" }}>
-              Your score: {score}
-            </p>
+            <h2 className="text-2xl font-semibold mb-4">
+              <FormattedMessage
+                id="quiz.end"
+                defaultMessage="Quiz completed!"
+              />
+            </h2>
+            <div
+              className="text-lg mb-4"
+              style={{ textAlign: "center !important" }}
+            >
+              <FormattedMessage id="quiz.score" defaultMessage="Your score" />:{" "}
+              {score}
+            </div>
             <button
               className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
               onClick={resetQuiz}
             >
-              Try again
+              <FormattedMessage
+                id="quiz.tryAgain"
+                defaultMessage="Try Again!"
+              />
             </button>
           </div>
         ) : (
           <div className="text-center">
             <div className="mt-8">
-              Question: {currentQuestionIndex + 1}/{questions.length}
+              <FormattedMessage id="quiz.question" defaultMessage="Question" />:{" "}
+              {currentQuestionIndex + 1}/{questions.length}
             </div>
             <h2 className="text-2xl font-semibold mb-4">
               {questions[currentQuestionIndex].pregunta}
@@ -141,13 +161,16 @@ const Quizz = () => {
                 className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
                 onClick={handlePreviousQuestion}
               >
-                Previous
+                <FormattedMessage
+                  id="quiz.previous"
+                  defaultMessage="Previous"
+                />
               </button>
               <button
                 className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
                 onClick={handleNextQuestion}
               >
-                Next
+                <FormattedMessage id="quiz.next" defaultMessage="Next" />
               </button>
             </div>
           </div>

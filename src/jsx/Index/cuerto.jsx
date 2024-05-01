@@ -140,21 +140,27 @@ const Cuerpo = () => {
           muted
           style={{ filter: "brightness(70%)" }}
         ></video>
-        <div className="textvideo">
-          <FormattedMessage id="home.welcome" defaultMessage="Changing Waters" />
-        </div>
         <div className="textvideo2">
-        <FormattedMessage id="home.welcome2" defaultMessage="Dive into Action: Collaborate, learn, and lead in our community dedicated to water and sanitation. Join us and support the UN's Sustainable Development Goals with every drop." />
+          <FormattedMessage
+            className="font-bold"
+            id="home.welcome"
+            defaultMessage="Changing Waters"
+          />
+          <FormattedMessage
+            id="home.welcome2"
+            defaultMessage="Dive into Action: Collaborate, learn, and lead in our community dedicated to water and sanitation. Join us and support the UN's Sustainable Development Goals with every drop."
+          />
         </div>
-        <div className="wave wave1 wavesHome"></div>
-        <div className="wave wave2 wavesHome"></div>
-        <div className="wave wave3 wavesHome"></div>
-        <div className="wave wave4 wavesHome"></div>
-        <div className="vajovideo"></div>
+        <div className="ponerAlFinal">
+          <div className="wave wave1 wavesHome"></div>
+          <div className="wave wave2 wavesHome"></div>
+          <div className="wave wave3 wavesHome"></div>
+          <div className="wave wave4 wavesHome"></div>
+        </div>
       </article>
 
       {/* Top de categorías */}
-      <article className="seccionescuerpo">
+      <article className="seccionescuerpo mt-6">
         <div className="titulosdecategoruas font-bold">
           <FormattedMessage
             id="index.Top-categories"

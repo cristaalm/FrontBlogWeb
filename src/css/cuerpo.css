@@ -23,9 +23,7 @@ body {
   width: 100%;
   display: flex;
 }
-.vajovideo {
-  padding-bottom: 2.5rem;
-}
+
 /* Estilos para el vídeo destacado */
 
 .vid {
@@ -34,15 +32,7 @@ body {
   object-fit: cover; 
   max-height: 100vh; 
 }
-.textvideo{
-  position: absolute;
-  top: 35%;
-  left: 15%;
-  transform: translate(-50%, -50%);
-  font-size: 2.5vw;
-  font-weight: bold;
-  color: #ffffff;
-}
+
 .textvideo2{
   position: absolute;
   top: 49%;
@@ -90,6 +80,7 @@ body {
   background-size: 1000px 100px;
 }
 .wavesHome{
+  /* bottom: 0; */
   top:560px !important;
 }
 .wave.wave1 {
@@ -113,7 +104,7 @@ body {
   animation-delay: -2s;
   bottom: 15px;
 }
-  .wave.wave4 {
+.wave.wave4 {
   animation: animate2 15s linear infinite;
   z-index: 997;
   opacity: 0.7;
@@ -122,6 +113,7 @@ body {
 }
 @keyframes animate {
   0% {
+    
     background-position-x: 0;
   }
   100% {
