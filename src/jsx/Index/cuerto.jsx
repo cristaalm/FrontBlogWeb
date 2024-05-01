@@ -140,11 +140,11 @@ const Cuerpo = () => {
           muted
           style={{ filter: "brightness(70%)" }}
         ></video>
-        <div className="textvideo">Aguas de Cambio</div>
+        <div className="textvideo">
+          <FormattedMessage id="home.welcome" defaultMessage="Changing Waters" />
+        </div>
         <div className="textvideo2">
-          Sumérgete en la acción: colabora, aprende y lidera en nuestra
-          comunidad dedicada al agua y saneamiento. Unete a nosotros y apoya los
-          ODS de la ONU con cada gota.
+        <FormattedMessage id="home.welcome2" defaultMessage="Dive into Action: Collaborate, learn, and lead in our community dedicated to water and sanitation. Join us and support the UN's Sustainable Development Goals with every drop." />
         </div>
         <div className="wave wave1 wavesHome"></div>
         <div className="wave wave2 wavesHome"></div>

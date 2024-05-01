@@ -34,5 +34,7 @@
   "index.Comment-Description" : "Descripción del comentario",
   "msg.commentSuccess": "Comentario creado exitosamente",
   "msg.completeFields":"Por favor, completa todos los campos",
-  "login.check":"Marque la casilla de términos y condiciones."
+  "login.check":"Marque la casilla de términos y condiciones.",
+  "home.welcome":"Aguas de cambio",
+  "home.welcome2":"Aguas de cambio, Sumérgete en la acción: colabora, aprende y lidera en nuestra comunidad dedicada al agua y saneamiento. Unete a nosotros y apoya los ODS de la ONU con cada gota."
 }

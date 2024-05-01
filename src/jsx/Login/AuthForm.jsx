@@ -158,6 +158,11 @@ const AuthForm = () => {
 
   return (
     <div>
+      <div className="backhomebt">
+        <Link to="/welcome">
+          HOME
+      </Link>
+      </div>
       <section>
         <div className="wave wave1"></div>
         <div className="wave wave2"></div>

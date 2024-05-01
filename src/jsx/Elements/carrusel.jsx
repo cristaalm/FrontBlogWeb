@@ -1,68 +1,60 @@
 import React, { useRef, useEffect, useState } from "react";
 import { format } from "date-fns";
 import { BaseUrl } from "../../constants/global";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Carrusel = () => {
   const carruselRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
   const [scrollLeft, setScrollLeft] = useState(0);
-  const speed = 1; // Velocidad de desplazamiento
+  const speed = 6; // Ajusta la velocidad según necesites
   const [entradas, setEntradas] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    let animationFrameId;
-
-    const loop = () => {
-      if (carruselRef.current && !isHovering) {
-        // Obtener el ancho total del carrusel
-        const carruselWidth = carruselRef.current.scrollWidth;
-        // Actualizar el desplazamiento
-        setScrollLeft((scrollLeft) => (scrollLeft + speed) % carruselWidth);
-      }
-
-      // Continuar el bucle
-      animationFrameId = requestAnimationFrame(loop);
-    };
-
-    loop();
-
-    // Limpiar el bucle cuando el componente se desmonta
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isHovering]);
-
-  useEffect(() => {
-    if (!isHovering && carruselRef.current) {
-      // Detener el desplazamiento cuando el cursor está sobre el carrusel
-      carruselRef.current.scrollLeft = scrollLeft;
-    }
-  }, [isHovering, scrollLeft]);
-
-  // Obtiene los entradas en la tabla (POST)
-  useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(BaseUrl + "/api/entradas/publish", {
+        const response = await fetch(`${BaseUrl}/api/entradas/publish`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
         });
         const data = await response.json();
-        setEntradas(data);
+        setEntradas([...data, ...data]); // Duplica las entradas para el efecto de bucle infinito
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
+
     fetchData();
   }, []);
 
+  useEffect(() => {
+    let animationFrameId;
+
+    const loop = () => {
+      if (carruselRef.current && !isHovering) {
+        const { scrollWidth, clientWidth } = carruselRef.current;
+        // Calcular la longitud total del conjunto de tarjetas originales
+        const singleSetWidth = (entradas.length / 2) * (25 * 16 + 20); // 25rem convertido a px y 20px de margen
+        const newScrollLeft = (scrollLeft + speed) % singleSetWidth;
+
+        setScrollLeft(newScrollLeft);
+        carruselRef.current.scrollLeft = newScrollLeft;
+      }
+
+      animationFrameId = requestAnimationFrame(loop);
+    };
+
+    animationFrameId = requestAnimationFrame(loop);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isHovering, scrollLeft, entradas.length]);
+
   const toggleViewEntrada = (id) => {
-    // alert(id);
     navigate(`/blog-post/${id}`);
     window.location.reload();
-    window.location.scrollTo(0, 0);
   };
 
   return (
@@ -76,61 +68,48 @@ const Carrusel = () => {
         className="carrusel1"
         style={{
           display: "flex",
-          transition: "transform 0.5s ease",
           transform: `translateX(-${scrollLeft}px)`,
         }}
         ref={carruselRef}
       >
-        {entradas &&
-          entradas
-            .sort(
-              (a, b) =>
-                new Date(b.fechapublicacion) - new Date(a.fechapublicacion)
-            )
-            .map((entrada) => (
-              <div
-                key={entrada.id}
-                onClick={() => toggleViewEntrada(entrada.id)}
-                className="ultimasentradas rounded-md text-cyan-950 hover:text-yellow-50 cursor-pointer lista"
-                style={{
-                  flex: "0 0 auto",
-                  marginRight: "20px",
-                  width: "20rem",
-                }}
-              >
-                <div className="categoria-seleccionada lista">
-                  <img
-                    className="catimg rounded-md lista"
-                    src={entrada.imgdestacada}
-                    alt={"Imagen Destacada de entrada " + entrada.id}
-                    style={{
-                      width: "100%",
-                      height: "200px",
-                      objectFit: "cover",
-                    }}
-                  />
-                </div>
-                <div className="contenido-entrada font-medium">
-                  <div className="metaentrada lista">
-                    {entrada.nombre} -{" "}
-                    {format(
-                      new Date(entrada.fechapublicacion + "T00:00:00-06:00"),
-                      "dd/MM/yyyy"
-                    )}
-                  </div>
-                  <div className="tituloentrada lista">{entrada.titulo}</div>
-                  <span
-                    style={{
-                      backgroundColor: entrada.color,
-                      color: calcularContraste(entrada.color),
-                    }}
-                    className="text-sm p-1 object-bottom pl-4 pr-4 rounded-full font-medium"
-                  >
-                    {entrada.nombrecategoria}
-                  </span>
-                </div>
+        {entradas.map((entrada, index) => (
+          <div
+            key={index}
+            onClick={() => toggleViewEntrada(entrada.id)}
+            className="ultimasentradas rounded-md text-cyan-950 hover:text-yellow-50 cursor-pointer"
+            style={{
+              flex: "0 0 auto",
+              marginRight: "20px",
+              width: "25rem",
+            }}
+          >
+            <img
+              className="catimg rounded-md"
+              src={entrada.imgdestacada}
+              alt={`Imagen Destacada de entrada ${entrada.id}`}
+              style={{
+                width: "100%",
+                height: "200px",
+                objectFit: "cover",
+              }}
+            />
+            <div className="contenido-entrada font-medium">
+              <div className="metaentrada">
+                {entrada.nombre} - {format(new Date(entrada.fechapublicacion), "dd/MM/yyyy")}
               </div>
-            ))}
+              <div className="tituloentrada">{entrada.titulo}</div>
+              <span
+                style={{
+                  backgroundColor: entrada.color,
+                  color: calcularContraste(entrada.color),
+                }}
+                className="text-sm p-1 pl-4 pr-4 rounded-full font-medium"
+              >
+                {entrada.nombrecategoria}
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -28,6 +28,28 @@ section img {
     margin-left: 52px;
   }
 }
+.backhomebt {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+}
+
+.backhomebt a {
+  display: inline-block;
+  background-color: #4CAF50; 
+  color: white; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  text-decoration: none;
+  font-weight: bold; 
+  transition: background-color 0.3s ease; 
+}
+
+.backhomebt a:hover {
+  background-color: #39823d; 
+}
+
 
 .msg {
   text-decoration: none !important;
