@@ -11,7 +11,7 @@
   "login.email":"Mail Address",
   "login.sendLink" : "Send Link",
   "login.sentMail" : "Email sent",
-  "login.sentMailText" : "We sent you an email. Follow the instructions to get back into your account.",
+  "login.sentMailText" : "We send you an email valid for 10 minutes. Follow the instructions to log back into your account.",
   "login.back":"Back to Login",
   "login.error":"Check password or username.",
   "login.success":"User logged in correctly.",

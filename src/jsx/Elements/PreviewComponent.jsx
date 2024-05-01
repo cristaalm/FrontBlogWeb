@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useParams } from "react-router-dom";
 import { BaseUrl } from "../../constants/global";
+import { Tooltip } from "react-tooltip";
 
 import {
   FacebookShareButton,
@@ -17,7 +18,7 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
   // Link,
   // Facebook,
-  // TwitterX,
+  TwitterX,
   Mailbox,
   // Twitter,
 } from "react-bootstrap-icons";
@@ -172,9 +173,15 @@ const PreviewComponent = () => {
                 </p>
               </div>
             </div>
+            <Tooltip
+              id="tooltip"
+              style={{ backgroundColor: color[categoria], color: colorLetra }}
+            />
             <div className="flex items-end ml-auto mb-2">
               <div className="flex justify-center space-x-4">
                 <a
+                  data-tooltip-id="tooltip"
+                  data-tooltip-content="Copiar enlace"
                   className="cursor-pointer"
                   // href={`http://localhost:5173/post/preview/${id}`}
                   onClick={copiarAlPortapapeles}
@@ -184,6 +191,8 @@ const PreviewComponent = () => {
                   />
                 </a>
                 <FacebookShareButton
+                  data-tooltip-id="tooltip"
+                  data-tooltip-content="Facebook"
                   url={`http://localhost:5173/post/preview/${id}`}
                   quote="Check out this amazing content!"
                   hashtag="#react"
@@ -193,14 +202,19 @@ const PreviewComponent = () => {
                   />
                 </FacebookShareButton>
                 <TwitterShareButton
+                  data-tooltip-id="tooltip"
+                  data-tooltip-content="Twitter"
                   url={`http://localhost:5173/post/preview/${id}`}
                   title="My awesome article"
                 >
-                  <Twitter
+                  <TwitterX
+                    size={20}
                     className={`text-teal-600 hover:text-${colorClass} transition-transform transform hover:scale-110`}
                   />
                 </TwitterShareButton>
                 <EmailShareButton
+                  data-tooltip-id="tooltip"
+                  data-tooltip-content="Email"
                   url={`http://localhost:5173/post/preview/${id}`}
                   subject="Don't miss this!"
                   body="This is a must-read!"

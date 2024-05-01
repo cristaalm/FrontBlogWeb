@@ -19,6 +19,14 @@ export const restartPassword = async (id, pwwd) => {
     if (error.response && error.response.data && error.response.data.error) {
       errorMessage = error.response.data.error;
     }
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.description
+    ) {
+      errorMessage = error.response.data.description;
+    }
+    console.log(errorMessage);
     throw errorMessage;
   }
 };
