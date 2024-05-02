@@ -1,0 +1,104 @@
+{
+  "preguntas": [
+    {
+      "pregunta": "What is the main objective of UN Sustainable Development Goal 6?",
+      "opciones": [
+        { "id": "A", "texto": "Promote quality education for all." },
+        { "id": "B", "texto": "Ensure the availability and sustainable management of water and sanitation for all." },
+        { "id": "C", "texto": "Achieve gender equality and empower all women and girls." },
+        { "id": "D", "texto": "Take urgent action to combat climate change and its impacts." }
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "pregunta": "How many people worldwide lack access to safely managed drinking water services?",
+      "opciones": [
+        { "id": "A", "texto": "Approximately 500 million." },
+        { "id": "B", "texto": "More than 2 billion." },
+        { "id": "C", "texto": "Nearly 1 trillion." },
+        { "id": "D", "texto": "Less than 100 million." }
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "pregunta": "What percentage of wastewater in the world is released into the environment without treatment?",
+      "opciones": [
+        { "id": "A", "texto": "Less than 20%." },
+        { "id": "B", "texto": "Around 40%." },
+        { "id": "C", "texto": "More than 80%." },
+        { "id": "D", "texto": "Exactly 50%." }
+      ],
+      "correct_answer": "C"
+    },
+    {
+      "pregunta": "What impact does inadequate sanitation have on health?",
+      "opciones": [
+        { "id": "A", "texto": "Increases creativity." },
+        { "id": "B", "texto": "Has no significant impact." },
+        { "id": "C", "texto": "Can cause waterborne diseases." },
+        { "id": "D", "texto": "Improves physical resistance." }
+      ],
+      "correct_answer": "C"
+    },
+    {
+      "pregunta": "What is one specific goal of UN Sustainable Development Goal 6?",
+      "opciones": [
+        { "id": "A", "texto": "Completely eliminate the use of fossil fuels by 2030." },
+        { "id": "B", "texto": "Ensure the availability and sustainable management of water and sanitation for all." },
+        { "id": "C", "texto": "Build resilient infrastructure and promote inclusive industrialization." },
+        { "id": "D", "texto": "Reduce inequality within and among countries." }
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "pregunta": "What practice can contribute to sustainable water management?",
+      "opciones": [
+        { "id": "A", "texto": "Deforestation of watersheds." },
+        { "id": "B", "texto": "Efficient use of water in agriculture." },
+        { "id": "C", "texto": "Increase in per capita water consumption." },
+        { "id": "D", "texto": "Ignore wastewater recycling." }
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "pregunta": "How does climate change affect UN Sustainable Development Goal 6?",
+      "opciones": [
+        { "id": "A", "texto": "It has no impact." },
+        { "id": "B", "texto": "It automatically improves water quality." },
+        { "id": "C", "texto": "It increases water scarcity in many areas." },
+        { "id": "D", "texto": "It reduces the amount of wastewater generated." }
+      ],
+      "correct_answer": "C"
+    },
+    {
+      "pregunta": "What is an important action to improve sanitation?",
+      "opciones": [
+        { "id": "A", "texto": "Increase waste production." },
+        { "id": "B", "texto": "Reduce investment in sanitation infrastructure." },
+        { "id": "C", "texto": "Build more wastewater treatment facilities." },
+        { "id": "D", "texto": "Ignore WHO recommendations." }
+      ],
+      "correct_answer": "C"
+    },
+    {
+      "pregunta": "What role does the international community play in achieving UN Sustainable Development Goal 6?",
+      "opciones": [
+        { "id": "A", "texto": "None, it is the sole responsibility of each country." },
+        { "id": "B", "texto": "Provide funding and technology to developing countries." },
+        { "id": "C", "texto": "Increase the use of fossil fuels." },
+        { "id": "D", "texto": "Reduce the world's population." }
+      ],
+      "correct_answer": "B"
+    },
+    {
+      "pregunta": "What is needed to ensure universal access to safe sanitation by 2030?",
+      "opciones": [
+        { "id": "A", "texto": "Decrease investment in clean technologies." },
+        { "id": "B", "texto": "Increase awareness of water efficiency." },
+        { "id": "C", "texto": "Invest in infrastructure and hygiene education." },
+        { "id": "D", "texto": "Increase exploitation of natural resources." }
+      ],
+      "correct_answer": "C"
+    }
+  ]
+}

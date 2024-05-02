@@ -1,30 +1,47 @@
 import React, { useState, useEffect, useContext } from "react";
-import quizData from "./quizz.json";
+import { Context } from "../Elements/Wrapper.jsx";
+import quizDataEspañol from "./quizzEspañol.json";
+import quizDataIngles from "./quizzInglés.json";
 import { FormattedMessage, useIntl } from "react-intl"; // Importa FormattedMessage y useIntl
 
-// Antes de tu componente Quizz
-const savedSelection = localStorage.getItem("selectedOption");
-const initialSelectedOption = savedSelection ? parseInt(savedSelection) : null;
 const Quizz = () => {
-  const intl = useIntl();
-  console.log(intl);
+  const context = useContext(Context);
+  const intl = useIntl(); // Obtiene el objeto intl para usar formatMessage
+  // const questions = quizData.preguntas; // Get the questions from the JSON file
+  const [selectedLanguage, setSelectedLanguage] = useState(context.locale); // Estado para almacenar el valor seleccionado en el campo select
+
+  const handleChange = (event) => {
+    const selectedValue = event.target.value;
+    setSelectedLanguage(selectedValue); // Actualiza el estado con el valor seleccionado
+    context.selectLanguage(selectedValue); // Llama al método selectLanguage del contexto
+  };
+  // Antes de tu componente Quizz
+  const savedSelection = localStorage.getItem("selectedOption");
+  const initialSelectedOption = savedSelection
+    ? parseInt(savedSelection)
+    : null;
+  const questions =
+    selectedLanguage === "en"
+      ? quizDataIngles.preguntas
+      : quizDataEspañol.preguntas;
+
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  // const [selectedOption, setSelectedOption] = useState(null);
   const [timer, setTimer] = useState(12); // Temporizador de 5 segundos
   const [timerColor, setTimerColor] = useState("green"); // Color inicial del temporizador
-  const namevist = intl.formatMessage({
-    id: "index.Visitor's.name",
-    defaultMessage: "Visitor's name",
+  const [selectedOption, setSelectedOption] = useState(() => {
+    const savedSelection = localStorage.getItem("selectedOption");
+    return savedSelection ? parseInt(savedSelection) : null;
   });
-  const questions = quizData.preguntas; // Get the questions from the JSON file
-  useEffect(() => {
-    localStorage.setItem("selectedOption", selectedOption || "");
-  }, [selectedOption]);
+
   const handleOptionSelect = (optionId) => {
     setSelectedOption(optionId);
   };
+  useEffect(() => {
+    localStorage.setItem("selectedOption", selectedOption || "");
+  }, [selectedOption]);
 
   const handleNextQuestion = () => {
     const currentQuestion = questions[currentQuestionIndex];

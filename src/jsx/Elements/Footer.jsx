@@ -156,19 +156,20 @@ const Footer = () => {
               </div>
               <img src="/img/contactUs.png" width="100%" alt="Contact Us" />
               <h2>
-                {" "}
-                <FormattedMessage
-                  id="modal.contactUs"
-                  defaultMessage="Forgot your password?"
-                />
+                <span className="font-bold text-lg">
+                  <FormattedMessage
+                    id="modal.contactUs"
+                    defaultMessage="Forgot your password?"
+                  />
+                </span>
               </h2>
-              <div>
+              <div style={{ display: "flex", alignItems: "center" }}>
                 <img
                   src="/img/Gmail_icon_(2020).svg.png" // Ruta a la imagen del logo de Gmail
                   alt="Gmail Logo"
                   style={{ width: "25px", height: "19px", marginRight: "8px" }}
                 />
-                aquavisionotification@gmail.com
+                <div>aquavisionotification@gmail.com</div>
               </div>
             </Modal>
           </li>
@@ -206,18 +207,19 @@ const Footer = () => {
               </div>
               <img src="/img/teamOne.jpg" width="100%" alt="Developers" />
               <h2>
-                {" "}
+              <span className="font-bold text-lg">
                 <FormattedMessage
                   id="modal.developers"
                   defaultMessage="Developers"
                 />
+                </span>
               </h2>
               <div>
                 {/* <div className="dynamic-names"> */}
-                <p>Medina López Brisa Cristal</p>
-                <p>Ceja Ayala Gustavo</p>
-                <p>Huitron Varela Miguel Ángel</p>
-                <p>Flores López Adrián</p>
+                <p>💧 Medina López Brisa Cristal</p>
+                <p>💧 Ceja Ayala Gustavo</p>
+                <p>💧 Huitron Varela Miguel Ángel</p>
+                <p>💧 Flores López Adrián</p>
               </div>
             </Modal>
           </li>

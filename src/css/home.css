@@ -49,13 +49,13 @@
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
-  cursor: pointer;
+  cursor: pointer;  
   transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones para el color de fondo y el transform */
   outline: none; /* Elimina el contorno cuando se hace clic en los botones */
 }
 
 .navegacion {
-  color:var(--color-1);
+  color:whitesmoke;
   text-decoration: none;
   font-weight: bold;
   display: block; /* Asegura que el enlace llene todo el espacio del botón */

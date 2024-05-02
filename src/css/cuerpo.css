@@ -6,7 +6,7 @@ body {
 .cuerpoo {
   margin: 0;
   padding: 0;
-  background-color: var(--color-1);
+  background-color: white;
 }
 
 .titulosdecategoruas {
@@ -27,13 +27,22 @@ body {
 /* Estilos para el vídeo destacado */
 
 .vid {
-  width: 100%; 
-  height: calc(100vw / (21 / 9)); 
-  object-fit: cover; 
-  max-height: 100vh; 
+  width: 100%;
+  height: calc(100vw / (21 / 9));
+  object-fit: cover;
+  max-height: 100vh;
 }
+/* .vid::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+} */
 
-.textvideo2{
+.textvideo2 {
   position: absolute;
   top: 49%;
   left: 22%;
@@ -45,12 +54,12 @@ body {
 }
 @media screen and (max-width: 768px) {
   .vid {
-    height: 100vw; 
+    height: 100vw;
     max-height: 100vh;
   }
   .textvideo {
     font-size: 20px;
-    top: 70%; 
+    top: 70%;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -59,12 +68,12 @@ body {
     position: absolute;
     top: 77%;
     left: 50%;
-    transform: translateX(-50%);  
+    transform: translateX(-50%);
     font-size: 16px;
     color: #ffffff;
     padding: 20px;
-    max-width: 80%; 
-    text-align: center; 
+    max-width: 80%;
+    text-align: center;
     white-space: normal;
     width: 300px;
   }
@@ -73,15 +82,15 @@ body {
 .wave {
   position: absolute;
   bottom: 0;
-  left: 0;  
+  left: 0;
   width: 100%;
-  height: 100px; 
-  background-image: url(/img/wave3.png); 
+  height: 100px;
+  background-image: url(/img/wave3.png);
   background-size: 1000px 100px;
 }
-.wavesHome{
+.wavesHome {
   /* bottom: 0; */
-  top:560px !important;
+  top: 560px !important;
 }
 .wave.wave1 {
   animation: animate 30s linear infinite;
@@ -113,7 +122,6 @@ body {
 }
 @keyframes animate {
   0% {
-    
     background-position-x: 0;
   }
   100% {
@@ -136,16 +144,15 @@ body {
 }
 /*termina la animacion de las olas*/
 .seccionescuerpo {
-  display: flex; 
-  justify-content: space-around; 
-  align-items: center; 
-  flex-wrap: wrap; 
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-
 .titulosdecategoruas {
-  width: 100%; 
-  text-align: center; 
+  width: 100%;
+  text-align: center;
 }
 
 .imagendest {
@@ -157,12 +164,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.7
-  ); 
+  background-color: rgba(255, 255, 255, 0.7);
   opacity: 1;
   padding: 5px;
   border-radius: 5px;
@@ -179,8 +181,8 @@ body {
 .imagendest:hover .numero {
   opacity: 0;
 }
-.imagendest:hover{
-  background-color: #000  ;
+.imagendest:hover {
+  background-color: #000;
   z-index: 999;
 }
 .imgdest {
@@ -329,7 +331,7 @@ body {
   box-sizing: border-box;
   text-align: center;
   background-color: var(--color-4);
-  justify-content: center; 
+  justify-content: center;
 }
 
 .contenedorrecursos {
@@ -343,7 +345,7 @@ body {
 .recurso2 img,
 .recurso3 video {
   display: inline-block;
-  margin: 1.66%;
+  /* margin: 1.66%; */
   vertical-align: top;
   box-sizing: border-box;
   width: 80%; /* O ajusta según la necesidad */
@@ -355,12 +357,11 @@ body {
   position: relative;
   font-weight: bold;
   align-items: center;
-  justify-content: left; 
+  justify-content: left;
 }
 
-
 @media screen and (max-width: 768px) {
-  #recursos-multimedia{
+  #recursos-multimedia {
     position: relative;
   }
   .seccionescuerporecursos {
@@ -370,24 +371,24 @@ body {
     font-size: 16px;
   }
   .titulosdecategoruasbla {
-    margin-bottom: 20px; 
-    font-weight: bold; 
+    margin-bottom: 20px;
+    font-weight: bold;
     justify-content: center;
   }
 
   .contenedorrecursos {
     padding: 20px;
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: space-between; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .recurso1 video,
   .recurso2 img,
-  .recurso3 video{
-    width: 100%; 
-    margin-bottom: 20px; 
+  .recurso3 video {
+    width: 100%;
+    margin-bottom: 20px;
   }
 }
 
@@ -419,7 +420,7 @@ body {
 }
 
 .boton-quizz:hover {
-   color:var(--color-1); 
+  color: var(--color-1);
 }
 
 .boton-quizz::after {
@@ -431,7 +432,7 @@ body {
 }
 
 .boton-quizz:hover::after {
-  color:var(--color-1); 
+  color: var(--color-1);
 }
 /* Estilos para pantallas pequeñas (teléfonos móviles) */
 @media screen and (max-width: 768px) {
@@ -513,7 +514,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  
+
   /* background-color: rgba(0, 0, 0, 0.5); Color de fondo semi-transparente */
   display: flex;
   justify-content: center;
@@ -539,4 +540,36 @@ body {
 
 .imgdest:hover {
   transform: scale(1.1); /* Efecto de zoom al hacer hover */
+}
+
+.recurso3,.recurso2,.recurso1 {
+  position: relative;
+}
+
+.recurso3-video,.recurso2-video,.recurso1-video {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s;
+  object-fit: cover;
+}
+
+.recurso3-overlay {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-4,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5em;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.recurso3:hover .recurso3-overlay,.recurso2:hover .recurso3-overlay,.recurso1:hover .recurso3-overlay {
+  opacity: 1;
 }

@@ -13,6 +13,7 @@ import "../../css/mrmodal.css";
 import { EngineeringTwoTone } from "@mui/icons-material";
 import { useNavigate, Link } from "react-router-dom";
 import { BaseUrl } from "../../constants/global";
+import { Link as RouterLink } from "react-router-dom";
 const Cuerpo = () => {
   const navigate = useNavigate();
 
@@ -138,19 +139,22 @@ const Cuerpo = () => {
           autoPlay
           loop
           muted
-          style={{ filter: "brightness(70%)" }}
+          style={{ filter: "brightness(80%)" }}
         ></video>
         <div className="textvideo2">
-          <FormattedMessage
-            className="font-bold"
-            id="home.welcome"
-            defaultMessage="Changing Waters"
-          />
+          <span className="font-bold text-2xl">
+            <FormattedMessage
+              id="home.welcome"
+              defaultMessage="Changing Waters"
+            />
+          </span>
+          <br />
           <FormattedMessage
             id="home.welcome2"
             defaultMessage="Dive into Action: Collaborate, learn, and lead in our community dedicated to water and sanitation. Join us and support the UN's Sustainable Development Goals with every drop."
           />
         </div>
+
         <div className="ponerAlFinal">
           <div className="wave wave1 wavesHome"></div>
           <div className="wave wave2 wavesHome"></div>
@@ -396,6 +400,10 @@ const Cuerpo = () => {
           >
             {/* Primer video con evento onClick */}
             <button>
+              <div className="recurso3-overlay font-bold text-2xl">
+                Mostrar video
+              </div>
+
               <video
                 className="recurso1-video"
                 src="src/video/ODS6.mp4"
@@ -408,6 +416,10 @@ const Cuerpo = () => {
           <div className="recurso2">
             {/* Segunda imagen con evento onClick */}
             <button onClick={() => openImageModal("/img/ODS66.jpg")}>
+              <div className="recurso3-overlay font-bold text-2xl">
+                Mostrar infografía
+              </div>
+
               <img
                 className="recurso2-video"
                 src="/img/ODS6.gif"
@@ -418,6 +430,9 @@ const Cuerpo = () => {
           <div className="recurso3">
             {/* Tercer video con evento onClick */}
             <button onClick={() => openVideoModal("src/video/text.mp4")}>
+              <div className="recurso3-overlay font-bold text-2xl">
+                Mostrar video
+              </div>
               <video
                 className="recurso3-video"
                 src="src/video/text.mp4"
@@ -458,15 +473,14 @@ const Cuerpo = () => {
               className="m-0 p-0 w-40 h-40"
             />
           </div>
-          <button
-            className="boton-quizz mr-10 text-green-100 animate-pulse scale-125"
-            onClick={() => window.open("/quizz", "_blank")}
-          >
-            <FormattedMessage
-              id="index.pressStart"
-              defaultMessage="Press to start"
-            />
-          </button>
+          <RouterLink to="/quizz">
+            <button className="boton-quizz mr-10 text-green-100 animate-pulse scale-125">
+              <FormattedMessage
+                id="index.pressStart"
+                defaultMessage="Press to start"
+              />
+            </button>
+          </RouterLink>
         </div>
       </article>
     </div>
