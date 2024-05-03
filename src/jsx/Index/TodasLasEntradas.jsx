@@ -9,13 +9,17 @@ import { format } from "date-fns";
 import { FormattedMessage } from "react-intl";
 
 function TodasLasEntradas() {
+  const navigate = useNavigate();
+
   const [entradas, setEntradas] = useState([]);
   const [color, setColor] = useState("");
   const [categoria, setCategoria] = useState("");
   // Obtiene los entradas en la tabla (GET)
+  const toggleViewEntrada = (id) => {
+    navigate(`/blog-post/${id}`);
+  };
   useEffect(() => {
     window.scrollTo(0, 0);
-
     const fetchData = async () => {
       try {
         const response = await fetch(BaseUrl + "/api/entradas/publish", {
@@ -44,7 +48,10 @@ function TodasLasEntradas() {
       <article className="m-10">
         <div className="titulosdecategoruas font-bold">
           {" "}
-          <FormattedMessage id="index.blogPost" defaultMessage="All Blog Post" />
+          <FormattedMessage
+            id="index.blogPost"
+            defaultMessage="All Blog Post"
+          />
         </div>
         <div id="listaEntradas" className="flex flex-wrap justify-center">
           {entradas &&

@@ -113,7 +113,7 @@ const Footer = () => {
               className="social-icon__link"
               data-tooltip-id="my-tooltip"
               data-tooltip-content="AquaVision API"
-              href={BaseUrl + "/api-docs/"}
+              href="https://backblogweb.onrender.com/api-docs/"
               target="_blank"
             >
               <ion-icon

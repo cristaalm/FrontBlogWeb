@@ -7,7 +7,7 @@ const Carrusel = () => {
   const carruselRef = useRef(null);
   const [isHovering, setIsHovering] = useState(false);
   const [scrollLeft, setScrollLeft] = useState(0);
-  const speed = 6; // Ajusta la velocidad según necesites
+  const speed = 1; // Ajusta la velocidad según necesites
   const [entradas, setEntradas] = useState([]);
   const navigate = useNavigate();
 
@@ -36,12 +36,15 @@ const Carrusel = () => {
     const loop = () => {
       if (carruselRef.current && !isHovering) {
         const { scrollWidth, clientWidth } = carruselRef.current;
-        // Calcular la longitud total del conjunto de tarjetas originales
-        const singleSetWidth = (entradas.length / 2) * (25 * 16 + 20); // 25rem convertido a px y 20px de margen
-        const newScrollLeft = (scrollLeft + speed) % singleSetWidth;
+        const singleSetWidth = entradas.length * (25 * 16 + 20); // 25rem convertido a px y 20px de margen
 
-        setScrollLeft(newScrollLeft);
-        carruselRef.current.scrollLeft = newScrollLeft;
+        if (scrollLeft >= singleSetWidth) {
+          setScrollLeft(0);
+        } else {
+          const newScrollLeft = scrollLeft + speed;
+          setScrollLeft(newScrollLeft);
+          carruselRef.current.scrollLeft = newScrollLeft;
+        }
       }
 
       animationFrameId = requestAnimationFrame(loop);
@@ -83,19 +86,23 @@ const Carrusel = () => {
               width: "25rem",
             }}
           >
-            <img
-              className="catimg rounded-md"
-              src={entrada.imgdestacada}
-              alt={`Imagen Destacada de entrada ${entrada.id}`}
-              style={{
-                width: "100%",
-                height: "200px",
-                objectFit: "cover",
-              }}
-            />
+            <div className="categoria-seleccionada">
+              <img
+                className="catimg rounded-md"
+                src={entrada.imgdestacada}
+                alt={`Imagen Destacada de entrada ${entrada.id}`}
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+
             <div className="contenido-entrada font-medium">
               <div className="metaentrada">
-                {entrada.nombre} - {format(new Date(entrada.fechapublicacion), "dd/MM/yyyy")}
+                {entrada.nombre} -{" "}
+                {format(new Date(entrada.fechapublicacion), "dd/MM/yyyy")}
               </div>
               <div className="tituloentrada">{entrada.titulo}</div>
               <span

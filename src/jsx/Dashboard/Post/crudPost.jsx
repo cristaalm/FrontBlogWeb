@@ -233,7 +233,7 @@ function crudPost() {
       navigate("/login");
     }
     const fetchData = async () => {
-      const response = await fetch(BaseUrl + "/api/entradas");
+      const response = await fetch(BaseUrl + "/api/entradas/text");
       const data = await response.json();
       setEntradas(data);
       paginate("#tableEntradas", 10);
@@ -426,6 +426,7 @@ function crudPost() {
 
   // Función para cargar los datos del usuario a editar
   const loadEditUserData = (userId) => {
+    navigate(`/post/edit/${userId}`);
     const userData = entradas.data.find((user) => user.id === userId);
     setEditUserId(userId);
     setEditUserData(userData);
@@ -788,9 +789,14 @@ function crudPost() {
                                         entrada.usuario == nombreusuario
                                           ? {}
                                           : { "data-tooltip-hidden": true })}
-                                        onClick={() =>
-                                          loadEditUserData(entrada.id)
-                                        }
+                                        onClick={() => {
+                                          if (
+                                            entrada.estatus === "Pendiente" &&
+                                            entrada.usuario === nombreusuario
+                                          ) {
+                                            loadEditUserData(entrada.id);
+                                          }
+                                        }}
                                       >
                                         <Pencil size={20} />
                                       </button>
@@ -849,11 +855,17 @@ function crudPost() {
                                       </button>
                                       {user.rol !== "Administrador" && (
                                         <button
-                                          onClick={() =>
-                                            toggleRevisar(entrada.id)
-                                          }
+                                          onClick={() => {
+                                            if (
+                                              entrada.estatus !== "Revisión" &&
+                                              entrada.estatus !== "Publicado"
+                                            ) {
+                                              toggleRevisar(entrada.id);
+                                            }
+                                          }}
                                           className={`btn-purple p-2 m-1 revisar-tour ${
-                                            entrada.estatus !== "Revisión"
+                                            entrada.estatus == "Revisión" &&
+                                            entrada.estatus == "Publicado"
                                               ? ""
                                               : "opacity-25 cursor-not-allowed"
                                           }`}
@@ -861,15 +873,17 @@ function crudPost() {
                                           data-tooltip-place="top"
                                           data-tooltip-content="Revisar"
                                           disabled={
-                                            entrada.estatus === "Revisión"
+                                            entrada.estatus === "Revisión" &&
+                                            entrada.estatus === "Publicado"
                                           }
-                                          {...(entrada.estatus !== "Revisión"
+                                          {...(entrada.estatus !== "Revisión" &&
+                                          entrada.estatus !== "Publicado"
                                             ? {}
                                             : { "data-tooltip-hidden": true })}
                                         >
                                           <Search size={20} />
                                         </button>
-                                      )}  
+                                      )}
                                       <button
                                         style={{ backgroundColor: "#000" }}
                                         onClick={() =>

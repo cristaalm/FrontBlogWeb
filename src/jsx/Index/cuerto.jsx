@@ -219,7 +219,7 @@ const Cuerpo = () => {
                   <div className="categorias flex flex-col leading-tight">
                     <div>
                       <span className="mr-2 font-semibold">
-                        {category.descripcion}
+                        {category.nombre}
                       </span>
                     </div>
                     <div>

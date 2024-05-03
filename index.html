@@ -44,10 +44,25 @@
           transform: rotate(360deg);
         }
       }
+      /* Prevent text selection */
+      body {
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+/Edge */
+        user-select: none; /* Standard */
+      }
     </style>
     <script src="/js/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js"></script>
 
+    <script>
+      $(document).ready(function () {
+        // Disable right-click context menu
+        $(document).on("contextmenu", function (e) {
+          return false;
+        });
+      });
+    </script>
     <script type="text/javascript">
       function calcularContraste(colorFondo) {
         // Convertir el color de fondo a un objeto tinycolor

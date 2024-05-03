@@ -6,6 +6,7 @@ import Encabezado2 from "./encabezado2.jsx";
 import { BaseUrl } from "../../constants/global";
 import { useNavigate } from "react-router-dom";
 import { injectIntl, FormattedMessage } from "react-intl";
+import { format } from "date-fns";
 
 function CategoriaView() {
   useEffect(() => {
@@ -61,6 +62,7 @@ function CategoriaView() {
         }
         const data = await response.json();
         setEntradas(data);
+        paginatePost("#listaEntradas", 2);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -84,7 +86,7 @@ function CategoriaView() {
               <div className="font-bold text-2xl animate-bounce">
                 {entradas[0].nombrecategoria}
               </div>
-              <div className="italic">{entradas[0].descripcioncategoria}</div>
+              <div className="italic mx-20 mt-2">{entradas[0].descripcioncategoria}</div>
             </div>
           </div>
         ) : (
@@ -100,41 +102,68 @@ function CategoriaView() {
             defaultMessage="Comment created successfully."
           />
         </div>
-        <div className="flex flex-wrap justify-center">
-          {entradas.length > 0 ? (
-            entradas.map((entrada) => (
-              <div
-                key={entrada.id}
-                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 py-2"
-              >
-                <div className="ultimasentradas-container"></div>
+        <div id="listaEntradas" className="flex flex-wrap justify-center">
+          {entradas &&
+            entradas
+              .sort(
+                (a, b) =>
+                  new Date(b.fechapublicacion) - new Date(a.fechapublicacion)
+              ) // Ordenar por fecha de forma descendente
+              .map((entrada) => (
                 <div
-                  onClick={() => toggleViewEntrada(entrada.id)}
                   key={entrada.id}
-                  className="ultimasentradas rounded-md text-cyan-950 hover:text-yellow-50 cursor-pointer"
+                  className="ultimasentradas-container lista-view "
                 >
-                  <div className="categoria-seleccionada">
-                    <img
-                      className="catimg rounded-md lista-view max-w-48 min-w-48"
-                      src={entrada.imgdestacada}
-                      alt={"Imagen Destacada de entrada " + entrada.id}
-                      style={{
-                        width: "400px",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </div>
-                  <div className="contenido-entrada font-medium">
-                    <div className="font-bold text-2xl mb-2">
-                      {entrada.titulo}
+                  {/* <div className="ultimasentradas-container"></div> */}
+                  <div
+                    onClick={() => toggleViewEntrada(entrada.id)}
+                    key={entrada.id}
+                    className="ultimasentradas rounded-md text-cyan-950 hover:text-yellow-50 cursor-pointer lista-view"
+                  >
+                    <div className="">
+                      <img
+                        className="catimg rounded-md lista-view max-w-48 min-w-48"
+                        src={entrada.imgdestacada}
+                        alt={"Imagen Destacada de entrada " + entrada.id}
+                        style={{
+                          width: "100%",
+                          height: "200px",
+                          objectFit: "cover",
+                        }}
+                      />
+                      {/* style="width: 100%; height: 200px; object-fit: cover;" */}
                     </div>
-                    <div>{entrada.descripcion}</div>
+                    <div className="contenido-entrada font-medium">
+                      <div className="metaentrada">
+                        {entrada.nombre} -{" "}
+                        {format(
+                          new Date(
+                            entrada.fechapublicacion + "T00:00:00-06:00"
+                          ),
+                          "dd/MM/yyyy"
+                        )}{" "}
+                      </div>
+                      <div className="tituloentrada">
+                        {/* <div className="font-bold text-2xl mb-2"> */}
+                        {entrada.titulo}
+                      </div>
+                      <div className="descripcionentrada italic list-view">
+                        {entrada.descripcion}
+                      </div>
+                      <span
+                        style={{
+                          backgroundColor: entrada.color,
+                          color: calcularContraste(entrada.color),
+                        }}
+                        className="text-sm p-1 pl-4 pr-4 rounded-full font-medium"
+                      >
+                        {entrada.nombrecategoria}{" "}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          ) : (
+              ))}
+          {!entradas && (
             <div>No existen entradas publicadas en la categoría</div>
           )}
         </div>
