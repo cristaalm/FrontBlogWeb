@@ -159,8 +159,8 @@ const AuthForm = () => {
   return (
     <div>
       <div className="backhomebt">
-        <Link to="/welcome">
-          <p>HOME</p>
+        <Link className="rut" to="/welcome">
+          <span className="hoomm">HOME</span>
           <div className="wavesbt"></div>
         </Link>
       </div>

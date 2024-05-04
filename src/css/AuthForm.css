@@ -28,39 +28,45 @@ section img {
     margin-left: 52px;
   }
 }
-.backhomebt {
+/* inicio del oton de home */
+.backhomebt{
   position: absolute;
-  display: inline-block;
-  padding: 10px 25px;
-  border: 2px solid #00aeff;
-  color: #00aeff;
-  text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing: 4px;
-  font-size: 24px;
   z-index: 9999;
   top: 30px;
   left: 30px;
-  text-align: center;
+}
+.rut{
+  position: relative;
+  display: block;
+  padding: 10px 30px;
+  border: 2px solid #00aeff;
+  text-transform: uppercase;
+  font-size: 24px;
+  letter-spacing: 4px;
+  color: #00aeff;
   overflow: hidden;
 }
-.backhomebt p:hover {
+.hoomm{
+  position: relative;
+  z-index: 1;
+  transition: 1s;
+}
+.rut:hover .hoomm{
   color: #fff;
 }
-.backhomebt:hover .wavesbt {
-  top: 0px;
-}
-/* Hover de las Olas */
-.wavesbt {
+.wavesbt{
   position: absolute;
   top: calc(100% + 22px);
   left: 0;
   width: 100%;
   height: 100%;
-  background: #00aeff;
+  background:#00aeff ;
   transition: 1s;
 }
-.wavesbt:hover {
+.rut:hover .wavesbt{
+  top: 0;
+}
+.wavesbt::before{
   content: '';
   position: absolute;
   top: -22px;
@@ -68,14 +74,14 @@ section img {
   width: 100%;
   height: 22px;
   background: url(img/wave2.png);
-  animation: animate 0.5s linear infinite; 
+  animation: animate 8s linear infinite;
 }
-
-@keyframes animate {
-  0% {
+@keyframes animate
+{
+  0%{
     background-position-x: 0;
   }
-  100% {
+  100%{
     background-position-x: 118px;
   }
 }
