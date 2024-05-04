@@ -160,8 +160,9 @@ const AuthForm = () => {
     <div>
       <div className="backhomebt">
         <Link to="/welcome">
-          HOME
-      </Link>
+          <p>HOME</p>
+          <div className="wavesbt"></div>
+        </Link>
       </div>
       <section>
         <div className="wave wave1"></div>
