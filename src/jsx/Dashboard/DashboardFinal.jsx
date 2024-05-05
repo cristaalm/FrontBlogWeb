@@ -42,9 +42,9 @@ function LayoutPost() {
         {
           element: ".bienvenida-tour",
           popover: {
-            title: "Bienvenido",
+            title: "BIENVENIDOS",
             description:
-              "¡Bienvenido! Estás a punto de embarcarte en un recorrido interactivo por nuestra plataforma. Explora cada sección y descubre todas las funciones que tenemos para ofrecerte. ¡Disfruta del viaje!",
+              "AQUAVISION te da la bienvenida. Estás a punto de embarcarte en un recorrido interactivo por nuestra plataforma. Explora cada sección y descubre todas las funciones que tenemos para ofrecerte. ¡Disfruta del viaje!",
           },
         },
         {

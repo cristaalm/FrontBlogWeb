@@ -434,23 +434,47 @@ function usuarios() {
                             <Editor
                               apiKey="4bf4juc56apg2x7qd86sdyhdrj1zjznysvz06bddzevq7ewb"
                               init={{
-                                plugins:
-                                  "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown",
-                                toolbar:
-                                  "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+                                plugins: "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown",
+                                toolbar: "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
                                 tinycomments_mode: "embedded",
                                 tinycomments_author: "AQUAVISION",
                                 mergetags_list: [
                                   { value: "First.Name", title: "First Name" },
                                   { value: "Email", title: "Email" },
                                 ],
-                                ai_request: (request, respondWith) =>
-                                  respondWith.string(() =>
-                                    Promise.reject(
-                                      "See docs to implement AI Assistant"
-                                    )
+                                ai_request: (request, respondWith) => 
+                                  respondWith.string(() => 
+                                    Promise.reject("See docs to implement AI Assistant")
                                   ),
+                                image_advtab: true,
+                                image_title: true,
+                                automatic_uploads: true,
+                                file_picker_types: 'image',
+                                images_upload_handler: function (blobInfo, success, failure) {
+                                  var reader = new FileReader();
+                                  reader.onload = function (e) {
+                                    success(e.target.result); // Directly use the base64 encoded string
+                                  };
+                                  reader.readAsDataURL(blobInfo.blob());
+                                },
+                                file_picker_callback: function(callback, value, meta) {
+                                  var input = document.createElement('input');
+                                  input.setAttribute('type', 'file');
+                                  input.setAttribute('accept', 'image/*');
+                                  input.onchange = function() {
+                                    var file = this.files[0];
+                                    var reader = new FileReader();
+                                    reader.onload = function(e) {
+                                      callback(e.target.result, {
+                                        alt: file.name
+                                      });
+                                    };
+                                    reader.readAsDataURL(file);
+                                  };
+                                  input.click();
+                                }
                               }}
+                              
                               id="entryDescription"
                               name="content"
                               value={tiny}
