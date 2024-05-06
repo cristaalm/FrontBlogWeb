@@ -42,5 +42,10 @@
   "quiz.tryAgain":"¡Intentémoslo de nuevo!",
   "quiz.question":"Pregunta",
   "quiz.score":"Tu puntación",
-  "quiz.end":"¡Trivia completada!"
+  "quiz.end":"¡Trivia completada!",
+  "hover.entradas":"Mostrar más entradas",
+  "hover.video":"Mostrar video",
+  "hover.infografia":"Mostrar infografía",
+  "error.commentsNo":"Sin comentarios aún."
+
 }

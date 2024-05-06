@@ -199,7 +199,10 @@ const Cuerpo = () => {
                     }}
                   >
                     <div className="font-bold text-2xl">
-                      Mostrar más entradas
+                      <FormattedMessage
+                        id="hover.entradas"
+                        defaultMessage="Show more blog post"
+                      />
                     </div>
                   </div>
                   <img
@@ -401,7 +404,10 @@ const Cuerpo = () => {
             {/* Primer video con evento onClick */}
             <button>
               <div className="recurso3-overlay font-bold text-2xl">
-                Mostrar video
+                <FormattedMessage
+                  id="hover.video"
+                  defaultMessage="Show video"
+                />
               </div>
 
               <video
@@ -417,7 +423,10 @@ const Cuerpo = () => {
             {/* Segunda imagen con evento onClick */}
             <button onClick={() => openImageModal("/img/ODS66.jpg")}>
               <div className="recurso3-overlay font-bold text-2xl">
-                Mostrar infografía
+                <FormattedMessage
+                  id="hover.infografia"
+                  defaultMessage="Show infographic"
+                />
               </div>
 
               <img
@@ -431,7 +440,10 @@ const Cuerpo = () => {
             {/* Tercer video con evento onClick */}
             <button onClick={() => openVideoModal("src/video/text.mp4")}>
               <div className="recurso3-overlay font-bold text-2xl">
-                Mostrar video
+                <FormattedMessage
+                  id="hover.video"
+                  defaultMessage="Show video"
+                />{" "}
               </div>
               <video
                 className="recurso3-video"

@@ -42,5 +42,9 @@
   "quiz.tryAgain":"Try Again!",
   "quiz.question":"Question",
   "quiz.score":"Your score",
-  "quiz.end":"Quiz completed!"
+  "quiz.end":"Quiz completed!",
+  "hover.entradas":"Show more blog post",
+  "hover.video":"Show video",
+  "hover.infografia":"Show infographic",
+  "error.commentsNo":"No comments yet."
 }

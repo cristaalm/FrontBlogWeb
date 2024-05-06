@@ -218,13 +218,21 @@ const Entradasview = ({ intl }) => {
                     </p>
                   </div>
                   <div className="text-center italic">
-                    <p className="mb-0">{comment.descripcion}</p>
+                    <p className="mb-0 mr-6">{comment.descripcion}</p>
                   </div>
                   {/* <hr></hr> */}
                 </div>
               </div>
             ))}
-          {comments && comments.length === 0 && <p>No hay comentarios aún</p>}
+          {comments && comments.length === 0 && (
+            <p>
+              {" "}
+              <FormattedMessage
+                id="error.commentsNo"
+                defaultMessage="No comments yet."
+              />{" "}
+            </p>
+          )}
         </div>
         {/* </div> */}
       </article>
