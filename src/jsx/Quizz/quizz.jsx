@@ -102,7 +102,7 @@ const Quizz = () => {
     <div className="relative min-h-screen flex flex-col justify-center items-center">
       <video
         className="absolute inset-0 object-cover w-full h-full"
-        src="src/video/aguaBG.mp4"
+        src="/video/aguaBG.mp4"
         type="video/mp4"
         autoPlay
         loop
