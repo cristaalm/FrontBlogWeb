@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../Elements/Wrapper.jsx";
 import quizDataEspañol from "./quizzEspañol.json";
 import quizDataIngles from "./quizzInglés.json";
+import { Link, useNavigate } from "react-router-dom";
 import { FormattedMessage, useIntl } from "react-intl"; // Importa FormattedMessage y useIntl
 
 const Quizz = () => {
@@ -100,6 +101,12 @@ const Quizz = () => {
 
   return (
     <div className="relative min-h-screen flex flex-col justify-center items-center">
+      <div className="backhomebt">
+        <Link className="rut" to="/welcome">
+          <span className="hoomm">HOME</span>
+          <div className="wavesbt"></div>
+        </Link>
+      </div>
       <video
         className="absolute inset-0 object-cover w-full h-full"
         src="src/video/aguaBG.mp4"
