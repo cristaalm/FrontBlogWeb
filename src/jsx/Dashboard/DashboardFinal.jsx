@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import "../../css/Dashboard.css";
-import Footer from "../Elements/FooterU";
+import Pie from "../Elements/PieChart.jsx";
+import BarHorizontal from "../Elements/BarHorizontalChart.jsx";
 // import NewPost from "./Post/newPost";
 import Sidebar, {
   SidebarItem,
@@ -191,6 +192,8 @@ function LayoutPost() {
               </div>
             </div>
           </div>
+          <Pie/>
+          <BarHorizontal/>
         </main>
       </div>
     </div>

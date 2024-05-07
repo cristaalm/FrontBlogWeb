@@ -64,7 +64,7 @@ const Cuerpo = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(BaseUrl + "/api/categories/", {
+        const response = await fetch(BaseUrl + "/api/categories", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

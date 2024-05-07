@@ -53,7 +53,7 @@ function TodasLasEntradas() {
             defaultMessage="All Blog Post"
           />
         </div>
-        <div id="listaEntradas" className="flex flex-wrap justify-center">
+        <div id="listaEntradas">
           {entradas &&
             entradas
               .sort(
@@ -71,7 +71,7 @@ function TodasLasEntradas() {
                     key={entrada.id}
                     className="ultimasentradas rounded-md text-cyan-950 hover:text-yellow-50 cursor-pointer lista-view"
                   >
-                    <div className="">
+                    <div className="categoria-seleccionada lista-view">
                       <img
                         className="catimg rounded-md lista-view max-w-48 min-w-48"
                         src={entrada.imgdestacada}
