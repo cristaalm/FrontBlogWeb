@@ -64,7 +64,7 @@ const Cuerpo = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(BaseUrl + "/api/categories", {
+        const response = await fetch(BaseUrl + "/api/categories/", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -135,7 +135,11 @@ const Cuerpo = () => {
       <article id="welcome" className="seccionesvideo">
         <video
           className="vid"
+<<<<<<< HEAD
           src="src/video/welcomeav.mp4"
+=======
+          src="/video/without.mp4"
+>>>>>>> 4b390b54b0a2acda5340c2be8df47155bac3a735
           autoPlay
           loop
           muted
@@ -399,7 +403,7 @@ const Cuerpo = () => {
         <div className="contenedorrecursos">
           <div
             className="recurso1"
-            onClick={() => openVideoModal("src/video/ODS6.mp4")}
+            onClick={() => openVideoModal("/video/ODS6.mp4")}
           >
             {/* Primer video con evento onClick */}
             <button>
@@ -412,7 +416,7 @@ const Cuerpo = () => {
 
               <video
                 className="recurso1-video"
-                src="src/video/ODS6.mp4"
+                src="/video/ODS6.mp4"
                 autoPlay
                 loop
                 muted
@@ -438,7 +442,7 @@ const Cuerpo = () => {
           </div>
           <div className="recurso3">
             {/* Tercer video con evento onClick */}
-            <button onClick={() => openVideoModal("src/video/text.mp4")}>
+            <button onClick={() => openVideoModal("/video/text.mp4")}>
               <div className="recurso3-overlay font-bold text-2xl">
                 <FormattedMessage
                   id="hover.video"
@@ -447,7 +451,7 @@ const Cuerpo = () => {
               </div>
               <video
                 className="recurso3-video"
-                src="src/video/text.mp4"
+                src="/video/text.mp4"
                 autoPlay
                 loop
                 muted
@@ -472,7 +476,7 @@ const Cuerpo = () => {
         <div className="contenedor-quizz drop-shadow-md relative">
           <video
             className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
-            src="src/video/aguaBG.mp4"
+            src="/video/aguaBG.mp4"
             type="video/mp4"
             autoPlay
             loop

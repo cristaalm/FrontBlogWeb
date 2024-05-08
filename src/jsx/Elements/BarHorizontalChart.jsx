@@ -70,13 +70,13 @@ export default function BarHorizontal() {
   return (
     <BarChart
       dataset={dataset}
-      yAxis={[{ scaleType: 'band', dataKey: 'título' }]}
+      yAxis={[{ scaleType: "band", dataKey: "título" }]}
       series={[
         {
-          dataKey: 'puntuación',
-          label: 'puntuación rainfall',
+          dataKey: "puntuación",
+          label: "puntuación rainfall",
           valueFormatter,
-          color: 'color', // Utiliza el campo 'color' en el dataset para el color de las barras
+          fill: ({ datum }) => datum.color, // Utiliza el campo 'color' en el dataset para el color de las barras
           // Mostrar el mensaje dentro de la barra
           // Necesita un CSS adicional para asegurarse de que el texto no se superponga con el borde de la barra
           labelComponent: (
@@ -85,7 +85,7 @@ export default function BarHorizontal() {
               y={0}
               dy={-10} // Ajustar la posición del texto dentro de la barra
               textAnchor="middle"
-              fill="color"
+              fill={({ datum }) => datum.color} // Utiliza el color de la barra para el texto
             >
               {({ datum }) => datum.message}
             </text>
