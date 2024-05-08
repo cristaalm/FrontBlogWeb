@@ -157,7 +157,9 @@ function EditPublish() {
       setMessageClass("error");
     }
   };
-
+  const volverTodos = () => {
+    navigate("/post/all");
+  };
   return (
     <div
       style={{ display: "flex", backgroundColor: "whitesmoke" }}
@@ -220,7 +222,13 @@ function EditPublish() {
           <div className="contenedor_cuadricular">
             <div className="margin">
               <div className="entrada">
-                <h1 className="tamaño_fuente">Añadir nueva entrada</h1>
+              <button
+                  className="rounded-full p-1 px-4 bg-cyan-100"
+                  onClick={volverTodos}
+                >
+                  Volver
+                </button>
+                <h1 className="tamaño_fuente">Editar entrada</h1>
               </div>
               <div className="flex sm:flex-row w-full flex-col">
                 <form onSubmit={handleSubmit} className="mt-2 mr-4 p-2 w-100">
@@ -275,13 +283,15 @@ function EditPublish() {
                       <img
                         src={previewImage}
                         alt="Preview"
-                        className="mt-2 max-w-full h-48 mx-auto"
+                        onClick={() => fileInputRef.current.click()}
+                        className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
                       />
                     ) : (
                       <img
                         src="/img/upload1.png"
                         alt="Default Preview"
-                        className="mt-2 max-w-full h-48 mx-auto"
+                        onClick={() => fileInputRef.current.click()}
+                        className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
                       />
                     )}
                     <button

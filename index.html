@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="src/css/Poppins.css" rel="stylesheet" />
     <style>
+      .btn-paginacion:hover{
+        background-color: #035165 !important;
+      }
       .loading-wrapper {
         position: fixed;
         top: 0;
@@ -89,7 +92,7 @@
         for (i = 0; i < numPages; i++) {
           var pageNum = i + 1;
           $("#nav").append(
-            '<a class="relative inline-flex mb-10 items-center px-2 py-2 rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" href="#" rel="' +
+            '<a class="btn-paginacion inline-block px-3 py-2 leading-tight rounded-md hover:bg-gray-300" style="background:#56a1a6; color:whitesmoke;" href="#" rel="' +
               i +
               '">' +
               pageNum +
@@ -131,7 +134,7 @@
         for (i = 0; i < numPages; i++) {
           var pageNum = i + 1;
           $("#nav").append(
-            '<a class="relative inline-flex mb-10 items-center px-2 py-2 rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" href="#" rel="' +
+            '<a class="btn-paginacion inline-block px-3 py-2 leading-tight rounded-md hover:bg-gray-300" style="background:#56a1a6; color:whitesmoke;" href="#" rel="' +
               i +
               '">' +
               pageNum +

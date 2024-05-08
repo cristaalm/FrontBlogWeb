@@ -109,7 +109,7 @@ function crudPost() {
           popover: {
             title: "Revisar",
             description:
-              "Con este botón, puedes enviar una entrada al administrador para su revisión.",
+              "Este botón te permite enviar una entrada al administrador para su revisión. Una vez enviado, el administrador será notificado por correo electrónico sobre tu entrada en este estado.",
           },
         },
         {
@@ -878,8 +878,8 @@ function crudPost() {
                                             }
                                           }}
                                           className={`btn-purple p-2 m-1 revisar-tour ${
-                                            entrada.estatus == "Revisión" &&
-                                            entrada.estatus == "Publicado"
+                                            entrada.estatus != "Revisión" &&
+                                            entrada.estatus != "Publicado"
                                               ? ""
                                               : "opacity-25 cursor-not-allowed"
                                           }`}

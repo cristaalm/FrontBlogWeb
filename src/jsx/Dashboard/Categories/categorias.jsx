@@ -376,7 +376,7 @@ function categorías() {
                     <textarea
                       value={descripcion}
                       onChange={(e) => setDescripcion(e.target.value)}
-                      className="w-full bg-neutral-100 p-2 in2 mt-2 ring-2 ring-teal-600 rounded"
+                      className="w-full bg-neutral-100 p-2 in2 mt-2 ring-2 h-40 ring-teal-600 rounded"
                       placeholder="Ingrese descripción"
                     ></textarea>
                     <p className="text-neutral-400 text-sm">
@@ -391,13 +391,15 @@ function categorías() {
                       <img
                         src={previewImage}
                         alt="Preview"
-                        className="mt-2 max-w-full h-48 mx-auto"
+                        onClick={() => fileInputRef.current.click()}
+                        className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
                       />
                     ) : (
                       <img
                         src="/img/upload1.png"
                         alt="Default Preview"
-                        className="mt-2 max-w-full h-48 mx-auto"
+                        onClick={() => fileInputRef.current.click()}
+                        className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
                       />
                     )}
                     <button

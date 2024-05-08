@@ -53,7 +53,7 @@ function LayoutPost() {
           popover: {
             title: "Secciones",
             description:
-              "En este menú, también conocido como sidebar, encontrarás la opcion de entradas. Al dar clic en esta se desplegará un menú con dos secciones: Todas las entradas y Añadir nueva entrada.",
+            "En este menú, también conocido como menú lateral, encontrarás la opción de entradas. Al dar clic en esta se desplegará un menú con dos secciones: Todas las entradas y Añadir nueva entrada.",
           },
         },
         {
@@ -69,7 +69,7 @@ function LayoutPost() {
           popover: {
             title: "Iniciar tour",
             description:
-              "Este botón te permitirá iniciar el recorrido por la página en las dos secciones mencionadas anteriormente del sidebar.",
+              "Este botón te permitirá iniciar el recorrido por la página en las dos secciones mencionadas anteriormente del menú lateral.",
           },
         },
       ],

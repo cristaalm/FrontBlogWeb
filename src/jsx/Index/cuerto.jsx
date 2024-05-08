@@ -103,6 +103,7 @@ const Cuerpo = () => {
 
   const openVideoModal = (src) => {
     setVideoSrc(src);
+    // autoPlay(videoSrc);
     setShowVideoModal(true);
   };
 
@@ -164,7 +165,7 @@ const Cuerpo = () => {
       </article>
 
       {/* Top de categorías */}
-      <article className="seccionescuerpo mt-6">
+      <article className="seccionescuerpo mt-6 font-bold">
         <div className="titulosdecategoruas font-bold">
           <FormattedMessage
             id="index.Top-categories"
@@ -239,7 +240,7 @@ const Cuerpo = () => {
         )}
       </article>
       {/* Últimas entradas */}
-      <article id="ultima-entrada" className="seccionescuerpoultima font-bold">
+      <article id="ultima-entrada" className="seccionescuerpoultima font-bold mt-12">
         <div className="ultimasentradas-container titulosdecategoruas">
           <FormattedMessage
             id="index.Last-entries"

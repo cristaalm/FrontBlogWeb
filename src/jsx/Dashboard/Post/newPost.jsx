@@ -23,6 +23,7 @@ import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
+
 function usuarios() {
   const startTour = () => {
     const driverObj = driver({
@@ -214,12 +215,9 @@ function usuarios() {
       setMessageClass("error");
     }
   };
-
-  const cerrarSesion = () => {
-    localStorage.removeItem("isAuthenticated");
-    navigate("/login");
+  const volverTodos = () => {
+    navigate("/post/all");
   };
-
   useEffect(() => {
     let storedAuth = localStorage.getItem("isAuthenticated");
     if (storedAuth == null) {
@@ -263,40 +261,40 @@ function usuarios() {
           backgroundColor: "#fffdee",
         }}
       >
-          <Sidebar>
-            <Link to="/dashboard" className="without_line">
-              <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
+        <Sidebar>
+          <Link to="/dashboard" className="without_line">
+            <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
+          </Link>
+          {user.rol != "Administrador" && (
+            <Link to="/post/all" className="without_line">
+              <SidebarItem icon={<Book />} text="Entradas" />
             </Link>
-            {user.rol != "Administrador" && (
-              <Link to="/post/all" className="without_line">
-                <SidebarItem icon={<Book />} text="Entradas" />
-              </Link>
-            )}
+          )}
 
-            {user.rol === "Administrador" && (
-              <>
-                <SidebarItemWithSubItems
-                  icon={<Book className="text-white" />}
-                  text="Entradas"
-                  subItems={[
-                    { icon: <Layers />, text: "Todas", to: "/post/all" },
-                    {
-                      icon: <PlusSquare />,
-                      text: "Añadir Nueva",
-                      to: "/post/add",
-                    },
-                    // { icon: <Layers />, text: "Categorías" }
-                  ]}
-                />
-                <Link to="/categories" className="without_line">
-                  <SidebarItem icon={<Layers />} text="Categorías" />
-                </Link>
-                <Link to="/users" className="without_line">
-                  <SidebarItem icon={<Users />} text="Usuario" />
-                </Link>
-              </>
-            )}
-          </Sidebar>
+          {user.rol === "Administrador" && (
+            <>
+              <SidebarItemWithSubItems
+                icon={<Book className="text-white" />}
+                text="Entradas"
+                subItems={[
+                  { icon: <Layers />, text: "Todas", to: "/post/all" },
+                  {
+                    icon: <PlusSquare />,
+                    text: "Añadir Nueva",
+                    to: "/post/add",
+                  },
+                  // { icon: <Layers />, text: "Categorías" }
+                ]}
+              />
+              <Link to="/categories" className="without_line">
+                <SidebarItem icon={<Layers />} text="Categorías" />
+              </Link>
+              <Link to="/users" className="without_line">
+                <SidebarItem icon={<Users />} text="Usuario" />
+              </Link>
+            </>
+          )}
+        </Sidebar>
       </div>
       <div className="inicio">
         <Tooltip
@@ -311,6 +309,12 @@ function usuarios() {
           <div className="contenedor_cuadricular">
             <div className="margin">
               <div className="entrada">
+                <button
+                  className="rounded-full p-1 px-4 bg-cyan-100"
+                  onClick={volverTodos}
+                >
+                  Volver
+                </button>
                 <h1 className="tamaño_fuente entrada1-tour">
                   Añadir nueva entrada
                 </h1>
@@ -389,13 +393,15 @@ function usuarios() {
                       <img
                         src={previewImage}
                         alt="Preview"
-                        className="mt-2 max-w-full h-48 mx-auto"
+                        className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
+                        onClick={() => fileInputRef.current.click()}
                       />
                     ) : (
                       <img
                         src="/img/upload1.png"
                         alt="Default Preview"
-                        className="mt-2 max-w-full h-48 mx-auto"
+                        onClick={() => fileInputRef.current.click()}
+                        className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
                       />
                     )}
                     <button
@@ -440,54 +446,68 @@ function usuarios() {
                             <Editor
                               apiKey="4bf4juc56apg2x7qd86sdyhdrj1zjznysvz06bddzevq7ewb"
                               init={{
-                                plugins: "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown",
-                                toolbar: "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+                                plugins:
+                                  "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown",
+                                toolbar:
+                                  "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
                                 tinycomments_mode: "embedded",
                                 tinycomments_author: "AQUAVISION",
                                 mergetags_list: [
                                   { value: "First.Name", title: "First Name" },
                                   { value: "Email", title: "Email" },
                                 ],
-                                ai_request: (request, respondWith) => 
-                                  respondWith.string(() => 
-                                    Promise.reject("See docs to implement AI Assistant")
+                                ai_request: (request, respondWith) =>
+                                  respondWith.string(() =>
+                                    Promise.reject(
+                                      "See docs to implement AI Assistant"
+                                    )
                                   ),
-                                  image_advtab: true,
-                                  image_title: true,
-                                  automatic_uploads: true,
-                                  file_picker_types: 'image',
-                                  images_upload_handler: function (blobInfo) {
-                                    return new Promise(function(resolve, reject) {
-                                        try {
-                                            const blobUrl = URL.createObjectURL(blobInfo.blob());
-                                            setTimeout(() => {
-                                                URL.revokeObjectURL(blobUrl);
-                                                resolve(blobUrl);
-                                            }, 10000);
-                                        } catch (error) {
-                                            reject('Image upload failed: ' + error.message);
-                                        }
-                                    });
+                                image_advtab: true,
+                                image_title: true,
+                                automatic_uploads: true,
+                                file_picker_types: "image",
+                                images_upload_handler: function (blobInfo) {
+                                  return new Promise(function (
+                                    resolve,
+                                    reject
+                                  ) {
+                                    try {
+                                      const blobUrl = URL.createObjectURL(
+                                        blobInfo.blob()
+                                      );
+                                      setTimeout(() => {
+                                        URL.revokeObjectURL(blobUrl);
+                                        resolve(blobUrl);
+                                      }, 10000);
+                                    } catch (error) {
+                                      reject(
+                                        "Image upload failed: " + error.message
+                                      );
+                                    }
+                                  });
                                 },
-                                
-                                  file_picker_callback: function(callback, value, meta) {
-                                    var input = document.createElement('input');
-                                    input.setAttribute('type', 'file');
-                                    input.setAttribute('accept', 'image/*');
-                                    input.onchange = function() {
-                                      var file = this.files[0];
-                                      var reader = new FileReader();
-                                      reader.onload = function(e) {
-                                        callback(e.target.result, {
-                                          alt: file.name
-                                        });
-                                      };
-                                      reader.readAsDataURL(file);
+
+                                file_picker_callback: function (
+                                  callback,
+                                  value,
+                                  meta
+                                ) {
+                                  var input = document.createElement("input");
+                                  input.setAttribute("type", "file");
+                                  input.setAttribute("accept", "image/*");
+                                  input.onchange = function () {
+                                    var file = this.files[0];
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                      callback(e.target.result, {
+                                        alt: file.name,
+                                      });
                                     };
-                                    input.click();
-                                  }
-                                }}
-                              
+                                    reader.readAsDataURL(file);
+                                  };
+                                  input.click();
+                                },
+                              }}
                               id="entryDescription"
                               name="content"
                               value={tiny}

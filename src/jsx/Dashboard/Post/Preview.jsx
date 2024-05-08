@@ -9,9 +9,14 @@ import { LayoutDashboard, Users, Book, PlusSquare, Layers } from "lucide-react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 // import { Preview } from "@mui/icons-material";
 import { BaseUrl } from "../../../constants/global.js";
-function Preview() {
-  const [user, setUser] = useState([]);
 
+function Preview() {
+  const navigate = useNavigate(); // Obtiene la función de navegación
+
+  const [user, setUser] = useState([]);
+  const volverTodos = () => {
+    navigate("/post/all");
+  };
   useEffect(() => {
     let storedAuth = localStorage.getItem("isAuthenticated");
     if (storedAuth == null) {
@@ -79,7 +84,13 @@ function Preview() {
           <div className="contenedor_cuadicular">
             <div className="margin">
               <div className="entrada">
-                <h1 className="tamaño_fuente">Previsualizar nueva entrada</h1>
+                <button
+                  className="rounded-full p-1 px-4 bg-cyan-100"
+                  onClick={volverTodos}
+                >
+                  Volver
+                </button>
+                <h1 className="tamaño_fuente">Previsualizar entrada</h1>
               </div>
               <div className="w-full">
                 <div className="mt-2">
