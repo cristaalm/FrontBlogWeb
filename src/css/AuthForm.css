@@ -73,7 +73,7 @@ section img {
   left: 0;
   width: 100%;
   height: 22px;
-  background: url(img/wave2.png);
+  background: url(img/wave4.png);
   animation: animate 8s linear infinite;
 }
 @keyframes animate
