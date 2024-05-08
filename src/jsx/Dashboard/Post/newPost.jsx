@@ -263,34 +263,40 @@ function usuarios() {
           backgroundColor: "#fffdee",
         }}
       >
-        <Sidebar>
-          <Link to="/dashboard" className="without_line">
-            <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
-          </Link>
-          <SidebarItemWithSubItems
-            icon={<Book className="text-white" />}
-            text="Entradas"
-            subItems={[
-              { icon: <Layers />, text: "Todas", to: "/post/all" },
-              {
-                icon: <PlusSquare />,
-                text: "Añadir Nueva",
-                to: "/post/add",
-              },
-              // { icon: <Layers />, text: "Categorías" }
-            ]}
-          />
-          {user.rol === "Administrador" && (
-            <>
-              <Link to="/categories" className="without_line">
-                <SidebarItem icon={<Layers />} text="Categorías" />
+          <Sidebar>
+            <Link to="/dashboard" className="without_line">
+              <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
+            </Link>
+            {user.rol != "Administrador" && (
+              <Link to="/post/all" className="without_line">
+                <SidebarItem icon={<Book />} text="Entradas" />
               </Link>
-              <Link to="/users" className="without_line">
-                <SidebarItem icon={<Users />} text="Usuario" />
-              </Link>
-            </>
-          )}
-        </Sidebar>
+            )}
+
+            {user.rol === "Administrador" && (
+              <>
+                <SidebarItemWithSubItems
+                  icon={<Book className="text-white" />}
+                  text="Entradas"
+                  subItems={[
+                    { icon: <Layers />, text: "Todas", to: "/post/all" },
+                    {
+                      icon: <PlusSquare />,
+                      text: "Añadir Nueva",
+                      to: "/post/add",
+                    },
+                    // { icon: <Layers />, text: "Categorías" }
+                  ]}
+                />
+                <Link to="/categories" className="without_line">
+                  <SidebarItem icon={<Layers />} text="Categorías" />
+                </Link>
+                <Link to="/users" className="without_line">
+                  <SidebarItem icon={<Users />} text="Usuario" />
+                </Link>
+              </>
+            )}
+          </Sidebar>
       </div>
       <div className="inicio">
         <Tooltip

@@ -579,3 +579,8 @@ body {
 .recurso3:hover .recurso3-overlay,.recurso2:hover .recurso3-overlay,.recurso1:hover .recurso3-overlay {
   opacity: 1;
 }
+
+
+.wavesHome{
+  bottom:-68px !important;
+}

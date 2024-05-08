@@ -135,11 +135,7 @@ const Cuerpo = () => {
       <article id="welcome" className="seccionesvideo">
         <video
           className="vid"
-<<<<<<< HEAD
-          src="src/video/welcomeav.mp4"
-=======
-          src="/video/without.mp4"
->>>>>>> 4b390b54b0a2acda5340c2be8df47155bac3a735
+          src="public/video/welcomeav.mp4"
           autoPlay
           loop
           muted

@@ -66,32 +66,28 @@ export default function BarHorizontal() {
   });
 
   const valueFormatter = (value) => `${value}mm`; // Define la función de formato
-
+  console.log(dataset.map((item) => item.color));
   return (
     <BarChart
       dataset={dataset}
       yAxis={[{ scaleType: "band", dataKey: "título" }]}
-      series={[
-        {
-          dataKey: "puntuación",
-          label: "puntuación rainfall",
-          valueFormatter,
-          fill: ({ datum }) => datum.color, // Utiliza el campo 'color' en el dataset para el color de las barras
-          // Mostrar el mensaje dentro de la barra
-          // Necesita un CSS adicional para asegurarse de que el texto no se superponga con el borde de la barra
-          labelComponent: (
-            <text
-              x={0}
-              y={0}
-              dy={-10} // Ajustar la posición del texto dentro de la barra
-              textAnchor="middle"
-              fill={({ datum }) => datum.color} // Utiliza el color de la barra para el texto
-            >
-              {({ datum }) => datum.message}
-            </text>
-          ),
-        },
-      ]}
+      series={dataset.map((item) => ({
+        dataKey: "puntuación",
+        label: "puntuación ",
+        valueFormatter,
+        color: item.color, // Usa el color asignado en su posición en el dataset
+        labelComponent: ({ x, y, dy, item }) => (
+          <text
+            x={x}
+            y={y}
+            dy={dy} // Ajustar la posición del texto dentro de la barra
+            textAnchor="middle"
+            color={item.color} // Utiliza el color de la barra para el texto
+          >
+            {item.message}
+          </text>
+        ),
+      }))}
       layout="horizontal"
       grid={{ vertical: true }}
       {...chartSetting}
