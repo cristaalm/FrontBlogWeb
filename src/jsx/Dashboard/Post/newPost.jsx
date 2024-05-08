@@ -452,34 +452,41 @@ function usuarios() {
                                   respondWith.string(() => 
                                     Promise.reject("See docs to implement AI Assistant")
                                   ),
-                                image_advtab: true,
-                                image_title: true,
-                                automatic_uploads: true,
-                                file_picker_types: 'image',
-                                images_upload_handler: function (blobInfo, success, failure) {
-                                  var reader = new FileReader();
-                                  reader.onload = function (e) {
-                                    success(e.target.result); // Directly use the base64 encoded string
-                                  };
-                                  reader.readAsDataURL(blobInfo.blob());
+                                  image_advtab: true,
+                                  image_title: true,
+                                  automatic_uploads: true,
+                                  file_picker_types: 'image',
+                                  images_upload_handler: function (blobInfo) {
+                                    return new Promise(function(resolve, reject) {
+                                        try {
+                                            const blobUrl = URL.createObjectURL(blobInfo.blob());
+                                            setTimeout(() => {
+                                                URL.revokeObjectURL(blobUrl);
+                                                resolve(blobUrl);
+                                            }, 10000);
+                                        } catch (error) {
+                                            reject('Image upload failed: ' + error.message);
+                                        }
+                                    });
                                 },
-                                file_picker_callback: function(callback, value, meta) {
-                                  var input = document.createElement('input');
-                                  input.setAttribute('type', 'file');
-                                  input.setAttribute('accept', 'image/*');
-                                  input.onchange = function() {
-                                    var file = this.files[0];
-                                    var reader = new FileReader();
-                                    reader.onload = function(e) {
-                                      callback(e.target.result, {
-                                        alt: file.name
-                                      });
+                                
+                                  file_picker_callback: function(callback, value, meta) {
+                                    var input = document.createElement('input');
+                                    input.setAttribute('type', 'file');
+                                    input.setAttribute('accept', 'image/*');
+                                    input.onchange = function() {
+                                      var file = this.files[0];
+                                      var reader = new FileReader();
+                                      reader.onload = function(e) {
+                                        callback(e.target.result, {
+                                          alt: file.name
+                                        });
+                                      };
+                                      reader.readAsDataURL(file);
                                     };
-                                    reader.readAsDataURL(file);
-                                  };
-                                  input.click();
-                                }
-                              }}
+                                    input.click();
+                                  }
+                                }}
                               
                               id="entryDescription"
                               name="content"

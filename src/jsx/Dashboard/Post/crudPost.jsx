@@ -113,6 +113,14 @@ function crudPost() {
           },
         },
         {
+          element: ".visitarentrada-tour",
+          popover: {
+            title: "Visitar entrada",
+            description:
+              "Este botón le redirigirá a la página que contiene la entrada que desea consultar.",
+          },
+        },
+        {
           element: ".btnentrada-tour",
           popover: {
             title: "Añadir nueva entrada",
@@ -120,9 +128,15 @@ function crudPost() {
               "Al hacer clic en este botón, serás dirigido a la sección donde puedes añadir nuevas entradas.",
           },
         },
-        //{ element: '.imgdestaca-tour', popover: { title: 'Imagen destacada', description: 'Aquí puedes cargar y previsualizar la imagen que deseas destacar en tu entrada.' } },
-        // { element: '.tiny-tour', popover: { title: 'Previsualización', description: 'TinyMCE es un editor de texto enriquecido que facilita la creación y edición de contenido web. Explora las opciones de formato, añade imágenes, enlaces y mucho más.' } },
-        //{ element: '.btn-tour', popover: { title: 'Añadir entrada', description: 'Haz clic en este botón para agregar la entrada con toda la información que has proporcionado anteriormente.' } },
+        {
+          element: ".antiguo-tour",
+          popover: {
+            title: "Entradas más recientes y más antiguas",
+            description:
+              "Utilice este botón desplegable para seleccionar y visualizar la entrada más reciente o la más antigua en la sección correspondiente.",
+          },
+        },
+       
         {
           element: ".btn-iniciar-tour",
           popover: {
@@ -678,7 +692,7 @@ function crudPost() {
                             </button>
                           </Link>
                           <select
-                            className="m-1 ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2 w-z focus:border-cyan-900"
+                            className="m-1 ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2 w-z focus:border-cyan-900 antiguo-tour"
                             id="orden"
                             name="orden"
                             value={orden}
@@ -889,7 +903,7 @@ function crudPost() {
                                         onClick={() =>
                                           toggleViewPost(entrada.id)
                                         }
-                                        className={`btn-black rounded-lg p-2 m-1 ${
+                                        className={`btn-black rounded-lg p-2 m-1 visitarentrada-tour ${
                                           entrada.estatus === "Publicado"
                                             ? ""
                                             : "opacity-25 cursor-not-allowed"
