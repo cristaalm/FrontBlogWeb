@@ -35,6 +35,9 @@ const App = () => {
     } else {
       navigate("/login");
     }
+    if (response.status === 404) {
+      navigate("/error");
+    }
   }, []);
 
   return <div className="App"></div>;

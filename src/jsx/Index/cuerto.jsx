@@ -132,7 +132,6 @@ const Cuerpo = () => {
 
   return (
     <div className="cuerpoo">
-      {/* Video destacado */}
       <article id="welcome" className="seccionesvideo">
         <video
           className="vid"
@@ -240,7 +239,10 @@ const Cuerpo = () => {
         )}
       </article>
       {/* Últimas entradas */}
-      <article id="ultima-entrada" className="seccionescuerpoultima font-bold mt-12">
+      <article
+        id="ultima-entrada"
+        className="seccionescuerpoultima font-bold mt-12"
+      >
         <div className="ultimasentradas-container titulosdecategoruas">
           <FormattedMessage
             id="index.Last-entries"

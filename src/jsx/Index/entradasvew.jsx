@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import { BaseUrl } from "../../constants/global";
 import Carrusel from "../Elements/carrusel.jsx";
 import Encabezado2 from "./encabezado2.jsx";
+import { Tooltip } from "react-tooltip";
 
 const Entradasview = ({ intl }) => {
   useEffect(() => {
@@ -109,17 +110,48 @@ const Entradasview = ({ intl }) => {
     id: "index.Comment-Description",
     defaultMessage: "Comment Description",
   });
+  const [hoverRating, setHoverRating] = useState(null);
+
   const renderStars = (total) => {
     const stars = [];
     for (let i = 1; i <= total; i++) {
+      let tooltipContent = "";
+      switch (i) {
+        case 1:
+          tooltipContent = "Malo";
+          break;
+        case 2:
+          tooltipContent = "Regular";
+          break;
+        case 3:
+          tooltipContent = "Bueno";
+          break;
+        case 4:
+          tooltipContent = "Muy bueno";
+          break;
+        case 5:
+          tooltipContent = "Excelente";
+          break;
+        default:
+          tooltipContent = "";
+      }
+
       stars.push(
         <span
           key={i}
+          data-tooltip-id="lista"
+          data-tooltip-place="top"
+          data-tooltip-content={tooltipContent}
           onClick={() => setRating(i)}
+          onMouseOver={() => handleStarHover(i)}
+          onMouseOut={() => handleStarHover(null)}
           style={{
             cursor: "pointer",
             fontSize: "3rem",
-            color: i <= rating ? "#ffc107" : "#0d9488",
+            color: i <= rating || i <= hoverRating ? "#ffc107" : "#0d9488",
+            // color: i <= hoverRating ? "#ffc107" : "#0d9488",
+            // Add a transition for a smoother effect
+            transition: "color 0.2s ease",
           }}
         >
           ★
@@ -129,8 +161,23 @@ const Entradasview = ({ intl }) => {
     return stars;
   };
 
+  const handleStarHover = (value) => {
+    setHoverRating(value);
+  };
+
   return (
     <div className="bg-neutral-100">
+      <Tooltip
+        id="lista"
+        className="font-normal"
+        style={{
+          padding: "10px",
+          fontSize: "15px",
+          backgroundColor: "#ffc107",
+          color: "#035165",
+          zIndex: "999",
+        }}
+      />
       <div ref={topRef}></div>{" "}
       {/* Referencia al elemento en la parte superior */}
       <Encabezado2 />

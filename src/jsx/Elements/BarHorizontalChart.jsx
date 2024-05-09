@@ -69,28 +69,28 @@ export default function BarHorizontal() {
   console.log(dataset.map((item) => item.color));
   return (
     <BarChart
-      dataset={dataset}
-      yAxis={[{ scaleType: "band", dataKey: "título" }]}
-      series={dataset.map((item) => ({
-        dataKey: "puntuación",
-        label: "puntuación ",
-        valueFormatter,
-        color: item.color, // Usa el color asignado en su posición en el dataset
-        labelComponent: ({ x, y, dy, item }) => (
-          <text
-            x={x}
-            y={y}
-            dy={dy} // Ajustar la posición del texto dentro de la barra
-            textAnchor="middle"
-            color={item.color} // Utiliza el color de la barra para el texto
-          >
-            {item.message}
-          </text>
-        ),
-      }))}
-      layout="horizontal"
-      grid={{ vertical: true }}
-      {...chartSetting}
-    />
+    dataset={dataset}
+    yAxis={[{ scaleType: "band", dataKey: "título" }]}
+    series={dataset.map((item, index) => ({
+      dataKey: "puntuación",
+      label: "puntuación",
+      valueFormatter,
+      color: (item.color), // Utiliza el color de cada fila horizontal
+      labelComponent: ({ x, y, dy, item }) => (
+        <text
+          x={x}
+          y={y}
+          dy={dy}
+          textAnchor="middle"
+          fill={item.color} // Utiliza el color de cada fila horizontal
+        >
+          {item.message}
+        </text>
+      ),
+    }))}
+    layout="horizontal"
+    grid={{ vertical: true }}
+    {...chartSetting}
+  />
   );
 }
