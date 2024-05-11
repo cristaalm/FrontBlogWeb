@@ -139,6 +139,9 @@ function usuarios() {
   const [categories, setCategories] = useState([]);
   const [tiny, setTiny] = useState("");
   const fileInputRef = useRef(null);
+  const [isValidTitle, setIsValidTitle] = useState(false);
+  const [isValidInput, setIsValidInput] = useState({ category: false });
+  const [isValidDescription, setIsValidDescription] = useState(false);  // Inicializa en false para mostrar el mensaje de error inicialmente
 
   const [deleteModal, setDeleteContact] = React.useState(false);
   const [reloadTable, setReloadTable] = useState(false);
@@ -194,9 +197,29 @@ function usuarios() {
     };
     reader.readAsDataURL(file);
   };
-
+  const handleTitleChange = (e) => {
+    const value = e.target.value;
+    setTitle(value);
+    setIsValidTitle(value.trim() !== '');
+  };
+  const handleChangeCategory = (e) => {
+    const value = e.target.value;
+    setCategoryId(value);
+    setIsValidInput({...isValidInput, category: value !== ''}); // Valida si se ha seleccionado una categoría no vacía
+  };
+  const handleDescriptionChange = (e) => {
+    const value = e.target.value;
+    setDescripcion(value);
+    setIsValidDescription(value.trim() !== '');  // Actualiza la validación según el contenido
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (title.trim() === '') {
+      setIsValidTitle(false);
+      setMessage("El título no puede estar vacío");
+      setMessageClass("error");
+      return; // Previene la ejecución del resto del código si el título está vacío
+    }
     try {
       const usuario = localStorage.getItem("userName");
       await createPost(
@@ -342,49 +365,50 @@ function usuarios() {
                       Título de entrada
                     </div>
                     <input
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
-                      className="m-0 w-full p-2 in2"
-                      placeholder="Ingrese título"
-                    ></input>
-                  </div>
-                  <div className="mt-4">
-                    <select
-                      value={categoryId}
-                      onChange={(e) => setCategoryId(e.target.value)}
-                      className="selectUsuarios ring-teal-600 bg-neutral-100 ring-2 selectcat-tour rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-z focus:border-cyan-900"
-                    >
-                      <option
-                        value=""
-                        className="text-gray-400"
-                        disabled
-                        hidden
-                      >
-                        Seleccione su categoría...
-                      </option>
-                      {categories.data &&
-                        categories.data.map((category) => (
-                          <option key={category.id} value={category.id}>
-                            {category.nombre}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
-                  <div className="mt-2 descripcion-tour">
-                    <div className="font-medium" htmlFor="title">
-                      Descripción
-                    </div>
-                    <textarea
-                      value={descripcion}
-                      onChange={(e) => setDescripcion(e.target.value)}
-                      className="w-full bg-neutral-100 p-2 in2 mt-2 ring-2 ring-teal-600 rounded"
-                      placeholder="Ingrese descripción"
-                      maxLength={440}
-                    ></textarea>
-                    <p className="text-neutral-400 text-sm">
-                      Esta descripción será mostrada al usuario visitante.
-                    </p>
-                  </div>
+              value={title}
+              onChange={handleTitleChange}
+              className={`m-0 w-full p-2 in2 ${isValidTitle === false ? 'input-error' : isValidTitle === true ? 'input-success' : ''}`}
+              placeholder="Ingrese título"
+            />
+            {isValidTitle === false && <div className="validation-message">Campo incompleto</div>}
+            {isValidTitle === true && <div className="validation-message">Campo válido</div>}
+          </div>
+          <div className="mt-4">
+      <select
+        value={categoryId}
+        onChange={handleChangeCategory}
+        className={`selectUsuarios ring-teal-600 bg-neutral-100 ring-2 selectcat-tour rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-z focus:border-cyan-900 ${isValidInput.category ?   'input-success': isValidInput.category ? '' : 'input-error'}`}
+      >
+        <option value="" className="text-gray-400" disabled hidden>
+          Seleccione su categoría...
+        </option>
+        {categories.data &&
+          categories.data.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.nombre}
+            </option>
+          ))}
+      </select>
+      {/* Muestra el mensaje de validación basado en el estado */}
+      {isValidInput.category === false && <div className="validation-message">Seleccione una Categoría</div>}
+      {isValidInput.category === true && <div className="validation-message">Categoría Seleccionada</div>}
+
+      </div>
+    
+      <div className="mt-2 descripcion-tour">
+      <div className="font-medium" htmlFor="description">
+        Descripción
+      </div>
+      <textarea
+        value={descripcion}
+        onChange={handleDescriptionChange}
+        className={`w-full bg-neutral-100 p-2 in2 mt-2 ring-2 ring-teal-600 rounded ${isValidDescription ? 'input-success' : 'input-error'}`}
+        placeholder="Ingrese descripción"
+        maxLength={440}
+      ></textarea>
+        {isValidDescription === true && <div className="validation-message">Campo válido</div>}
+        {isValidDescription === false && <div className="validation-message">La descripción no puede estar vacía</div>}
+    </div>
                   <div className="mt-2 imgdestaca-tour">
                     <div className="font-medium" htmlFor="title">
                       Imagen Destacada
@@ -444,18 +468,11 @@ function usuarios() {
                             <div className="enter"></div>
 
                             <Editor
-                              apiKey="4bf4juc56apg2x7qd86sdyhdrj1zjznysvz06bddzevq7ewb"
+                              apiKey='kovdcfjaqbeap5tn2t47qcgag4xk6qwtg473e9iu0rmn2kd2'
+
                               init={{
-                                plugins:
-                                  "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown",
-                                toolbar:
-                                  "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-                                tinycomments_mode: "embedded",
-                                tinycomments_author: "AQUAVISION",
-                                mergetags_list: [
-                                  { value: "First.Name", title: "First Name" },
-                                  { value: "Email", title: "Email" },
-                                ],
+                                plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker markdown',
+                                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
                                 ai_request: (request, respondWith) =>
                                   respondWith.string(() =>
                                     Promise.reject(

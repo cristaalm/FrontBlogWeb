@@ -708,3 +708,26 @@ input:valid{
 .hidden{
   display: none !important;
 }
+.input-error {
+  border: 1px solid red;
+  background-image: url('https://cdn-icons-png.flaticon.com/128/7855/7855635.png'); /* Asegúrate de que esta ruta sea correcta */
+  background-size: 20px 20px; /* Ajusta el tamaño de la imagen */
+  background-position: right 20px center;
+  background-repeat: no-repeat;
+  padding-right: 35px; /* Asegura espacio suficiente para la imagen */
+}
+
+.input-success {
+  border: 1px solid green;
+  background-image: url('https://cdn-icons-png.flaticon.com/128/1828/1828643.png'); /* Asegúrate de que esta ruta sea correcta */
+  background-size: 16px 16px; /* Ajusta el tamaño de la imagen a la mitad */
+  background-position: right 20px center;
+  background-repeat: no-repeat;
+  padding-right: 35px; /* Asegura espacio suficiente para la imagen */
+}
+
+.validation-message {
+  color: red;
+  font-size: 0.875em;
+  margin-top: 4px;
+}
