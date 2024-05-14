@@ -203,7 +203,7 @@ const Entradasview = ({ intl }) => {
               {" "}
               {/* Contenedor para el input y las estrellas */}
               <input
-                className="btnVisitante w-full ring-2 border-b-none bg-neutral-100 p-2 ring-teal-600 rounded p-2 mr-2"
+                className="btnVisitante w-full ring-2 border-b-none bg-neutral-100 p-2 ring-teal-600 rounded mr-2"
                 type="text"
                 placeholder={namevist}
                 value={nombre}

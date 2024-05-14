@@ -181,7 +181,7 @@ function usuarios() {
       navigate("/login");
     }
     const fetchData = async () => {
-      const response = await fetch(BaseUrl + "/api/categories");
+      const response = await fetch(BaseUrl + "/api/categories/text");
       const data = await response.json();
       setCategories(data);
     };
@@ -306,7 +306,11 @@ function usuarios() {
                     text: "Añadir Nueva",
                     to: "/post/add",
                   },
-                  // { icon: <Layers />, text: "Categorías" }
+                  {
+                    icon: <Trash />,
+                    text: "Papelera de Reciclaje",
+                    to: "/post/reciclaje",
+                  },
                 ]}
               />
               <Link to="/categories" className="without_line">
@@ -371,7 +375,7 @@ function usuarios() {
               placeholder="Ingrese título"
             />
             {isValidTitle === false && <div className="validation-message">Campo incompleto</div>}
-            {isValidTitle === true && <div className="validation-message">Campo válido</div>}
+            {isValidTitle === true && <div className="validation-message hidden">Campo válido</div>}
           </div>
           <div className="mt-4">
       <select
@@ -391,7 +395,7 @@ function usuarios() {
       </select>
       {/* Muestra el mensaje de validación basado en el estado */}
       {isValidInput.category === false && <div className="validation-message">Seleccione una Categoría</div>}
-      {isValidInput.category === true && <div className="validation-message">Categoría Seleccionada</div>}
+      {isValidInput.category === true && <div className="validation-message hidden">Categoría Seleccionada</div>}
 
       </div>
     
@@ -406,7 +410,7 @@ function usuarios() {
         placeholder="Ingrese descripción"
         maxLength={440}
       ></textarea>
-        {isValidDescription === true && <div className="validation-message">Campo válido</div>}
+        {isValidDescription === true && <div className="validation-message hidden">Campo válido</div>}
         {isValidDescription === false && <div className="validation-message">La descripción no puede estar vacía</div>}
     </div>
                   <div className="mt-2 imgdestaca-tour">

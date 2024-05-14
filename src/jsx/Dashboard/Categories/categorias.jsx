@@ -238,6 +238,9 @@ function categorías() {
     setNombre(categoryData.nombre);
     setDescripcion(categoryData.descripcion);
     setSelectedColor(categoryData.color);
+    $("#btnSketch").trigger("click", [categoryData.color]);
+    //dispatch an event on button click. Send optional data along with the event. Child component will receive the data and process it.
+
     // Actualiza el estado previewImage con la URL de la imagen
     setPreviewImage(categoryData.imgdestacada);
   };
@@ -304,6 +307,11 @@ function categorías() {
                 icon: <PlusSquare />,
                 text: "Añadir Nueva",
                 to: "/post/add",
+              },
+              {
+                icon: <Trash />,
+                text: "Papelera de Reciclaje",
+                to: "/post/reciclaje",
               },
               // { icon: <Layers />, text: "Categorías" }
             ]}

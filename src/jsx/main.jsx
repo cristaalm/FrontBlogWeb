@@ -11,7 +11,9 @@ import ForgotPsswd from "./Login/ForgotPsswd.jsx";
 import RestartPsswd from "./Login/RestartPsswd.jsx";
 import SentMsg from "./Login/SentMsg.jsx";
 import PreviewPost from "./Dashboard/Post/Preview.jsx";
+import PreviewPostD from "./Dashboard/Post/PreviewD.jsx";
 import CRUD from "./Dashboard/Post/crudPost.jsx";
+import Reciclaje from "./Dashboard/Post/Reciclaje.jsx";
 import Usuarios from "./Dashboard/Users/usuarios.jsx";
 import Categorias from "./Dashboard/Categories/categorias.jsx";
 import CategoriaView from "./Index/categoriasview.jsx";
@@ -67,7 +69,9 @@ const router = createBrowserRouter([
       { path: "add", element: <NewPost /> },
       { path: "edit/:id", element: <EditPost /> },
       { path: "all", element: <CRUD /> },
+      { path: "reciclaje", element: <Reciclaje /> },
       { path: "preview/:id", element: <PreviewPost /> },
+      { path: "preview-delete/:id", element: <PreviewPostD /> },
       // { path: "categories", element: <PreviewPost /> },
     ],
   },
@@ -75,6 +79,7 @@ const router = createBrowserRouter([
   { path: "/categories", element: <Categorias /> },
   // Users - Usuarios
   { path: "/users", element: <Usuarios /> },
+  { path: "*", element: <Error404 /> },
 
 ]);
 

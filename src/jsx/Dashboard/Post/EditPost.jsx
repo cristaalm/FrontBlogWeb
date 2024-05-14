@@ -187,6 +187,11 @@ function EditPublish() {
                 text: "Añadir Nueva",
                 to: "/post/add",
               },
+              {
+                icon: <Trash />,
+                text: "Papelera de Reciclaje",
+                to: "/post/reciclaje",
+              },
             ]}
           />
           {user.rol === "Administrador" && (

@@ -35,6 +35,8 @@ const PreviewComponent = () => {
   const [fPublicacion, setFPublicacion] = useState("");
   const [color, setColor] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
+  const [error, setError] = useState(false);
+  const navigateTo = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,6 +60,7 @@ const PreviewComponent = () => {
         setNombre(data.nombre);
         setPreviewImage(data.imgdestacada);
       } catch (error) {
+        setError(true);
         console.error("Error fetching data:", error);
       }
     };
@@ -120,6 +123,9 @@ const PreviewComponent = () => {
     "#bedadc": "blueGray-300",
     "#d4c4fb": "purple-300",
   };
+  if (error) {
+    navigateTo("/error");
+  }
 
   const colorClass = colorMap[color[categoria]] || "cyan-400";
   let colorLetra = calcularContraste(color[categoria]);

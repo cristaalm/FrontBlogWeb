@@ -300,6 +300,11 @@ function usuarios() {
                 text: "Añadir Nueva",
                 to: "/post/add",
               },
+              {
+                icon: <Trash />,
+                text: "Papelera de Reciclaje",
+                to: "/post/reciclaje",
+              },
               // { icon: <Layers />, text: "Categorías" }
             ]}
           />

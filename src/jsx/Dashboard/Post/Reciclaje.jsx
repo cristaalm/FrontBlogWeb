@@ -17,12 +17,9 @@ import {
   Book,
   PlusSquare,
   Layers,
-  Pencil,
   Trash,
-  CirclePlus,
+  RotateCcw,
   CloudUpload,
-  Search,
-  Globe,
 } from "lucide-react";
 import { Eye, EyeSlash } from "react-bootstrap-icons";
 import { driver } from "driver.js";
@@ -186,7 +183,6 @@ function crudPost() {
   const [deleteModal, setDeleteEntrada] = React.useState(false);
   const [publicModal, setPublicEntrada] = React.useState(false);
   const [revisarModal, setRevisarEntrada] = React.useState(false);
-  const [motivoModal, setMotivoEntrada] = React.useState(false);
   const [reloadTable, setReloadTable] = useState(false);
 
   // Agrega un nuevo estado para almacenar el ID del usuario a editar
@@ -221,11 +217,10 @@ function crudPost() {
     navigate(`/blog-post/${id}`);
   };
   const togglePreview = (id) => {
-    navigate(`/post/preview/${id}`);
+    navigate(`/post/preview-delete/${id}`);
   };
-  const toggleMotivo = (id) => {
-    setRevisarEntrada(true);
-    setDeleteUserId(id);
+  const toggleEditPost = (id) => {
+    navigate(`/post/edit/${id}`);
   };
 
   const toggleRevisar = (id) => {
@@ -241,21 +236,22 @@ function crudPost() {
 
   // Obtiene los entradas en la tabla (GET)
   useEffect(() => {
-    let storedAuth = localStorage.getItem("isAuthenticated");
-    if (storedAuth == null) {
-      navigate("/login");
-    }
-    if (storedAuth == "false") {
-      navigate("/login");
-    }
     const fetchData = async () => {
-      const response = await fetch(BaseUrl + "/api/entradas/text");
+      const response = await fetch(BaseUrl + `/api/entradas/delete`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const data = await response.json();
       setEntradas(data);
       paginate("#tableEntradas", 10);
     };
     fetchData();
   }, [reloadTable]); // Vuelve a cargar la tabla cuando reloadTable cambia
+
+  // Define un estado para almacenar el objeto de nombres de categorías
+  const [categoryNames, setCategoryNames] = useState({});
 
   useEffect(() => {
     if (message) {
@@ -268,15 +264,13 @@ function crudPost() {
     }
   }, [message]);
 
-  const handleMotivo = async (deleteEntradaId) => {};
-
   // Elimina el usuario (POST)
   const handleDeleteUser = async (deleteEntradaId) => {
     try {
       const response = await fetch(
         BaseUrl + `/api/entradas/reciclaje/${deleteEntradaId}`,
         {
-          method: "POST",
+          method: "DELETE",
           headers: {
             "Content-Type": "application/json",
           },
@@ -288,7 +282,6 @@ function crudPost() {
         setMessage("Entrada mandada a la papelera de reciclaje exitosamente");
         setMessageClass("success");
       } else {
-        alert(BaseUrl + `/api/entradas/reciclaje/${deleteEntradaId}`);
         setMessage("Error al eliminar, intenta de nuevo");
         setMessageClass("error");
         console.error("Error al eliminar entrada");
@@ -297,7 +290,6 @@ function crudPost() {
       console.error("Error al eliminar entrada:", error);
     }
   };
-
   useEffect(() => {
     let nombreusuario = localStorage.getItem("userName");
     // Mandar el nombre de usuario del fetch en el request body
@@ -341,7 +333,7 @@ function crudPost() {
   // Revisa la entrada, canmbia el status (POST)
   const handleReview = async (id) => {
     try {
-      const response = await fetch(BaseUrl + `/api/entradas/review/${id}`, {
+      const response = await fetch(BaseUrl + `/api/entradas/pendiente/${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -414,20 +406,6 @@ function crudPost() {
       setMessageClass("error");
     }
   };
-
-  // Función para cargar los datos del usuario a editar
-  const loadEditUserData = (userId) => {
-    navigate(`/post/edit/${userId}`);
-    const userData = entradas.data.find((user) => user.id === userId);
-    setEditUserId(userId);
-    setEditUserData(userData);
-    setUsuario(userData.nombreusuario);
-    setNombre(userData.nombre);
-    setCorreo(userData.correoelectronico);
-    setContraseña(userData.contraseñentradasa);
-    setPerfil(userData.perfil);
-  };
-
   return (
     <div
       style={{ display: "flex", backgroundColor: "whitesmoke" }}
@@ -470,68 +448,6 @@ function crudPost() {
       </Modal>
       <Modal
         ariaHideApp={false}
-        id="publicar"
-        isOpen={publicModal}
-        onRequestClose={closeModal}
-        contentLabel="Publicar entrada"
-        style={customStyles}
-      >
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <ion-icon
-            name="close"
-            onClick={closeModal}
-            style={{
-              cursor: "pointer",
-              fontSize: "24px",
-              color: "#650303",
-            }}
-          ></ion-icon>
-        </div>
-        <h3 className="text-center text-lg font-semibold">Publicar entrada</h3>
-        <p>¿Estás seguro de que quieres publicar entrada?</p>
-        <div className="flex flex-row justify-between">
-          <button className="btn-red flex-1 p-2 m-1" onClick={closeModal}>
-            Cancelar
-          </button>
-          <button
-            className="btn-green flex-1 p-2 m-1"
-            onClick={() => handlePublished(deleteEntradaId)}
-          >
-            Publicar
-          </button>
-        </div>
-      </Modal>
-      <Modal
-        ariaHideApp={false}
-        id="motivo"
-        isOpen={motivoModal}
-        onRequestClose={closeModal}
-        contentLabel="Publicar entrada"
-        style={customStyles}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
-          <ion-icon
-            name="close"
-            onClick={closeModal}
-            style={{
-              cursor: "pointer",
-              fontSize: "24px",
-              color: "#650303",
-            }}
-          ></ion-icon>
-        </div>
-        <h3 className="text-center text-lg font-semibold">
-          Motivo de eliminación
-        </h3>
-        <textarea className="bg-teal-100 p-4 m-2 rounded-lg"></textarea>
-      </Modal>
-      <Modal
-        ariaHideApp={false}
         id="revisar"
         isOpen={revisarModal}
         onRequestClose={closeModal}
@@ -549,8 +465,8 @@ function crudPost() {
             }}
           ></ion-icon>
         </div>
-        <h3 className="text-center text-lg font-semibold">Revisar entrada</h3>
-        <p>¿Estás seguro de que mandar a revisión entrada?</p>
+        <h3 className="text-center text-lg font-semibold">Retornar entrada</h3>
+        <p>¿Estás seguro retornar entrada y cambiar de estatus?</p>
         <div className="flex flex-row justify-between">
           <button className="btn-red flex-1 p-2 m-1" onClick={closeModal}>
             Cancelar
@@ -598,6 +514,7 @@ function crudPost() {
                     text: "Papelera de Reciclaje",
                     to: "/post/reciclaje",
                   },
+                  // { icon: <Layers />, text: "Categorías" }
                 ]}
               />
               <Link to="/categories" className="without_line">
@@ -671,7 +588,9 @@ function crudPost() {
           <div className="contenedor_cuadricular">
             <div className="margin">
               <div className="entrada">
-                <h1 className="tamaño_fuente entradas-tour">Entradas</h1>
+                <h1 className="tamaño_fuente entradas-tour">
+                  Papelera de Reciclaje
+                </h1>
                 {user.rol != "Administrador" && (
                   <button
                     onClick={startTour}
@@ -697,12 +616,6 @@ function crudPost() {
                     <div className="overflow-x-auto">
                       <div className="relative w-full overflow-auto">
                         <div className="flex justify-end gap-2">
-                          <Link to="/post/add" className="without_line">
-                            <button className="btn-blue p-2 m-1 flex items-center btnentrada-tour">
-                              Añadir nueva entrada
-                              <CirclePlus size={20} className="ml-2" />
-                            </button>
-                          </Link>
                           <select
                             className="m-1 ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2 w-z focus:border-cyan-900 antiguo-tour"
                             id="orden"
@@ -742,6 +655,9 @@ function crudPost() {
                               <th className="border-neutral-100 border-r-2 encabezadoTabla estatus-tour">
                                 Estatus
                               </th>
+                              <th className="border-neutral-100 border-r-2 encabezadoTabla estatus-tour">
+                              Motivo de Rechazo
+                              </th>
                               <th className="border-teal-600 border-r-2 encabezadoTabla"></th>
                             </tr>
                           </thead>
@@ -751,7 +667,7 @@ function crudPost() {
                                 if (user.rol !== "Administrador") {
                                   return nombreusuario === entrada.usuario;
                                 }
-                                return entrada.estatus !== "Eliminado"; // Mostrar todas las entradas si el usuario es administrador
+                                return true; // Mostrar todas las entradas si el usuario es administrador
                               })
                               .sort((a, b) =>
                                 orden === "ascendente"
@@ -760,13 +676,44 @@ function crudPost() {
                               )
                               .map((entrada) => (
                                 <tbody key={entrada.id}>
+                                  <Modal
+                                    ariaHideApp={false}
+                                    id="publicar"
+                                    isOpen={publicModal}
+                                    onRequestClose={closeModal}
+                                    contentLabel="Publicar entrada"
+                                    style={customStyles}
+                                  >
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "flex-end",
+                                      }}
+                                    >
+                                      <ion-icon
+                                        name="close"
+                                        onClick={closeModal}
+                                        style={{
+                                          cursor: "pointer",
+                                          fontSize: "24px",
+                                          color: "#650303",
+                                        }}
+                                      ></ion-icon>
+                                    </div>
+                                    <h3 className="text-center text-lg font-semibold">
+                                      Motivo de eliminación
+                                    </h3>
+                                    <div className="bg-teal-100 p-4 m-2 rounded-lg">
+                                      {entrada.motivorechazo}
+                                    </div>
+                                  </Modal>
                                   <tr className="tr-body border-2 border-teal-600">
                                     {/* <td className="p-1 w-5">{entrada.id}</td> */}
                                     <td className="border-2 border-teal-600 p-1">
                                       {entrada.titulo}
                                     </td>
                                     <td className="border-2 border-teal-600 p-1">
-                                      {entrada.nombrecategoria}
+                                      {entrada.categoria}
                                     </td>
                                     {user.rol === "Administrador" && (
                                       <td className="border-2 border-teal-600 p-1">
@@ -788,43 +735,10 @@ function crudPost() {
                                         {entrada.estatus}
                                       </span>
                                     </td>
+                                    <td className="border-2 border-teal-600 p-1">
+                                      {entrada.motivorechazo}
+                                    </td>
                                     <td className="flex items-center justify-center">
-                                      <button
-                                        // onClick={() =>
-                                        //   toggleEditPost(entrada.id)
-                                        // }
-                                        className={`btn-yellow p-2 m-1 editar-tour ${
-                                          entrada.estatus !== "Revisión" &&
-                                          entrada.estatus !== "Publicado" &&
-                                          entrada.usuario == nombreusuario &&
-                                          entrada.estatus === "Pendiente"
-                                            ? ""
-                                            : "opacity-25 cursor-not-allowed"
-                                        }`}
-                                        data-tooltip-id="editar"
-                                        data-tooltip-place="top"
-                                        data-tooltip-content="Editar"
-                                        disabled={
-                                          entrada.estatus == "Revisión" &&
-                                          entrada.estatus == "Publicado" &&
-                                          entrada.usuario !== nombreusuario
-                                        }
-                                        {...(entrada.estatus !== "Revisión" &&
-                                        entrada.estatus !== "Publicado" &&
-                                        entrada.usuario == nombreusuario
-                                          ? {}
-                                          : { "data-tooltip-hidden": true })}
-                                        onClick={() => {
-                                          if (
-                                            entrada.estatus === "Pendiente" &&
-                                            entrada.usuario === nombreusuario
-                                          ) {
-                                            loadEditUserData(entrada.id);
-                                          }
-                                        }}
-                                      >
-                                        <Pencil size={20} />
-                                      </button>
                                       <button
                                         onClick={() =>
                                           togglePreview(entrada.id)
@@ -849,7 +763,7 @@ function crudPost() {
                                       {user.rol === "Administrador" && (
                                         <button
                                           onClick={() =>
-                                            togglePublic(entrada.id)
+                                            toggleRevisar(entrada.id)
                                           }
                                           className={`btn-green p-2 m-1 ${
                                             entrada.estatus !== "Publicado"
@@ -858,7 +772,7 @@ function crudPost() {
                                           }`}
                                           data-tooltip-id="post"
                                           data-tooltip-place="top"
-                                          data-tooltip-content="Publicar"
+                                          data-tooltip-content="Retornar"
                                           disabled={
                                             entrada.estatus === "Publicado"
                                           }
@@ -866,71 +780,9 @@ function crudPost() {
                                             ? {}
                                             : { "data-tooltip-hidden": true })}
                                         >
-                                          <CloudUpload size={20} />
+                                          <RotateCcw size={20} />
                                         </button>
                                       )}
-                                      <button
-                                        onClick={() => toggleDelete(entrada.id)}
-                                        className="btn-red p-2 m-1 eliminar-tour"
-                                        data-tooltip-id="eliminar"
-                                        data-tooltip-place="top"
-                                        data-tooltip-content="Eliminar"
-                                      >
-                                        <Trash size={20} />
-                                      </button>
-                                      {user.rol !== "Administrador" && (
-                                        <button
-                                          onClick={() => {
-                                            if (
-                                              entrada.estatus !== "Revisión" &&
-                                              entrada.estatus !== "Publicado"
-                                            ) {
-                                              toggleRevisar(entrada.id);
-                                            }
-                                          }}
-                                          className={`btn-purple p-2 m-1 revisar-tour ${
-                                            entrada.estatus != "Revisión" &&
-                                            entrada.estatus != "Publicado"
-                                              ? ""
-                                              : "opacity-25 cursor-not-allowed"
-                                          }`}
-                                          data-tooltip-id="revisar"
-                                          data-tooltip-place="top"
-                                          data-tooltip-content="Revisar"
-                                          disabled={
-                                            entrada.estatus === "Revisión" &&
-                                            entrada.estatus === "Publicado"
-                                          }
-                                          {...(entrada.estatus !== "Revisión" &&
-                                          entrada.estatus !== "Publicado"
-                                            ? {}
-                                            : { "data-tooltip-hidden": true })}
-                                        >
-                                          <Search size={20} />
-                                        </button>
-                                      )}
-                                      <button
-                                        style={{ backgroundColor: "#000" }}
-                                        onClick={() =>
-                                          toggleViewPost(entrada.id)
-                                        }
-                                        className={`btn-black rounded-lg p-2 m-1 visitarentrada-tour ${
-                                          entrada.estatus === "Publicado"
-                                            ? ""
-                                            : "opacity-25 cursor-not-allowed"
-                                        }`}
-                                        data-tooltip-id="viewWeb"
-                                        data-tooltip-place="top"
-                                        data-tooltip-content="Visitar Entrada"
-                                        disabled={
-                                          entrada.estatus !== "Publicado"
-                                        }
-                                        {...(entrada.estatus === "Publicado"
-                                          ? {}
-                                          : { "data-tooltip-hidden": true })}
-                                      >
-                                        <Globe size={20} color="whitesmoke" />
-                                      </button>
                                     </td>
                                   </tr>
                                 </tbody>
