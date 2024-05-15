@@ -77,7 +77,7 @@ function categorías() {
 
 
 
-  const [isValidDescription, setIsValidDescription] = useState(false);
+  const [isValidDescription, setIsValidDescription] = useState(null);
 
   const handleUploadClick = () => {
     // Activa el input de tipo file al hacer clic en otro elemento
@@ -102,7 +102,7 @@ function categorías() {
   const [previewImage, setPreviewImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [uploadError, setUploadError] = useState('');
-  const [isValidImage, setIsValidImage] = useState(false);
+  const [isValidImage, setIsValidImage] = useState(null);
   
   const handleImageUpload = (file) => {
     if (!file) {
@@ -138,6 +138,7 @@ function categorías() {
     reader.readAsDataURL(file);
 };
 
+
   // Función para actualizar el color seleccionado
   const handleColorChange = (color) => {
     setSelectedColor(color.hex);
@@ -147,13 +148,28 @@ function categorías() {
     setNombre(value);
     setIsValidTitle(value.trim() !== ''); // Validación si el campo no está vacío
   };
+ 
+
   const handleDescriptionChange = (e) => {
     const value = e.target.value;
+    console.log("Nuevo valor de descripción:", value); // Depuración
     setDescripcion(value);
-    setIsValidDescription(value.trim() !== ''); // Verifica que no esté vacío
-};
+    setIsValidDescription(value.trim() !== '');
+};useEffect(() => {
+  // Validación del nombre
+  setIsValidTitle(nombre.trim() !== '');
+}, [nombre]); // Dependencia del efecto al estado 'nombre'
 
-  
+useEffect(() => {
+  // Validación de la descripción
+  setIsValidDescription(descripcion.trim() !== '');
+}, [descripcion]); // Dependencia del efecto al estado 'descripcion'
+
+useEffect(() => {
+  // Si usas alguna validación basada en la imagen, asegúrate de que también se resetee correctamente
+  setIsValidImage(previewImage ? true : false);
+}, [previewImage]); // Dependencia del efecto al estado 'previewImage'
+
   const toggleEntriesDropdown = () => {
     setIsEntriesDropdownOpen(!isEntriesDropdownOpen);
   };
@@ -172,6 +188,7 @@ function categorías() {
     setDeleteContact(false);
     setCategoryId(null);
   }
+  
 
   // Obtiene los categorías en la tabla (GET) y los ordena por ID ascendente
   useEffect(() => {
@@ -229,12 +246,19 @@ function categorías() {
     }
   };
 
+  
   const cleanForm = () => {
     setNombre("");
     setDescripcion("");
     setSelectedColor("");
     setPreviewImage(null);
-  };
+
+    // Restablece también los estados de validación
+    setIsValidTitle(null);
+    setIsValidDescription(null);
+    setIsValidImage(null);
+};
+
   // Modifica la función handleSubmit para que pueda enviar una solicitud de actualización en lugar de crear un usuario nuevo
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -278,6 +302,17 @@ function categorías() {
       setMessageClass("error");
     }
   };
+  useEffect(() => {
+    if (message) {
+        const timer = setTimeout(() => {
+            setMessage("");
+            setMessageClass("");
+        }, 2000); // Ajusta el tiempo según sea necesario
+
+        return () => clearTimeout(timer);
+    }
+}, [message]);
+
 
   const loadEditCategoryData = (categoryId) => {
     const categoryData = categories.data.find(
@@ -440,6 +475,7 @@ function categorías() {
                   placeholder="Ingrese descripción"
               ></textarea>
               {isValidDescription === false && <div className="validation-message">La descripción no puede estar vacía</div>}
+
           </div>
 
 

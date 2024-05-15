@@ -81,6 +81,7 @@ const handleNombreUsuarioChange = (e) => {
     setUsuario(value);
     setIsValidNombreUsuario(value.trim() !== ''); // Verifica que no esté vacío
 };
+
 const handleNombreChange = (e) => {
   const value = e.target.value;
   setNombre(value);
@@ -102,6 +103,21 @@ const handlePerfilChange = (e) => {
   setPerfil(value);
   setIsValidPerfil(value !== ''); // Verifica que se haya seleccionado un perfil
 };
+useEffect(() => {
+  setIsValidNombre(nombre.trim() !== '');
+}, [nombre]);
+useEffect(() => {
+  setIsValidNombreUsuario(nombreusuario.trim() !== '');
+}, [nombreusuario]);
+useEffect(() => {
+  setIsValidCorreoElectronico(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(correoelectronico));
+}, [correoelectronico]);
+useEffect(() => {
+  setIsValidContraseña(contraseña.length >= 8);
+}, [contraseña]);
+useEffect(() => {
+  setIsValidPerfil(perfil !== '');
+}, [perfil]);
 
 
   const cerrarSesion = () => {
@@ -187,54 +203,65 @@ const handlePerfilChange = (e) => {
     setNombre("");
     setCorreo("");
     setContraseña("");
-    setPerfil([]);
-  };
-  // Modifica la función handleSubmit para que pueda enviar una solicitud de actualización en lugar de crear un usuario nuevo
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (
-      nombreusuario &&
-      nombre &&
-      correoelectronico &&
-      contraseña &&
-      perfil.length > 0
-    ) {
-      try {
-        if (editUserId !== null) {
-          // Si editUserId no es null, significa que se está editando un usuario existente
-          await editUser(
-            nombreusuario,
-            nombre,
-            correoelectronico,
-            contraseña,
-            perfil,
-            editUserId // Agregar el ID del usuario a editar
-          );
-          setMessage("Usuario modificado exitosamente");
-        } else {
-          // Si editUserId es null, significa que se está creando un nuevo usuario
-          await createUser(
-            nombreusuario,
-            nombre,
-            correoelectronico,
-            contraseña,
-            perfil
-          );
-          setMessage("Usuario creado exitosamente");
-        }
-        setEditUserId(null); // Resetear el estado de editUserId a null
-        setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
-        setMessageClass("success");
-        cleanForm(); // Limpia el formulario después de enviar los datos
-      } catch (error) {
-        setMessage("Error al crear, intenta de nuevo");
-        setMessageClass("error");
-      }
+    setPerfil("");
+
+    // Restablecer estados de validación
+    setIsValidNombreUsuario(null);
+    setIsValidNombre(null);
+    setIsValidCorreoElectronico(null);
+    setIsValidContraseña(null);
+    setIsValidPerfil(null);
+};
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  // Verificar que todos los campos están correctamente llenados
+  if (!nombreusuario || !nombre || !correoelectronico || !contraseña || !perfil) {
+    setMessage("Por favor completa todos los campos");
+    setMessageClass("error");
+    return;
+  }
+
+  // Verificar formato de correo electrónico y longitud de la contraseña
+  if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(correoelectronico) || contraseña.length < 8) {
+    setMessage("Asegúrate de que el correo es válido y la contraseña tiene al menos 8 caracteres");
+    setMessageClass("error");
+    return;
+  }
+
+  try {
+    if (editUserId !== null) {
+      // Si editUserId no es null, significa que se está editando un usuario existente
+      await editUser(
+        nombreusuario,
+        nombre,
+        correoelectronico,
+        contraseña,
+        perfil,
+        editUserId // Agregar el ID del usuario a editar
+      );
+      setMessage("Usuario modificado exitosamente");
     } else {
-      setMessage("Por favor completa todos los campos");
-      setMessageClass("error");
+      // Si editUserId es null, significa que se está creando un nuevo usuario
+      await createUser(
+        nombreusuario,
+        nombre,
+        correoelectronico,
+        contraseña,
+        perfil
+      );
+      setMessage("Usuario creado exitosamente");
     }
-  };
+    setEditUserId(null); // Resetear el estado de editUserId a null
+    setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
+    setMessageClass("success");
+    cleanForm(); // Limpia el formulario después de enviar los datos
+  } catch (error) {
+    setMessage("Error al crear o modificar, intenta de nuevo");
+    setMessageClass("error");
+  }
+};
 
   // Función para cargar los datos del usuario a editar
   const loadEditUserData = (userId) => {
