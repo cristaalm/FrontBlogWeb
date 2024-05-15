@@ -70,6 +70,40 @@ function usuarios() {
 
   const [users, setUsers] = useState([]);
 
+  const [isValidNombreUsuario, setIsValidNombreUsuario] = useState(false);
+  const [isValidNombre, setIsValidNombre] = useState(false); 
+  const [isValidCorreoElectronico, setIsValidCorreoElectronico] = useState(false);
+  const [isValidContraseña, setIsValidContraseña] = useState(false); 
+  const [isValidPerfil, setIsValidPerfil] = useState(false); 
+
+const handleNombreUsuarioChange = (e) => {
+    const value = e.target.value;
+    setUsuario(value);
+    setIsValidNombreUsuario(value.trim() !== ''); // Verifica que no esté vacío
+};
+const handleNombreChange = (e) => {
+  const value = e.target.value;
+  setNombre(value);
+  setIsValidNombre(value.trim() !== ''); // Verifica que el campo no esté vacío
+};
+const handleCorreoElectronicoChange = (e) => {
+  const value = e.target.value;
+  setCorreo(value);
+  setIsValidCorreoElectronico(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)); // Verifica que el campo contenga un formato válido de correo electrónico
+};
+const handleContraseñaChange = (e) => {
+  const value = e.target.value;
+  setContraseña(value);
+  // Verifica que la contraseña cumpla con los requisitos mínimos, por ejemplo, longitud mínima
+  setIsValidContraseña(value.length >= 8);
+};
+const handlePerfilChange = (e) => {
+  const value = e.target.value;
+  setPerfil(value);
+  setIsValidPerfil(value !== ''); // Verifica que se haya seleccionado un perfil
+};
+
+
   const cerrarSesion = () => {
     localStorage.removeItem("isAuthenticated");
     navigate("/login");
@@ -342,84 +376,94 @@ function usuarios() {
                 <h1 className="tamaño_fuente">Usuarios</h1>
               </div>
               <div className="flex sm:flex-row w-40% flex-col">
-                <form onSubmit={handleSubmit} className="mt-4 sm:w-full mr-4">
-                  <div className="">
-                    <div className="font-medium" htmlFor="title">
-                      Nombre del usuario
+              <form onSubmit={handleSubmit} className="mt-4 sm:w-full mr-4">
+                <div className="">
+                  <div className="font-medium" htmlFor="nombreUsuario"> {/* Asegúrate de que el htmlFor coincide con el ID del input si lo usas */}
+                    Nombre del usuario
+                  </div>
+                  <input
+                    id="nombreUsuario" // Opcional, si usas el htmlFor en el label
+                    value={nombreusuario}
+                    onChange={handleNombreUsuarioChange}
+                    className={`m-0 w-full p-2 in2 ${isValidNombreUsuario === false ? 'input-error' : isValidNombreUsuario === true ? 'input-success' : ''}`}
+                    placeholder="Ingrese usuario"
+                  ></input>
+                  {isValidNombreUsuario === false && <div className="validation-message">El nombre del usuario no puede estar vacío</div>}
+                </div>
+                <div className="mt-2">
+                <div className="font-medium" htmlFor="nombre"> {/* Asegúrate de que el htmlFor esté correctamente asociado si usas label */}
+                    Nombre completo
+                </div>
+                <input
+                    id="nombre" // Opcional, si usas el htmlFor en un label
+                    value={nombre}
+                    onChange={handleNombreChange}
+                    className={`w-full p-2 in2 ${isValidNombre === false ? 'input-error' : isValidNombre === true ? 'input-success' : ''}`}
+                    placeholder="Ingrese nombre completo"
+                ></input>
+                {isValidNombre === false && <div className="validation-message">El nombre completo no puede estar vacío</div>}
+                </div>
+                <div className="mt-2">
+                    <div className="font-medium" htmlFor="correoElectronico">
+                        Correo Electrónico
                     </div>
                     <input
-                      value={nombreusuario}
-                      onChange={(e) => setUsuario(e.target.value)}
-                      className="m-0 w-full p-2 in2"
-                      placeholder="Ingrese usuario"
+                        id="correoElectronico" // Opcional, si usas el htmlFor en un label
+                        value={correoelectronico}
+                        onChange={handleCorreoElectronicoChange}
+                        className={`w-full p-2 in2 ${isValidCorreoElectronico === false ? 'input-error' : isValidCorreoElectronico ? 'input-success' : ''}`}
+                        placeholder="Ingrese correo electrónico"
                     ></input>
-                  </div>
-                  <div className="mt-2">
-                    <div className="font-medium" htmlFor="title">
-                      Nombre completo
-                    </div>
+                    {isValidCorreoElectronico === false && <div className="validation-message">Ingrese un correo electrónico válido</div>}
+                </div>
+                <div className="mt-2">
+
+                <div className="font-medium" htmlFor="contraseña">
+                    Contraseña
+                </div>
+                <div className="relative">
                     <input
-                      value={nombre}
-                      onChange={(e) => setNombre(e.target.value)}
-                      className="w-full p-2 in2"
-                      placeholder="Ingrese nombre completo"
-                    ></input>
-                  </div>
-                  <div className="mt-2">
-                    <div className="font-medium" htmlFor="title">
-                      Correo Electrónico
-                    </div>
-                    <input
-                      value={correoelectronico}
-                      onChange={(e) => setCorreo(e.target.value)}
-                      className="w-full p-2 in2"
-                      placeholder="Ingrese correo electrónico"
-                    ></input>
-                  </div>
-                  <div className="mt-2">
-                    <div className="font-medium" htmlFor="description">
-                      Contraseña
-                    </div>
-                    <div className="relative">
-                      <input
                         value={contraseña}
-                        onChange={(e) => setContraseña(e.target.value)}
+                        onChange={handleContraseñaChange}
                         className="w-full p-2 in2 btnUsarios"
+                        //className={`w-full p-2 in2 btnUsarios ${isValidContraseña === false ? 'input-error' : isValidContraseña ? 'input-success' : ''}`}
+
                         type={showPassword ? "text" : "password"}
                         id="contraseña"
                         placeholder="Ingresa tu contraseña"
-                      />
-                      <button
+
+                    />
+                    <button
                         type="button"
                         className="absolute right-0 top-1/2 transform -translate-y-1/2 mr-2"
                         onClick={togglePasswordVisibility}
-                      >
-                        {showPassword ? (
-                          <Eye color="#035165" />
-                        ) : (
-                          <EyeSlash color="#0d9488" />
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <select
-                      value={perfil}
-                      onChange={(e) => setPerfil(e.target.value)}
-                      className="selectUsuarios ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-z focus:border-cyan-900"
                     >
-                      <option
+                        {showPassword ? <Eye color="#035165" /> : <EyeSlash color="#0d9488" />}
+                    </button>
+                    {isValidContraseña === false && <div className="validation-message1">La contraseña debe tener al menos 8 caracteres</div>}
+                </div>
+            </div>
+
+                <div className="mt-4">
+                <select
+                    value={perfil}
+                    onChange={handlePerfilChange}
+                    className={`selectUsuarios ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-z focus:border-cyan-900 ${isValidPerfil === false ? 'input-error' : isValidPerfil ? 'input-success' : ''}`}
+                >
+                    <option
                         value=""
                         className="text-gray-400"
                         disabled
                         hidden
-                      >
+                    >
                         Seleccionar perfil
-                      </option>
-                      <option value="Editor">Editor</option>
-                      <option value="Administrador">Administrador</option>
-                    </select>
-                  </div>
+                    </option>
+                    <option value="Editor">Editor</option>
+                    <option value="Administrador">Administrador</option>
+                </select>
+                {isValidPerfil === false && <div className="validation-message">Por favor, seleccione un perfil</div>}
+            </div>
+
                   <div>
                     <button type="submit" className="entr tracking-widest mt-4">
                       {editUserId !== null

@@ -151,7 +151,11 @@ function usuarios() {
 
   const handleTinyChange = (content, editor) => {
     setTiny(content);
+    setIsValidTiny(content.trim() !== '');  // Verifica que el contenido no sea solo espacios en blanco
+
   };
+  const [isValidTiny, setIsValidTiny] = useState(false); // null, true, o false para la validación
+
   const [user, setUser] = useState([]);
 
   useEffect(() => {
@@ -188,15 +192,44 @@ function usuarios() {
     fetchData();
   }, []);
   const [previewImage, setPreviewImage] = useState(null);
-
+  const [loading, setLoading] = useState(false);
+  const [uploadError, setUploadError] = useState('');
+  const [isValidImage, setIsValidImage] = useState(false);
+  
   const handleImageUpload = (file) => {
+    if (!file) {
+        setIsValidImage(false);
+        setUploadError('Por favor, seleccione una imagen para cargar.');
+        setLoading(false);
+        return;
+    }
+
+    if (!file.type.startsWith('image/')) {
+        setIsValidImage(false);
+        setUploadError('El archivo seleccionado no es una imagen válida.');
+        setLoading(false);
+        return;
+    }
+
+    setLoading(true);
+    setUploadError('');
+    setIsValidImage(null);
+
     const reader = new FileReader();
     reader.onloadend = () => {
       const base64String = reader.result;
       setPreviewImage(base64String);
+      setIsValidImage(true);
+      setLoading(false);
+    };
+    reader.onerror = () => {
+      setUploadError('Error al cargar la imagen.');
+      setIsValidImage(false);
+      setLoading(false);
     };
     reader.readAsDataURL(file);
-  };
+};
+
   const handleTitleChange = (e) => {
     const value = e.target.value;
     setTitle(value);
@@ -214,12 +247,39 @@ function usuarios() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validación del título
     if (title.trim() === '') {
       setIsValidTitle(false);
       setMessage("El título no puede estar vacío");
       setMessageClass("error");
-      return; // Previene la ejecución del resto del código si el título está vacío
+      return;
     }
+
+    // Validación de la descripción
+    if (descripcion.trim() === '') {
+      setIsValidDescription(false); // Asegúrate de tener este estado definido y usado en el componente
+      setMessage("La descripción no puede estar vacía");
+      setMessageClass("error");
+      return;
+    }
+
+    // Validación de la categoría
+    if (!categoryId) {
+      setIsValidCategory(false); // Asegúrate de tener este estado definido y usado en el componente
+      setMessage("Debe seleccionar una categoría");
+      setMessageClass("error");
+      return;
+    }
+
+    // Validación de la imagen
+    if (!previewImage) {
+      setIsValidImage(false); // Asegúrate de tener este estado definido y usado en el componente
+      setMessage("Debe cargar una imagen destacada");
+      setMessageClass("error");
+      return;
+    }
+
     try {
       const usuario = localStorage.getItem("userName");
       await createPost(
@@ -237,7 +297,8 @@ function usuarios() {
       setMessage("An error occurred while creating the post");
       setMessageClass("error");
     }
-  };
+};
+
   const volverTodos = () => {
     navigate("/post/all");
   };
@@ -375,7 +436,6 @@ function usuarios() {
               placeholder="Ingrese título"
             />
             {isValidTitle === false && <div className="validation-message">Campo incompleto</div>}
-            {isValidTitle === true && <div className="validation-message hidden">Campo válido</div>}
           </div>
           <div className="mt-4">
       <select
@@ -395,8 +455,6 @@ function usuarios() {
       </select>
       {/* Muestra el mensaje de validación basado en el estado */}
       {isValidInput.category === false && <div className="validation-message">Seleccione una Categoría</div>}
-      {isValidInput.category === true && <div className="validation-message hidden">Categoría Seleccionada</div>}
-
       </div>
     
       <div className="mt-2 descripcion-tour">
@@ -410,47 +468,50 @@ function usuarios() {
         placeholder="Ingrese descripción"
         maxLength={440}
       ></textarea>
-        {isValidDescription === true && <div className="validation-message hidden">Campo válido</div>}
         {isValidDescription === false && <div className="validation-message">La descripción no puede estar vacía</div>}
     </div>
-                  <div className="mt-2 imgdestaca-tour">
-                    <div className="font-medium" htmlFor="title">
-                      Imagen Destacada
-                    </div>
-                    {previewImage ? (
-                      <img
-                        src={previewImage}
-                        alt="Preview"
-                        className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
-                        onClick={() => fileInputRef.current.click()}
-                      />
-                    ) : (
-                      <img
-                        src="/img/upload1.png"
-                        alt="Default Preview"
-                        onClick={() => fileInputRef.current.click()}
-                        className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
-                      />
-                    )}
-                    <button
-                      type="button"
-                      className="pre tracking-widest p-3 mt-4"
-                      onClick={() => fileInputRef.current.click()}
-                    >
-                      <div className="">
-                        Subir imagen
-                        {/* <ArrowUpFromLine size={20} className="ml-2" /> */}
-                      </div>
-                    </button>
-                    <input
-                      className="hidden"
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => handleImageUpload(e.target.files[0])}
-                      ref={fileInputRef}
-                      // style={{ display: "none" }}
-                    />
-                  </div>
+
+      <div className="mt-2 imgdestaca-tour">
+      <div className="font-medium" htmlFor="title">
+          Imagen Destacada
+      </div>
+      {loading && <div className="validation-message">Cargando imagen...</div>}
+      {uploadError && <div className="validation-message text-red-500">{uploadError}</div>}
+      {isValidImage === false && <div className="validation-message text-red-500">La imagen no puede estar vacía y debe ser válida</div>}
+      {previewImage ? (
+          <img
+              src={previewImage}
+              alt="Preview"
+              className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
+              onClick={() => fileInputRef.current.click()}
+          />
+      ) : (
+          <img
+              src="/img/upload1.png"
+              alt="Default Preview"
+              onClick={() => fileInputRef.current.click()}
+              className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
+          />
+      )}
+      <button
+          type="button"
+          className="pre tracking-widest p-3 mt-4"
+          onClick={() => fileInputRef.current.click()}
+      >
+          <div className="">
+              Subir imagen                       
+              {/* <ArrowUpFromLine size={20} className="ml-2" /> */}
+           </div>
+      </button>
+      <input
+          className="hidden"
+          type="file"
+          accept="image/*"
+          onChange={(e) => handleImageUpload(e.target.files[0])}
+          ref={fileInputRef}                       
+          // style={{ display: "none" }}
+      />
+  </div>
                   <div>
                     <button
                       type="submit"
@@ -534,6 +595,7 @@ function usuarios() {
                               value={tiny}
                               onEditorChange={handleTinyChange}
                             />
+                            {isValidTiny === false && <div className="validation-message">El editor no puede estar vacío</div>}
                           </div>
                         </div>
                       </div>

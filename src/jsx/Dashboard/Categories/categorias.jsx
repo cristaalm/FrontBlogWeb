@@ -50,6 +50,8 @@ function categorías() {
   // Inicializa el estado de selectedColor con un color inicial
   const [selectedColor, setSelectedColor] = useState("");
 
+  const [isValidTitle, setIsValidTitle] = useState(false);
+
   const [showModal, setShowModal] = useState(false);
   const [imageLink, setImageLink] = useState("");
   const [imageWidth, setImageWidth] = useState("");
@@ -72,10 +74,16 @@ function categorías() {
 
   const fileInputRef = useRef(null);
 
+
+
+
+  const [isValidDescription, setIsValidDescription] = useState(false);
+
   const handleUploadClick = () => {
     // Activa el input de tipo file al hacer clic en otro elemento
     fileInputRef.current.click();
   };
+  
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -90,20 +98,62 @@ function categorías() {
   const handleToggleModal = () => {
     setShowModal(!showModal);
   };
-  const [previewImage, setPreviewImage] = useState(null);
 
+  const [previewImage, setPreviewImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [uploadError, setUploadError] = useState('');
+  const [isValidImage, setIsValidImage] = useState(false);
+  
   const handleImageUpload = (file) => {
+    if (!file) {
+        setIsValidImage(false);
+        setUploadError('Por favor, seleccione una imagen para cargar.');
+        setLoading(false);
+        return;
+    }
+
+    if (!file.type.startsWith('image/')) {
+        setIsValidImage(false);
+        setUploadError('El archivo seleccionado no es una imagen válida.');
+        setLoading(false);
+        return;
+    }
+
+    setLoading(true);
+    setUploadError('');
+    setIsValidImage(null);
+
     const reader = new FileReader();
     reader.onloadend = () => {
       const base64String = reader.result;
       setPreviewImage(base64String);
+      setIsValidImage(true);
+      setLoading(false);
+    };
+    reader.onerror = () => {
+      setUploadError('Error al cargar la imagen.');
+      setIsValidImage(false);
+      setLoading(false);
     };
     reader.readAsDataURL(file);
-  };
+};
+
   // Función para actualizar el color seleccionado
   const handleColorChange = (color) => {
     setSelectedColor(color.hex);
   };
+  const handleNombreChange = (e) => {
+    const value = e.target.value;
+    setNombre(value);
+    setIsValidTitle(value.trim() !== ''); // Validación si el campo no está vacío
+  };
+  const handleDescriptionChange = (e) => {
+    const value = e.target.value;
+    setDescripcion(value);
+    setIsValidDescription(value.trim() !== ''); // Verifica que no esté vacío
+};
+
+  
   const toggleEntriesDropdown = () => {
     setIsEntriesDropdownOpen(!isEntriesDropdownOpen);
   };
@@ -349,77 +399,82 @@ function categorías() {
               </div>
 
               <div className="flex sm:flex-row w-40% flex-col">
-                <form onSubmit={handleSubmit} className="mt-4 sm:w-full mr-4">
-                  <div className="">
-                    <div className="font-medium" htmlFor="title">
-                      Nombre de categoría
-                    </div>
-                    <div className="flex items-center">
-                      <input
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
-                        className="m-0 w-full p-2 in2"
-                        placeholder="Ingrese categoría"
-                      ></input>
-                      <SketchColor
-                        color={selectedColor}
-                        onChange={handleColorChange}
-                      />
-                      {/* <Github
-                        className="colorp"
-                        style={{
-                          marginLeft: "10px",
-                          width: "150px",
-                          transform: "rotate(-90deg) scaleX(1)", // Rota la flecha 90 grados en sentido antihorario y la invierte horizontalmente
-                        }}
-                        color={selectedColor}
-                        onChange={handleColorChange}
-                      /> */}
-                    </div>
+              <form onSubmit={handleSubmit} className="mt-4 sm:w-full mr-4">
+                <div className="">
+                  <div className="font-medium" htmlFor="title">
+                    Nombre de categoría
                   </div>
-                  <div className="mt-2">
-                    <div className="font-medium" htmlFor="title">
-                      Descripción
-                    </div>
-                    <textarea
-                      value={descripcion}
-                      onChange={(e) => setDescripcion(e.target.value)}
-                      className="w-full bg-neutral-100 p-2 in2 mt-2 ring-2 h-40 ring-teal-600 rounded"
-                      placeholder="Ingrese descripción"
-                    ></textarea>
-                    <p className="text-neutral-400 text-sm">
-                      Esta descripción será mostrada al usuario visitante.
-                    </p>
+                  <div className="flex items-center">
+                    <input
+                      value={nombre}
+                      onChange={handleNombreChange}
+                      className={`m-0 w-full p-2 in2 ${isValidTitle === false ? 'input-error' : isValidTitle === true ? 'input-success' : ''}`}
+                      placeholder="Ingrese categoría"
+                      
+                    ></input>
+                    <SketchColor
+                      color={selectedColor}
+                      onChange={handleColorChange}
+                    />{/* <Github
+                    className="colorp"
+                    style={{
+                      marginLeft: "10px",
+                      width: "150px",
+                      transform: "rotate(-90deg) scaleX(1)", // Rota la flecha 90 grados en sentido antihorario y la invierte horizontalmente
+                    }}
+                    color={selectedColor}
+                    onChange={handleColorChange}
+                  /> */}
                   </div>
-                  <div className="mt-2">
-                    <div className="font-medium" htmlFor="title">
-                      Imagen Destacada
-                    </div>
-                    {previewImage ? (
-                      <img
-                        src={previewImage}
-                        alt="Preview"
-                        onClick={() => fileInputRef.current.click()}
-                        className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
-                      />
-                    ) : (
-                      <img
-                        src="/img/upload1.png"
-                        alt="Default Preview"
-                        onClick={() => fileInputRef.current.click()}
-                        className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
-                      />
-                    )}
-                    <button
-                      type="button"
-                      className="pre tracking-widest p-3 mt-4"
-                      onClick={() => fileInputRef.current.click()}
-                    >
-                      <div className="">
-                        Subir imagen
-                        {/* <ArrowUpFromLine size={20} className="ml-2" /> */}
-                      </div>
-                    </button>
+                  {isValidTitle === false && <div className="validation-message">Campo incompleto</div>}
+                </div>
+
+              <div className="mt-2">
+              <div className="font-medium" htmlFor="description">  {/* Asegúrate de usar htmlFor con el ID correcto si es necesario */}
+                  Descripción
+              </div>
+              <textarea
+                  value={descripcion}
+                  onChange={handleDescriptionChange}
+                  className={`w-full bg-neutral-100 p-2 in2 mt-2 ring-2 h-40 ring-teal-600 rounded ${isValidDescription === false ? 'input-error1' : isValidDescription === true ? 'input-success1' : ''}`}
+                  placeholder="Ingrese descripción"
+              ></textarea>
+              {isValidDescription === false && <div className="validation-message">La descripción no puede estar vacía</div>}
+          </div>
+
+
+      <div className="mt-2">
+      <div className="font-medium" htmlFor="title">
+          Imagen Destacada
+      </div>
+      {loading && <div className="validation-message">Cargando imagen...</div>}
+      {uploadError && <div className="validation-message text-red-500">{uploadError}</div>}
+      {isValidImage === false && <div className="validation-message text-red-500">La imagen no puede estar vacía y debe ser válida</div>}
+      {previewImage ? (
+          <img
+              src={previewImage}
+              alt="Preview"
+              className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
+              onClick={() => fileInputRef.current.click()}
+          />
+      ) : (
+          <img
+              src="/img/upload1.png"
+              alt="Default Preview"
+              onClick={() => fileInputRef.current.click()}
+              className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
+          />
+      )}
+      <button
+          type="button"
+          className="pre tracking-widest p-3 mt-4"
+          onClick={() => fileInputRef.current.click()}
+      >
+          <div className="">
+              Subir imagen
+          </div>
+      </button>
+
                     <input
                       className="hidden"
                       type="file"
