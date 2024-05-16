@@ -31,15 +31,68 @@ function EditPublish() {
   const [categories, setCategories] = useState([]);
   const [tiny, setTiny] = useState("");
   const fileInputRef = useRef(null);
+
   const [previewImage, setPreviewImage] = useState(null);
+  const [isValidTitle, setIsValidTitle] = useState(false);
+  const [isValidDescription, setIsValidDescription] = useState(false);
+  const [isValidCategory, setIsValidCategory] = useState(false);
+  const [isValidImage, setIsValidImage] = useState(false);
+  const [isValidInput, setIsValidInput] = useState({ category: false });
+  const [loading, setLoading] = useState(false);
+  const [uploadError, setUploadError] = useState('');
+  const [isValidTiny, setIsValidTiny] = useState(false); // null, true, o false para la validación
 
   const [message, setMessage] = useState("");
   const [messageClass, setMessageClass] = useState("");
 
+ 
+  const [user, setUser] = useState([]);
   const handleTinyChange = (content, editor) => {
     setTiny(content);
+    setIsValidTiny(content.trim() !== '');  // Verifica que el contenido no sea solo espacios en blanco
+
   };
-  const [user, setUser] = useState([]);
+  const handleTitleChange = (e) => {
+    const value = e.target.value;
+    setTitle(value);
+    setIsValidTitle(value.trim() !== '');
+  };
+  const handleChangeCategory = (e) => {
+    const value = e.target.value;
+    setCategoryId(value);
+    setIsValidInput({...isValidInput, category: value !== ''}); // Valida si se ha seleccionado una categoría no vacía
+  };
+  const handleDescriptionChange = (e) => {
+    const value = e.target.value;
+    setDescripcion(value);
+    setIsValidDescription(value.trim() !== '');  // Actualiza la validación según el contenido
+  };
+  useEffect(() => {
+    setIsValidTitle(title.trim() !== '');
+}, [title]);
+
+useEffect(() => {
+    setIsValidDescription(descripcion.trim() !== '');
+}, [descripcion]);
+
+useEffect(() => {
+    setIsValidCategory(categoryId !== '');
+}, [categoryId]);
+useEffect(() => {
+  // Si usas alguna validación basada en la imagen, asegúrate de que también se resetee correctamente
+  setIsValidImage(previewImage ? true : false);
+}, [previewImage]); // Dependencia del efecto al estado 'previewImage'
+useEffect(() => {
+  // Este useEffect observa los cambios en `tiny` y actualiza `isValidTiny` en consecuencia.
+  setIsValidTiny(tiny.trim() !== '');
+}, [tiny]);  // A
+useEffect(() => {
+  // Este useEffect verifica si `categoryId` ha sido seleccionado adecuadamente
+  setIsValidInput(prevState => ({
+      ...prevState,
+      category: categoryId !== ''
+  }));
+}, [categoryId]); // Dependencia en `categoryId` para reaccionar a sus cambios.
 
   useEffect(() => {
     let nombreusuario = localStorage.getItem("userName");
@@ -138,6 +191,10 @@ function EditPublish() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isValidTitle || !isValidDescription || !isValidCategory) {
+      alert("Por favor, asegúrate de que todos los campos están correctamente llenados y validados.");
+      return;
+  }
     try {
       const usuario = localStorage.getItem("userName");
       await editPost(
@@ -243,17 +300,19 @@ function EditPublish() {
                     </div>
                     <input
                       value={title}
-                      onChange={(e) => setTitle(e.target.value)}
-                      className="m-0 w-full p-2 in2"
+                      onChange={handleTitleChange}
+                      className={`m-0 w-full p-2 in2 ${isValidTitle === false ? 'input-error' : isValidTitle === true ? 'input-success' : ''}`}
                       placeholder="Ingrese título"
                     ></input>
+                    {isValidTitle === false && <div className="validation-message">Campo incompleto</div>}
+
                   </div>
                   <div className="mt-4">
                     <select
                       value={categoryId}
-                      onChange={(e) => setCategoryId(e.target.value)}
-                      className="selectUsuarios ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-z focus:border-cyan-900"
-                    >
+                      onChange={handleChangeCategory}                     
+                      className={`selectUsuarios ring-teal-600 bg-neutral-100 ring-2 selectcat-tour rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-z focus:border-cyan-900 ${isValidInput.category ?   'input-success': isValidInput.category ? '' : 'input-error'}`}
+                      >
                       <option className="text-gray-400" disabled hidden>
                         Seleccione su categoría...
                       </option>
@@ -264,6 +323,7 @@ function EditPublish() {
                           </option>
                         ))}
                     </select>
+                    {isValidInput.category === false && <div className="validation-message">Seleccione una Categoría</div>}
                   </div>
                   <div className="mt-2">
                     <div className="font-medium" htmlFor="title">
@@ -271,11 +331,12 @@ function EditPublish() {
                     </div>
                     <textarea
                       value={descripcion}
-                      onChange={(e) => setDescripcion(e.target.value)}
-                      className="w-full bg-neutral-100 p-2 in2 mt-2 ring-2 ring-teal-600 rounded"
+                      onChange={handleDescriptionChange}
+                      className={`w-full bg-neutral-100 p-2 in2 mt-2 ring-2 ring-teal-600 rounded ${isValidDescription ? 'input-success' : 'input-error'}`}
                       placeholder="Ingrese descripción"
                       maxLength={440}
                     ></textarea>
+                    {isValidDescription === false && <div className="validation-message">La descripción no puede estar vacía</div>}
                     <p className="text-neutral-400 text-sm">
                       Esta descripción será mostrada al usuario visitante.
                     </p>
@@ -284,6 +345,9 @@ function EditPublish() {
                     <div className="font-medium" htmlFor="title">
                       Imagen Destacada
                     </div>
+                    {loading && <div className="validation-message">Cargando imagen...</div>}
+                    {uploadError && <div className="validation-message text-red-500">{uploadError}</div>}
+                    {isValidImage === false && <div className="validation-message text-red-500">La imagen no puede estar vacía y debe ser válida</div>}
                     {previewImage ? (
                       <img
                         src={previewImage}
@@ -336,10 +400,12 @@ function EditPublish() {
                             <Editor
                               id="entryDescription"
                               name="content"
-                              apiKey="af8109ckb7vf2pm3g5io2hw55z53nxfdnkak2yc324pnvqa3"
+                              apiKey="kovdcfjaqbeap5tn2t47qcgag4xk6qwtg473e9iu0rmn2kd2"
                               value={tiny}
                               onEditorChange={setTiny}
                             />
+                            {isValidTiny === false && <div className="validation-message">El editor no puede estar vacío</div>}
+
                           </div>
                         </div>
                       </div>
