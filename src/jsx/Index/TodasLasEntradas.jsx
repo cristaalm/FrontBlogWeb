@@ -33,7 +33,10 @@ function TodasLasEntradas() {
         }
         const data = await response.json();
         setEntradas(data);
+		 setTimeout(() => {
         paginatePost("#listaEntradas", 2);
+      }, 2000); // 2000 milliseconds = 2 seconds
+        
       } catch (error) {
         console.error("Error fetching data:", error);
       }
