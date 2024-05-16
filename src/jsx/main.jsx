@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter,createHashRouter  } from "react-router-dom";
 import Wrapper from "./Elements/Wrapper.jsx";
 import { IntlProvider } from "react-intl";
 import App from "./App.jsx";
@@ -41,7 +41,7 @@ const messages = {
   es: messagesEs,
 };
 
-const router = createBrowserRouter([
+const router = createHashRouter ([
   // General
   { path: "/welcome", element: <Home /> },
   { path: "/categoriasview", element: <CategoriaView /> },

@@ -252,7 +252,9 @@ function crudPost() {
       const response = await fetch(BaseUrl + "/api/entradas/text");
       const data = await response.json();
       setEntradas(data);
-      paginate("#tableEntradas", 10);
+     setTimeout(() => {
+        paginate("#tableEntradas", 10);
+      }, 2000); // 2000 milliseconds = 2 seconds
     };
     fetchData();
   }, [reloadTable]); // Vuelve a cargar la tabla cuando reloadTable cambia
