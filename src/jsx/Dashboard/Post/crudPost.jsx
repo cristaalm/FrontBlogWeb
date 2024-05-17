@@ -181,11 +181,14 @@ function crudPost() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [id, setId] = useState("");
+  const [motivorechazotext, setMotivoRechazoText] = useState("");
   const [deleteEntradaId, setDeleteUserId] = useState(null);
+  const [textMotivo, setTextMotivo] = useState(null);
 
   const [deleteModal, setDeleteEntrada] = React.useState(false);
   const [publicModal, setPublicEntrada] = React.useState(false);
   const [revisarModal, setRevisarEntrada] = React.useState(false);
+  const [motivoRechazo, setMotivoRechazo] = React.useState(false);
   const [motivoModal, setMotivoEntrada] = React.useState(false);
   const [reloadTable, setReloadTable] = useState(false);
 
@@ -224,7 +227,8 @@ function crudPost() {
     navigate(`/post/preview/${id}`);
   };
   const toggleMotivo = (id) => {
-    setRevisarEntrada(true);
+    setMotivoRechazo(true);
+    setDeleteEntrada(false);
     setDeleteUserId(id);
   };
 
@@ -233,6 +237,7 @@ function crudPost() {
     setDeleteUserId(id);
   };
   function closeModal() {
+    setMotivoRechazo(false);
     setDeleteEntrada(false);
     setPublicEntrada(false);
     setRevisarEntrada(false);
@@ -252,7 +257,7 @@ function crudPost() {
       const response = await fetch(BaseUrl + "/api/entradas/text");
       const data = await response.json();
       setEntradas(data);
-     setTimeout(() => {
+      setTimeout(() => {
         paginate("#tableEntradas", 10);
       }, 2000); // 2000 milliseconds = 2 seconds
     };
@@ -269,36 +274,6 @@ function crudPost() {
       return () => clearTimeout(timer);
     }
   }, [message]);
-
-  const handleMotivo = async (deleteEntradaId) => {};
-
-  // Elimina el usuario (POST)
-  const handleDeleteUser = async (deleteEntradaId) => {
-    try {
-      const response = await fetch(
-        BaseUrl + `/api/entradas/reciclaje/${deleteEntradaId}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (response.ok) {
-        setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
-        setDeleteEntrada(false);
-        setMessage("Entrada mandada a la papelera de reciclaje exitosamente");
-        setMessageClass("success");
-      } else {
-        alert(BaseUrl + `/api/entradas/reciclaje/${deleteEntradaId}`);
-        setMessage("Error al eliminar, intenta de nuevo");
-        setMessageClass("error");
-        console.error("Error al eliminar entrada");
-      }
-    } catch (error) {
-      console.error("Error al eliminar entrada:", error);
-    }
-  };
 
   useEffect(() => {
     let nombreusuario = localStorage.getItem("userName");
@@ -340,6 +315,36 @@ function crudPost() {
       console.error("Error al publicar entrada:", error);
     }
   };
+  const handleDeleteUser = async (deleteEntradaId, motivorechazotext) => {
+    try {
+      const response = await fetch(BaseUrl + `/api/entradas/reciclaje`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: deleteEntradaId,
+          motivorechazo: motivorechazotext,
+        }),
+      });
+
+      if (response.ok) {
+        setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
+        setMotivoRechazo(false);
+        setMessage("Entrada mandada a la papelera de reciclaje exitosamente");
+        setMessageClass("success");
+      } else {
+        setMessage("Error al eliminar, intenta de nuevo");
+        setMessageClass("error");
+        console.error("Error al eliminar entrada");
+      }
+    } catch (error) {
+      console.error("Error al eliminar entrada:", error);
+      setMessage("Error al eliminar, intenta de nuevo");
+      setMessageClass("error");
+    }
+  };
+
   // Revisa la entrada, canmbia el status (POST)
   const handleReview = async (id) => {
     try {
@@ -464,7 +469,7 @@ function crudPost() {
           </button>
           <button
             className="btn-green flex-1 p-2 m-1"
-            onClick={() => handleDeleteUser(deleteEntradaId)}
+            onClick={() => toggleMotivo(deleteEntradaId)}
           >
             Eliminar
           </button>
@@ -504,34 +509,52 @@ function crudPost() {
         </div>
       </Modal>
       <Modal
-        ariaHideApp={false}
-        id="motivo"
-        isOpen={motivoModal}
-        onRequestClose={closeModal}
-        contentLabel="Publicar entrada"
-        style={customStyles}
+      ariaHideApp={false}
+      id="motivo"
+      isOpen={motivoRechazo}
+      onRequestClose={closeModal}
+      contentLabel="Motivo entrada"
+      style={customStyles}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+        }}
       >
-        <div
+        <ion-icon
+          name="close"
+          onClick={closeModal}
           style={{
-            display: "flex",
-            justifyContent: "flex-end",
+            cursor: "pointer",
+            fontSize: "24px",
+            color: "#650303",
           }}
+        ></ion-icon>
+      </div>
+      <h3 className="text-center text-lg font-semibold">
+        Motivo de eliminación
+      </h3>
+      <textarea
+        value={motivorechazotext}
+        onChange={(e) => setMotivoRechazoText(e.target.value)}
+        className="bg-teal-100 p-4 m-2 rounded-lg h-20 ring ring-teal-600"
+        style={{ width: "250px" }}
+      ></textarea>
+
+      <div className="flex flex-row justify-between">
+        <button className="btn-red flex-1 p-2 m-1" onClick={closeModal}>
+          Cancelar
+        </button>
+        <button
+          className="btn-green flex-1 p-2 m-1"
+          onClick={() => handleDeleteUser(deleteEntradaId, motivorechazotext)}
         >
-          <ion-icon
-            name="close"
-            onClick={closeModal}
-            style={{
-              cursor: "pointer",
-              fontSize: "24px",
-              color: "#650303",
-            }}
-          ></ion-icon>
-        </div>
-        <h3 className="text-center text-lg font-semibold">
-          Motivo de eliminación
-        </h3>
-        <textarea className="bg-teal-100 p-4 m-2 rounded-lg"></textarea>
-      </Modal>
+          Aceptar
+        </button>
+      </div>
+    </Modal>
+
       <Modal
         ariaHideApp={false}
         id="revisar"
@@ -577,10 +600,15 @@ function crudPost() {
           <Link to="/dashboard" className="without_line">
             <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
           </Link>
-          {user.rol != "Administrador" && (
-            <Link to="/post/all" className="without_line">
-              <SidebarItem icon={<Book />} text="Entradas" />
-            </Link>
+          {user.rol !== "Administrador" && (
+            <>
+              <Link to="/post/all" className="without_line">
+                <SidebarItem icon={<Book />} text="Entradas" />
+              </Link>
+              <Link to="/post/reciclaje" className="without_line">
+                <SidebarItem icon={<Trash />} text="Papelera de Reciclaje" />
+              </Link>
+            </>
           )}
 
           {user.rol === "Administrador" && (
@@ -600,6 +628,7 @@ function crudPost() {
                     text: "Papelera de Reciclaje",
                     to: "/post/reciclaje",
                   },
+                  // { icon: <Layers />, text: "Categorías" }
                 ]}
               />
               <Link to="/categories" className="without_line">

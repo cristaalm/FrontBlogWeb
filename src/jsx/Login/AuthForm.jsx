@@ -44,7 +44,8 @@ const AuthForm = () => {
     window.onloadCallback = () => {
       if (window.grecaptcha && document.getElementById('recaptcha-container').innerHTML === '') {
         window.grecaptcha.render('recaptcha-container', {
-          'sitekey' : '6LffDN4pAAAAAEmPoJSiP_6s01D7pBLqn4SQHIWX',
+          'sitekey' : '6Lc3UsgpAAAAAFG8_eUiJennqPF7KoYJR3Pi2PEU',
+          // 'sitekey' : '6LffDN4pAAAAAEmPoJSiP_6s01D7pBLqn4SQHIWX',
           // 'sitekey' : '6LfgodMpAAAAAOwETm7EbRtw52etVfQyOW2sEtmI',
           'size': 'invisible',
           'callback' : verifyCallback

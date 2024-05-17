@@ -268,7 +268,7 @@ function crudPost() {
   const handleDeleteUser = async (deleteEntradaId) => {
     try {
       const response = await fetch(
-        BaseUrl + `/api/entradas/reciclaje/${deleteEntradaId}`,
+        BaseUrl + `/api/entradas/${deleteEntradaId}`,
         {
           method: "DELETE",
           headers: {
@@ -279,7 +279,7 @@ function crudPost() {
       if (response.ok) {
         setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
         setDeleteEntrada(false);
-        setMessage("Entrada mandada a la papelera de reciclaje exitosamente");
+        setMessage("Entrada eliminada exitosamente");
         setMessageClass("success");
       } else {
         setMessage("Error al eliminar, intenta de nuevo");
@@ -430,10 +430,8 @@ function crudPost() {
             }}
           ></ion-icon>
         </div>
-        <h3 className="text-center text-lg font-semibold">
-          Papelera de Reciclaje de Entrada
-        </h3>
-        <p>¿Estás seguro de mandar a la papelera de reciclaje la entrada?</p>
+        <h3 className="text-center text-lg font-semibold">Eliminar entrada</h3>
+        <p>¿Estás seguro de eliminar entrada?</p>
         <div className="flex flex-row justify-between">
           <button className="btn-red flex-1 p-2 m-1" onClick={closeModal}>
             Cancelar
@@ -475,7 +473,7 @@ function crudPost() {
             className="btn-green flex-1 p-2 m-1"
             onClick={() => handleReview(deleteEntradaId)}
           >
-            Revisar
+            Retornar
           </button>
         </div>
       </Modal>
@@ -491,10 +489,15 @@ function crudPost() {
           <Link to="/dashboard" className="without_line">
             <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
           </Link>
-          {user.rol != "Administrador" && (
-            <Link to="/post/all" className="without_line">
-              <SidebarItem icon={<Book />} text="Entradas" />
-            </Link>
+          {user.rol !== "Administrador" && (
+            <>
+              <Link to="/post/all" className="without_line">
+                <SidebarItem icon={<Book />} text="Entradas" />
+              </Link>
+              <Link to="/post/reciclaje" className="without_line">
+                <SidebarItem icon={<Trash />} text="Papelera de Reciclaje" />
+              </Link>
+            </>
           )}
 
           {user.rol === "Administrador" && (
@@ -656,7 +659,7 @@ function crudPost() {
                                 Estatus
                               </th>
                               <th className="border-neutral-100 border-r-2 encabezadoTabla estatus-tour">
-                              Motivo de Rechazo
+                                Motivo de Rechazo
                               </th>
                               <th className="border-teal-600 border-r-2 encabezadoTabla"></th>
                             </tr>
@@ -761,27 +764,40 @@ function crudPost() {
                                         <Eye size={20} />
                                       </button>
                                       {user.rol === "Administrador" && (
-                                        <button
-                                          onClick={() =>
-                                            toggleRevisar(entrada.id)
-                                          }
-                                          className={`btn-green p-2 m-1 ${
-                                            entrada.estatus !== "Publicado"
-                                              ? ""
-                                              : "opacity-25 cursor-not-allowed"
-                                          }`}
-                                          data-tooltip-id="post"
-                                          data-tooltip-place="top"
-                                          data-tooltip-content="Retornar"
-                                          disabled={
-                                            entrada.estatus === "Publicado"
-                                          }
-                                          {...(entrada.estatus !== "Publicado"
-                                            ? {}
-                                            : { "data-tooltip-hidden": true })}
-                                        >
-                                          <RotateCcw size={20} />
-                                        </button>
+                                        <>
+                                          <button
+                                            onClick={() =>
+                                              toggleRevisar(entrada.id)
+                                            }
+                                            className={`btn-green p-2 m-1 ${
+                                              entrada.estatus !== "Publicado"
+                                                ? ""
+                                                : "opacity-25 cursor-not-allowed"
+                                            }`}
+                                            data-tooltip-id="post"
+                                            data-tooltip-place="top"
+                                            data-tooltip-content="Retornar"
+                                            disabled={
+                                              entrada.estatus === "Publicado"
+                                            }
+                                            {...(entrada.estatus === "Publicado"
+                                              ? { "data-tooltip-hidden": true }
+                                              : {})}
+                                          >
+                                            <RotateCcw size={20} />
+                                          </button>
+                                          <button
+                                            onClick={() =>
+                                              toggleDelete(entrada.id)
+                                            }
+                                            className="btn-red p-2 m-1 eliminar-tour"
+                                            data-tooltip-id="eliminar"
+                                            data-tooltip-place="top"
+                                            data-tooltip-content="Eliminar"
+                                          >
+                                            <Trash size={20} />
+                                          </button>
+                                        </>
                                       )}
                                     </td>
                                   </tr>

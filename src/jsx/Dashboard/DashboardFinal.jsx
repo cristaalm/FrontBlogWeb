@@ -7,7 +7,14 @@ import Sidebar, {
   SidebarItem,
   SidebarItemWithSubItems,
 } from "../Elements/SideBar";
-import { LayoutDashboard, Users, Book, PlusSquare, Layers } from "lucide-react";
+import {
+  LayoutDashboard,
+  Trash,
+  Users,
+  Book,
+  PlusSquare,
+  Layers,
+} from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../css/index.css";
 import { driver } from "driver.js";
@@ -53,7 +60,7 @@ function LayoutPost() {
           popover: {
             title: "Secciones",
             description:
-            "En este menú, también conocido como menú lateral, encontrarás la opción de entradas. Al dar clic en esta se desplegará un menú con dos secciones: Todas las entradas y Añadir nueva entrada.",
+              "En este menú, también conocido como menú lateral, encontrarás la opción de entradas. Al dar clic en esta se desplegará un menú con dos secciones: Todas las entradas y Añadir nueva entrada.",
           },
         },
         {
@@ -136,10 +143,15 @@ function LayoutPost() {
             <Link to="/dashboard" className="without_line">
               <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
             </Link>
-            {user.rol != "Administrador" && (
-              <Link to="/post/all" className="without_line">
-                <SidebarItem icon={<Book />} text="Entradas" />
-              </Link>
+            {user.rol !== "Administrador" && (
+              <>
+                <Link to="/post/all" className="without_line">
+                  <SidebarItem icon={<Book />} text="Entradas" />
+                </Link>
+                <Link to="/post/reciclaje" className="without_line">
+                  <SidebarItem icon={<Trash />} text="Papelera de Reciclaje" />
+                </Link>
+              </>
             )}
 
             {user.rol === "Administrador" && (
@@ -153,6 +165,11 @@ function LayoutPost() {
                       icon: <PlusSquare />,
                       text: "Añadir Nueva",
                       to: "/post/add",
+                    },
+                    {
+                      icon: <Trash />,
+                      text: "Papelera de Reciclaje",
+                      to: "/post/reciclaje",
                     },
                     // { icon: <Layers />, text: "Categorías" }
                   ]}
@@ -192,8 +209,8 @@ function LayoutPost() {
               </div>
             </div>
           </div>
-          <Pie/>
-          <BarHorizontal/>
+          <Pie />
+          <BarHorizontal />
         </main>
       </div>
     </div>

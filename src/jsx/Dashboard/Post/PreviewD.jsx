@@ -5,7 +5,7 @@ import Sidebar, {
   SidebarItemWithSubItems,
 } from "../../Elements/SideBar.jsx";
 import PreviewComponent from "../../Elements/PreviewComponent.jsx";
-import { LayoutDashboard, Users, Book, PlusSquare, Layers } from "lucide-react";
+import { LayoutDashboard, Users, Book, PlusSquare, Layers, Trash } from "lucide-react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 // import { Preview } from "@mui/icons-material";
 import { BaseUrl } from "../../../constants/global.js";
@@ -54,21 +54,37 @@ function Preview() {
           <Link to="/dashboard" className="without_line">
             <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
           </Link>
-          <SidebarItemWithSubItems
-            icon={<Book className="text-white" />}
-            text="Entradas"
-            subItems={[
-              { icon: <Layers />, text: "Todas", to: "/post/all" },
-              {
-                icon: <PlusSquare />,
-                text: "Añadir Nueva",
-                to: "/post/add",
-              },
-              // { icon: <Layers />, text: "Categorías" }
-            ]}
-          />
+          {user.rol !== "Administrador" && (
+            <>
+              <Link to="/post/all" className="without_line">
+                <SidebarItem icon={<Book />} text="Entradas" />
+              </Link>
+              <Link to="/post/reciclaje" className="without_line">
+                <SidebarItem icon={<Trash />} text="Papelera de Reciclaje" />
+              </Link>
+            </>
+          )}
+
           {user.rol === "Administrador" && (
             <>
+              <SidebarItemWithSubItems
+                icon={<Book className="text-white" />}
+                text="Entradas"
+                subItems={[
+                  { icon: <Layers />, text: "Todas", to: "/post/all" },
+                  {
+                    icon: <PlusSquare />,
+                    text: "Añadir Nueva",
+                    to: "/post/add",
+                  },
+                  {
+                    icon: <Trash />,
+                    text: "Papelera de Reciclaje",
+                    to: "/post/reciclaje",
+                  },
+                  // { icon: <Layers />, text: "Categorías" }
+                ]}
+              />
               <Link to="/categories" className="without_line">
                 <SidebarItem icon={<Layers />} text="Categorías" />
               </Link>

@@ -67,58 +67,60 @@ function usuarios() {
 
   const [message, setMessage] = useState("");
   const [messageClass, setMessageClass] = useState("");
-
+  const [user, setUser] = useState([]);
   const [users, setUsers] = useState([]);
 
   const [isValidNombreUsuario, setIsValidNombreUsuario] = useState(false);
-  const [isValidNombre, setIsValidNombre] = useState(false); 
-  const [isValidCorreoElectronico, setIsValidCorreoElectronico] = useState(false);
-  const [isValidContraseña, setIsValidContraseña] = useState(false); 
-  const [isValidPerfil, setIsValidPerfil] = useState(false); 
+  const [isValidNombre, setIsValidNombre] = useState(false);
+  const [isValidCorreoElectronico, setIsValidCorreoElectronico] =
+    useState(false);
+  const [isValidContraseña, setIsValidContraseña] = useState(false);
+  const [isValidPerfil, setIsValidPerfil] = useState(false);
 
-const handleNombreUsuarioChange = (e) => {
+  const handleNombreUsuarioChange = (e) => {
     const value = e.target.value;
     setUsuario(value);
-    setIsValidNombreUsuario(value.trim() !== ''); // Verifica que no esté vacío
-};
+    setIsValidNombreUsuario(value.trim() !== ""); // Verifica que no esté vacío
+  };
 
-const handleNombreChange = (e) => {
-  const value = e.target.value;
-  setNombre(value);
-  setIsValidNombre(value.trim() !== ''); // Verifica que el campo no esté vacío
-};
-const handleCorreoElectronicoChange = (e) => {
-  const value = e.target.value;
-  setCorreo(value);
-  setIsValidCorreoElectronico(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)); // Verifica que el campo contenga un formato válido de correo electrónico
-};
-const handleContraseñaChange = (e) => {
-  const value = e.target.value;
-  setContraseña(value);
-  // Verifica que la contraseña cumpla con los requisitos mínimos, por ejemplo, longitud mínima
-  setIsValidContraseña(value.length >= 8);
-};
-const handlePerfilChange = (e) => {
-  const value = e.target.value;
-  setPerfil(value);
-  setIsValidPerfil(value !== ''); // Verifica que se haya seleccionado un perfil
-};
-useEffect(() => {
-  setIsValidNombre(nombre.trim() !== '');
-}, [nombre]);
-useEffect(() => {
-  setIsValidNombreUsuario(nombreusuario.trim() !== '');
-}, [nombreusuario]);
-useEffect(() => {
-  setIsValidCorreoElectronico(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(correoelectronico));
-}, [correoelectronico]);
-useEffect(() => {
-  setIsValidContraseña(contraseña.length >= 8);
-}, [contraseña]);
-useEffect(() => {
-  setIsValidPerfil(perfil !== '');
-}, [perfil]);
-
+  const handleNombreChange = (e) => {
+    const value = e.target.value;
+    setNombre(value);
+    setIsValidNombre(value.trim() !== ""); // Verifica que el campo no esté vacío
+  };
+  const handleCorreoElectronicoChange = (e) => {
+    const value = e.target.value;
+    setCorreo(value);
+    setIsValidCorreoElectronico(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)); // Verifica que el campo contenga un formato válido de correo electrónico
+  };
+  const handleContraseñaChange = (e) => {
+    const value = e.target.value;
+    setContraseña(value);
+    // Verifica que la contraseña cumpla con los requisitos mínimos, por ejemplo, longitud mínima
+    setIsValidContraseña(value.length >= 8);
+  };
+  const handlePerfilChange = (e) => {
+    const value = e.target.value;
+    setPerfil(value);
+    setIsValidPerfil(value !== ""); // Verifica que se haya seleccionado un perfil
+  };
+  useEffect(() => {
+    setIsValidNombre(nombre.trim() !== "");
+  }, [nombre]);
+  useEffect(() => {
+    setIsValidNombreUsuario(nombreusuario.trim() !== "");
+  }, [nombreusuario]);
+  useEffect(() => {
+    setIsValidCorreoElectronico(
+      /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(correoelectronico)
+    );
+  }, [correoelectronico]);
+  useEffect(() => {
+    setIsValidContraseña(contraseña.length >= 8);
+  }, [contraseña]);
+  useEffect(() => {
+    setIsValidPerfil(perfil !== "");
+  }, [perfil]);
 
   const cerrarSesion = () => {
     localStorage.removeItem("isAuthenticated");
@@ -211,57 +213,68 @@ useEffect(() => {
     setIsValidCorreoElectronico(null);
     setIsValidContraseña(null);
     setIsValidPerfil(null);
-};
+  };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  // Verificar que todos los campos están correctamente llenados
-  if (!nombreusuario || !nombre || !correoelectronico || !contraseña || !perfil) {
-    setMessage("Por favor completa todos los campos");
-    setMessageClass("error");
-    return;
-  }
-
-  // Verificar formato de correo electrónico y longitud de la contraseña
-  if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(correoelectronico) || contraseña.length < 8) {
-    setMessage("Asegúrate de que el correo es válido y la contraseña tiene al menos 8 caracteres");
-    setMessageClass("error");
-    return;
-  }
-
-  try {
-    if (editUserId !== null) {
-      // Si editUserId no es null, significa que se está editando un usuario existente
-      await editUser(
-        nombreusuario,
-        nombre,
-        correoelectronico,
-        contraseña,
-        perfil,
-        editUserId // Agregar el ID del usuario a editar
-      );
-      setMessage("Usuario modificado exitosamente");
-    } else {
-      // Si editUserId es null, significa que se está creando un nuevo usuario
-      await createUser(
-        nombreusuario,
-        nombre,
-        correoelectronico,
-        contraseña,
-        perfil
-      );
-      setMessage("Usuario creado exitosamente");
+    // Verificar que todos los campos están correctamente llenados
+    if (
+      !nombreusuario ||
+      !nombre ||
+      !correoelectronico ||
+      !contraseña ||
+      !perfil
+    ) {
+      setMessage("Por favor completa todos los campos");
+      setMessageClass("error");
+      return;
     }
-    setEditUserId(null); // Resetear el estado de editUserId a null
-    setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
-    setMessageClass("success");
-    cleanForm(); // Limpia el formulario después de enviar los datos
-  } catch (error) {
-    setMessage("Error al crear o modificar, intenta de nuevo");
-    setMessageClass("error");
-  }
-};
+
+    // Verificar formato de correo electrónico y longitud de la contraseña
+    if (
+      !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(correoelectronico) ||
+      contraseña.length < 8
+    ) {
+      setMessage(
+        "Asegúrate de que el correo es válido y la contraseña tiene al menos 8 caracteres"
+      );
+      setMessageClass("error");
+      return;
+    }
+
+    try {
+      if (editUserId !== null) {
+        // Si editUserId no es null, significa que se está editando un usuario existente
+        await editUser(
+          nombreusuario,
+          nombre,
+          correoelectronico,
+          contraseña,
+          perfil,
+          editUserId // Agregar el ID del usuario a editar
+        );
+        setMessage("Usuario modificado exitosamente");
+      } else {
+        // Si editUserId es null, significa que se está creando un nuevo usuario
+        await createUser(
+          nombreusuario,
+          nombre,
+          correoelectronico,
+          contraseña,
+          perfil
+        );
+        setMessage("Usuario creado exitosamente");
+      }
+      setEditUserId(null); // Resetear el estado de editUserId a null
+      setReloadTable(!reloadTable); // Cambia el estado para recargar la tabla
+      setMessageClass("success");
+      cleanForm(); // Limpia el formulario después de enviar los datos
+    } catch (error) {
+      setMessage("Error al crear o modificar, intenta de nuevo");
+      setMessageClass("error");
+    }
+  };
 
   // Función para cargar los datos del usuario a editar
   const loadEditUserData = (userId) => {
@@ -274,7 +287,23 @@ const handleSubmit = async (e) => {
     setContraseña(userData.contraseña);
     setPerfil(userData.perfil);
   };
-
+  useEffect(() => {
+    let nombreusuario = localStorage.getItem("userName");
+    // Mandar el nombre de usuario del fetch en el request body
+    const fetchData = async () => {
+      const response = await fetch(BaseUrl + "/api/users/find-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nombreusuario }),
+      });
+      const data = await response.json();
+      setUser(data);
+      // setUsuario(nombreusuario);
+    };
+    fetchData();
+  }, []);
   return (
     <div
       style={{ display: "flex", backgroundColor: "whitesmoke" }}
@@ -351,31 +380,45 @@ const handleSubmit = async (e) => {
           <Link to="/dashboard" className="without_line">
             <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
           </Link>
-          <SidebarItemWithSubItems
-            icon={<Book className="text-white" />}
-            text="Entradas"
-            subItems={[
-              { icon: <Layers />, text: "Todas", to: "/post/all" },
-              {
-                icon: <PlusSquare />,
-                text: "Añadir Nueva",
-                to: "/post/add",
-              },
-              {
-                icon: <Trash />,
-                text: "Papelera de Reciclaje",
-                to: "/post/reciclaje",
-              },
-              // { icon: <Layers />, text: "Categorías" }
-            ]}
-          />
-          <Link to="/categories" className="without_line">
-            <SidebarItem icon={<Layers />} text="Categorías" />
-          </Link>
+          {user.rol !== "Administrador" && (
+            <>
+              <Link to="/post/all" className="without_line">
+                <SidebarItem icon={<Book />} text="Entradas" />
+              </Link>
+              <Link to="/post/reciclaje" className="without_line">
+                <SidebarItem icon={<Trash />} text="Papelera de Reciclaje" />
+              </Link>
+            </>
+          )}
 
-          <Link to="/users" className="without_line">
-            <SidebarItem icon={<Users />} text="Usuario" />
-          </Link>
+          {user.rol === "Administrador" && (
+            <>
+              <SidebarItemWithSubItems
+                icon={<Book className="text-white" />}
+                text="Entradas"
+                subItems={[
+                  { icon: <Layers />, text: "Todas", to: "/post/all" },
+                  {
+                    icon: <PlusSquare />,
+                    text: "Añadir Nueva",
+                    to: "/post/add",
+                  },
+                  {
+                    icon: <Trash />,
+                    text: "Papelera de Reciclaje",
+                    to: "/post/reciclaje",
+                  },
+                  // { icon: <Layers />, text: "Categorías" }
+                ]}
+              />
+              <Link to="/categories" className="without_line">
+                <SidebarItem icon={<Layers />} text="Categorías" />
+              </Link>
+              <Link to="/users" className="without_line">
+                <SidebarItem icon={<Users />} text="Usuario" />
+              </Link>
+            </>
+          )}
         </Sidebar>
       </div>
       <div className="inicio">
@@ -403,53 +446,86 @@ const handleSubmit = async (e) => {
                 <h1 className="tamaño_fuente">Usuarios</h1>
               </div>
               <div className="flex sm:flex-row w-40% flex-col">
-              <form onSubmit={handleSubmit} className="mt-4 sm:w-full mr-4">
-                <div className="">
-                  <div className="font-medium" htmlFor="nombreUsuario"> {/* Asegúrate de que el htmlFor coincide con el ID del input si lo usas */}
-                    Nombre del usuario
-                  </div>
-                  <input
-                    id="nombreUsuario" // Opcional, si usas el htmlFor en el label
-                    value={nombreusuario}
-                    onChange={handleNombreUsuarioChange}
-                    className={`m-0 w-full p-2 in2 ${isValidNombreUsuario === false ? 'input-error' : isValidNombreUsuario === true ? 'input-success' : ''}`}
-                    placeholder="Ingrese usuario"
-                  ></input>
-                  {isValidNombreUsuario === false && <div className="validation-message">El nombre del usuario no puede estar vacío</div>}
-                </div>
-                <div className="mt-2">
-                <div className="font-medium" htmlFor="nombre"> {/* Asegúrate de que el htmlFor esté correctamente asociado si usas label */}
-                    Nombre completo
-                </div>
-                <input
-                    id="nombre" // Opcional, si usas el htmlFor en un label
-                    value={nombre}
-                    onChange={handleNombreChange}
-                    className={`w-full p-2 in2 ${isValidNombre === false ? 'input-error' : isValidNombre === true ? 'input-success' : ''}`}
-                    placeholder="Ingrese nombre completo"
-                ></input>
-                {isValidNombre === false && <div className="validation-message">El nombre completo no puede estar vacío</div>}
-                </div>
-                <div className="mt-2">
-                    <div className="font-medium" htmlFor="correoElectronico">
-                        Correo Electrónico
+                <form onSubmit={handleSubmit} className="mt-4 sm:w-full mr-4">
+                  <div className="">
+                    <div className="font-medium" htmlFor="nombreUsuario">
+                      {" "}
+                      {/* Asegúrate de que el htmlFor coincide con el ID del input si lo usas */}
+                      Nombre del usuario
                     </div>
                     <input
-                        id="correoElectronico" // Opcional, si usas el htmlFor en un label
-                        value={correoelectronico}
-                        onChange={handleCorreoElectronicoChange}
-                        className={`w-full p-2 in2 ${isValidCorreoElectronico === false ? 'input-error' : isValidCorreoElectronico ? 'input-success' : ''}`}
-                        placeholder="Ingrese correo electrónico"
+                      id="nombreUsuario" // Opcional, si usas el htmlFor en el label
+                      value={nombreusuario}
+                      onChange={handleNombreUsuarioChange}
+                      className={`m-0 w-full p-2 in2 ${
+                        isValidNombreUsuario === false
+                          ? "input-error"
+                          : isValidNombreUsuario === true
+                          ? "input-success"
+                          : ""
+                      }`}
+                      placeholder="Ingrese usuario"
                     ></input>
-                    {isValidCorreoElectronico === false && <div className="validation-message">Ingrese un correo electrónico válido</div>}
-                </div>
-                <div className="mt-2">
-
-                <div className="font-medium" htmlFor="contraseña">
-                    Contraseña
-                </div>
-                <div className="relative">
+                    {isValidNombreUsuario === false && (
+                      <div className="validation-message">
+                        El nombre del usuario no puede estar vacío
+                      </div>
+                    )}
+                  </div>
+                  <div className="mt-2">
+                    <div className="font-medium" htmlFor="nombre">
+                      {" "}
+                      {/* Asegúrate de que el htmlFor esté correctamente asociado si usas label */}
+                      Nombre completo
+                    </div>
                     <input
+                      id="nombre" // Opcional, si usas el htmlFor en un label
+                      value={nombre}
+                      onChange={handleNombreChange}
+                      className={`w-full p-2 in2 ${
+                        isValidNombre === false
+                          ? "input-error"
+                          : isValidNombre === true
+                          ? "input-success"
+                          : ""
+                      }`}
+                      placeholder="Ingrese nombre completo"
+                    ></input>
+                    {isValidNombre === false && (
+                      <div className="validation-message">
+                        El nombre completo no puede estar vacío
+                      </div>
+                    )}
+                  </div>
+                  <div className="mt-2">
+                    <div className="font-medium" htmlFor="correoElectronico">
+                      Correo Electrónico
+                    </div>
+                    <input
+                      id="correoElectronico" // Opcional, si usas el htmlFor en un label
+                      value={correoelectronico}
+                      onChange={handleCorreoElectronicoChange}
+                      className={`w-full p-2 in2 ${
+                        isValidCorreoElectronico === false
+                          ? "input-error"
+                          : isValidCorreoElectronico
+                          ? "input-success"
+                          : ""
+                      }`}
+                      placeholder="Ingrese correo electrónico"
+                    ></input>
+                    {isValidCorreoElectronico === false && (
+                      <div className="validation-message">
+                        Ingrese un correo electrónico válido
+                      </div>
+                    )}
+                  </div>
+                  <div className="mt-2">
+                    <div className="font-medium" htmlFor="contraseña">
+                      Contraseña
+                    </div>
+                    <div className="relative">
+                      <input
                         value={contraseña}
                         onChange={handleContraseñaChange}
                         className="w-full p-2 in2 btnUsarios"
@@ -458,38 +534,55 @@ const handleSubmit = async (e) => {
                         type={showPassword ? "text" : "password"}
                         id="contraseña"
                         placeholder="Ingresa tu contraseña"
-
-                    />
-                    <button
+                      />
+                      <button
                         type="button"
                         className="absolute right-0 top-1/2 transform -translate-y-1/2 mr-2"
                         onClick={togglePasswordVisibility}
-                    >
-                        {showPassword ? <Eye color="#035165" /> : <EyeSlash color="#0d9488" />}
-                    </button>
-                    {isValidContraseña === false && <div className="validation-message1">La contraseña debe tener al menos 8 caracteres</div>}
-                </div>
-            </div>
+                      >
+                        {showPassword ? (
+                          <Eye color="#035165" />
+                        ) : (
+                          <EyeSlash color="#0d9488" />
+                        )}
+                      </button>
+                      {isValidContraseña === false && (
+                        <div className="validation-message1">
+                          La contraseña debe tener al menos 8 caracteres
+                        </div>
+                      )}
+                    </div>
+                  </div>
 
-                <div className="mt-4">
-                <select
-                    value={perfil}
-                    onChange={handlePerfilChange}
-                    className={`selectUsuarios ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-z focus:border-cyan-900 ${isValidPerfil === false ? 'input-error' : isValidPerfil ? 'input-success' : ''}`}
-                >
-                    <option
+                  <div className="mt-4">
+                    <select
+                      value={perfil}
+                      onChange={handlePerfilChange}
+                      className={`selectUsuarios ring-teal-600 bg-neutral-100 ring-2 rounded-md border-transparent-100 text-cyan-950 mr-6 p-2.5 w-z focus:border-cyan-900 ${
+                        isValidPerfil === false
+                          ? "input-error"
+                          : isValidPerfil
+                          ? "input-success"
+                          : ""
+                      }`}
+                    >
+                      <option
                         value=""
                         className="text-gray-400"
                         disabled
                         hidden
-                    >
+                      >
                         Seleccionar perfil
-                    </option>
-                    <option value="Editor">Editor</option>
-                    <option value="Administrador">Administrador</option>
-                </select>
-                {isValidPerfil === false && <div className="validation-message">Por favor, seleccione un perfil</div>}
-            </div>
+                      </option>
+                      <option value="Editor">Editor</option>
+                      <option value="Administrador">Administrador</option>
+                    </select>
+                    {isValidPerfil === false && (
+                      <div className="validation-message">
+                        Por favor, seleccione un perfil
+                      </div>
+                    )}
+                  </div>
 
                   <div>
                     <button type="submit" className="entr tracking-widest mt-4">

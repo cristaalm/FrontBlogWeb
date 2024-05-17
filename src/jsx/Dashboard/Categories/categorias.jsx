@@ -43,6 +43,7 @@ function categorías() {
     },
   };
   const navigate = useNavigate(); // Obtiene la función de navegación
+  const [user, setUser] = useState([]);
 
   // Datos del formulario
   const [nombre, setNombre] = useState("");
@@ -74,16 +75,12 @@ function categorías() {
 
   const fileInputRef = useRef(null);
 
-
-
-
   const [isValidDescription, setIsValidDescription] = useState(null);
 
   const handleUploadClick = () => {
     // Activa el input de tipo file al hacer clic en otro elemento
     fileInputRef.current.click();
   };
-  
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -101,26 +98,26 @@ function categorías() {
 
   const [previewImage, setPreviewImage] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [uploadError, setUploadError] = useState('');
+  const [uploadError, setUploadError] = useState("");
   const [isValidImage, setIsValidImage] = useState(null);
-  
+
   const handleImageUpload = (file) => {
     if (!file) {
-        setIsValidImage(false);
-        setUploadError('Por favor, seleccione una imagen para cargar.');
-        setLoading(false);
-        return;
+      setIsValidImage(false);
+      setUploadError("Por favor, seleccione una imagen para cargar.");
+      setLoading(false);
+      return;
     }
 
-    if (!file.type.startsWith('image/')) {
-        setIsValidImage(false);
-        setUploadError('El archivo seleccionado no es una imagen válida.');
-        setLoading(false);
-        return;
+    if (!file.type.startsWith("image/")) {
+      setIsValidImage(false);
+      setUploadError("El archivo seleccionado no es una imagen válida.");
+      setLoading(false);
+      return;
     }
 
     setLoading(true);
-    setUploadError('');
+    setUploadError("");
     setIsValidImage(null);
 
     const reader = new FileReader();
@@ -131,13 +128,12 @@ function categorías() {
       setLoading(false);
     };
     reader.onerror = () => {
-      setUploadError('Error al cargar la imagen.');
+      setUploadError("Error al cargar la imagen.");
       setIsValidImage(false);
       setLoading(false);
     };
     reader.readAsDataURL(file);
-};
-
+  };
 
   // Función para actualizar el color seleccionado
   const handleColorChange = (color) => {
@@ -146,29 +142,29 @@ function categorías() {
   const handleNombreChange = (e) => {
     const value = e.target.value;
     setNombre(value);
-    setIsValidTitle(value.trim() !== ''); // Validación si el campo no está vacío
+    setIsValidTitle(value.trim() !== ""); // Validación si el campo no está vacío
   };
- 
 
   const handleDescriptionChange = (e) => {
     const value = e.target.value;
     console.log("Nuevo valor de descripción:", value); // Depuración
     setDescripcion(value);
-    setIsValidDescription(value.trim() !== '');
-};useEffect(() => {
-  // Validación del nombre
-  setIsValidTitle(nombre.trim() !== '');
-}, [nombre]); // Dependencia del efecto al estado 'nombre'
+    setIsValidDescription(value.trim() !== "");
+  };
+  useEffect(() => {
+    // Validación del nombre
+    setIsValidTitle(nombre.trim() !== "");
+  }, [nombre]); // Dependencia del efecto al estado 'nombre'
 
-useEffect(() => {
-  // Validación de la descripción
-  setIsValidDescription(descripcion.trim() !== '');
-}, [descripcion]); // Dependencia del efecto al estado 'descripcion'
+  useEffect(() => {
+    // Validación de la descripción
+    setIsValidDescription(descripcion.trim() !== "");
+  }, [descripcion]); // Dependencia del efecto al estado 'descripcion'
 
-useEffect(() => {
-  // Si usas alguna validación basada en la imagen, asegúrate de que también se resetee correctamente
-  setIsValidImage(previewImage ? true : false);
-}, [previewImage]); // Dependencia del efecto al estado 'previewImage'
+  useEffect(() => {
+    // Si usas alguna validación basada en la imagen, asegúrate de que también se resetee correctamente
+    setIsValidImage(previewImage ? true : false);
+  }, [previewImage]); // Dependencia del efecto al estado 'previewImage'
 
   const toggleEntriesDropdown = () => {
     setIsEntriesDropdownOpen(!isEntriesDropdownOpen);
@@ -188,7 +184,6 @@ useEffect(() => {
     setDeleteContact(false);
     setCategoryId(null);
   }
-  
 
   // Obtiene los categorías en la tabla (GET) y los ordena por ID ascendente
   useEffect(() => {
@@ -246,7 +241,6 @@ useEffect(() => {
     }
   };
 
-  
   const cleanForm = () => {
     setNombre("");
     setDescripcion("");
@@ -257,7 +251,7 @@ useEffect(() => {
     setIsValidTitle(null);
     setIsValidDescription(null);
     setIsValidImage(null);
-};
+  };
 
   // Modifica la función handleSubmit para que pueda enviar una solicitud de actualización en lugar de crear un usuario nuevo
   const handleSubmit = async (e) => {
@@ -304,16 +298,31 @@ useEffect(() => {
   };
   useEffect(() => {
     if (message) {
-        const timer = setTimeout(() => {
-            setMessage("");
-            setMessageClass("");
-        }, 2000); // Ajusta el tiempo según sea necesario
+      const timer = setTimeout(() => {
+        setMessage("");
+        setMessageClass("");
+      }, 2000); // Ajusta el tiempo según sea necesario
 
-        return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
     }
-}, [message]);
-
-
+  }, [message]);
+  useEffect(() => {
+    let nombreusuario = localStorage.getItem("userName");
+    // Mandar el nombre de usuario del fetch en el request body
+    const fetchData = async () => {
+      const response = await fetch(BaseUrl + "/api/users/find-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nombreusuario }),
+      });
+      const data = await response.json();
+      setUser(data);
+      setUsuario(nombreusuario);
+    };
+    fetchData();
+  }, []);
   const loadEditCategoryData = (categoryId) => {
     const categoryData = categories.data.find(
       (category) => category.id === categoryId
@@ -383,30 +392,45 @@ useEffect(() => {
           <Link to="/dashboard" className="without_line">
             <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
           </Link>
-          <SidebarItemWithSubItems
-            icon={<Book className="text-white" />}
-            text="Entradas"
-            subItems={[
-              { icon: <Layers />, text: "Todas", to: "/post/all" },
-              {
-                icon: <PlusSquare />,
-                text: "Añadir Nueva",
-                to: "/post/add",
-              },
-              {
-                icon: <Trash />,
-                text: "Papelera de Reciclaje",
-                to: "/post/reciclaje",
-              },
-              // { icon: <Layers />, text: "Categorías" }
-            ]}
-          />
-          <Link to="/categories" className="without_line">
-            <SidebarItem icon={<Layers />} text="Categorías" />
-          </Link>
-          <Link to="/users" className="without_line">
-            <SidebarItem icon={<Users />} text="Usuario" />
-          </Link>
+          {user.rol !== "Administrador" && (
+            <>
+              <Link to="/post/all" className="without_line">
+                <SidebarItem icon={<Book />} text="Entradas" />
+              </Link>
+              <Link to="/post/reciclaje" className="without_line">
+                <SidebarItem icon={<Trash />} text="Papelera de Reciclaje" />
+              </Link>
+            </>
+          )}
+
+          {user.rol === "Administrador" && (
+            <>
+              <SidebarItemWithSubItems
+                icon={<Book className="text-white" />}
+                text="Entradas"
+                subItems={[
+                  { icon: <Layers />, text: "Todas", to: "/post/all" },
+                  {
+                    icon: <PlusSquare />,
+                    text: "Añadir Nueva",
+                    to: "/post/add",
+                  },
+                  {
+                    icon: <Trash />,
+                    text: "Papelera de Reciclaje",
+                    to: "/post/reciclaje",
+                  },
+                  // { icon: <Layers />, text: "Categorías" }
+                ]}
+              />
+              <Link to="/categories" className="without_line">
+                <SidebarItem icon={<Layers />} text="Categorías" />
+              </Link>
+              <Link to="/users" className="without_line">
+                <SidebarItem icon={<Users />} text="Usuario" />
+              </Link>
+            </>
+          )}
         </Sidebar>
       </div>
       <div className="inicio">
@@ -434,23 +458,29 @@ useEffect(() => {
               </div>
 
               <div className="flex sm:flex-row w-40% flex-col">
-              <form onSubmit={handleSubmit} className="mt-4 sm:w-full mr-4">
-                <div className="">
-                  <div className="font-medium" htmlFor="title">
-                    Nombre de categoría
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      value={nombre}
-                      onChange={handleNombreChange}
-                      className={`m-0 w-full p-2 in2 ${isValidTitle === false ? 'input-error' : isValidTitle === true ? 'input-success' : ''}`}
-                      placeholder="Ingrese categoría"
-                      
-                    ></input>
-                    <SketchColor
-                      color={selectedColor}
-                      onChange={handleColorChange}
-                    />{/* <Github
+                <form onSubmit={handleSubmit} className="mt-4 sm:w-full mr-4">
+                  <div className="">
+                    <div className="font-medium" htmlFor="title">
+                      Nombre de categoría
+                    </div>
+                    <div className="flex items-center">
+                      <input
+                        value={nombre}
+                        onChange={handleNombreChange}
+                        className={`m-0 w-full p-2 in2 ${
+                          isValidTitle === false
+                            ? "input-error"
+                            : isValidTitle === true
+                            ? "input-success"
+                            : ""
+                        }`}
+                        placeholder="Ingrese categoría"
+                      ></input>
+                      <SketchColor
+                        color={selectedColor}
+                        onChange={handleColorChange}
+                      />
+                      {/* <Github
                     className="colorp"
                     style={{
                       marginLeft: "10px",
@@ -460,56 +490,78 @@ useEffect(() => {
                     color={selectedColor}
                     onChange={handleColorChange}
                   /> */}
+                    </div>
+                    {isValidTitle === false && (
+                      <div className="validation-message">Campo incompleto</div>
+                    )}
                   </div>
-                  {isValidTitle === false && <div className="validation-message">Campo incompleto</div>}
-                </div>
 
-              <div className="mt-2">
-              <div className="font-medium" htmlFor="description">  {/* Asegúrate de usar htmlFor con el ID correcto si es necesario */}
-                  Descripción
-              </div>
-              <textarea
-                  value={descripcion}
-                  onChange={handleDescriptionChange}
-                  className={`w-full bg-neutral-100 p-2 in2 mt-2 ring-2 h-40 ring-teal-600 rounded ${isValidDescription === false ? 'input-error1' : isValidDescription === true ? 'input-success1' : ''}`}
-                  placeholder="Ingrese descripción"
-              ></textarea>
-              {isValidDescription === false && <div className="validation-message">La descripción no puede estar vacía</div>}
+                  <div className="mt-2">
+                    <div className="font-medium" htmlFor="description">
+                      {" "}
+                      {/* Asegúrate de usar htmlFor con el ID correcto si es necesario */}
+                      Descripción
+                    </div>
+                    <textarea
+                      value={descripcion}
+                      onChange={handleDescriptionChange}
+                      className={`w-full bg-neutral-100 p-2 in2 mt-2 ring-2 h-40 ring-teal-600 rounded ${
+                        isValidDescription === false
+                          ? "input-error1"
+                          : isValidDescription === true
+                          ? "input-success1"
+                          : ""
+                      }`}
+                      placeholder="Ingrese descripción"
+                    ></textarea>
+                    {isValidDescription === false && (
+                      <div className="validation-message">
+                        La descripción no puede estar vacía
+                      </div>
+                    )}
+                  </div>
 
-          </div>
-
-
-      <div className="mt-2">
-      <div className="font-medium" htmlFor="title">
-          Imagen Destacada
-      </div>
-      {loading && <div className="validation-message">Cargando imagen...</div>}
-      {uploadError && <div className="validation-message text-red-500">{uploadError}</div>}
-      {isValidImage === false && <div className="validation-message text-red-500">La imagen no puede estar vacía y debe ser válida</div>}
-      {previewImage ? (
-          <img
-              src={previewImage}
-              alt="Preview"
-              className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
-              onClick={() => fileInputRef.current.click()}
-          />
-      ) : (
-          <img
-              src="/img/upload1.png"
-              alt="Default Preview"
-              onClick={() => fileInputRef.current.click()}
-              className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
-          />
-      )}
-      <button
-          type="button"
-          className="pre tracking-widest p-3 mt-4"
-          onClick={() => fileInputRef.current.click()}
-      >
-          <div className="">
-              Subir imagen
-          </div>
-      </button>
+                  <div className="mt-2">
+                    <div className="font-medium" htmlFor="title">
+                      Imagen Destacada
+                    </div>
+                    {loading && (
+                      <div className="validation-message">
+                        Cargando imagen...
+                      </div>
+                    )}
+                    {uploadError && (
+                      <div className="validation-message text-red-500">
+                        {uploadError}
+                      </div>
+                    )}
+                    {isValidImage === false && (
+                      <div className="validation-message text-red-500">
+                        La imagen no puede estar vacía y debe ser válida
+                      </div>
+                    )}
+                    {previewImage ? (
+                      <img
+                        src={previewImage}
+                        alt="Preview"
+                        className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
+                        onClick={() => fileInputRef.current.click()}
+                      />
+                    ) : (
+                      <img
+                        src="/img/upload1.png"
+                        alt="Default Preview"
+                        onClick={() => fileInputRef.current.click()}
+                        className="mt-2 max-w-full h-48 mx-auto cursor-pointer"
+                      />
+                    )}
+                    <button
+                      type="button"
+                      className="pre tracking-widest p-3 mt-4"
+                      onClick={() => fileInputRef.current.click()}
+                    >
+                      <div className="">Subir imagen</div>
+                    </button>
 
                     <input
                       className="hidden"

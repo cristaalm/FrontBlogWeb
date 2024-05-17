@@ -177,25 +177,37 @@ function EditPublish() {
           <Link to="/dashboard" className="without_line">
             <SidebarItem icon={<LayoutDashboard />} text="Dashboard" />
           </Link>
-          <SidebarItemWithSubItems
-            icon={<Book className="text-white" />}
-            text="Entradas"
-            subItems={[
-              { icon: <Layers />, text: "Todas", to: "/post/all" },
-              {
-                icon: <PlusSquare />,
-                text: "Añadir Nueva",
-                to: "/post/add",
-              },
-              {
-                icon: <Trash />,
-                text: "Papelera de Reciclaje",
-                to: "/post/reciclaje",
-              },
-            ]}
-          />
+          {user.rol !== "Administrador" && (
+            <>
+              <Link to="/post/all" className="without_line">
+                <SidebarItem icon={<Book />} text="Entradas" />
+              </Link>
+              <Link to="/post/reciclaje" className="without_line">
+                <SidebarItem icon={<Trash />} text="Papelera de Reciclaje" />
+              </Link>
+            </>
+          )}
+
           {user.rol === "Administrador" && (
             <>
+              <SidebarItemWithSubItems
+                icon={<Book className="text-white" />}
+                text="Entradas"
+                subItems={[
+                  { icon: <Layers />, text: "Todas", to: "/post/all" },
+                  {
+                    icon: <PlusSquare />,
+                    text: "Añadir Nueva",
+                    to: "/post/add",
+                  },
+                  {
+                    icon: <Trash />,
+                    text: "Papelera de Reciclaje",
+                    to: "/post/reciclaje",
+                  },
+                  // { icon: <Layers />, text: "Categorías" }
+                ]}
+              />
               <Link to="/categories" className="without_line">
                 <SidebarItem icon={<Layers />} text="Categorías" />
               </Link>
