@@ -49,9 +49,9 @@ function crudPost() {
         {
           element: ".entradas-tour",
           popover: {
-            title: "Entradas",
+            title: "Papelera de Reciclaje",
             description:
-              "Esta sección es donde puedes editar, previsualizar, eliminar y mandar a revisar tus publicaciones o artículos fácilmente.",
+              "Esta sección es donde puedes ver las entradas que fueron eliminadas.",
           },
         },
         {
@@ -59,7 +59,7 @@ function crudPost() {
           popover: {
             title: "Título",
             description:
-              "Aquí verás los títulos de las entradas que has añadido.",
+              "Aquí verás los títulos de las entradas que has eliminado.",
           },
         },
         {
@@ -67,7 +67,7 @@ function crudPost() {
           popover: {
             title: "Categoría",
             description:
-              "Esta columna muestra la categoría asignada a cada entrada.",
+              "Esta columna muestra la categoría que fue eliminada.",
           },
         },
         {
@@ -78,11 +78,11 @@ function crudPost() {
           },
         },
         {
-          element: ".editar-tour",
+          element: ".motivo-tour",
           popover: {
-            title: "Editar",
+            title: "Motivo de rechazo.",
             description:
-              "Este botón te permite modificar una entrada existente.",
+              "Aquí esta la justificación de porque se quiere eliminar.",
           },
         },
         {
@@ -90,39 +90,7 @@ function crudPost() {
           popover: {
             title: "Previsualizar",
             description:
-              "Al presionar este botón, podrás ver cómo se verá una entrada una vez que se publique.",
-          },
-        },
-        {
-          element: ".eliminar-tour",
-          popover: {
-            title: "Eliminar",
-            description:
-              "Usa este botón para eliminar una entrada. Asegúrate de estar seguro antes de hacerlo.",
-          },
-        },
-        {
-          element: ".revisar-tour",
-          popover: {
-            title: "Revisar",
-            description:
-              "Este botón te permite enviar una entrada al administrador para su revisión. Una vez enviado, el administrador será notificado por correo electrónico sobre tu entrada en este estado.",
-          },
-        },
-        {
-          element: ".visitarentrada-tour",
-          popover: {
-            title: "Visitar entrada",
-            description:
-              "Este botón le redirigirá a la página que contiene la entrada que desea consultar.",
-          },
-        },
-        {
-          element: ".btnentrada-tour",
-          popover: {
-            title: "Añadir nueva entrada",
-            description:
-              "Al hacer clic en este botón, serás dirigido a la sección donde puedes añadir nuevas entradas.",
+              "Al presionar este botón, podrás ver la entrada que fue eliminada.",
           },
         },
         {
@@ -130,10 +98,9 @@ function crudPost() {
           popover: {
             title: "Entradas más recientes y más antiguas",
             description:
-              "Utilice este botón desplegable para seleccionar y visualizar la entrada más reciente o la más antigua en la sección correspondiente.",
+              "Utilice este botón desplegable para seleccionar y visualizar la entrada eliminada más reciente o la más antigua en la sección correspondiente.",
           },
         },
-
         {
           element: ".btn-iniciar-tour",
           popover: {
@@ -658,7 +625,7 @@ function crudPost() {
                               <th className="border-neutral-100 border-r-2 encabezadoTabla estatus-tour">
                                 Estatus
                               </th>
-                              <th className="border-neutral-100 border-r-2 encabezadoTabla estatus-tour">
+                              <th className="border-neutral-100 border-r-2 encabezadoTabla motivo-tour">
                                 Motivo de Rechazo
                               </th>
                               <th className="border-teal-600 border-r-2 encabezadoTabla"></th>
