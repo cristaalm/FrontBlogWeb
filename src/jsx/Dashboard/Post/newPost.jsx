@@ -247,7 +247,10 @@ function usuarios() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!isValidTitle || !isValidDescription || !isValidCategory) {
+      alert("Por favor, asegúrate de que todos los campos están correctamente llenados y validados.");
+      return;
+  }
     // Validación del título
     if (title.trim() === '') {
       setIsValidTitle(false);
