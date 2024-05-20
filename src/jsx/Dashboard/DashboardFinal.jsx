@@ -209,8 +209,14 @@ function LayoutPost() {
               </div>
             </div>
           </div>
-          <Pie />
-          <BarHorizontal />
+          <div className="w-full flex flex-col md:flex-row md:space-x-4">
+            <div className="w-full md:w-4/12">
+              <BarHorizontal />
+            </div>
+            <div className="w-full md:w-6/12">
+              <Pie />
+            </div>
+          </div>
         </main>
       </div>
     </div>

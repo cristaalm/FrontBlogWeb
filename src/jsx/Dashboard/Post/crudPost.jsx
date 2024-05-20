@@ -902,10 +902,21 @@ function crudPost() {
                                       )}
                                       <button
                                         onClick={() => toggleDelete(entrada.id)}
-                                        className="btn-red p-2 m-1 eliminar-tour"
+                                        className={`btn-red p-2 m-1 eliminar-tour ${
+                                          entrada.estatus !== "Publicado"
+                                            ? ""
+                                            : "opacity-25 cursor-not-allowed"
+                                        }`}
+                                        // className="btn-red p-2 m-1 "
                                         data-tooltip-id="eliminar"
                                         data-tooltip-place="top"
                                         data-tooltip-content="Eliminar"
+                                        disabled={
+                                          entrada.estatus == "Publicado"
+                                        }
+                                        {...(entrada.estatus !== "Publicado"
+                                          ? {}
+                                          : { "data-tooltip-hidden": true })}
                                       >
                                         <Trash size={20} />
                                       </button>

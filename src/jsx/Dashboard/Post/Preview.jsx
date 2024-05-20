@@ -5,7 +5,7 @@ import Sidebar, {
   SidebarItemWithSubItems,
 } from "../../Elements/SideBar";
 import PreviewComponent from "../../Elements/PreviewComponent.jsx";
-import { LayoutDashboard, Users, Book, PlusSquare, Layers } from "lucide-react";
+import { LayoutDashboard, Users, Book, PlusSquare, Layers, Trash } from "lucide-react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 // import { Preview } from "@mui/icons-material";
 import { BaseUrl } from "../../../constants/global.js";
