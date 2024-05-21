@@ -104,7 +104,10 @@ const PreviewComponent = () => {
     };
     fetchData();
   }, [categoria]); // Added `categoria` as a dependency to re-fetch data when `categoria` changes
-
+  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered2, setIsHovered2] = useState(false);
+  const [isHovered3, setIsHovered3] = useState(false);
+  const [isHovered4, setIsHovered4] = useState(false);
   const colorMap = {
     "#fccb00": "yellow-400",
     "#008b02": "green-600 text-neutral-100",
@@ -131,7 +134,7 @@ const PreviewComponent = () => {
   let colorLetra = calcularContraste(color[categoria]);
   const copiarAlPortapapeles = (e) => {
     e.preventDefault();
-    const enlace = `http://localhost:5173/blog-post/${id}`;
+    const enlace = `http://localhost:5173/welcome#/blog-post/${id}`;
     navigator.clipboard
       .writeText(enlace)
       .then(() => {
@@ -193,40 +196,52 @@ const PreviewComponent = () => {
                   onClick={copiarAlPortapapeles}
                 >
                   <Link
-                    className={`text-teal-600 hover:text-${colorClass} transition-transform transform hover:scale-110`}
+                    style={{ color: isHovered ? color[categoria] : undefined }}
+                    className="text-teal-600 transition-transform transform hover:scale-110"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
                   />
                 </a>
                 <FacebookShareButton
                   data-tooltip-id="tooltip"
                   data-tooltip-content="Facebook"
-                  url={`http://localhost:5173/post/preview/${id}`}
+                  url={`http://localhost:5173/#/post/preview/${id}`}
                   quote="Check out this amazing content!"
                   hashtag="#react"
                 >
                   <Facebook
-                    className={`text-teal-600 hover:text-${colorClass} transition-transform transform hover:scale-110`}
+                    style={{ color: isHovered2 ? color[categoria] : undefined }}
+                    className="text-teal-600 transition-transform transform hover:scale-110"
+                    onMouseEnter={() => setIsHovered2(true)}
+                    onMouseLeave={() => setIsHovered2(false)}
                   />
                 </FacebookShareButton>
                 <TwitterShareButton
                   data-tooltip-id="tooltip"
                   data-tooltip-content="Twitter"
-                  url={`http://localhost:5173/post/preview/${id}`}
+                  url={`http://localhost:5173/#/post/preview/${id}`}
                   title="My awesome article"
                 >
                   <TwitterX
                     size={20}
-                    className={`text-teal-600 hover:text-${colorClass} transition-transform transform hover:scale-110`}
+                    style={{ color: isHovered3 ? color[categoria] : undefined }}
+                    className="text-teal-600 transition-transform transform hover:scale-110"
+                    onMouseEnter={() => setIsHovered3(true)}
+                    onMouseLeave={() => setIsHovered3(false)}
                   />
                 </TwitterShareButton>
                 <EmailShareButton
                   data-tooltip-id="tooltip"
                   data-tooltip-content="Email"
-                  url={`http://localhost:5173/post/preview/${id}`}
+                  url={`http://localhost:5173/#/post/preview/${id}`}
                   subject="Don't miss this!"
                   body="This is a must-read!"
                 >
                   <Mail
-                    className={`text-teal-600 hover:text-${colorClass} transition-transform transform hover:scale-110`}
+                    style={{ color: isHovered4 ? color[categoria] : undefined }}
+                    className="text-teal-600 transition-transform transform hover:scale-110"
+                    onMouseEnter={() => setIsHovered4(true)}
+                    onMouseLeave={() => setIsHovered4(false)}
                   />
                 </EmailShareButton>
               </div>

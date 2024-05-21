@@ -77,25 +77,6 @@ function categorías() {
 
   const [isValidDescription, setIsValidDescription] = useState(null);
 
-  const handleUploadClick = () => {
-    // Activa el input de tipo file al hacer clic en otro elemento
-    fileInputRef.current.click();
-  };
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    // Aquí puedes manejar la lógica para subir el archivo
-  };
-
-  const handleAddImage = () => {
-    // Lógica para insertar la imagen en el editor de texto
-    // Aquí puedes realizar la lógica para insertar la imagen en el editor de texto si es necesario
-    setShowModal(false); // Cierra el modal después de procesar la imagen
-  };
-  const handleToggleModal = () => {
-    setShowModal(!showModal);
-  };
-
   const [previewImage, setPreviewImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [uploadError, setUploadError] = useState("");
@@ -651,13 +632,30 @@ function categorías() {
                                           <Pencil size={20} />
                                         </button>
                                         <button
-                                          onClick={() =>
-                                            toggleDelete(category.id)
-                                          }
-                                          className="btn-red p-2 m-1"
+                                          onClick={() => {
+                                            if (
+                                              category.entradas == 0
+                                            ) {
+                                              toggleDelete(category.id)
+                                            }
+                                          }}
+                                          // onClick={() =>
+                                          //   toggleDelete(category.id)
+                                          // }
+                                          className={`btn-red p-2 m-1 ${
+                                            category.entradas > 0
+                                              ? "opacity-25 cursor-not-allowed"
+                                              : ""
+                                          }`}
                                           data-tooltip-id="eliminar"
                                           data-tooltip-place="top-end"
                                           data-tooltip-content="Eliminar"
+                                          disabled={
+                                            category.entradas > 0
+                                          }
+                                          {...(category.entradas > 0
+                                            ? { "data-tooltip-hidden": true }
+                                            : {})}
                                         >
                                           <Trash size={20} />
                                         </button>

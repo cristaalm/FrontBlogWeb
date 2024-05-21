@@ -40,10 +40,10 @@ const RestartPsswd = () => {
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-    setShowPassword1(!showPassword1);
-
   };
-
+  const togglePasswordVisibility1 = () => {
+    setShowPassword1(!showPassword);
+  };
   return (
     <section>
       <div className="wave wave1"></div>
@@ -51,48 +51,57 @@ const RestartPsswd = () => {
       <div className="wave wave3"></div>
       <div className="wave wave4"></div>
       <div className="container">
-      <h1 className="font-semibold text-3xl pb-2">Restart your password</h1>
+        <h1 className="font-semibold text-3xl pb-6">
+          Restart your password
+        </h1>
         {message && <div className={`message ${messageClass}`}>{message}</div>}
         <form onSubmit={handleSubmit}>
-          
-          <div className="form-control">
+          <div className="relative z-0 w-full mb-5 ">
             <input
+              className="inputAuth"
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <label>Password</label>
-            <button type="button" 
-            className="eye2"
-            onClick={togglePasswordVisibility}>
+            <label htmlFor="text" className="mt-2">
+              Password
+            </label>
+            <button
+              type="button"
+              className="eye2"
+              onClick={togglePasswordVisibility}
+            >
               {showPassword ? (
                 <Eye color="whitesmoke" />
               ) : (
                 <EyeSlash color="whitesmoke" />
               )}
             </button>
-
           </div>
-          <div className="form-control">
+          <div className="relative z-0 w-full mb-5">
             <input
+              className="inputAuth"
               type={showPassword1 ? "text" : "password"}
               value={passwordConfirm}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            <label>Confirm Password</label>
-            
-          <button type="button" 
-          className="eye2"
-          onClick={togglePasswordVisibility}
-          >
-            {showPassword1 ? (
-              <Eye color="whitesmoke" />
-            ) : (
-              <EyeSlash  color="whitesmoke" />
-            )}
-          </button>
+            <label htmlFor="text" className="mt-2">
+              Confirm Password
+            </label>
+
+            <button
+              type="button"
+              className="eye2"
+              onClick={togglePasswordVisibility1}
+            >
+              {showPassword1 ? (
+                <Eye color="whitesmoke" />
+              ) : (
+                <EyeSlash color="whitesmoke" />
+              )}
+            </button>
           </div>
           <button type="submit" className="btn">
             Reset Password

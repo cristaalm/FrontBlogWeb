@@ -261,7 +261,10 @@ const Entradasview = ({ intl }) => {
                       </span>
                     </h5>
                     <p className="font-normal text-sm">
-                      {format(Date(comment.fechacreacion), "dd/MM/yyyy")}
+                      {format(
+                        new Date(`${comment.fechacreacion}T00:00:00-06:00`),
+                        "dd/MM/yyyy"
+                      )}
                     </p>
                   </div>
                   <div className="text-center italic">

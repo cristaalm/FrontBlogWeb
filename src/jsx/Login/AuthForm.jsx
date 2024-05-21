@@ -187,7 +187,7 @@ const AuthForm = () => {
             <FormattedMessage id="login.login" defaultMessage="Login" />
           </p>
           <form onSubmit={handleSubmit}>
-            <div className=" relative z-0 w-full mb-5">
+            <div className="relative z-0 w-full mb-5">
               <input
                 type="text"
                 className="inputAuth"
